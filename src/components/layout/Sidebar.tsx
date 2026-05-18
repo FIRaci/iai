@@ -41,55 +41,52 @@ const navItems = [
 function NavItem({
   item,
   isActive,
-  depth = 0,
 }: {
   item: (typeof navItems)[number]
   isActive: boolean
-  depth?: number
 }) {
-  const [open, setOpen] = useState(depth === 0)
+  const location = useLocation()
+  const [open, setOpen] = useState(true)
 
-  if ("children" in item && item.children) {
-    return (
-      <div>
-        <button
-          onClick={() => setOpen(!open)}
-          className={cn(
-            "flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-            isActive
-              ? "bg-accent text-accent-foreground"
-              : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
-          )}
-        >
-          {item.icon && <item.icon className="h-4 w-4" />}
-          <span className="flex-1 text-left">{item.title}</span>
-          <ChevronDown
-            className={cn("h-3 w-3 transition-transform", open && "rotate-180")}
-          />
-        </button>
-        {open && (
-          <div className="ml-2 mt-1 space-y-1 border-l pl-2">
-            {item.children.map((child) => (
-              <Link
-                key={child.path}
-                to={child.path}
-                className={cn(
-                  "block rounded-md px-3 py-1.5 text-sm transition-colors",
-                  location.pathname === child.path
-                    ? "bg-primary/10 text-primary font-medium"
-                    : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
-                )}
-              >
-                {child.title}
-              </Link>
-            ))}
-          </div>
+  if (!("children" in item) || !item.children) return null
+
+  return (
+    <div>
+      <button
+        onClick={() => setOpen(!open)}
+        className={cn(
+          "flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+          isActive
+            ? "bg-accent text-accent-foreground"
+            : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
         )}
-      </div>
-    )
-  }
-
-  return null
+      >
+        {item.icon && <item.icon className="h-4 w-4" />}
+        <span className="flex-1 text-left">{item.title}</span>
+        <ChevronDown
+          className={cn("h-3 w-3 transition-transform", open && "rotate-180")}
+        />
+      </button>
+      {open && (
+        <div className="ml-2 mt-1 space-y-1 border-l pl-2">
+          {item.children.map((child) => (
+            <Link
+              key={child.path}
+              to={child.path}
+              className={cn(
+                "block rounded-md px-3 py-1.5 text-sm transition-colors",
+                location.pathname === child.path
+                  ? "bg-primary/10 text-primary font-medium"
+                  : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
+              )}
+            >
+              {child.title}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  )
 }
 
 export function Sidebar() {

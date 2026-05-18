@@ -4,7 +4,7 @@ import type { ReactNode } from "react"
 
 interface NoteBlockProps {
   type?: "info" | "warning" | "tip" | "danger"
-  children: ReactNode
+  children?: ReactNode
 }
 
 const styles = {
@@ -39,6 +39,7 @@ const styles = {
 }
 
 export function NoteBlock({ type = "info", children }: NoteBlockProps) {
+  if (!children) return null
   const s = styles[type]
   const Icon = s.icon
 
