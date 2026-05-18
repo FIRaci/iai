@@ -75,8 +75,14 @@ export function getContentTree(): RouteNode[] {
 export function getContentModule(path: string): () => MdxModule {
   const pagePath = `/src/content/pages${path}.mdx`
   if (contentModules[pagePath]) return () => contentModules[pagePath]
-  const mdxPath = `/src/content${path === "/" ? "/index" : path}.mdx`
-  return () => contentModules[mdxPath]
+  const mdxPaths = [
+    `/src/content${path === "/" ? "/index" : path}.mdx`,
+    `/src/content${path}/index.mdx`,
+  ]
+  for (const p of mdxPaths) {
+    if (contentModules[p]) return () => contentModules[p]
+  }
+  return () => contentModules[mdxPaths[0]]
 }
 
 function getCategoryTitle(category: string): string {
