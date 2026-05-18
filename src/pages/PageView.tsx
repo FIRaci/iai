@@ -6,6 +6,7 @@ import { CodeBlock } from "@/components/blocks/CodeBlock"
 import { NoteBlock } from "@/components/blocks/NoteBlock"
 import { ComparisonTable } from "@/components/blocks/ComparisonTable"
 import { MermaidDiagram } from "@/components/blocks/MermaidDiagram"
+import { YesNoBadge } from "@/components/YesNoBadge"
 import { Seo } from "@/components/Seo"
 import { TableOfContents } from "@/components/TableOfContents"
 import { getContentModule } from "@/lib/content-loader"
@@ -21,6 +22,7 @@ const blockComponents = {
   Danger: (props: Record<string, unknown>) => <NoteBlock type="danger" {...props} />,
   ComparisonTable,
   MermaidDiagram,
+  YesNoBadge,
   wrapper: ({ children }: { children: React.ReactNode }) => <>{children}</>,
 }
 

@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom"
 import { getContentTree } from "@/lib/content-loader"
+import { getToolIcon } from "@/lib/icons"
 import {
   BookOpen,
   Code2,
@@ -54,29 +55,34 @@ export function CategoryPage() {
       </div>
 
       <div className="grid gap-4">
-        {cat.children.map((item) => (
-          <Link key={item.path} to={item.path}>
-            <Card className="transition-colors hover:bg-accent">
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <CardTitle className="flex items-center gap-2">
-                      {item.title}
-                    </CardTitle>
-                    <CardDescription className="mt-1">
-                      {item.difficulty && (
-                        <span className="text-xs font-medium text-primary">
-                          {item.difficulty === "beginner" ? "Cơ bản" : item.difficulty === "intermediate" ? "Trung cấp" : "Nâng cao"}
-                        </span>
-                      )}
-                    </CardDescription>
+        {cat.children.map((item) => {
+          const slug = item.path.split("/").pop() || ""
+          const ItemIcon = getToolIcon(slug)
+          return (
+            <Link key={item.path} to={item.path}>
+              <Card className="transition-colors hover:bg-accent">
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <CardTitle className="flex items-center gap-2">
+                        <ItemIcon className="h-4 w-4 text-primary" />
+                        {item.title}
+                      </CardTitle>
+                      <CardDescription className="mt-1">
+                        {item.difficulty && (
+                          <span className="text-xs font-medium text-primary">
+                            {item.difficulty === "beginner" ? "Cơ bản" : item.difficulty === "intermediate" ? "Trung cấp" : "Nâng cao"}
+                          </span>
+                        )}
+                      </CardDescription>
+                    </div>
+                    <ChevronRight className="h-5 w-5 text-muted-foreground" />
                   </div>
-                  <ChevronRight className="h-5 w-5 text-muted-foreground" />
-                </div>
-              </CardHeader>
-            </Card>
-          </Link>
-        ))}
+                </CardHeader>
+              </Card>
+            </Link>
+          )
+        })}
       </div>
       </div>
     </>

@@ -8,6 +8,8 @@ import { ComparisonTable } from "@/components/blocks/ComparisonTable"
 import { MermaidDiagram } from "@/components/blocks/MermaidDiagram"
 import { TableOfContents } from "@/components/TableOfContents"
 import { Seo } from "@/components/Seo"
+import { YesNoBadge } from "@/components/YesNoBadge"
+import { getToolIcon } from "@/lib/icons"
 import { getContentModule, getContentTree } from "@/lib/content-loader"
 import type { RouteNode } from "@/types/content"
 import type { ComponentType } from "react"
@@ -22,6 +24,7 @@ const blockComponents = {
   Danger: (props: Record<string, unknown>) => <NoteBlock type="danger" {...props} />,
   ComparisonTable,
   MermaidDiagram,
+  YesNoBadge,
   wrapper: ({ children }: { children: React.ReactNode }) => <>{children}</>,
 }
 
@@ -66,7 +69,13 @@ export function ToolGuide() {
             </Link>
           </Button>
           {item && (
-            <h1 className="mt-4 text-3xl font-bold">{item.title}</h1>
+            <h1 className="mt-4 flex items-center gap-2 text-3xl font-bold">
+              {(() => {
+                const Icon = getToolIcon(slug || "")
+                return <Icon className="h-7 w-7 text-primary" />
+              })()}
+              {item.title}
+            </h1>
           )}
         </div>
 

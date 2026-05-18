@@ -12,7 +12,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0.042 265.755);
+  --primary: oklch(0.546 0.245 262.881);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.965 0.001 286.375);
   --secondary-foreground: oklch(0.205 0.042 265.755);
@@ -24,7 +24,7 @@
   --destructive-foreground: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0.004 286.375);
   --input: oklch(0.922 0.004 286.375);
-  --ring: oklch(0.205 0.042 265.755);
+  --ring: oklch(0.546 0.245 262.881);
   --radius: 0.625rem;
   --sidebar-background: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.556 0.019 286.375);
@@ -37,30 +37,30 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  --background: oklch(0.13 0.028 261.692);
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
+  --card: oklch(0.13 0.028 261.692);
   --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
+  --popover: oklch(0.13 0.028 261.692);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0.042 265.755);
+  --primary: oklch(0.546 0.245 262.881);
+  --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.269 0.015 286.375);
   --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0.015 286.375);
+  --muted: oklch(0.21 0.034 264.665);
   --muted-foreground: oklch(0.708 0.015 286.375);
-  --accent: oklch(0.269 0.015 286.375);
+  --accent: oklch(0.21 0.034 264.665);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.577 0.245 27.325);
   --border: oklch(0.269 0.015 286.375);
   --input: oklch(0.269 0.015 286.375);
-  --ring: oklch(0.708 0.015 286.375);
-  --sidebar-background: oklch(0.205 0.042 265.755);
+  --ring: oklch(0.546 0.245 262.881);
+  --sidebar-background: oklch(0.15 0.028 261.692);
   --sidebar-foreground: oklch(0.708 0.015 286.375);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary: oklch(0.546 0.245 262.881);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0.015 286.375);
+  --sidebar-accent: oklch(0.21 0.034 264.665);
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.269 0.015 286.375);
   --sidebar-ring: oklch(0.708 0.015 286.375);
@@ -107,7 +107,115 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
     font-family: var(--font-sans);
   }
+  /* Smooth transition when toggling theme */
+  .dark,
+  :root {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border) / 0.5);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.3);
+  }
+  /* Selection color */
+  ::selection {
+    background: oklch(0.546 0.245 262.881 / 0.2);
+  }
+  /* Smooth focus */
+  *:focus-visible {
+    @apply outline-ring outline-2 outline-offset-2;
+  }
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ===== Prose (MDX content) overrides ===== */
+.prose {
+  --tw-prose-body: var(--foreground);
+  --tw-prose-headings: var(--foreground);
+  --tw-prose-links: var(--primary);
+  --tw-prose-bold: var(--foreground);
+  --tw-prose-code: var(--foreground);
+  --tw-prose-quotes: var(--foreground);
+  --tw-prose-hr: var(--border);
+}
+
+.prose-neutral, .prose-invert {
+  --tw-prose-body: var(--foreground);
+  --tw-prose-headings: var(--foreground);
+  --tw-prose-links: var(--primary);
+  --tw-prose-bold: var(--foreground);
+}
+
+/* Tables inside prose (for raw Markdown tables) */
+.prose table {
+  @apply w-full border-collapse overflow-hidden rounded-lg border;
+}
+.prose table thead {
+  @apply bg-muted;
+}
+.prose table thead th {
+  @apply px-4 py-3 text-left text-sm font-semibold text-foreground;
+}
+.prose table tbody td {
+  @apply px-4 py-2.5 text-sm text-muted-foreground;
+}
+.prose table tbody tr {
+  @apply border-b border-border last:border-0 transition-colors hover:bg-muted/50;
+}
+
+/* Code blocks */
+.prose pre {
+  @apply rounded-lg border bg-muted p-4 text-sm leading-relaxed;
+}
+.prose code {
+  @apply rounded bg-muted px-1.5 py-0.5 text-sm font-normal;
+}
+.prose pre code {
+  @apply bg-transparent p-0 text-inherit;
+}
+
+/* Headings */
+.prose h2 {
+  @apply mt-10 scroll-mt-20 text-2xl font-semibold tracking-tight;
+}
+.prose h3 {
+  @apply mt-8 scroll-mt-20 text-xl font-semibold tracking-tight;
+}
+.prose h4 {
+  @apply mt-6 scroll-mt-20 text-lg font-medium;
+}
+
+/* Blockquotes */
+.prose blockquote {
+  @apply border-l-4 border-primary/30 bg-muted/30 not-italic;
+  @apply rounded-r-lg px-5 py-3;
+}
+
+/* Horizontal rule */
+.prose hr {
+  @apply my-8;
+}
+
+/* Lists */
+.prose ul, .prose ol {
+  @apply space-y-1;
+}
+.prose li::marker {
+  @apply text-muted-foreground;
 }

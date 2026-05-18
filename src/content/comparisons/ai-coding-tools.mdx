@@ -1,10 +1,12 @@
 ---
 title: "So sánh AI Coding Tools"
 category: "comparisons"
-icon: "⚖️"
+icon: "comparison"
 difficulty: "beginner"
 tags: ["comparison"]
 ---
+
+import { comparisonColumns, comparisonRows } from "@/data/comparison-data"
 
 ## Tổng quan
 
@@ -14,20 +16,7 @@ Bảng so sánh chi tiết các AI coding tools phổ biến giúp bạn chọn 
 
 ## Bảng so sánh
 
-| Tiêu chí | Claude Code | Cursor | Copilot | Devin | Windsurf | ClaudeKit | OpenClaw |
-|----------|------------|--------|---------|-------|----------|-----------|----------|
-| **Giá** | Free (API) | $20/th | $10/th | $500/th | $15/th | Free | Free |
-| **Nền tảng** | Terminal | IDE | VS Code | Web | IDE | Terminal | Terminal |
-| **Windows** | ✅ | ✅ | ✅ | ✅ Web | ✅ | ✅ | ✅ |
-| **Multi-file** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **Terminal** | ✅ Native | ✅ Agent | ❌ | ✅ | ✅ Cascade | ✅ | ✅ |
-| **Rules** | `.claude/` | `.cursorrules` | ❌ | ❌ | ❌ | ✅ Skills | ❌ |
-| **Web search** | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ | ❌ |
-| **Tiếng Việt** | ✅ | ✅ | Partial | ✅ | ✅ | ✅ | ✅ |
-| **Offline** | ❌ | Partial | Partial | ❌ | Partial | ❌ | ❌ |
-| **Mã nguồn** | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ MIT | ✅ MIT |
-| **Hỗ trợ Claude** | ✅ Native | ✅ | ❌ | ❌ | ❌ | ✅ | ✅ |
-| **Hỗ trợ GPT** | ❌ | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ |
+<ComparisonTable columns={comparisonColumns} rows={comparisonRows} />
 
 ## Decision Tree
 
@@ -49,40 +38,33 @@ flowchart TD
 
 ## Phân tích chi tiết
 
-### Claude Code CLI — Tốt nhất cho terminal lovers
-- **Ưu:** Miễn phí (chỉ trả API), mạnh mẽ, hiểu context codebase
-- **Nhược:** Cần quen với CLI, không có GUI
-- **Phù hợp:** Developer yêu thích terminal và vibe coding
+### Claude Code CLI — Tốt nhất cho terminal
+- Miễn phí (chỉ trả API), mạnh mẽ, hiểu context codebase
+- Phù hợp: Developer yêu thích terminal và vibe coding
 
 ### Cursor — Tốt nhất cho AI-native IDE
-- **Ưu:** Tích hợp AI sâu, Composer, Agent mode, Rules system
-- **Nhược:** $20/tháng, không mã nguồn mở
-- **Phù hợp:** Developer chuyên nghiệp cần IDE AI-native
+- Tích hợp AI sâu, Composer, Agent mode, Rules system
+- Phù hợp: Developer chuyên nghiệp cần IDE AI-native
 
-### GitHub Copilot — Tốt nhất cho VS Code users
-- **Ưu:** Tích hợp sâu với VS Code, free tier, dễ dùng
-- **Nhược:** Không có terminal agent, không có rules
-- **Phù hợp:** Người mới bắt đầu, dân VS Code
+### GitHub Copilot — Tốt nhất cho VS Code
+- Tích hợp sâu với VS Code, free tier, dễ dùng
+- Phù hợp: Người mới bắt đầu, dân VS Code
 
 ### Devin — Tốt nhất cho tự động hóa
-- **Ưu:** Full-stack automation, tự động test và deploy
-- **Nhược:** $500/tháng, web-based
-- **Phù hợp:** Team/Enterprise cần automation
+- Full-stack automation, tự động test và deploy
+- Phù hợp: Team/Enterprise cần automation
 
 ### Windsurf — Tốt nhất free AI IDE
-- **Ưu:** Miễn phí, Cascade feature mạnh
-- **Nhược:** Limited credits free tier
-- **Phù hợp:** Người dùng muốn IDE AI miễn phí
+- Miễn phí, Cascade feature mạnh
+- Phù hợp: Người dùng muốn IDE AI miễn phí
 
 ### ClaudeKit — Tốt nhất cho orchestration
-- **Ưu:** Mã nguồn mở, miễn phí, linh hoạt
-- **Nhược:** Cần tự cấu hình, learning curve cao
-- **Phù hợp:** Developer muốn custom AI workflow
+- Mã nguồn mở, miễn phí, linh hoạt
+- Phù hợp: Developer muốn custom AI workflow
 
 ### OpenClaw — Tốt nhất cho open source
-- **Ưu:** Hoàn toàn miễn phí, mã nguồn mở (MIT)
-- **Nhược:** Ít tính năng, cần API key riêng
-- **Phù hợp:** Developer muốn tool AI miễn phí, open source
+- Hoàn toàn miễn phí, mã nguồn mở (MIT)
+- Phù hợp: Developer muốn tool AI miễn phí
 
 ## Khuyến nghị
 

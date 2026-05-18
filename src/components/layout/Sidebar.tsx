@@ -1,14 +1,27 @@
 import { Link, useLocation } from "react-router-dom"
 import { cn } from "@/lib/utils"
 import { BookOpen, Code2, GitCompare, ChevronDown, Compass } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { ThemeToggle } from "@/components/ThemeToggle"
+import { getToolIcon } from "@/lib/icons"
 
 const topLinks = [
   { title: "Bắt đầu", icon: Compass, path: "/getting-started" },
 ]
 
-const navItems = [
+interface NavChild {
+  title: string
+  path: string
+}
+
+interface NavGroup {
+  title: string
+  icon: typeof BookOpen
+  path: string
+  children: NavChild[]
+}
+
+const navItems: NavGroup[] = [
   {
     title: "AI Tools",
     icon: BookOpen,
@@ -47,49 +60,66 @@ function NavItem({
   item,
   isActive,
 }: {
-  item: (typeof navItems)[number]
+  item: NavGroup
   isActive: boolean
 }) {
   const location = useLocation()
-  const [open, setOpen] = useState(true)
+  const childActive = item.children.some((c) => location.pathname === c.path)
+  const [open, setOpen] = useState(childActive)
 
-  if (!("children" in item) || !item.children) return null
+  useEffect(() => {
+    if (childActive) setOpen(true)
+  }, [childActive])
 
   return (
     <div>
       <button
         onClick={() => setOpen(!open)}
         className={cn(
-          "flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-          isActive
+          "flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200",
+          isActive || childActive
             ? "bg-accent text-accent-foreground"
             : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
         )}
       >
-        {item.icon && <item.icon className="h-4 w-4" />}
-        <span className="flex-1 text-left">{item.title}</span>
+        {item.icon && <item.icon className="h-4 w-4 shrink-0" />}
+        <span className="flex-1 text-left truncate">{item.title}</span>
         <ChevronDown
-          className={cn("h-3 w-3 transition-transform", open && "rotate-180")}
+          className={cn(
+            "h-3 w-3 shrink-0 transition-transform duration-200",
+            open && "rotate-180",
+          )}
         />
       </button>
-      {open && (
-        <div className="ml-2 mt-1 space-y-1 border-l pl-2">
-          {item.children.map((child) => (
-            <Link
-              key={child.path}
-              to={child.path}
-              className={cn(
-                "block rounded-md px-3 py-1.5 text-sm transition-colors",
-                location.pathname === child.path
-                  ? "bg-primary/10 text-primary font-medium"
-                  : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
-              )}
-            >
-              {child.title}
-            </Link>
-          ))}
+      <div
+        className={cn(
+          "ml-2 mt-1 space-y-1 overflow-hidden transition-all duration-200",
+          open ? "max-h-96 opacity-100" : "max-h-0 opacity-0",
+        )}
+      >
+        <div className="border-l pl-2">
+          {item.children.map((child) => {
+            const slug = child.path.split("/").pop() || ""
+            const ChildIcon = getToolIcon(slug)
+            const isChildActive = location.pathname === child.path
+            return (
+              <Link
+                key={child.path}
+                to={child.path}
+                className={cn(
+                  "flex items-center gap-2 rounded-md px-3 py-1.5 text-sm transition-all duration-150",
+                  isChildActive
+                    ? "bg-primary/10 font-medium text-primary"
+                    : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
+                )}
+              >
+                <ChildIcon className="h-3.5 w-3.5 shrink-0" />
+                <span className="truncate">{child.title}</span>
+              </Link>
+            )
+          })}
         </div>
-      )}
+      </div>
     </div>
   )
 }
@@ -102,27 +132,30 @@ export function Sidebar() {
       <div className="flex h-full flex-col">
         <Link
           to="/"
-          className="flex items-center gap-2 border-b px-4 py-4 font-semibold"
+          className="flex items-center gap-2 border-b px-4 py-4 font-semibold transition-colors hover:bg-accent"
         >
           <BookOpen className="h-5 w-5 text-primary" />
-          IAI
+          <span>IAI</span>
         </Link>
         <nav className="flex-1 space-y-1 overflow-y-auto p-3">
-          {topLinks.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={cn(
-                "flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-                location.pathname === link.path
-                  ? "bg-accent text-accent-foreground"
-                  : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
-              )}
-            >
-              <link.icon className="h-4 w-4" />
-              {link.title}
-            </Link>
-          ))}
+          {topLinks.map((link) => {
+            const isActive = location.pathname === link.path
+            return (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={cn(
+                  "flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-150",
+                  isActive
+                    ? "bg-accent text-accent-foreground"
+                    : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
+                )}
+              >
+                <link.icon className="h-4 w-4 shrink-0" />
+                {link.title}
+              </Link>
+            )
+          })}
           <div className="my-2 border-t" />
           {navItems.map((item) => (
             <NavItem
