@@ -1,0 +1,55 @@
+---
+title: "So sánh AI Coding Tools"
+category: "comparisons"
+icon: "⚖️"
+difficulty: "beginner"
+tags: ["comparison"]
+---
+
+## Tổng quan
+
+<Note type="info">
+Bảng so sánh chi tiết các AI coding tools phổ biến giúp bạn chọn công cụ phù hợp.
+</Note>
+
+## Bảng so sánh
+
+| Tiêu chí | Claude Code | Cursor | Copilot | Devin | Windsurf | ClaudeKit | OpenClaw |
+|----------|------------|--------|---------|-------|----------|-----------|----------|
+| **Giá** | Free (API) | $20/th | $10/th | $500/th | $15/th | Free | Free |
+| **Nền tảng** | Terminal | IDE | VS Code | Web | IDE | Terminal | Terminal |
+| **Windows** | ✅ | ✅ | ✅ | ✅ Web | ✅ | ✅ | ✅ |
+| **Multi-file** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Terminal** | ✅ Native | ✅ Agent | ❌ | ✅ | ✅ Cascade | ✅ | ✅ |
+| **Rules** | `.claude/` | `.cursorrules` | ❌ | ❌ | ❌ | ✅ Skills | ❌ |
+| **Web search** | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ | ❌ |
+| **Tiếng Việt** | ✅ | ✅ | Partial | ✅ | ✅ | ✅ | ✅ |
+| **Offline** | ❌ | Partial | Partial | ❌ | Partial | ❌ | ❌ |
+| **Mã nguồn** | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ MIT | ✅ MIT |
+
+## Decision Tree
+
+<MermaidDiagram chart={`
+flowchart TD
+    S["Bạn muốn dùng AI tool nào?"] --> Q1{"Cần IDE hay Terminal?"}
+    Q1 -->|Terminal| Q2{"Cần orchestrate agents?"}
+    Q2 -->|Có| CK["ClaudeKit"]
+    Q2 -->|Không| Q3{"Ngân sách?"}
+    Q3 -->|0 đồng| O["OpenClaw"]
+    Q3 -->|Có budget| CC["Claude Code CLI"]
+    Q1 -->|IDE| Q4{"Editor hiện tại?"}
+    Q4 -->|VS Code| GH["GitHub Copilot"]
+    Q4 -->|Muốn IDE mới| Q5{"Cần full-stack?"}
+    Q5 -->|Có| CR["Cursor"]
+    Q5 -->|Không| W["Windsurf"]
+    Q1 -->|Web| D["Devin"]
+`} caption="Nên chọn AI tool nào?" />
+
+## Khuyến nghị
+
+<Note type="tip">
+**Người mới bắt đầu:** Bắt đầu với Claude Code CLI + GitHub Copilot  
+**Developer chuyên nghiệp:** Cursor hoặc ClaudeKit  
+**Team/Enterprise:** ClaudeKit + Devin  
+**Budget 0 đồng:** Claude Code CLI + OpenClaw
+</Note>

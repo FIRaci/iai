@@ -1,0 +1,58 @@
+---
+title: "GitHub Copilot"
+category: "ai-tools"
+icon: "✨"
+difficulty: "beginner"
+tags: ["github", "microsoft"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**GitHub Copilot** là AI pair programmer được tích hợp trong VS Code. Hỗ trợ inline suggestions, chat, và Copilot Edits.
+</Note>
+
+## Cài đặt
+
+<StepBlock number={1} title="Mở VS Code">
+<CodeBlock language="powershell">code</CodeBlock>
+</StepBlock>
+
+<StepBlock number={2} title="Cài Extension">
+- Mở Extensions (`Ctrl+Shift+X`)
+- Tìm "GitHub Copilot"
+- Click Install
+</StepBlock>
+
+<StepBlock number={3} title="Đăng nhập GitHub">
+1. Click icon Copilot ở status bar
+2. Sign in với GitHub account
+3. Confirm subscription (free tier có 2000 completions/tháng)
+</StepBlock>
+
+## Sử dụng
+
+### Inline Suggestions
+Gõ code → Copilot tự động suggest → Tab để chấp nhận.
+
+<CodeBlock language="typescript" code={`
+// Gõ: function calculateTotal(items)
+// Copilot suggest:
+function calculateTotal(items: Item[]) {
+  return items.reduce((sum, item) => sum + item.price * item.quantity, 0)
+}
+`} />
+
+### Chat (`Ctrl+I`)
+Mở chat inline → hỏi về code hiện tại.
+
+### Copilot Edits (`Ctrl+Shift+I`)
+Chỉnh sửa nhiều file cùng lúc với AI.
+
+<Note type="tip">
+**Shortcuts quan trọng:**
+- `Tab`: Accept suggestion
+- `Ctrl+→`: Accept word
+- `Alt+]`: Next suggestion
+- `Ctrl+Enter`: Open suggestions panel
+</Note>

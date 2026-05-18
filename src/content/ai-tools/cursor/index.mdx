@@ -1,0 +1,71 @@
+---
+title: "Cursor"
+category: "ai-tools"
+icon: "🖥️"
+difficulty: "beginner"
+tags: ["editor", "ai-native"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Cursor** là AI-native code editor dựa trên VS Code, tích hợp AI ngay trong lõi. Hỗ trợ Cmd+K, Composer, Agent mode, và Rules system.
+</Note>
+
+## Cài đặt
+
+<StepBlock number={1} title="Tải Cursor">
+Truy cập https://cursor.com và tải bản cho Windows.
+</StepBlock>
+
+<StepBlock number={2} title="Cài đặt">
+Chạy file .exe vừa tải → làm theo hướng dẫn.
+</StepBlock>
+
+<StepBlock number={3} title="Đăng nhập">
+Mở Cursor → Settings → Accounts → Sign in with GitHub/Google.
+</StepBlock>
+
+## Các tính năng chính
+
+### Cmd+K (Inline Chat)
+Chọn code → nhấn `Ctrl+K` → yêu cầu AI chỉnh sửa.
+
+<CodeBlock language="text">Ctrl+K: "đổi function này sang arrow function"
+Ctrl+K: "thêm error handling cho API call"
+Ctrl+K: "viết unit test cho function này"</CodeBlock>
+
+### Composer (Full-window)
+Nhấn `Ctrl+I` → Composer mode → chat với AI về toàn bộ codebase.
+
+<Note type="tip">
+Composer có thể:
+- Tạo multiple files cùng lúc
+- Sửa nhiều file
+- Apply changes tự động
+</Note>
+
+### Agent Mode
+Chọn Agent trong Composer → AI có thể:
+- Chạy terminal commands
+- Đọc/ghi files
+- Cài đặt packages
+
+## Rules (.cursorrules)
+
+Tạo file `.cursorrules` trong project root:
+
+<CodeBlock language="text">Bạn là expert TypeScript developer.
+Luôn dùng functional components với hooks.
+Viết unit test cho mọi function.
+Dùng tiếng Việt cho comments và docs.</CodeBlock>
+
+## So sánh với VS Code
+
+| Feature | Cursor | VS Code + Copilot |
+|---------|--------|-------------------|
+| Cmd+K | ✅ Native | ❌ Cần extension |
+| Composer | ✅ Full-window | ✅ Copilot Edits |
+| Agent mode | ✅ | ❌ |
+| Rules | ✅ .cursorrules | ❌ |
+| Giá | $20/tháng | $10/tháng |

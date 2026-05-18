@@ -1,0 +1,56 @@
+---
+title: "Node.js"
+category: "dev-tools"
+icon: "🟢"
+difficulty: "beginner"
+tags: ["javascript", "runtime"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Node.js** là JavaScript runtime cho phép chạy JavaScript ngoài trình duyệt. Hầu hết AI tools đều yêu cầu Node.js.
+</Note>
+
+## Cài đặt
+
+### Option 1: Dùng Winget (Khuyên dùng)
+
+<StepBlock number={1} title="Cài Node.js LTS">
+Mở **PowerShell (Admin)** và chạy:
+<CodeBlock language="powershell">winget install OpenJS.NodeJS.LTS</CodeBlock>
+</StepBlock>
+
+<StepBlock number={2} title="Kiểm tra">
+<CodeBlock language="powershell">node --version
+npm --version</CodeBlock>
+</StepBlock>
+
+### Option 2: Dùng nvm-windows (Quản lý nhiều version)
+
+<StepBlock number={1} title="Cài nvm-windows">
+Tải từ: https://github.com/coreybutler/nvm-windows/releases
+Chạy `nvm-setup.exe`
+</StepBlock>
+
+<StepBlock number={2} title="Cài Node.js qua nvm">
+<CodeBlock language="powershell">nvm install lts
+nvm use lts</CodeBlock>
+</StepBlock>
+
+## Cấu hình PATH
+
+Sau khi cài, kiểm tra PATH:
+<CodeBlock language="powershell">$env:Path -split ";" | Select-String "node|npm"</CodeBlock>
+
+Nếu không thấy, thêm thủ công:
+<CodeBlock language="powershell">[Environment]::SetEnvironmentVariable("Path", "$env:Path;$env:APPDATA\npm", "User")</CodeBlock>
+
+## Cài pnpm (Package Manager)
+
+<CodeBlock language="powershell">npm install -g pnpm
+pnpm --version</CodeBlock>
+
+<Note type="tip">
+pnpm nhanh hơn npm, tiết kiệm disk space. Dùng pnpm cho mọi project mới!
+</Note>

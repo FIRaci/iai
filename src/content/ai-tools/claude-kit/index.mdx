@@ -1,0 +1,60 @@
+---
+title: "ClaudeKit"
+category: "ai-tools"
+icon: "🧰"
+difficulty: "intermediate"
+tags: ["claude", "orchestration"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**ClaudeKit** là framework orchestration cho Claude AI agents. Giúp quản lý skills, hooks, agents, và workflows.
+</Note>
+
+## Cài đặt
+
+<StepBlock number={1} title="Yêu cầu">
+- Node.js >= 18
+- pnpm (khuyến khích)
+</StepBlock>
+
+<StepBlock number={2} title="Clone repository">
+<CodeBlock language="powershell">git clone https://github.com/anomalyco/claudekit.git
+cd claudekit</CodeBlock>
+</StepBlock>
+
+<StepBlock number={3} title="Cài đặt dependencies">
+<CodeBlock language="powershell">pnpm install</CodeBlock>
+</StepBlock>
+
+<StepBlock number={4} title="Cấu hình">
+Copy file env mẫu:
+<CodeBlock language="powershell">cp .env.example .env</CodeBlock>
+Thêm API keys vào `.env`
+</StepBlock>
+
+## Cấu trúc
+
+```
+claudekit/
+├── skills/          # Skill definitions
+├── hooks/           # Hook system
+├── agents/          # Agent configurations
+├── rules/           # Development rules
+└── scripts/         # Utility scripts
+```
+
+## Workflow
+
+<MermaidDiagram chart={`
+graph LR
+    A[User Input] --> B{Skill Router}
+    B --> C[Skill 1]
+    B --> D[Skill 2]
+    B --> E[Skill N]
+    C --> F[Agent]
+    D --> F
+    E --> F
+    F --> G[Output]
+`} caption="ClaudeKit Orchestration Flow" />
