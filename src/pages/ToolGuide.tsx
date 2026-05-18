@@ -9,6 +9,7 @@ import { MermaidDiagram } from "@/components/blocks/MermaidDiagram"
 import { TableOfContents } from "@/components/TableOfContents"
 import { Seo } from "@/components/Seo"
 import { YesNoBadge } from "@/components/YesNoBadge"
+import { PageTags } from "@/components/PageTags"
 import { getToolIcon } from "@/lib/icons"
 import { getContentModule, getContentTree } from "@/lib/content-loader"
 import type { RouteNode } from "@/types/content"
@@ -32,6 +33,19 @@ interface MdxContentProps {
   components: typeof blockComponents
 }
 
+const gradientMap: Record<string, string> = {
+  "claude-code": "from-blue-600 via-indigo-500 to-purple-600",
+  "claude-kit": "from-purple-600 via-violet-500 to-fuchsia-500",
+  cursor: "from-cyan-500 via-teal-500 to-emerald-500",
+  copilot: "from-emerald-500 via-green-500 to-teal-500",
+  devin: "from-amber-500 via-orange-500 to-red-500",
+  windsurf: "from-sky-400 via-blue-500 to-indigo-600",
+  openclaw: "from-rose-500 via-pink-500 to-purple-500",
+  nodejs: "from-green-500 via-emerald-500 to-teal-500",
+  git: "from-orange-500 via-amber-500 to-yellow-500",
+  vscode: "from-blue-500 via-indigo-500 to-sky-500",
+}
+
 export function ToolGuide() {
   const { category, slug } = useParams()
   const path = `/${category}/${slug}`
@@ -51,6 +65,8 @@ export function ToolGuide() {
     )
   }
 
+  const gradient = slug ? gradientMap[slug] || "from-primary to-blue-500" : "from-primary to-blue-500"
+
   return (
     <>
       <Seo
@@ -68,15 +84,16 @@ export function ToolGuide() {
               {cat?.title || category}
             </Link>
           </Button>
-          {item && (
-            <h1 className="mt-4 flex items-center gap-2 text-3xl font-bold">
-              {(() => {
-                const Icon = getToolIcon(slug || "")
-                return <Icon className="h-7 w-7 text-primary" />
-              })()}
-              {item.title}
+          <div className="mt-4 flex items-center gap-3">
+            {slug && (() => {
+              const Icon = getToolIcon(slug)
+              return <Icon className="h-8 w-8 text-primary" />
+            })()}
+            <h1 className={`bg-gradient-to-r ${gradient} bg-clip-text text-3xl font-bold text-transparent`}>
+              {item?.title || slug}
             </h1>
-          )}
+          </div>
+          <PageTags difficulty={mod.difficulty} tags={mod.tags} />
         </div>
 
         <div className="prose prose-neutral dark:prose-invert max-w-none">

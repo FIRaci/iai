@@ -179,12 +179,29 @@
   @apply border-b border-border last:border-0 transition-colors hover:bg-muted/50;
 }
 
-/* Code blocks */
+/* Code blocks — strong contrast (GitHub-inspired) */
 .prose pre {
-  @apply rounded-lg border bg-muted p-4 text-sm leading-relaxed;
+  @apply rounded-lg border p-4 text-sm leading-relaxed;
+  background-color: #f6f8fa;
+  color: #1f2328;
+  border-color: #d0d7de;
+}
+.dark .prose pre {
+  background-color: #0d1117;
+  color: #e6edf3;
+  border-color: #30363d;
 }
 .prose code {
-  @apply rounded bg-muted px-1.5 py-0.5 text-sm font-normal;
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.375rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  background-color: #e8eaed;
+  color: #1f2328;
+}
+.dark .prose code {
+  background-color: #2d333b;
+  color: #e6edf3;
 }
 .prose pre code {
   @apply bg-transparent p-0 text-inherit;

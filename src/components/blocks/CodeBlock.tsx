@@ -3,7 +3,6 @@
 import { Copy, Check } from "lucide-react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
 
 interface CodeBlockProps {
   language?: string
@@ -22,14 +21,14 @@ export function CodeBlock({ language = "text", code, children }: CodeBlockProps)
   }
 
   return (
-    <div className="my-4 overflow-hidden rounded-lg border">
-      <div className="flex items-center justify-between bg-muted px-4 py-1.5">
-        <span className="text-xs font-medium text-muted-foreground">{language}</span>
-        <Button variant="ghost" size="icon" className="h-7 w-7" onClick={handleCopy}>
+    <div className="my-4 overflow-hidden rounded-lg border border-[#30363d]">
+      <div className="flex items-center justify-between bg-[#161b22] px-4 py-1.5">
+        <span className="text-xs font-medium text-[#8b949e]">{language}</span>
+        <Button variant="ghost" size="icon" className="h-7 w-7 text-[#8b949e] hover:bg-[#30363d] hover:text-[#e6edf3]" onClick={handleCopy}>
           {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
         </Button>
       </div>
-      <pre className={cn("overflow-x-auto p-4 text-sm")}>
+      <pre className="overflow-x-auto bg-[#0d1117] p-4 text-sm leading-relaxed text-[#e6edf3]">
         <code>{text}</code>
       </pre>
     </div>

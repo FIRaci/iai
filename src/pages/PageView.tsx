@@ -9,6 +9,7 @@ import { MermaidDiagram } from "@/components/blocks/MermaidDiagram"
 import { YesNoBadge } from "@/components/YesNoBadge"
 import { Seo } from "@/components/Seo"
 import { TableOfContents } from "@/components/TableOfContents"
+import { PageTags } from "@/components/PageTags"
 import { getContentModule } from "@/lib/content-loader"
 import type { ComponentType } from "react"
 
@@ -63,7 +64,10 @@ export function PageView({ slug: propSlug }: { slug?: string }) {
                 Trang chủ
               </Link>
             </Button>
-            <h1 className="mt-4 text-3xl font-bold">{mod.title || slug}</h1>
+            <h1 className="mt-4 bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-3xl font-bold text-transparent">
+              {mod.title || slug}
+            </h1>
+            <PageTags difficulty={mod.difficulty} tags={mod.tags} />
           </div>
 
           <div className="prose prose-neutral dark:prose-invert max-w-none">
