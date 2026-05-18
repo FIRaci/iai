@@ -7,6 +7,7 @@ import { NoteBlock } from "@/components/blocks/NoteBlock"
 import { ComparisonTable } from "@/components/blocks/ComparisonTable"
 import { MermaidDiagram } from "@/components/blocks/MermaidDiagram"
 import { TableOfContents } from "@/components/TableOfContents"
+import { Seo } from "@/components/Seo"
 import { getContentModule, getContentTree } from "@/lib/content-loader"
 import type { RouteNode } from "@/types/content"
 import type { ComponentType } from "react"
@@ -48,7 +49,14 @@ export function ToolGuide() {
   }
 
   return (
-    <div className="flex gap-8">
+    <>
+      <Seo
+        title={item?.title || slug || "Hướng dẫn"}
+        description={String(item?.frontmatter?.description || `Hướng dẫn chi tiết về ${slug} trên Windows 11`)}
+        path={path}
+        type="article"
+      />
+      <div className="flex gap-8">
       <div className="min-w-0 flex-1">
         <div className="mb-6">
           <Button variant="ghost" size="sm" asChild>
@@ -68,6 +76,7 @@ export function ToolGuide() {
       </div>
 
       <TableOfContents />
-    </div>
+      </div>
+    </>
   )
 }

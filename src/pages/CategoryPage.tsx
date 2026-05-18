@@ -7,6 +7,13 @@ import {
   ChevronRight,
 } from "lucide-react"
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Seo } from "@/components/Seo"
+
+const categoryTitles: Record<string, string> = {
+  "ai-tools": "AI Tools",
+  "dev-tools": "Dev Tools",
+  comparisons: "So sánh",
+}
 
 const categoryIcons: Record<string, typeof BookOpen> = {
   "ai-tools": BookOpen,
@@ -14,17 +21,31 @@ const categoryIcons: Record<string, typeof BookOpen> = {
   comparisons: GitCompare,
 }
 
+const categoryDesc: Record<string, string> = {
+  "ai-tools": "Hướng dẫn chi tiết cài đặt và sử dụng các AI coding tools phổ biến trên Windows 11",
+  "dev-tools": "Hướng dẫn cài đặt và cấu hình các công cụ phát triển nền tảng trên Windows 11",
+  comparisons: "So sánh chi tiết các AI coding tools — chọn công cụ phù hợp nhất với nhu cầu của bạn",
+}
+
 export function CategoryPage() {
   const { category } = useParams()
   const tree = getContentTree()
   const cat = tree.find((c) => c.path === `/${category}`)
+  const catTitle = category ? (categoryTitles[category] || category) : ""
+  const catDesc = category ? (categoryDesc[category] || `Hướng dẫn về ${category}`) : ""
 
   if (!cat) return <div className="py-20 text-center text-muted-foreground">Không tìm thấy danh mục</div>
 
   const Icon = categoryIcons[cat.category] || BookOpen
 
   return (
-    <div className="mx-auto max-w-3xl">
+    <>
+      <Seo
+        title={catTitle}
+        description={catDesc}
+        path={`/${category}`}
+      />
+      <div className="mx-auto max-w-3xl">
       <div className="mb-8">
         <h1 className="flex items-center gap-2 text-3xl font-bold">
           <Icon className="h-7 w-7 text-primary" />
@@ -57,6 +78,7 @@ export function CategoryPage() {
           </Link>
         ))}
       </div>
-    </div>
+      </div>
+    </>
   )
 }

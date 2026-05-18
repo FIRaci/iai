@@ -1,6 +1,14 @@
+import { Seo } from "@/components/Seo"
+
 export function Home() {
   return (
-    <div className="mx-auto max-w-3xl space-y-8">
+    <>
+      <Seo
+        title="Trang chủ"
+        description="Cẩm nang toàn diện về AI tools và dev tools dành cho người dùng Windows 11"
+        path="/"
+      />
+      <div className="mx-auto max-w-3xl space-y-8">
       <div className="space-y-2">
         <h1 className="text-4xl font-bold tracking-tight">
           Chào mừng đến với <span className="text-primary">IAI</span>
@@ -63,6 +71,7 @@ export function Home() {
           </li>
         </ol>
       </div>
-    </div>
+      </div>
+    </>
   )
 }
