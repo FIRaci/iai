@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom"
 import { cn } from "@/lib/utils"
 import { BookOpen, Code2, GitCompare, ChevronDown } from "lucide-react"
 import { useState } from "react"
+import { ThemeToggle } from "@/components/ThemeToggle"
 
 const navItems = [
   {
@@ -111,6 +112,9 @@ export function Sidebar() {
             />
           ))}
         </nav>
+        <div className="border-t p-3">
+          <ThemeToggle />
+        </div>
       </div>
     </aside>
   )
