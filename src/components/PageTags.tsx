@@ -17,7 +17,7 @@ export function DifficultyBadge({ difficulty }: { difficulty?: string }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ring-1",
+        "inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold ring-1",
         difficultyColors[difficulty],
       )}
     >
@@ -48,7 +48,7 @@ export function TagBadge({ tag }: { tag: string }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ring-1",
+        "inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium ring-1",
         tagColorMap[tag] || "bg-muted text-muted-foreground ring-border",
       )}
     >
@@ -60,7 +60,7 @@ export function TagBadge({ tag }: { tag: string }) {
 export function PageTags({ difficulty, tags }: { difficulty?: string; tags?: string[] }) {
   if (!difficulty && (!tags || tags.length === 0)) return null
   return (
-    <div className="mb-4 flex flex-wrap items-center gap-2">
+    <div className="mt-3 flex flex-wrap items-center gap-2">
       {difficulty && <DifficultyBadge difficulty={difficulty} />}
       {tags?.map((tag) => <TagBadge key={tag} tag={tag} />)}
     </div>

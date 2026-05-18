@@ -32,8 +32,8 @@ export function Breadcrumbs() {
   if (parts.length === 0) return null
 
   return (
-    <nav className="flex items-center gap-1 text-sm text-muted-foreground">
-      <Link to="/" className="hover:text-foreground transition-colors">
+    <nav className="flex items-center gap-1.5 text-sm">
+      <Link to="/" className="flex items-center gap-1.5 text-[#656d76] dark:text-[#8b949e] hover:text-[#1f2328] dark:hover:text-[#e6edf3] transition-colors">
         <Home className="h-3.5 w-3.5" />
       </Link>
       {parts.map((part, i) => {
@@ -41,12 +41,12 @@ export function Breadcrumbs() {
         const label = pageLabels[part] || (i === 0 ? categoryLabels[part] : toolLabels[part]) || part
         const isLast = i === parts.length - 1
         return (
-          <span key={href} className="flex items-center gap-1">
-            <ChevronRight className="h-3 w-3" />
+          <span key={href} className="flex items-center gap-1.5">
+            <ChevronRight className="h-3 w-3 text-[#d0d7de] dark:text-[#30363d]" />
             {isLast ? (
-              <span className="font-medium text-foreground">{label}</span>
+              <span className="font-medium text-[#1f2328] dark:text-[#e6edf3]">{label}</span>
             ) : (
-              <Link to={href} className="hover:text-foreground transition-colors">
+              <Link to={href} className="text-[#656d76] dark:text-[#8b949e] hover:text-[#1f2328] dark:hover:text-[#e6edf3] transition-colors">
                 {label}
               </Link>
             )}

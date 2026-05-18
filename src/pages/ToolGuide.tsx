@@ -75,19 +75,24 @@ export function ToolGuide() {
         path={path}
         type="article"
       />
-      <div className="flex gap-8">
+      <div className="flex gap-10">
       <div className="min-w-0 flex-1">
-        <div className="mb-6">
-          <Button variant="ghost" size="sm" asChild>
-            <Link to={`/${category}`} className="gap-1">
+        {/* Header */}
+        <div className="mb-8">
+          <Button variant="ghost" size="sm" asChild className="mb-4 -ml-2 text-[#656d76] dark:text-[#8b949e] hover:text-[#1f2328] dark:hover:text-[#e6edf3]">
+            <Link to={`/${category}`} className="gap-1.5">
               <ArrowLeft className="h-4 w-4" />
               {cat?.title || category}
             </Link>
           </Button>
-          <div className="mt-4 flex items-center gap-3">
+          <div className="flex items-center gap-3">
             {slug && (() => {
               const Icon = getToolIcon(slug)
-              return <Icon className="h-8 w-8 text-primary" />
+              return (
+                <div className={`flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${gradient} text-white shadow-sm`}>
+                  <Icon className="h-5 w-5" />
+                </div>
+              )
             })()}
             <h1 className={`bg-gradient-to-r ${gradient} bg-clip-text text-3xl font-bold text-transparent`}>
               {item?.title || slug}
@@ -96,6 +101,7 @@ export function ToolGuide() {
           <PageTags difficulty={mod.difficulty} tags={mod.tags} />
         </div>
 
+        {/* Content */}
         <div className="prose prose-neutral dark:prose-invert max-w-none">
           <Content components={blockComponents} />
         </div>

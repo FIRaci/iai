@@ -78,8 +78,8 @@ function NavItem({
         className={cn(
           "flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200",
           isActive || childActive
-            ? "bg-accent text-accent-foreground"
-            : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
+            ? "bg-[#f6f8fa] dark:bg-[#161b22] text-[#1f2328] dark:text-[#e6edf3]"
+            : "text-[#656d76] dark:text-[#8b949e] hover:bg-[#f6f8fa] dark:hover:bg-[#161b22] hover:text-[#1f2328] dark:hover:text-[#e6edf3]",
         )}
       >
         {item.icon && <item.icon className="h-4 w-4 shrink-0" />}
@@ -93,11 +93,11 @@ function NavItem({
       </button>
       <div
         className={cn(
-          "ml-2 mt-1 space-y-1 overflow-hidden transition-all duration-200",
+          "ml-2 mt-1 space-y-0.5 overflow-hidden transition-all duration-200",
           open ? "max-h-96 opacity-100" : "max-h-0 opacity-0",
         )}
       >
-        <div className="border-l pl-2">
+        <div className="border-l border-[#d0d7de] dark:border-[#30363d] pl-2">
           {item.children.map((child) => {
             const slug = child.path.split("/").pop() || ""
             const ChildIcon = getToolIcon(slug)
@@ -109,8 +109,8 @@ function NavItem({
                 className={cn(
                   "flex items-center gap-2 rounded-md px-3 py-1.5 text-sm transition-all duration-150",
                   isChildActive
-                    ? "bg-primary/10 font-medium text-primary"
-                    : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
+                    ? "bg-primary/10 font-semibold text-primary"
+                    : "text-[#656d76] dark:text-[#8b949e] hover:bg-[#f6f8fa] dark:hover:bg-[#161b22] hover:text-[#1f2328] dark:hover:text-[#e6edf3]",
                 )}
               >
                 <ChildIcon className="h-3.5 w-3.5 shrink-0" />
@@ -128,14 +128,16 @@ export function Sidebar() {
   const location = useLocation()
 
   return (
-    <aside className="hidden w-64 shrink-0 border-r bg-sidebar-background text-sidebar-foreground lg:block">
+    <aside className="hidden w-64 shrink-0 border-r border-[#d0d7de] dark:border-[#30363d] bg-sidebar-background text-sidebar-foreground lg:block">
       <div className="flex h-full flex-col">
         <Link
           to="/"
-          className="flex items-center gap-2 border-b px-4 py-4 font-semibold transition-colors hover:bg-accent"
+          className="flex items-center gap-2.5 border-b border-[#d0d7de] dark:border-[#30363d] px-4 py-4 font-semibold text-[#1f2328] dark:text-[#e6edf3] transition-colors hover:bg-[#f6f8fa] dark:hover:bg-[#161b22]"
         >
-          <BookOpen className="h-5 w-5 text-primary" />
-          <span>IAI</span>
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-blue-500 text-white">
+            <BookOpen className="h-4 w-4" />
+          </div>
+          <span className="bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-transparent">IAI</span>
         </Link>
         <nav className="flex-1 space-y-1 overflow-y-auto p-3">
           {topLinks.map((link) => {
@@ -147,8 +149,8 @@ export function Sidebar() {
                 className={cn(
                   "flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-150",
                   isActive
-                    ? "bg-accent text-accent-foreground"
-                    : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
+                    ? "bg-[#f6f8fa] dark:bg-[#161b22] text-[#1f2328] dark:text-[#e6edf3]"
+                    : "text-[#656d76] dark:text-[#8b949e] hover:bg-[#f6f8fa] dark:hover:bg-[#161b22] hover:text-[#1f2328] dark:hover:text-[#e6edf3]",
                 )}
               >
                 <link.icon className="h-4 w-4 shrink-0" />
@@ -156,7 +158,7 @@ export function Sidebar() {
               </Link>
             )
           })}
-          <div className="my-2 border-t" />
+          <div className="my-2 border-t border-[#d0d7de] dark:border-[#30363d]" />
           {navItems.map((item) => (
             <NavItem
               key={item.path}
@@ -165,7 +167,7 @@ export function Sidebar() {
             />
           ))}
         </nav>
-        <div className="border-t p-3">
+        <div className="border-t border-[#d0d7de] dark:border-[#30363d] p-3">
           <ThemeToggle />
         </div>
       </div>

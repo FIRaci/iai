@@ -38,7 +38,7 @@ export function MermaidDiagram({ chart, caption }: MermaidDiagramProps) {
   if (error) {
     return (
       <figure className="my-6">
-        <div className="flex items-center justify-center rounded-lg border border-red-200 bg-red-50 p-8 text-sm text-red-600 dark:border-red-900 dark:bg-red-950/30 dark:text-red-400">
+        <div className="flex items-center justify-center rounded-xl border border-red-200 bg-red-50 p-8 text-sm text-red-600 dark:border-red-900 dark:bg-red-950/30 dark:text-red-400">
           Không thể hiển thị sơ đồ
         </div>
         {caption && <figcaption className="mt-2 text-center text-xs text-muted-foreground">{caption}</figcaption>}
@@ -51,12 +51,12 @@ export function MermaidDiagram({ chart, caption }: MermaidDiagramProps) {
       <div
         ref={ref}
         className={cn(
-          "flex justify-center rounded-lg border p-4",
-          "bg-white dark:bg-[#0f172a]",
+          "flex justify-center rounded-xl border border-[#d0d7de] dark:border-[#30363d] p-6",
+          "bg-white dark:bg-[#0d1117]",
         )}
       />
       {caption && (
-        <figcaption className="mt-2 text-center text-xs text-muted-foreground">
+        <figcaption className="mt-3 text-center text-xs font-medium text-muted-foreground">
           {caption}
         </figcaption>
       )}

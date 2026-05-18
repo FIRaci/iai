@@ -7,8 +7,8 @@ import {
   GitCompare,
   ChevronRight,
 } from "lucide-react"
-import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Seo } from "@/components/Seo"
+import { DifficultyBadge } from "@/components/PageTags"
 
 const categoryTitles: Record<string, string> = {
   "ai-tools": "AI Tools",
@@ -20,6 +20,12 @@ const categoryIcons: Record<string, typeof BookOpen> = {
   "ai-tools": BookOpen,
   "dev-tools": Code2,
   comparisons: GitCompare,
+}
+
+const categoryGradients: Record<string, string> = {
+  "ai-tools": "from-blue-500 to-indigo-600",
+  "dev-tools": "from-emerald-500 to-teal-600",
+  comparisons: "from-violet-500 to-purple-600",
 }
 
 const categoryDesc: Record<string, string> = {
@@ -38,6 +44,7 @@ export function CategoryPage() {
   if (!cat) return <div className="py-20 text-center text-muted-foreground">Không tìm thấy danh mục</div>
 
   const Icon = categoryIcons[cat.category] || BookOpen
+  const gradient = categoryGradients[cat.category] || "from-primary to-blue-500"
 
   return (
     <>
@@ -47,43 +54,48 @@ export function CategoryPage() {
         path={`/${category}`}
       />
       <div className="mx-auto max-w-3xl">
-      <div className="mb-8">
-        <h1 className="flex items-center gap-2 text-3xl font-bold">
-          <Icon className="h-7 w-7 text-primary" />
-          {cat.title}
-        </h1>
-      </div>
+        {/* Header */}
+        <div className="mb-8">
+          <div className="flex items-center gap-3">
+            <div className={`flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${gradient} text-white shadow-sm`}>
+              <Icon className="h-5 w-5" />
+            </div>
+            <h1 className={`bg-gradient-to-r ${gradient} bg-clip-text text-3xl font-bold text-transparent`}>
+              {cat.title}
+            </h1>
+          </div>
+          <p className="mt-2 text-sm text-[#656d76] dark:text-[#8b949e]">{catDesc}</p>
+        </div>
 
-      <div className="grid gap-4">
-        {cat.children.map((item) => {
-          const slug = item.path.split("/").pop() || ""
-          const ItemIcon = getToolIcon(slug)
-          return (
-            <Link key={item.path} to={item.path}>
-              <Card className="transition-colors hover:bg-accent">
-                <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <CardTitle className="flex items-center gap-2">
-                        <ItemIcon className="h-4 w-4 text-primary" />
-                        {item.title}
-                      </CardTitle>
-                      <CardDescription className="mt-1">
-                        {item.difficulty && (
-                          <span className="text-xs font-medium text-primary">
-                            {item.difficulty === "beginner" ? "Cơ bản" : item.difficulty === "intermediate" ? "Trung cấp" : "Nâng cao"}
-                          </span>
-                        )}
-                      </CardDescription>
+        {/* Tool list */}
+        <div className="grid gap-3">
+          {cat.children.map((item) => {
+            const slug = item.path.split("/").pop() || ""
+            const ItemIcon = getToolIcon(slug)
+            return (
+              <Link key={item.path} to={item.path}>
+                <div className="group flex items-center justify-between rounded-xl border border-[#d0d7de] dark:border-[#30363d] bg-card px-5 py-4 transition-all duration-200 hover:shadow-md hover:shadow-primary/5 hover:-translate-y-0.5 hover:border-primary/30">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                      <ItemIcon className="h-4 w-4" />
                     </div>
-                    <ChevronRight className="h-5 w-5 text-muted-foreground" />
+                    <div>
+                      <div className="font-semibold text-[#1f2328] dark:text-[#e6edf3] group-hover:text-primary transition-colors">
+                        {item.title}
+                      </div>
+                      {item.difficulty && (
+                        <div className="mt-1">
+                          <DifficultyBadge difficulty={item.difficulty} />
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </CardHeader>
-              </Card>
-            </Link>
-          )
-        })}
-      </div>
+                  <ChevronRight className="h-5 w-5 text-[#656d76] dark:text-[#8b949e] opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+              </Link>
+            )
+          })}
+        </div>
       </div>
     </>
   )

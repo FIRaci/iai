@@ -55,21 +55,23 @@ export function PageView({ slug: propSlug }: { slug?: string }) {
         path={path}
         type="article"
       />
-      <div className="flex gap-8">
+      <div className="flex gap-10">
         <div className="min-w-0 flex-1">
-          <div className="mb-6">
-            <Button variant="ghost" size="sm" asChild>
-              <Link to="/" className="gap-1">
+          {/* Header */}
+          <div className="mb-8">
+            <Button variant="ghost" size="sm" asChild className="mb-4 -ml-2 text-[#656d76] dark:text-[#8b949e] hover:text-[#1f2328] dark:hover:text-[#e6edf3]">
+              <Link to="/" className="gap-1.5">
                 <ArrowLeft className="h-4 w-4" />
                 Trang chủ
               </Link>
             </Button>
-            <h1 className="mt-4 bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-3xl font-bold text-transparent">
+            <h1 className="bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-3xl font-bold text-transparent">
               {mod.title || slug}
             </h1>
             <PageTags difficulty={mod.difficulty} tags={mod.tags} />
           </div>
 
+          {/* Content */}
           <div className="prose prose-neutral dark:prose-invert max-w-none">
             <Content components={blockComponents} />
           </div>
