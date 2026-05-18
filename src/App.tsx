@@ -5,6 +5,7 @@ import { Home } from "@/pages/Home"
 
 const CategoryPage = lazy(() => import("@/pages/CategoryPage").then(m => ({ default: m.CategoryPage })))
 const ToolGuide = lazy(() => import("@/pages/ToolGuide").then(m => ({ default: m.ToolGuide })))
+const PageView = lazy(() => import("@/pages/PageView").then(m => ({ default: m.PageView })))
 const NotFound = lazy(() => import("@/pages/NotFound").then(m => ({ default: m.NotFound })))
 
 function PageLoader() {
@@ -21,6 +22,10 @@ function App() {
       <Routes>
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
+          <Route
+            path="/getting-started"
+            element={<Suspense fallback={<PageLoader />}><PageView slug="getting-started" /></Suspense>}
+          />
           <Route
             path="/:category"
             element={<Suspense fallback={<PageLoader />}><CategoryPage /></Suspense>}

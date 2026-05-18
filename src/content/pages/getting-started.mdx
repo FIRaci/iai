@@ -1,0 +1,109 @@
+---
+title: "Bắt đầu với AI Tools"
+---
+
+## Tổng quan
+
+<Note type="info">
+Chào mừng bạn đến với **IAI** — cẩm nang toàn diện về AI tools và dev tools trên Windows 11. Hướng dẫn này sẽ giúp bạn thiết lập môi trường và chọn công cụ AI phù hợp.
+</Note>
+
+## Yêu cầu
+
+Trước khi bắt đầu, bạn cần:
+
+- Máy tính chạy **Windows 11** (bản cập nhật mới nhất)
+- Kết nối Internet
+- Tài khoản GitHub (đăng ký miễn phí tại github.com)
+- Kiến thức cơ bản về command line
+
+## Chọn công cụ phù hợp
+
+<MermaidDiagram chart={`
+flowchart TD
+    S["Bạn muốn làm gì?"] --> Q1{"Cần IDE hay Terminal?"}
+    Q1 -->|Terminal| Q2{"Cần quản lý multi-agent?"}
+    Q2 -->|Có| CK["ClaudeKit — Framework orchestration"]
+    Q2 -->|Không| CC["Claude Code CLI — AI trong terminal"]
+    Q1 -->|IDE| Q3{"Editor hiện tại?"}
+    Q3 -->|VS Code| GH["GitHub Copilot — AI pair programming"]
+    Q3 -->|Chưa có| Q4{"Cần IDE mới?"}
+    Q4 -->|Có, muốn AI-native| CR["Cursor — AI-native code editor"]
+    Q4 -->|Có, miễn phí| WS["Windsurf — AI IDE miễn phí"]
+    Q1 -->|Web-based| DV["Devin — AI engineer trên web"]
+    style CC fill:#6366f1,color:#fff
+    style CK fill:#8b5cf6,color:#fff
+    style CR fill:#06b6d4,color:#fff
+    style GH fill:#22c55e,color:#fff
+    style WS fill:#3b82f6,color:#fff
+    style DV fill:#f59e0b,color:#fff
+`} caption="Sơ đồ chọn công cụ AI phù hợp" />
+
+## Lộ trình
+
+### Bước 1: Cài đặt môi trường nền tảng
+
+Trước khi dùng AI tools, bạn cần môi trường phát triển cơ bản:
+
+<StepBlock number={1} title="Cài Node.js">
+Hầu hết AI tools đều chạy trên Node.js. Xem hướng dẫn tại [Cài đặt Node.js](/dev-tools/nodejs).
+</StepBlock>
+
+<StepBlock number={2} title="Cài Git">
+Git là version control không thể thiếu. Xem hướng dẫn tại [Cài đặt Git](/dev-tools/git).
+</StepBlock>
+
+<StepBlock number={3} title="Cài VS Code">
+VS Code là code editor phổ biến, hỗ trợ hầu hết AI tools. Xem hướng dẫn tại [Cài đặt VS Code](/dev-tools/vscode).
+</StepBlock>
+
+### Bước 2: Chọn AI coding tool
+
+Xem [bảng so sánh chi tiết](/comparisons) để chọn tool phù hợp với nhu cầu và ngân sách của bạn.
+
+### Bước 3: Bắt đầu sử dụng
+
+Sau khi chọn tool, theo hướng dẫn chi tiết trong từng bài viết:
+
+- [Claude Code CLI](/ai-tools/claude-code) — AI coding trong terminal
+- [ClaudeKit](/ai-tools/claude-kit) — Framework orchestration
+- [Cursor](/ai-tools/cursor) — AI-native code editor
+- [GitHub Copilot](/ai-tools/copilot) — AI pair programming
+- [Devin](/ai-tools/devin) — AI software engineer
+- [Windsurf](/ai-tools/windsurf) — AI IDE
+- [OpenClaw](/ai-tools/openclaw) — AI coding tool mã nguồn mở
+
+## Tips cho người mới
+
+<Note type="tip">
+**Bắt đầu đơn giản:** Cài Claude Code CLI (miễn phí) + GitHub Copilot (có free tier) là đủ cho hầu hết nhu cầu coding hàng ngày.
+</Note>
+
+<Note type="warning">
+Luôn review code AI sinh ra trước khi commit. AI có thể tạo code chứa lỗi bảo mật hoặc logic sai.
+</Note>
+
+## Khắc phục sự cố thường gặp
+
+### Node.js không được nhận diện
+
+Sau khi cài Node.js, mở PowerShell mới và kiểm tra:
+<CodeBlock language="powershell">node --version</CodeBlock>
+Nếu vẫn lỗi, restart máy hoặc kiểm tra PATH.
+
+### Git không tìm thấy lệnh
+
+Cài Git xong, mở PowerShell mới:
+<CodeBlock language="powershell">git --version</CodeBlock>
+Nếu lỗi, thêm Git vào PATH thủ công.
+
+### Permission denied khi cài global packages
+
+Chạy PowerShell với quyền Admin:
+<CodeBlock language="powershell">npm install -g [package-name]</CodeBlock>
+
+## Liên kết hữu ích
+
+- [Tổng quan AI Tools](/ai-tools)
+- [Tổng quan Dev Tools](/dev-tools)
+- [So sánh AI Coding Tools](/comparisons)

@@ -9,8 +9,14 @@ tags: ["editor", "ai-native"]
 ## Tổng quan
 
 <Note type="info">
-**Cursor** là AI-native code editor dựa trên VS Code, tích hợp AI ngay trong lõi. Hỗ trợ Cmd+K, Composer, Agent mode, và Rules system.
+**Cursor** là AI-native code editor dựa trên VS Code, tích hợp AI ngay trong lõi. Hỗ trợ Cmd+K, Composer, Agent mode, và Rules system — giúp lập trình viên code nhanh hơn gấp nhiều lần.
 </Note>
+
+## Yêu cầu
+
+- Windows 11 (hoặc Windows 10 22H2+)
+- Tài khoản GitHub hoặc Google
+- Có thể cần Node.js nếu dùng terminal features (xem [hướng dẫn](/dev-tools/nodejs))
 
 ## Cài đặt
 
@@ -19,12 +25,32 @@ Truy cập https://cursor.com và tải bản cho Windows.
 </StepBlock>
 
 <StepBlock number={2} title="Cài đặt">
-Chạy file .exe vừa tải → làm theo hướng dẫn.
+Chạy file `.exe` vừa tải → làm theo hướng dẫn. Quá trình cài đặt tự động include các dependencies cần thiết.
 </StepBlock>
 
 <StepBlock number={3} title="Đăng nhập">
-Mở Cursor → Settings → Accounts → Sign in with GitHub/Google.
+Mở Cursor → Settings → Accounts → Sign in với GitHub hoặc Google.
 </StepBlock>
+
+<StepBlock number={4} title="Import VS Code extensions">
+Cursor tự động detect VS Code extensions đã cài. Chọn "Import" để mang sang.
+</StepBlock>
+
+## AI Workflow với Cursor
+
+<MermaidDiagram chart={`
+flowchart TD
+    A[Viết code] --> B{Cmd+K hay Composer?}
+    B -->|Chỉnh sửa nhanh| C[Cmd+K: chọn code + prompt]
+    B -->|Tính năng mới| D[Composer Ctrl+I]
+    C --> E[AI suggest changes]
+    D --> E
+    E --> F{Accept?}
+    F -->|Yes| G[Apply changes]
+    F -->|No| H[Modify prompt]
+    H --> C
+    G --> I[Kiểm tra + Commit]
+`} caption="Cursor AI Workflow — từ ý tưởng đến code hoàn chỉnh" />
 
 ## Các tính năng chính
 
@@ -41,8 +67,9 @@ Nhấn `Ctrl+I` → Composer mode → chat với AI về toàn bộ codebase.
 <Note type="tip">
 Composer có thể:
 - Tạo multiple files cùng lúc
-- Sửa nhiều file
+- Sửa nhiều file trong một lần
 - Apply changes tự động
+- Xem diff trước khi apply
 </Note>
 
 ### Agent Mode
@@ -50,15 +77,27 @@ Chọn Agent trong Composer → AI có thể:
 - Chạy terminal commands
 - Đọc/ghi files
 - Cài đặt packages
+- Tạo và quản lý branches
 
-## Rules (.cursorrules)
-
-Tạo file `.cursorrules` trong project root:
+### Rules (.cursorrules)
+Tạo file `.cursorrules` trong project root để định hướng AI:
 
 <CodeBlock language="text">Bạn là expert TypeScript developer.
 Luôn dùng functional components với hooks.
 Viết unit test cho mọi function.
 Dùng tiếng Việt cho comments và docs.</CodeBlock>
+
+## Tab Autocomplete
+
+Cursor tự động suggest code khi bạn gõ. Tính năng này hoạt động với:
+- Function implementations
+- Import statements
+- Boilerplate code
+- Comments → code
+
+<Note type="tip">
+Dùng `Tab` để accept suggestion, `Esc` để reject. Học cách "gợi ý" cho AI bằng comments trước khi viết code.
+</Note>
 
 ## So sánh với VS Code
 
@@ -66,6 +105,34 @@ Dùng tiếng Việt cho comments và docs.</CodeBlock>
 |---------|--------|-------------------|
 | Cmd+K | ✅ Native | ❌ Cần extension |
 | Composer | ✅ Full-window | ✅ Copilot Edits |
-| Agent mode | ✅ | ❌ |
+| Agent mode | ✅ Chạy terminal | ❌ |
 | Rules | ✅ .cursorrules | ❌ |
+| Tab autocomplete | ✅ Context-aware | ✅ |
 | Giá | $20/tháng | $10/tháng |
+
+## Khắc phục sự cố
+
+### Cursor không khởi động
+
+Xóa cache và khởi động lại:
+<CodeBlock language="powershell">rm -r "$env:APPDATA\Cursor\CachedData" -Force
+start cursor</CodeBlock>
+
+### AI không phản hồi
+
+Kiểm tra kết nối Internet và tài khoản:
+1. Mở Cursor Settings → Accounts
+2. Đảm bảo đã sign in
+3. Nếu vẫn lỗi, sign out → sign in lại
+
+### Extensions không import được
+
+Cài thủ công từ VS Code Marketplace trong Cursor:
+1. Mở Extensions (`Ctrl+Shift+X`)
+2. Search extension name
+3. Click Install
+
+## Liên kết
+
+- [So sánh AI Tools](/comparisons)
+- [Hướng dẫn VS Code](/dev-tools/vscode)

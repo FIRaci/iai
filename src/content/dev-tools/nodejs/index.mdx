@@ -9,21 +9,29 @@ tags: ["javascript", "runtime"]
 ## Tổng quan
 
 <Note type="info">
-**Node.js** là JavaScript runtime cho phép chạy JavaScript ngoài trình duyệt. Hầu hết AI tools đều yêu cầu Node.js.
+**Node.js** là JavaScript runtime cho phép chạy JavaScript ngoài trình duyệt. Hầu hết AI tools (Claude Code CLI, OpenClaw, ClaudeKit) đều yêu cầu Node.js. Đây là bước đầu tiên bạn cần cài đặt.
 </Note>
+
+## Yêu cầu
+
+- Windows 11 (bản cập nhật mới nhất)
+- PowerShell (có sẵn trên Windows)
+- Quyền Admin (cho winget install)
 
 ## Cài đặt
 
 ### Option 1: Dùng Winget (Khuyên dùng)
 
 <StepBlock number={1} title="Cài Node.js LTS">
-Mở **PowerShell (Admin)** và chạy:
+Mở PowerShell (Admin) và chạy:
 <CodeBlock language="powershell">winget install OpenJS.NodeJS.LTS</CodeBlock>
 </StepBlock>
 
 <StepBlock number={2} title="Kiểm tra">
+Mở PowerShell mới (không phải cửa sổ cũ) và chạy:
 <CodeBlock language="powershell">node --version
 npm --version</CodeBlock>
+Bạn sẽ thấy version như `v22.x.x` và `11.x.x`.
 </StepBlock>
 
 ### Option 2: Dùng nvm-windows (Quản lý nhiều version)
@@ -38,6 +46,26 @@ Chạy `nvm-setup.exe`
 nvm use lts</CodeBlock>
 </StepBlock>
 
+### Option 3: Download thủ công
+
+Vào https://nodejs.org → tải bản LTS cho Windows → chạy installer.
+
+## Kiểm tra sau cài đặt
+
+<MermaidDiagram chart={`
+flowchart TD
+    A[Cài Node.js] --> B[Ktra: node --version]
+    B --> C{Có version?}
+    C -->|Yes| D[Ktra: npm --version]
+    C -->|No| E[Restart PowerShell]
+    E --> B
+    D --> F{Có version?}
+    F -->|Yes| G[✅ Sẵn sàng]
+    F -->|No| H[Kiểm tra PATH]
+    H --> I[Thêm PATH thủ công]
+    I --> B
+`} caption="Kiểm tra Node.js sau cài đặt" />
+
 ## Cấu hình PATH
 
 Sau khi cài, kiểm tra PATH:
@@ -45,6 +73,7 @@ Sau khi cài, kiểm tra PATH:
 
 Nếu không thấy, thêm thủ công:
 <CodeBlock language="powershell">[Environment]::SetEnvironmentVariable("Path", "$env:Path;$env:APPDATA\npm", "User")</CodeBlock>
+Sau đó mở PowerShell mới.
 
 ## Cài pnpm (Package Manager)
 
@@ -52,5 +81,29 @@ Nếu không thấy, thêm thủ công:
 pnpm --version</CodeBlock>
 
 <Note type="tip">
-pnpm nhanh hơn npm, tiết kiệm disk space. Dùng pnpm cho mọi project mới!
+pnpm nhanh hơn npm, tiết kiệm disk space nhờ hard links. Dùng pnpm cho mọi project mới!
 </Note>
+
+## Khắc phục sự cố
+
+### "node is not recognized"
+
+1. Mở PowerShell mới (restart nếu cần)
+2. Nếu vẫn lỗi, kiểm tra PATH:
+<CodeBlock language="powershell">$env:Path -split ";" | Select-String "node"</CodeBlock>
+3. Thêm PATH thủ công nếu cần
+
+### Permission denied khi npm install -g
+
+Chạy PowerShell với quyền Admin:
+<CodeBlock language="powershell">Start-Process powershell -Verb RunAs</CodeBlock>
+
+### npm rất chậm
+
+Dùng pnpm thay thế, hoặc cấu hình npm registry mirror:
+<CodeBlock language="powershell">npm config set registry https://registry.npmmirror.com</CodeBlock>
+
+## Liên kết
+
+- [Bắt đầu với AI Tools](/getting-started)
+- [Hướng dẫn Git](/dev-tools/git)

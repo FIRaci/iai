@@ -9,42 +9,45 @@ tags: ["cli", "anthropic"]
 ## Tổng quan
 
 <Note type="info">
-**Claude Code** là công cụ AI coding mạnh mẽ từ Anthropic, chạy trực tiếp trong terminal. Nó cho phép bạn lập trình bằng tiếng Việt thông qua các câu lệnh tự nhiên (vibe coding).
+**Claude Code** là công cụ AI coding mạnh mẽ từ Anthropic, chạy trực tiếp trong terminal. Nó cho phép bạn lập trình bằng tiếng Việt thông qua các câu lệnh tự nhiên (vibe coding) — từ sửa bug, thêm tính năng, đến refactor code.
 </Note>
+
+## Yêu cầu
+
+- **Node.js >= 18** (xem [hướng dẫn cài Node.js](/dev-tools/nodejs))
+- **API key Anthropic** (đăng ký tại console.anthropic.com)
+- Terminal (PowerShell khuyên dùng)
 
 ## Cài đặt
 
 <StepBlock number={1} title="Cài đặt Node.js">
-Mở **PowerShell (Admin)** và chạy:
-
-<CodeBlock language="powershell">winget install OpenJS.NodeJS.LTS</CodeBlock>
-
-Kiểm tra:
-<CodeBlock language="powershell">node --version && npm --version</CodeBlock>
+<CodeBlock language="powershell">winget install OpenJS.NodeJS.LTS
+node --version</CodeBlock>
 </StepBlock>
 
 <StepBlock number={2} title="Cài đặt Claude Code">
-<CodeBlock language="powershell">npm install -g @anthropic-ai/claude-code</CodeBlock>
+<CodeBlock language="powershell">npm install -g @anthropic-ai/claude-code
+claude --version</CodeBlock>
 </StepBlock>
 
 <StepBlock number={3} title="Lấy API Key">
 1. Truy cập https://console.anthropic.com
 2. Đăng ký tài khoản
-3. Tạo API key mới
-4. Copy key để sử dụng
+3. Vào API Keys → Create Key
+4. Copy key (bắt đầu bằng `sk-ant-...`)
 </StepBlock>
 
-<StepBlock number={4} title="Cấu hình lần đầu">
+<StepBlock number={4} title="Cấu hình và chạy">
 Mở terminal tại project của bạn:
 <CodeBlock language="powershell">cd du-an-cua-ban
 claude</CodeBlock>
-Lần đầu chạy, Claude Code sẽ yêu cầu nhập API key.
+Lần đầu chạy, Claude Code sẽ yêu cầu nhập API key. Dán key và Enter.
 </StepBlock>
 
 ## Sử dụng cơ bản
 
 <Note type="tip">
-Claude Code hiểu tiếng Việt! Bạn có thể prompt bằng tiếng Việt.
+Claude Code hiểu tiếng Việt! Bạn có thể prompt bằng tiếng Việt và Claude sẽ trả lời bằng tiếng Việt.
 </Note>
 
 ### Các lệnh cơ bản
@@ -59,28 +62,67 @@ Claude Code hiểu tiếng Việt! Bạn có thể prompt bằng tiếng Việt.
 ### Vibe Coding Flow
 
 <MermaidDiagram chart={`
-graph TD
+flowchart TD
     A[Prompt tự nhiên] --> B[Claude Code phân tích]
-    B --> C[Generate code]
-    C --> D{Review?}
-    D -->|OK| E[Apply changes]
-    D -->|Sửa| F[Feedback]
-    F --> B
-    E --> G[Commit & push]
-`} caption="Quy trình vibe coding với Claude Code" />
+    B --> C[Xem xét codebase]
+    C --> D[Generate code]
+    D --> E{Review?}
+    E -->|OK| F[Apply changes]
+    E -->|Sửa| G[Feedback]
+    G --> B
+    F --> H{Test?}
+    H -->|Pass| I[Commit & push]
+    H -->|Fail| G
+`} caption="Quy trình vibe coding với Claude Code — từ prompt đến code hoàn chỉnh" />
 
 ## Tips
 
 <Note type="tip">
-- Dùng `Cmd+I` để interrupt khi Claude đang chạy
-- Dùng `/init` để tạo project structure mới
-- Dùng `claude --dangerously-skip-permissions` để bỏ qua confirm (cẩn thận!)
+- Dùng `Ctrl+C` để interrupt khi Claude đang chạy
+- Claude Code tự động tạo file `.claude/settings.json` để cấu hình rules
+- Dùng `claude --dangerously-skip-permissions` để bỏ qua confirm (cẩn thận với quyền này!)
+- Claude Code tự động đọc `.gitignore` để biết files nào không cần xử lý
 </Note>
 
-## Troubleshooting
+## Claude Code Rules
 
-<Note type="warning">
-**Lỗi: "claude not recognized"**
-→ Chạy lại terminal hoặc thêm npm global path vào PATH:
-<CodeBlock language="powershell">$env:Path += ";$env:APPDATA\npm"</CodeBlock>
-</Note>
+Tạo file `.claude/settings.json` trong project root:
+<CodeBlock language="json" code={`{
+  "allowedTools": ["Read", "Write", "Edit", "Bash", "Search"],
+  "rules": [
+    "Luôn dùng TypeScript với strict mode",
+    "Viết unit test cho mọi function mới",
+    "Follow functional components pattern",
+    "Dùng tiếng Việt cho comments"
+  ]
+}`} />
+
+## Khắc phục sự cố
+
+### "claude not recognized"
+
+Lỗi này xảy ra khi npm global path không trong PATH:
+<CodeBlock language="powershell">$env:Path += ";$env:APPDATA\npm"
+claude --version</CodeBlock>
+Để fix vĩnh viễn, thêm vào PATH:
+<CodeBlock language="powershell">[Environment]::SetEnvironmentVariable("Path", "$env:Path;$env:APPDATA\npm", "User")</CodeBlock>
+
+### API key không hợp lệ
+
+Set lại key:
+<CodeBlock language="powershell">$env:ANTHROPIC_API_KEY="sk-ant-your-key-here"
+claude</CodeBlock>
+Hoặc tạo file `.env` trong project:
+<CodeBlock language="text">ANTHROPIC_API_KEY=sk-ant-your-key-here</CodeBlock>
+
+### Claude Code quá chậm
+
+- Dùng model nhỏ hơn: `claude --model claude-sonnet-4-20250514`
+- Giới hạn context bằng `--max-thinking-tokens 8000`
+- Chia task lớn thành nhiều task nhỏ
+
+## Liên kết
+
+- [So sánh AI Tools](/comparisons)
+- [Hướng dẫn ClaudeKit](/ai-tools/claude-kit)
+- [Bắt đầu với AI Tools](/getting-started)

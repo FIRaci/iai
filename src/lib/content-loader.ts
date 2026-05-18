@@ -16,6 +16,7 @@ const contentModules = import.meta.glob<MdxModule>(
 
 export function getContentTree(): RouteNode[] {
   const categories: Record<string, RouteNode> = {}
+  const pages: RouteNode[] = []
 
   for (const [filepath, mod] of Object.entries(contentModules)) {
     const rel = filepath
@@ -27,6 +28,20 @@ export function getContentTree(): RouteNode[] {
     const categoryKey = parts[0]
     const slug = parts[1]
 
+    if (categoryKey === "pages") {
+      pages.push({
+        path: `/${slug}`,
+        title: mod.title || slug || "",
+        category: "pages",
+        type: "page",
+        icon: mod.icon,
+        headings: [],
+        frontmatter: {},
+        children: [],
+      })
+      continue
+    }
+
     if (!slug) continue
 
     if (!categories[categoryKey]) {
@@ -34,6 +49,7 @@ export function getContentTree(): RouteNode[] {
         path: `/${categoryKey}`,
         title: getCategoryTitle(categoryKey),
         category: categoryKey as RouteNode["category"],
+        type: "category",
         children: [],
         headings: [],
         frontmatter: {},
@@ -44,6 +60,7 @@ export function getContentTree(): RouteNode[] {
       path: `/${categoryKey}/${slug}`,
       title: mod.title || slug,
       category: categoryKey as RouteNode["category"],
+      type: "guide",
       icon: mod.icon,
       difficulty: mod.difficulty as RouteNode["difficulty"],
       headings: [],
@@ -52,10 +69,12 @@ export function getContentTree(): RouteNode[] {
     })
   }
 
-  return Object.values(categories)
+  return [...pages, ...Object.values(categories)]
 }
 
 export function getContentModule(path: string): () => MdxModule {
+  const pagePath = `/src/content/pages${path}.mdx`
+  if (contentModules[pagePath]) return () => contentModules[pagePath]
   const mdxPath = `/src/content${path === "/" ? "/index" : path}.mdx`
   return () => contentModules[mdxPath]
 }

@@ -9,16 +9,24 @@ tags: ["version-control", "github"]
 ## Tổng quan
 
 <Note type="info">
-**Git** là version control system phổ biến nhất. **GitHub** là nền tảng lưu trữ và chia sẻ code.
+**Git** là version control system phổ biến nhất thế giới. **GitHub** là nền tảng lưu trữ và chia sẻ code. Cả hai đều miễn phí và thiết yếu cho mọi lập trình viên.
 </Note>
+
+## Yêu cầu
+
+- Windows 11
+- Tài khoản GitHub (đăng ký miễn phí tại github.com)
+- PowerShell
 
 ## Cài đặt
 
 <StepBlock number={1} title="Cài Git cho Windows">
+Mở PowerShell (Admin):
 <CodeBlock language="powershell">winget install Git.Git</CodeBlock>
 </StepBlock>
 
 <StepBlock number={2} title="Cấu hình lần đầu">
+Mở PowerShell mới và chạy:
 <CodeBlock language="powershell">git config --global user.name "Your Name"
 git config --global user.email "your@email.com"</CodeBlock>
 </StepBlock>
@@ -26,24 +34,103 @@ git config --global user.email "your@email.com"</CodeBlock>
 <StepBlock number={3} title="Tạo SSH Key (cho GitHub)">
 <CodeBlock language="powershell">ssh-keygen -t ed25519 -C "your@email.com"
 Get-Content ~/.ssh/id_ed25519.pub | clip</CodeBlock>
-Thêm key lên GitHub: Settings → SSH and GPG keys → New SSH key
+Thêm key lên GitHub: Settings → SSH and GPG keys → New SSH key → Paste → Add
 </StepBlock>
 
 ## Git Workflow cơ bản
 
 <MermaidDiagram chart={`
-graph LR
-    A[git init/clone] --> B[git add]
-    B --> C[git commit]
-    C --> D[git push]
-    D --> E[Pull Request]
-    E --> F[Merge]
-`} caption="Git workflow cơ bản" />
+flowchart LR
+    A[git init / clone] --> B[Làm việc]
+    B --> C[git add .]
+    C --> D[git commit -m "msg"]
+    D --> E{Có remote?}
+    E -->|Có| F[git push]
+    E -->|Chưa| G[Nhánh mới?]
+    G -->|Có| H[git checkout -b feat/x]
+    G -->|Không| I[Tiếp tục làm việc]
+    H --> B
+    F --> J[Mở Pull Request]
+    J --> K[Review + Merge]
+    K --> L[git pull]
+`} caption="Git workflow cơ bản — từ clone đến merge" />
 
 ### Commands thường dùng
 
-<CodeBlock language="powershell">git clone git@github.com:user/repo.git
+<CodeBlock language="powershell" code={`# Clone repo
+git clone git@github.com:user/repo.git
+
+# Kiểm tra trạng thái
+git status
+
+# Stage và commit
 git add .
-git commit -m "message"
+git commit -m "feat: thêm tính năng mới"
+
+# Push lên GitHub
 git push origin main
-git pull origin main</CodeBlock>
+
+# Kéo code mới nhất
+git pull origin main
+
+# Tạo nhánh mới
+git checkout -b feature/login
+
+# Xem lịch sử
+git log --oneline --graph`} />
+
+## Cộng tác trên GitHub
+
+<StepBlock number={1} title="Fork repo">
+Vào GitHub repo → Fork → Create fork
+</StepBlock>
+
+<StepBlock number={2} title="Clone fork về máy">
+<CodeBlock language="powershell" code={`git clone git@github.com:your-username/repo.git
+cd repo`} />
+</StepBlock>
+
+<StepBlock number={3} title="Tạo branch và làm việc">
+<CodeBlock language="powershell" code={`git checkout -b feature/your-feature
+# ... code ...
+git add .
+git commit -m "feat: mô tả tính năng"
+git push origin feature/your-feature`} />
+</StepBlock>
+
+<StepBlock number={4} title="Mở Pull Request">
+Vào GitHub repo gốc → Pull Requests → New Pull Request → chọn branch của bạn
+</StepBlock>
+
+## Khắc phục sự cố
+
+### "Permission denied (publickey)"
+
+SSH key chưa được thêm vào GitHub:
+
+<CodeBlock language="powershell" code={`# Kiểm tra key tồn tại
+Get-Content ~/.ssh/id_ed25519.pub | clip
+# Thêm lên GitHub Settings → SSH and GPG keys`} />
+
+### Merge conflict
+
+Khi có conflict, Git sẽ báo. Cách xử lý:
+
+<CodeBlock language="powershell" code={`# Pull code mới nhất từ main
+git pull origin main
+# Git sẽ báo conflict files
+# Mở từng file và resolve conflicts
+git add .
+git commit -m "merge: resolve conflicts"
+git push`} />
+
+### "Please tell me who you are"
+
+Cấu hình chưa set:
+<CodeBlock language="powershell">git config --global user.name "Your Name"
+git config --global user.email "your@email.com"</CodeBlock>
+
+## Liên kết
+
+- [Bắt đầu với AI Tools](/getting-started)
+- [Hướng dẫn VS Code](/dev-tools/vscode)

@@ -1,8 +1,12 @@
 import { Link, useLocation } from "react-router-dom"
 import { cn } from "@/lib/utils"
-import { BookOpen, Code2, GitCompare, ChevronDown } from "lucide-react"
+import { BookOpen, Code2, GitCompare, ChevronDown, Compass } from "lucide-react"
 import { useState } from "react"
 import { ThemeToggle } from "@/components/ThemeToggle"
+
+const topLinks = [
+  { title: "Bắt đầu", icon: Compass, path: "/getting-started" },
+]
 
 const navItems = [
   {
@@ -104,6 +108,22 @@ export function Sidebar() {
           IAI
         </Link>
         <nav className="flex-1 space-y-1 overflow-y-auto p-3">
+          {topLinks.map((link) => (
+            <Link
+              key={link.path}
+              to={link.path}
+              className={cn(
+                "flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                location.pathname === link.path
+                  ? "bg-accent text-accent-foreground"
+                  : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
+              )}
+            >
+              <link.icon className="h-4 w-4" />
+              {link.title}
+            </Link>
+          ))}
+          <div className="my-2 border-t" />
           {navItems.map((item) => (
             <NavItem
               key={item.path}

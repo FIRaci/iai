@@ -9,7 +9,7 @@ import {
   CommandList,
 } from "@/components/ui/command"
 import Fuse from "fuse.js"
-import { BookOpen, Code2, GitCompare } from "lucide-react"
+import { BookOpen, Code2, GitCompare, Compass } from "lucide-react"
 
 interface SearchItem {
   title: string
@@ -18,6 +18,7 @@ interface SearchItem {
 }
 
 const searchItems: SearchItem[] = [
+  { title: "Bắt đầu với AI Tools", path: "/getting-started", category: "Hướng dẫn" },
   { title: "Claude Code CLI", path: "/ai-tools/claude-code", category: "AI Tools" },
   { title: "ClaudeKit", path: "/ai-tools/claude-kit", category: "AI Tools" },
   { title: "Cursor", path: "/ai-tools/cursor", category: "AI Tools" },
@@ -37,6 +38,7 @@ const fuse = new Fuse(searchItems, {
 })
 
 const categoryIcons: Record<string, typeof BookOpen> = {
+  "Hướng dẫn": Compass,
   "AI Tools": BookOpen,
   "Dev Tools": Code2,
   "So sánh": GitCompare,

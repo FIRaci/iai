@@ -9,29 +9,37 @@ tags: ["claude", "orchestration"]
 ## Tổng quan
 
 <Note type="info">
-**ClaudeKit** là framework orchestration cho Claude AI agents. Giúp quản lý skills, hooks, agents, và workflows.
+**ClaudeKit** là framework orchestration cho Claude AI agents. Giúp quản lý skills, hooks, agents, và workflows — cho phép xây dựng hệ thống AI phức tạp từ các module nhỏ.
 </Note>
+
+## Yêu cầu
+
+- **Node.js >= 18** (xem [hướng dẫn cài Node.js](/dev-tools/nodejs))
+- **Git** (xem [hướng dẫn cài Git](/dev-tools/git))
+- **pnpm** (khuyến khích dùng thay npm)
+- Kiến thức cơ bản về CLI và JavaScript/TypeScript
 
 ## Cài đặt
 
-<StepBlock number={1} title="Yêu cầu">
-- Node.js >= 18
-- pnpm (khuyến khích)
-</StepBlock>
-
-<StepBlock number={2} title="Clone repository">
+<StepBlock number={1} title="Clone repository">
 <CodeBlock language="powershell">git clone https://github.com/anomalyco/claudekit.git
 cd claudekit</CodeBlock>
 </StepBlock>
 
-<StepBlock number={3} title="Cài đặt dependencies">
+<StepBlock number={2} title="Cài đặt dependencies">
 <CodeBlock language="powershell">pnpm install</CodeBlock>
 </StepBlock>
 
-<StepBlock number={4} title="Cấu hình">
+<StepBlock number={3} title="Cấu hình">
 Copy file env mẫu:
 <CodeBlock language="powershell">cp .env.example .env</CodeBlock>
-Thêm API keys vào `.env`
+Thêm API keys vào `.env`:
+<CodeBlock language="text">ANTHROPIC_API_KEY=sk-ant-...
+OPENAI_API_KEY=sk-...</CodeBlock>
+</StepBlock>
+
+<StepBlock number={4} title="Kiểm tra">
+<CodeBlock language="powershell">pnpm dev</CodeBlock>
 </StepBlock>
 
 ## Cấu trúc
@@ -48,13 +56,62 @@ claudekit/
 ## Workflow
 
 <MermaidDiagram chart={`
-graph LR
+flowchart LR
     A[User Input] --> B{Skill Router}
     B --> C[Skill 1]
     B --> D[Skill 2]
     B --> E[Skill N]
-    C --> F[Agent]
+    C --> F[Agent Executor]
     D --> F
     E --> F
     F --> G[Output]
-`} caption="ClaudeKit Orchestration Flow" />
+    G --> H{Review}
+    H -->|Approve| I[Apply]
+    H -->|Reject| A
+`} caption="ClaudeKit Orchestration Flow — từ input đến output qua các skill agents" />
+
+## Viết skill đầu tiên
+
+Tạo file `skills/my-skill.ts`:
+<CodeBlock language="typescript" code={`import { Skill } from "@claudekit/core"
+
+export const mySkill: Skill = {
+  name: "hello-world",
+  description: "Skill chào hỏi đơn giản",
+  execute: async (input: string) => { return "Xin chào: " + input },
+}
+`} />
+
+## Sử dụng cơ bản
+
+Tạo `workflows/hello.yml`:
+<CodeBlock language="yaml" code={`name: hello-workflow
+steps:
+  - skill: hello-world
+    input: "Hello ClaudeKit!"`} />
+
+Chạy:
+<CodeBlock language="powershell">pnpm run workflow hello</CodeBlock>
+
+## Khắc phục sự cố
+
+### Lỗi "Cannot find module"
+
+Dependencies chưa được cài đúng:
+<CodeBlock language="powershell">rm -rf node_modules && pnpm install</CodeBlock>
+
+### API key không hợp lệ
+
+Kiểm tra file `.env` có đúng key không:
+<CodeBlock language="powershell">Get-Content .env</CodeBlock>
+Đảm bảo key bắt đầu bằng `sk-ant-` cho Anthropic hoặc `sk-` cho OpenAI.
+
+### Port already in use
+
+Mặc định ClaudeKit dùng port 3000. Đổi port:
+<CodeBlock language="powershell">$env:PORT=3001; pnpm dev</CodeBlock>
+
+## Liên kết
+
+- [So sánh AI Tools](/comparisons)
+- [Hướng dẫn Claude Code CLI](/ai-tools/claude-code)

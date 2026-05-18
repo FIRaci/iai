@@ -9,34 +9,91 @@ tags: ["ide", "ai-native"]
 ## Tổng quan
 
 <Note type="info">
-**Windsurf** là AI IDE mới từ Codeium. Nổi bật với Cascade feature và AI Flow.
+**Windsurf** là AI IDE mới từ Codeium, nổi bật với Cascade feature và AI Flow. Đây là lựa chọn miễn phí tốt nhất cho AI-assisted coding trên Windows 11.
 </Note>
+
+## Yêu cầu
+
+- Windows 11
+- Tài khoản Google hoặc GitHub
+- Kết nối Internet
 
 ## Cài đặt
 
 <StepBlock number={1} title="Tải Windsurf">
-https://codeium.com/windsurf → Download cho Windows
+Vào https://codeium.com/windsurf → Download cho Windows
 </StepBlock>
 
 <StepBlock number={2} title="Cài đặt">
-Chạy installer → Sign in với Google/GitHub
+Chạy installer → Sign in với Google/GitHub → Chọn theme và settings
+</StepBlock>
+
+<StepBlock number={3} title="Import VS Code settings">
+Windsurf hỗ trợ import settings, extensions, và keybindings từ VS Code nếu bạn đã dùng VS Code trước đó.
 </StepBlock>
 
 ## Cascade
 
-Cascade là AI assistant hiểu context toàn bộ codebase:
+<Note type="info">
+**Cascade** là AI assistant thông minh của Windsurf, hiểu context toàn bộ codebase — không chỉ file hiện tại.
+</Note>
 
 <CodeBlock language="text">Cascade: "add authentication to this API"
-Cascade: "explain the database schema"
-Cascade: "find where the user login is handled"</CodeBlock>
+Cascade: "explain the database schema structure"
+Cascade: "find where the user login is handled"
+Cascade: "refactor this component into smaller parts"</CodeBlock>
 
 ## AI Flow
 
-Tự động multi-file edit:
-1. Prompt → AI phân tích
-2. AI suggest changes trên nhiều file
-3. Review từng change → Accept/Reject
+<MermaidDiagram chart={`
+flowchart LR
+    A[User prompt] --> B[AI phân tích codebase]
+    B --> C[Suggest changes]
+    C --> D[Review từng change]
+    D --> E{Accept?}
+    E -->|Yes| F[Apply change]
+    E -->|No| G[Bỏ qua]
+    F --> H[Next change]
+    G --> H
+    H --> I[Done]
+`} caption="Windsurf AI Flow — multi-file edit với review từng bước" />
+
+## So sánh Windsurf vs Cursor
+
+| Tính năng | Windsurf | Cursor |
+|-----------|----------|--------|
+| **Giá** | Free (limited) / $15/tháng | $20/tháng |
+| **Cascade** | ✅ Hiểu context codebase | ❌ Tương tự Agent mode |
+| **AI Flow** | ✅ Multi-file edit | ✅ Composer |
+| **Terminal** | ✅ Cascade trong terminal | ✅ Agent mode |
+| **Rules** | ❌ | ✅ .cursorrules |
+| **Offline** | ❌ | Partial |
+
+## Tips sử dụng
 
 <Note type="tip">
-Windsurf có free tier với limited credits. Premium $15/tháng.
+**Windsurf free tier** có limited credits. Dùng hiệu quả bằng cách:
+- Viết prompt ngắn gọn, cụ thể
+- Chia task lớn thành nhiều task nhỏ
+- Dùng Cascade thay vì chat thông thường
 </Note>
+
+## Khắc phục sự cố
+
+### Windsurf không khởi động
+
+Xóa cache:
+<CodeBlock language="powershell">rm -r "$env:APPDATA\Windsurf\CachedData" -Force -ErrorAction SilentlyContinue</CodeBlock>
+
+### Cascade không hiểu context
+
+Đảm bảo bạn đã mở đúng project folder (File → Open Folder), không phải single file.
+
+### Hết credits
+
+Free tier có giới hạn credits/tháng. Nâng cấp lên Pro $15/tháng hoặc đợi tháng mới.
+
+## Liên kết
+
+- [So sánh AI Tools](/comparisons)
+- [Hướng dẫn Cursor](/ai-tools/cursor)

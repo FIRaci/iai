@@ -1,6 +1,10 @@
 import { Link, useLocation } from "react-router-dom"
 import { ChevronRight, Home } from "lucide-react"
 
+const pageLabels: Record<string, string> = {
+  "getting-started": "Bắt đầu",
+}
+
 const categoryLabels: Record<string, string> = {
   "ai-tools": "AI Tools",
   "dev-tools": "Dev Tools",
@@ -34,7 +38,7 @@ export function Breadcrumbs() {
       </Link>
       {parts.map((part, i) => {
         const href = "/" + parts.slice(0, i + 1).join("/")
-        const label = (i === 0 ? categoryLabels[part] : toolLabels[part]) || part
+        const label = pageLabels[part] || (i === 0 ? categoryLabels[part] : toolLabels[part]) || part
         const isLast = i === parts.length - 1
         return (
           <span key={href} className="flex items-center gap-1">

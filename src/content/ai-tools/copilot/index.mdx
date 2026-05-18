@@ -9,8 +9,14 @@ tags: ["github", "microsoft"]
 ## Tổng quan
 
 <Note type="info">
-**GitHub Copilot** là AI pair programmer được tích hợp trong VS Code. Hỗ trợ inline suggestions, chat, và Copilot Edits.
+**GitHub Copilot** là AI pair programmer được tích hợp trong VS Code. Hỗ trợ inline suggestions, chat, và Copilot Edits — giúp bạn code nhanh hơn với AI gợi ý thông minh.
 </Note>
+
+## Yêu cầu
+
+- **VS Code** (xem [hướng dẫn cài đặt](/dev-tools/vscode))
+- **Tài khoản GitHub** (đăng ký miễn phí)
+- Kết nối Internet
 
 ## Cài đặt
 
@@ -19,21 +25,39 @@ tags: ["github", "microsoft"]
 </StepBlock>
 
 <StepBlock number={2} title="Cài Extension">
-- Mở Extensions (`Ctrl+Shift+X`)
-- Tìm "GitHub Copilot"
-- Click Install
+1. Mở Extensions (`Ctrl+Shift+X`)
+2. Tìm "GitHub Copilot"
+3. Click Install
+4. (Khuyến khích) Cài thêm "GitHub Copilot Chat"
 </StepBlock>
 
 <StepBlock number={3} title="Đăng nhập GitHub">
-1. Click icon Copilot ở status bar
+1. Click icon Copilot ở góc dưới bên phải status bar
 2. Sign in với GitHub account
-3. Confirm subscription (free tier có 2000 completions/tháng)
+3. Authorize extension
+4. Confirm subscription (free tier có 2000 completions/tháng hoặc 300 chats)
 </StepBlock>
+
+## Copilot Workflow
+
+<MermaidDiagram chart={`
+flowchart LR
+    A[Gõ code] --> B{Copilot suggest?}
+    B -->|Có| C[Tab để accept]
+    B -->|Không| D[Gõ comment mô tả]
+    D --> B
+    C --> E[Cần chỉnh sửa?]
+    E -->|Có - Ctrl+I| F[Copilot Chat]
+    E -->|Không| G[Tiếp tục code]
+    F --> H[Apply changes]
+    H --> G
+`} caption="GitHub Copilot Workflow — từ gõ code đến hoàn thiện" />
 
 ## Sử dụng
 
 ### Inline Suggestions
-Gõ code → Copilot tự động suggest → Tab để chấp nhận.
+
+Gõ code → Copilot tự động suggest → `Tab` để chấp nhận:
 
 <CodeBlock language="typescript" code={`
 // Gõ: function calculateTotal(items)
@@ -41,18 +65,83 @@ Gõ code → Copilot tự động suggest → Tab để chấp nhận.
 function calculateTotal(items: Item[]) {
   return items.reduce((sum, item) => sum + item.price * item.quantity, 0)
 }
+
+// Gõ: async function fetchUserData(userId)
+// Copilot suggest:
+async function fetchUserData(userId: string) {
+  const response = await fetch(\`/api/users/\${userId}\`)
+  if (!response.ok) throw new Error('Failed to fetch user')
+  return response.json()
+}
 `} />
 
 ### Chat (`Ctrl+I`)
-Mở chat inline → hỏi về code hiện tại.
+
+Mở chat inline → hỏi về code hiện tại:
+<CodeBlock language="text">"Giải thích function này"
+"Thêm error handling"
+"Viết unit test cho class này"
+"Tối ưu performance của đoạn code này"</CodeBlock>
 
 ### Copilot Edits (`Ctrl+Shift+I`)
-Chỉnh sửa nhiều file cùng lúc với AI.
+
+Chỉnh sửa nhiều file cùng lúc với AI. Phù hợp cho:
+- Thêm tính năng mới
+- Refactor code
+- Đổi tên biến/function
 
 <Note type="tip">
 **Shortcuts quan trọng:**
 - `Tab`: Accept suggestion
 - `Ctrl+→`: Accept word
 - `Alt+]`: Next suggestion
-- `Ctrl+Enter`: Open suggestions panel
+- `Ctrl+Enter`: Open suggestions panel (xem 10 suggestions cùng lúc)
+- `Ctrl+I`: Mở Copilot Chat inline
 </Note>
+
+## Tips nâng cao
+
+### Comment-driven development
+
+Viết comment trước, Copilot sẽ suggest code phù hợp:
+<CodeBlock language="typescript">// Validate email format
+// Check if password meets requirements (8+ chars, 1 number, 1 special)
+// Hash password with bcrypt
+// Save user to database and return user object</CodeBlock>
+
+### Tạo test tự động
+
+Copilot cực kỳ mạnh trong việc viết unit test:
+<CodeBlock language="typescript" code={`// describe('calculateTotal', () => {
+//   it('should return 0 for empty items', () => {
+//   it('should calculate correct total with quantities', () => {
+//   it('should handle negative quantities', () => {`} />
+
+## Khắc phục sự cố
+
+### Copilot không suggest
+
+Kiểm tra:
+1. Icon Copilot ở status bar — phải có dấu tích xanh
+2. File type được hỗ trợ (`.ts`, `.js`, `.py`, `.go`, etc.)
+3. Kết nối Internet
+
+Nếu vẫn không được, reload VS Code:
+<CodeBlock language="powershell">Ctrl+Shift+P → "Developer: Reload Window"</CodeBlock>
+
+### "Copilot không available ở quốc gia của bạn"
+
+Kiểm tra GitHub account settings:
+1. Vào https://github.com/settings/copilot
+2. Đảm bảo subscription active
+3. Nếu vẫn lỗi, dùng VPN
+
+### Completion chậm
+
+Giảm số lượng suggestions hiển thị:
+- Settings → Search "Copilot" → "Editor: Suggest Line" → giảm xuống
+
+## Liên kết
+
+- [So sánh AI Tools](/comparisons)
+- [Hướng dẫn VS Code](/dev-tools/vscode)
