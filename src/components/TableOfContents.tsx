@@ -51,20 +51,20 @@ export function TableOfContents() {
   return (
     <nav className="hidden w-56 shrink-0 xl:block">
       <div className="sticky top-20">
-        <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-[#656d76] dark:text-[#8b949e]">
           Trong trang này
         </h4>
-        <ul className="space-y-1">
+        <ul className="space-y-0.5">
           {items.map((item) => (
             <li key={item.id}>
               <a
                 href={`#${item.id}`}
                 className={cn(
-                  "block text-sm transition-colors hover:text-foreground",
-                  item.level === 3 && "pl-3",
+                  "block rounded-md px-2 py-1 text-sm transition-all duration-150",
+                  item.level === 3 && "pl-5",
                   activeId === item.id
-                    ? "font-medium text-primary"
-                    : "text-muted-foreground",
+                    ? "bg-primary/10 font-semibold text-primary"
+                    : "text-[#656d76] dark:text-[#8b949e] hover:text-[#1f2328] dark:hover:text-[#e6edf3] hover:bg-[#f6f8fa] dark:hover:bg-[#161b22]",
                 )}
                 onClick={(e) => {
                   e.preventDefault()
