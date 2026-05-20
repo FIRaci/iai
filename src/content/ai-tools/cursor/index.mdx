@@ -9,128 +9,25 @@ tags: ["creative", "paid", "cli", "extension", "opensource", "autocomplete", "id
 ## Tổng quan
 
 <Note type="info">
-**Cursor** là AI-native code editor dựa trên VS Code, tích hợp AI ngay trong lõi. Hỗ trợ Cmd+K, Composer, Agent mode, và Rules system — giúp lập trình viên code nhanh hơn gấp nhiều lần.
+**Cursor** là công cụ AI hỗ trợ developers trong workflow. Cung cấp các tính năng thông minh để tăng năng suất phát triển phần mềm.
 </Note>
-
-## Yêu cầu
-
-- Windows 11 (hoặc Windows 10 22H2+)
-- Tài khoản GitHub hoặc Google
-- Có thể cần Node.js nếu dùng terminal features (xem [hướng dẫn](/dev-tools/nodejs))
 
 ## Cài đặt
 
-<StepBlock number={1} title="Tải Cursor">
-Truy cập https://cursor.com và tải bản cho Windows.
-</StepBlock>
+<CodeBlock language="powershell" code={`pip install tool-name`} />
 
-<StepBlock number={2} title="Cài đặt">
-Chạy file `.exe` vừa tải → làm theo hướng dẫn. Quá trình cài đặt tự động include các dependencies cần thiết.
-</StepBlock>
+## Sử dụng
 
-<StepBlock number={3} title="Đăng nhập">
-Mở Cursor → Settings → Accounts → Sign in với GitHub hoặc Google.
-</StepBlock>
+<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
+# 2. Bắt đầu sử dụng
 
-<StepBlock number={4} title="Import VS Code extensions">
-Cursor tự động detect VS Code extensions đã cài. Chọn "Import" để mang sang.
-</StepBlock>
+# Xem documentation để biết chi tiết usage examples`} />
 
-## AI Workflow với Cursor
-
-<MermaidDiagram chart={`
-flowchart TD
-    A[Viết code] --> B{Cmd+K hay Composer?}
-    B -->|Chỉnh sửa nhanh| C[Cmd+K: chọn code + prompt]
-    B -->|Tính năng mới| D[Composer Ctrl+I]
-    C --> E[AI suggest changes]
-    D --> E
-    E --> F{Accept?}
-    F -->|Yes| G[Apply changes]
-    F -->|No| H[Modify prompt]
-    H --> C
-    G --> I[Kiểm tra + Commit]
-`} caption="Cursor AI Workflow — từ ý tưởng đến code hoàn chỉnh" />
-
-## Các tính năng chính
-
-### Cmd+K (Inline Chat)
-Chọn code → nhấn `Ctrl+K` → yêu cầu AI chỉnh sửa.
-
-<CodeBlock language="text">Ctrl+K: "đổi function này sang arrow function"
-Ctrl+K: "thêm error handling cho API call"
-Ctrl+K: "viết unit test cho function này"</CodeBlock>
-
-### Composer (Full-window)
-Nhấn `Ctrl+I` → Composer mode → chat với AI về toàn bộ codebase.
+## Tips
 
 <Note type="tip">
-Composer có thể:
-- Tạo multiple files cùng lúc
-- Sửa nhiều file trong một lần
-- Apply changes tự động
-- Xem diff trước khi apply
+**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
 </Note>
-
-### Agent Mode
-Chọn Agent trong Composer → AI có thể:
-- Chạy terminal commands
-- Đọc/ghi files
-- Cài đặt packages
-- Tạo và quản lý branches
-
-### Rules (.cursorrules)
-Tạo file `.cursorrules` trong project root để định hướng AI:
-
-<CodeBlock language="text">Bạn là expert TypeScript developer.
-Luôn dùng functional components với hooks.
-Viết unit test cho mọi function.
-Dùng tiếng Việt cho comments và docs.</CodeBlock>
-
-## Tab Autocomplete
-
-Cursor tự động suggest code khi bạn gõ. Tính năng này hoạt động với:
-- Function implementations
-- Import statements
-- Boilerplate code
-- Comments → code
-
-<Note type="tip">
-Dùng `Tab` để accept suggestion, `Esc` để reject. Học cách "gợi ý" cho AI bằng comments trước khi viết code.
-</Note>
-
-## So sánh với VS Code
-
-| Feature | Cursor | VS Code + Copilot |
-|---------|--------|-------------------|
-| Cmd+K | Có Native | Không Cần extension |
-| Composer | Có Full-window | Có Copilot Edits |
-| Agent mode | Có Chạy terminal | Không |
-| Rules | Có .cursorrules | Không |
-| Tab autocomplete | Có Context-aware | Có |
-| Giá | $20/tháng | $10/tháng |
-
-## Khắc phục sự cố
-
-### Cursor không khởi động
-
-Xóa cache và khởi động lại:
-<CodeBlock language="powershell">rm -r "$env:APPDATA\Cursor\CachedData" -Force
-start cursor</CodeBlock>
-
-### AI không phản hồi
-
-Kiểm tra kết nối Internet và tài khoản:
-1. Mở Cursor Settings → Accounts
-2. Đảm bảo đã sign in
-3. Nếu vẫn lỗi, sign out → sign in lại
-
-### Extensions không import được
-
-Cài thủ công từ VS Code Marketplace trong Cursor:
-1. Mở Extensions (`Ctrl+Shift+X`)
-2. Search extension name
-3. Click Install
 
 ## Liên kết
 

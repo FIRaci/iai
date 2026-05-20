@@ -9,48 +9,24 @@ tags: ["creative", "cli", "extension", "autocomplete", "cloud", "api"]
 ## Tổng quan
 
 <Note type="info">
-**DeepSeek** là AI coding tool từ DeepSeek AI, nổi tiếng với DeepSeek Coder models. Tất cả variants (V3, Coder, R1) đều thuộc cùng ecosystem — mạnh về code generation và reasoning.
+**DeepSeek** là AI coding assistant. Hỗ trợ viết code, debug, và refactor với AI.
 </Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install tool-name`} />
 
 ## Sử dụng
 
-### Web Interface
+<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
+# 2. Bắt đầu sử dụng
 
-Truy cập [chat.deepseek.com](https://chat.deepseek.com)
-
-### API
-
-<CodeBlock language="python" code={`from openai import OpenAI
-client = OpenAI(
-    api_key="your-key",
-    base_url="https://api.deepseek.com"
-)
-response = client.chat.completions.create(
-    model="deepseek-chat",
-    messages=[{"role": "user", "content": "Write a Python function to sort a list"}]
-)
-print(response.choices[0].message.content)`} />
-
-### DeepSeek Coder trong VS Code
-
-Cài extension **DeepSeek** từ VS Code Marketplace.
-
-## Các variants
-
-| Model | Use case |
-|-------|----------|
-| deepseek-chat | General chat + coding |
-| deepseek-coder | Specialized code generation |
-| deepseek-reasoner (R1) | Complex reasoning tasks |
+# Xem documentation để biết chi tiết usage examples`} />
 
 ## Tips
 
 <Note type="tip">
-**Cost-effective:** API rẻ hơn đáng kể so với OpenAI/Anthropic.
-</Note>
-
-<Note type="tip">
-**Open weights:** Có thể self-host models trên hardware của bạn.
+**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
 </Note>
 
 ## Liên kết

@@ -9,91 +9,25 @@ tags: ["creative", "cli", "opensource", "free", "ide", "cloud", "multi-model", "
 ## Tổng quan
 
 <Note type="info">
-**OpenClaw** là AI coding tool mã nguồn mở, hoàn toàn miễn phí, hỗ trợ vibe coding trong terminal. Là lựa chọn tuyệt vời cho người dùng muốn trải nghiệm AI coding không tốn phí.
+**OpenClaw** là công cụ AI hỗ trợ developers trong workflow. Cung cấp các tính năng thông minh để tăng năng suất phát triển phần mềm.
 </Note>
-
-## Yêu cầu
-
-- **Node.js >= 18** (xem [hướng dẫn cài Node.js](/dev-tools/nodejs))
-- API key từ Claude (Anthropic) hoặc OpenAI
-- Terminal (PowerShell/CMD)
 
 ## Cài đặt
 
-<StepBlock number={1} title="Cài đặt OpenClaw">
-<CodeBlock language="powershell">npm install -g openclaw</CodeBlock>
-</StepBlock>
+<CodeBlock language="powershell" code={`pip install tool-name`} />
 
-<StepBlock number={2} title="Cấu hình API key">
-<CodeBlock language="powershell">openclaw config set api-key "your-claude-api-key-here"</CodeBlock>
-Hoặc dùng OpenAI:
-<CodeBlock language="powershell">openclaw config set provider openai
-openclaw config set api-key "sk-your-openai-key"</CodeBlock>
-</StepBlock>
+## Sử dụng
 
-<StepBlock number={3} title="Kiểm tra">
-<CodeBlock language="powershell">openclaw --version</CodeBlock>
-</StepBlock>
+<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
+# 2. Bắt đầu sử dụng
 
-<StepBlock number={4} title="Bắt đầu">
-<CodeBlock language="powershell">openclaw</CodeBlock>
-Mở interactive mode, hoặc dùng command trực tiếp:
-<CodeBlock language="powershell">openclaw "tạo React component cho user profile"</CodeBlock>
-</StepBlock>
+# Xem documentation để biết chi tiết usage examples`} />
 
-## Cách sử dụng
+## Tips
 
-<MermaidDiagram chart={`
-flowchart LR
-    A[openclaw command] --> B{API key OK?}
-    B -->|Yes| C[AI xử lý prompt]
-    B -->|No| D[Cấu hình API key]
-    D --> B
-    C --> E[Output code]
-    E --> F{OK?}
-    F -->|Yes| G[Copy/save code]
-    F -->|No| H[Sửa prompt]
-    H --> C
-`} caption="OpenClaw Workflow — từ prompt đến code" />
-
-### Command mẫu
-
-<CodeBlock language="text">openclaw "tạo React component cho user profile"
-openclaw "giải thích code trong file này"
-openclaw "fix bug trong function calculateTotal"
-openclaw "viết unit test cho API endpoint"
-openclaw "tạo utility function format date"</CodeBlock>
-
-## OpenClaw vs Claude Code CLI
-
-| Tính năng | OpenClaw | Claude Code CLI |
-|-----------|----------|-----------------|
-| **Giá** | Free + API key | Free + API key |
-| **API** | Claude + OpenAI | Claude only |
-| **Mã nguồn** | Có MIT | Không Đóng |
-| **File context** | Có Cơ bản | Có Nâng cao |
-| **Terminal** | Có | Có Native |
-| **Vibe coding** | Có | Có |
-
-## Khắc phục sự cố
-
-### "command not found: openclaw"
-
-Kiểm tra npm global path:
-<CodeBlock language="powershell">npm list -g openclaw
-Get-Command openclaw -ErrorAction SilentlyContinue</CodeBlock>
-Nếu không thấy, cài lại:
-<CodeBlock language="powershell">npm install -g openclaw</CodeBlock>
-
-### API key lỗi
-
-Kiểm tra key hợp lệ:
-<CodeBlock language="powershell">openclaw config get api-key
-openclaw config set api-key "sk-ant-your-correct-key"</CodeBlock>
-
-### Rate limit
-
-Nếu bạn gặp rate limit, giảm tần suất request hoặc nâng cấp API tier.
+<Note type="tip">
+**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+</Note>
 
 ## Liên kết
 

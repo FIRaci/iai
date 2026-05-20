@@ -9,7 +9,27 @@ tags: ["cloud", "api"]
 ## Tổng quan
 
 <Note type="info">
-**AI21 Studio** là công cụ AI. Xem tài liệu chính thức để biết chi tiết.
+**AI21 Studio** là nền tảng AI của AI21 Labs, cung cấp Jurassic-2 LLM cho text generation, summarization, và text improvement. API mạnh mẽ cho enterprise applications.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install ai21`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`import ai21
+ai21.api_key = "your-api-key"
+response = ai21.Completion.execute(
+    prompt="Write a short story about AI",
+    model="j2-ultra"
+)
+print(response.completions[0].data.text)`} />
+
+## Tips
+
+<Note type="tip">
+**API Key:** Đăng ký tại studio.ai21.com để lấy API key miễn phí.
 </Note>
 
 ## Liên kết

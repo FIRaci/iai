@@ -9,7 +9,25 @@ tags: ["api", "agent"]
 ## Tổng quan
 
 <Note type="info">
-**AutoGen** là công cụ AI. Xem tài liệu chính thức để biết chi tiết.
+**AutoGen** là framework của Microsoft để build multi-agent AI applications. Các agents có thể conversation với nhau để solve complex tasks.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install pyautogen`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`from autogen import AssistantAgent, UserProxyAgent
+config_list = [{"model": "gpt-4", "api_key": "your-key"}]
+assistant = AssistantAgent("assistant", llm_config={"config_list": config_list})
+user_proxy = UserProxyAgent("user_proxy")
+user_proxy.initiate_chat(assistant, message="Write a Python script to analyze CSV data")`} />
+
+## Tips
+
+<Note type="tip">
+**Multi-Agent:** Sử dụng nhiều agents với different roles cho complex workflows.
 </Note>
 
 ## Liên kết

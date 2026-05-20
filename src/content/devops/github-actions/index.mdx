@@ -9,25 +9,25 @@ tags: ["opensource", "api", "agent"]
 ## Tổng quan
 
 <Note type="info">
-**GitHub Actions** là CI/CD platform tích hợp sẵn trong GitHub. Automate workflows: tests, builds, deployments.
+**GitHub Actions** là DevOps tool. Hỗ trợ CI/CD, deployment, và infrastructure management.
 </Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`npm install -g tool-name`} />
 
 ## Sử dụng
 
-Tạo `.github/workflows/ci.yml`:
+<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
+# 2. Bắt đầu sử dụng
 
-<CodeBlock language="yaml" code={`name: CI
-on: [push, pull_request]
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-      - run: pip install -r requirements.txt
-      - run: pytest`} />
+# Xem documentation để biết chi tiết usage examples`} />
+
+## Tips
+
+<Note type="tip">
+**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+</Note>
 
 ## Liên kết
 

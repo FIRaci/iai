@@ -9,7 +9,22 @@ tags: ["api"]
 ## Tổng quan
 
 <Note type="info">
-**big-bench** là công cụ developer. Xem tài liệu chính thức để biết chi tiết.
+**big-bench** (Beyond the Imitation Game Benchmark) là benchmark suite để đánh giá khả năng của LLMs qua nhiều tasks khác nhau.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install big-bench`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`python -m bigbench benchmark --tasks all --models gpt-4
+# Kết quả được lưu và so sánh với các models khác`} />
+
+## Tips
+
+<Note type="tip">
+**Custom Tasks:** Có thể định nghĩa tasks riêng để benchmark models cụ thể.
 </Note>
 
 ## Liên kết

@@ -9,7 +9,25 @@ tags: ["api", "local"]
 ## Tổng quan
 
 <Note type="info">
-**AnythingLLM** là công cụ AI. Xem tài liệu chính thức để biết chi tiết.
+**AnythingLLM** là all-in-one AI chatbot platform. Chat với documents, websites, và custom knowledge bases. Self-hosted hoặc cloud deployment.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`docker pull mintplexlabs/anythingllm
+docker run -p 3001:3001 anythingllm`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`# Truy cập http://localhost:3001
+# 1. Tạo workspace mới
+# 2. Upload documents (PDF, TXT, MD)
+# 3. Chat với documents của bạn`} />
+
+## Tips
+
+<Note type="tip">
+**Vector DB:** Sử dụng built-in vector database hoặc kết nối với Pinecone/Chroma.
 </Note>
 
 ## Liên kết

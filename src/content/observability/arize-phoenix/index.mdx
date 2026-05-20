@@ -9,7 +9,24 @@ tags: ["api"]
 ## Tổng quan
 
 <Note type="info">
-**Arize Phoenix** là open-source LLM observability tool. Trace, evaluate, và monitor AI applications.
+**Arize Phoenix** là open-source LLM observability platform. Trace, evaluate, và monitor AI applications. Hỗ trợ prompt engineering và model debugging.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install arize-phoenix`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`import phoenix as px
+px.launch_app()
+# Truy cập http://localhost:6006
+# Upload traces hoặc connect với LLM application`} />
+
+## Tips
+
+<Note type="tip">
+**OpenTelemetry:** Tích hợp với OTel để auto-trace LLM calls trong production.
 </Note>
 
 ## Liên kết

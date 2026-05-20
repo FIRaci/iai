@@ -9,7 +9,23 @@ tags: ["cli", "api", "agent"]
 ## Tổng quan
 
 <Note type="info">
-**Amazon Q CLI** là công cụ AI. Xem tài liệu chính thức để biết chi tiết.
+**Amazon Q CLI** là command-line interface cho Amazon Q AI assistant. Tương tác với AWS services qua natural language commands.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install amazon-q-cli`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`q configure
+q "List my EC2 instances"
+q "Create a new S3 bucket named my-bucket" `} />
+
+## Tips
+
+<Note type="tip">
+**IAM Roles:** Đảm bảo IAM user có đủ permissions cho các AWS services cần truy cập.
 </Note>
 
 ## Liên kết

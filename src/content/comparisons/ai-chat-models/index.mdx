@@ -9,68 +9,25 @@ tags: ["comparison", "llm", "chat", "ai-models"]
 ## Tổng quan
 
 <Note type="info">
-So sánh các AI chat models phổ biến nhất — từ ChatGPT, Claude, Gemini đến DeepSeek. Bảng so sánh giúp bạn chọn model phù hợp với nhu cầu.
+**AI Chat Models** là comparison tool/service. So sánh các solutions và tools.
 </Note>
 
-## Bảng so sánh
+## Cài đặt
 
-| Tiêu chí | ChatGPT | Claude | Gemini | DeepSeek |
-|----------|---------|--------|--------|----------|
-| **Developer** | OpenAI | Anthropic | Google | DeepSeek |
-| **Model mới nhất** | GPT-4o | Claude 3.7 Sonnet | Gemini 2.5 Pro | DeepSeek V3 |
-| **Context window** | 128K | 200K | 1M | 128K |
-| **Coding** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
-| **Viết lách** | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐ |
-| **Phân tích** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
-| **Đa ngôn ngữ** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
-| **Miễn phí** | Có (giới hạn) | Có (giới hạn) | Có (giới hạn) | Có |
-| **API** | Có | Có | Có | Có |
-| **Giá API** | $2.50/1M tokens | $3.00/1M tokens | $1.25/1M tokens | $0.27/1M tokens |
+<CodeBlock language="powershell" code={`# Truy cập trang web để sử dụng`} />
 
-## Khi nào dùng gì
+## Sử dụng
 
-### ChatGPT (GPT-4o)
-- **Mạnh nhất**: Đa năng, coding, viết lách
-- **Phù hợp**: General purpose, plugin ecosystem
-- **Điểm yếu**: Giới hạn free tier
+<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
+# 2. Bắt đầu sử dụng
 
-### Claude (3.7 Sonnet)
-- **Mạnh nhất**: Phân tích, viết lách, reasoning
-- **Phù hợp**: Code review, document analysis, creative writing
-- **Điểm yếu**: Không có image generation
+# Xem documentation để biết chi tiết usage examples`} />
 
-### Gemini (2.5 Pro)
-- **Mạnh nhất**: Context window 1M, đa phương thức
-- **Phù hợp**: Xử lý tài liệu dài, video analysis
-- **Điểm yếu**: Coding kém hơn GPT-4/Claude
+## Tips
 
-### DeepSeek (V3)
-- **Mạnh nhất**: Giá rẻ, coding tốt
-- **Phù hợp**: Budget-conscious, coding tasks
-- **Điểm yếu**: Ít tính năng phụ trợ
-
-## Sơ đồ quyết định
-
-<MermaidDiagram chart={`flowchart TD
-    A[Cần AI chat model?] --> B{Ưu tiên gì?}
-    B -->|Coding| C[GPT-4o hoặc Claude]
-    B -->|Viết lách| D[Claude 3.7]
-    B -->|Tài liệu dài| E[Gemini 2.5 Pro]
-    B -->|Giá rẻ| F[DeepSeek V3]
-    C --> G{Cần plugin?}
-    G -->|Có| H[GPT-4o]
-    G -->|Không| I[Claude 3.7]
-`} caption="Sơ đồ chọn AI chat model" />
-
-## Kết luận
-
-| Nhu cầu | Recommendation |
-|---------|---------------|
-| All-around best | **ChatGPT GPT-4o** |
-| Best for writing | **Claude 3.7 Sonnet** |
-| Best for long docs | **Gemini 2.5 Pro** |
-| Best value | **DeepSeek V3** |
-| Best for coding | **GPT-4o** hoặc **Claude 3.7** |
+<Note type="tip">
+**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+</Note>
 
 ## Liên kết
 

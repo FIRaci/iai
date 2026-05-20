@@ -9,73 +9,25 @@ tags: ["comparison", "frontend", "framework", "react", "vue"]
 ## Tổng quan
 
 <Note type="info">
-So sánh các frontend frameworks phổ biến — React, Vue, Svelte, Angular, và Solid.
+**Frontend Frameworks** là comparison tool/service. So sánh các solutions và tools.
 </Note>
 
-## Bảng so sánh
+## Cài đặt
 
-| Tiêu chí | React | Vue | Svelte | Angular | Solid |
-|----------|-------|-----|--------|---------|-------|
-| **Creator** | Meta | Evan You | Rich Harris | Google | Ryan Carniato |
-| **Language** | JSX | Template/JSX | Svelte syntax | TypeScript | JSX |
-| **Learning curve** | ⭐⭐⭐ | ⭐⭐ | ⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐ |
-| **Performance** | ⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐⭐ |
-| **Bundle size** | 42KB | 33KB | 1.6KB | 143KB | 7KB |
-| **SSR** | Next.js | Nuxt | SvelteKit | Angular Universal | SolidStart |
-| **Mobile** | React Native | NativeScript |  | Ionic |  |
-| **State management** | Zustand, Redux | Pinia, Vuex | Stores | Services | Signals |
-| **TypeScript** | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **Ecosystem** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐ |
-| **Jobs market** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐ | ⭐ |
+<CodeBlock language="powershell" code={`# Truy cập trang web để sử dụng`} />
 
-## Khi nào dùng gì
+## Sử dụng
 
-### React
-- **Mạnh nhất**: Ecosystem lớn nhất, jobs nhiều nhất
-- **Phù hợp**: Enterprise, large teams, mobile (React Native)
-- **Điểm yếu**: Bundle size, learning curve
+<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
+# 2. Bắt đầu sử dụng
 
-### Vue
-- **Mạnh nhất**: Dễ học, progressive adoption
-- **Phù hợp**: Teams muốn dễ maintain, gradual migration
-- **Điểm yếu**: Ecosystem nhỏ hơn React
+# Xem documentation để biết chi tiết usage examples`} />
 
-### Svelte
-- **Mạnh nhất**: Performance tốt nhất, bundle nhỏ nhất
-- **Phù hợp**: Performance-critical apps, small teams
-- **Điểm yếu**: Ecosystem nhỏ, ít jobs
+## Tips
 
-### Angular
-- **Mạnh nhất**: Full framework, TypeScript-first
-- **Phù hợp**: Enterprise, large teams, strict architecture
-- **Điểm yếu**: Heavy, learning curve cao
-
-### Solid
-- **Mạnh nhất**: Performance + React-like syntax
-- **Phù hợp**: Performance-critical, React developers
-- **Điểm yếu**: Ecosystem rất nhỏ
-
-## Sơ đồ quyết định
-
-<MermaidDiagram chart={`flowchart TD
-    A[Cần frontend framework?] --> B{Ưu tiên?}
-    B -->|Jobs/Ecosystem| C[React]
-    B -->|Dễ học| D[Vue]
-    B -->|Performance| E{Team size?}
-    B -->|Enterprise| F[Angular]
-    E -->|Nhỏ| G[Svelte]
-    E -->|React dev| H[Solid]
-`} caption="Sơ đồ chọn frontend framework" />
-
-## Kết luận
-
-| Nhu cầu | Recommendation |
-|---------|---------------|
-| Best ecosystem | **React** |
-| Easiest to learn | **Vue** |
-| Best performance | **Svelte** hoặc **Solid** |
-| Enterprise | **Angular** |
-| Mobile + Web | **React** (React Native) |
+<Note type="tip">
+**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+</Note>
 
 ## Liên kết
 

@@ -9,7 +9,28 @@ tags: ["cloud", "multi-model", "api"]
 ## Tổng quan
 
 <Note type="info">
-**Anthropic API** là công cụ AI. Xem tài liệu chính thức để biết chi tiết.
+**Anthropic API** cung cấp quyền truy cập vào Claude models cho text generation, analysis, và coding. Known for safety và constitutional AI approach.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install anthropic`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`import anthropic
+client = anthropic.Anthropic(api_key="your-key")
+message = client.messages.create(
+    model="claude-3-5-sonnet-20241022",
+    max_tokens=1024,
+    messages=[{"role": "user", "content": "Hello, Claude"}]
+)
+print(message.content[0].text)`} />
+
+## Tips
+
+<Note type="tip">
+**Rate Limits:** Free tier có giới hạn requests/phút. Upgrade để tăng limits.
 </Note>
 
 ## Liên kết

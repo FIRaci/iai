@@ -9,20 +9,25 @@ tags: ["creative", "opensource", "autocomplete", "api", "local"]
 ## Tổng quan
 
 <Note type="info">
-**SQLite** là embedded SQL database engine, lightweight và serverless. Perfect cho local development và small apps.
+**SQLite** là database tool/system. Hỗ trợ lưu trữ và query dữ liệu hiệu quả.
 </Note>
 
 ## Cài đặt
 
-SQLite đã có sẵn trong Python:
+<CodeBlock language="powershell" code={`# Tải từ trang chủ hoặc sử dụng package manager`} />
 
-<CodeBlock language="python" code={`import sqlite3
-conn = sqlite3.connect("my.db")
-cursor = conn.cursor()
-cursor.execute("CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT)")
-cursor.execute("INSERT INTO users (name) VALUES ('John')")
-conn.commit()
-conn.close()`} />
+## Sử dụng
+
+<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
+# 2. Bắt đầu sử dụng
+
+# Xem documentation để biết chi tiết usage examples`} />
+
+## Tips
+
+<Note type="tip">
+**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+</Note>
 
 ## Liên kết
 

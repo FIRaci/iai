@@ -9,7 +9,24 @@ tags: ["api"]
 ## Tổng quan
 
 <Note type="info">
-**Azure ML** là công cụ AI. Xem tài liệu chính thức để biết chi tiết.
+**Azure ML** là cloud platform của Microsoft để build, train, và deploy ML models. Tích hợp với Azure ecosystem.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install azure-ai-ml`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
+credential = DefaultAzureCredential()
+ml_client = MLClient(credential, subscription_id, resource_group, workspace_name)`} />
+
+## Tips
+
+<Note type="tip">
+**Azure CLI:** Sử dụng `az ml` commands để quản lý workspace từ terminal.
 </Note>
 
 ## Liên kết

@@ -9,7 +9,22 @@ tags: ["api"]
 ## Tổng quan
 
 <Note type="info">
-**Axolotl** là công cụ AI. Xem tài liệu chính thức để biết chi tiết.
+**Axolotl** là tool để fine-tune LLMs (Llama, Mistral, v.v.) dễ dàng. Hỗ trợ LoRA, QLoRA, full fine-tuning.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install axolotl`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`accelerate launch -m axolotl.cli.train config.yaml
+# Config file định nghĩa model, dataset, training params`} />
+
+## Tips
+
+<Note type="tip">
+**QLoRA:** Sử dụng QLoRA để fine-tune models lớn trên GPU nhỏ.
 </Note>
 
 ## Liên kết

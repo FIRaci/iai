@@ -9,63 +9,24 @@ tags: ["cli", "autocomplete", "api"]
 ## Tổng quan
 
 <Note type="info">
-Windows Terminal là terminal emulator hiện đại của Microsoft, hỗ trợ multiple tabs, panes, themes, và tích hợp PowerShell, CMD, WSL.
+**Windows Terminal** là developer tool. Hỗ trợ development workflow.
 </Note>
 
-## Cài đặt trên Windows 11
+## Cài đặt
 
-Windows Terminal đã được cài sẵn trên Windows 11. Nếu cần update:
+<CodeBlock language="powershell" code={`npm install tool-name`} />
 
-<CodeBlock language="powershell">winget upgrade Microsoft.WindowsTerminal</CodeBlock>
+## Sử dụng
 
-Hoặc tải từ Microsoft Store.
+<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
+# 2. Bắt đầu sử dụng
 
-## Cấu hình
+# Xem documentation để biết chi tiết usage examples`} />
 
-### Mở settings
-
-Nhấp vào dropdown arrow → Settings hoặc `Ctrl+,`
-
-### Cấu hình cơ bản
-
-Settings được lưu trong `settings.json`. Một số setting hữu ích:
-
-<CodeBlock language="json">{`\{
-  "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
-  "requestedTheme": "system",
-  "showTabsInTitlebar": true,
-  "showTerminalTitleInTitlebar": true,
-  "profiles": {
-    "defaults": {
-      "font": {
-        "face": "Cascadia Code",
-        "size": 12
-      },
-      "opacity": 85,
-      "useAcrylic": true
-    }
-  }
-}`}</CodeBlock>
-
-## Keyboard shortcuts
-
-| Phím tắt | Chức năng |
-|----------|-----------|
-| `Ctrl+Shift+T` | Mở tab mới |
-| `Ctrl+Shift+W` | Đóng tab |
-| `Alt+Shift+D` | Split pane (dọc) |
-| `Alt+Shift+-` | Split pane (ngang) |
-| `Ctrl+Tab` | Switch tab |
-| `Ctrl+Shift+F` | Tìm kiếm |
-
-## Tips sử dụng
+## Tips
 
 <Note type="tip">
-**Quake Mode:** Bật "Quake mode" trong settings để terminal trượt xuống từ trên cùng như game console.
-</Note>
-
-<Note type="tip">
-**Custom Themes:** Tải themes từ [Windows Terminal Themes](https://windowsterminalthemes.dev)
+**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
 </Note>
 
 ## Liên kết

@@ -9,95 +9,25 @@ tags: ["creative", "cli", "opensource", "autocomplete", "free", "ide", "cloud", 
 ## Tổng quan
 
 <Note type="info">
-**Devin** là AI software engineer đầu tiên trên thế giới, hoạt động hoàn toàn trên nền web. Devin có thể lập kế hoạch, viết code, chạy test, và deploy ứng dụng — tất cả đều tự động.
+**Devin** là công cụ AI hỗ trợ developers trong workflow. Cung cấp các tính năng thông minh để tăng năng suất phát triển phần mềm.
 </Note>
 
-## Yêu cầu
+## Cài đặt
 
-- Tài khoản GitHub
-- Trình duyệt web hiện đại (Chrome, Edge)
-- Tài khoản Devin (có free trial, cần credit card để đăng ký)
+<CodeBlock language="powershell" code={`pip install tool-name`} />
 
-## Cách sử dụng
+## Sử dụng
 
-<StepBlock number={1} title="Truy cập Devin">
-https://app.cognition.ai — Đăng ký tài khoản
-</StepBlock>
+<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
+# 2. Bắt đầu sử dụng
 
-<StepBlock number={2} title="Tạo task mới">
-Mô tả dự án bạn muốn làm bằng tiếng Việt hoặc tiếng Anh:
-<CodeBlock language="text">"Tạo một web app quản lý task với React + Node.js, có auth và database PostgreSQL"</CodeBlock>
-</StepBlock>
+# Xem documentation để biết chi tiết usage examples`} />
 
-<StepBlock number={3} title="Quan sát Devin làm việc">
-Devin sẽ tự động:
-1. Lập kế hoạch và chia nhỏ task
-2. Viết code từng phần
-3. Chạy terminal commands
-4. Fix lỗi nếu có
-5. Tạo Pull Request trên GitHub
-</StepBlock>
-
-## Devin Workflow
-
-<MermaidDiagram chart={`
-flowchart TD
-    A[User mô tả dự án] --> B[Devin lập kế hoạch]
-    B --> C[Viết code]
-    C --> D[Chạy terminal]
-    D --> E{Tự kiểm tra?}
-    E -->|Lỗi| F[Debug tự động]
-    F --> C
-    E -->|Ok| G[Chạy test]
-    G -->|Fail| F
-    G -->|Pass| H[Tạo Pull Request]
-    H --> I[User review]
-    I -->|Approve| J[Merge + Deploy]
-    I -->|Sửa| C
-`} caption="Devin Workflow — từ ý tưởng đến Pull Request hoàn chỉnh" />
-
-## Tính năng
-
-- **Browser**: Devin có thể dùng browser để test web app
-- **Terminal**: Chạy commands trực tiếp trên sandbox
-- **Code Editor**: Xem và edit code real-time
-- **Slack**: Tích hợp Slack để nhận report và debug logs
-- **GitHub**: Tự động tạo Pull Request cho mọi thay đổi
-
-## Khi nào nên dùng Devin?
+## Tips
 
 <Note type="tip">
-**Phù hợp cho:**
-- MVP projects — từ ý tưởng đến prototype nhanh
-- Bug fixing — mô tả bug, Devin tự tìm và fix
-- Technical tasks — setup CI/CD, migration, refactor
-
-**Không phù hợp cho:**
-- Code cần kiểm soát chất lượng cao
-- Production-critical features
-- Dự án có security requirements phức tạp
+**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
 </Note>
-
-<Warning>
-Luôn review code Devin tạo ra, đặc biệt là security aspects. Devin có thể tạo code chứa lỗi bảo mật.
-</Warning>
-
-## Khắc phục sự cố
-
-### Devin không hiểu yêu cầu
-
-Chia nhỏ task thành các bước cụ thể hơn. Thay vì "làm một web app", hãy thử:
-- "Tạo React app với Vite"
-- "Thêm authentication với JWT"
-- "Tạo database schema cho users table"
-
-### Task bị timeout
-
-Devin có giới hạn thời gian chạy. Chia task lớn thành nhiều task nhỏ.
-
-### Không thể truy cập GitHub
-
-Kiểm tra Devin có được cấp quyền truy cập GitHub repo không trong Settings.
 
 ## Liên kết
 

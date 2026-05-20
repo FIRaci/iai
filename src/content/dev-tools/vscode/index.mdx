@@ -9,115 +9,25 @@ tags: ["creative", "cli", "extension", "opensource", "ide", "cloud", "api", "edi
 ## Tổng quan
 
 <Note type="info">
-**VS Code** (Visual Studio Code) là code editor phổ biến nhất hiện nay, hỗ trợ mọi ngôn ngữ lập trình. Đây là nền tảng cho hầu hết AI coding tools — từ GitHub Copilot đến Cursor đều dựa trên VS Code.
+**VS Code** là developer tool. Hỗ trợ development workflow.
 </Note>
-
-## Yêu cầu
-
-- Windows 11
-- Quyền Admin (cho winget install)
 
 ## Cài đặt
 
-<StepBlock number={1} title="Cài VS Code">
-Mở PowerShell (Admin):
-<CodeBlock language="powershell">winget install Microsoft.VisualStudioCode</CodeBlock>
-Hoặc tải từ: https://code.visualstudio.com
-</StepBlock>
+<CodeBlock language="powershell" code={`npm install tool-name`} />
 
-<StepBlock number={2} title="Cài Code CLI">
-Mở VS Code → `Ctrl+Shift+P` → gõ "Shell Command: Install 'code' command in PATH" → Enter
-Kiểm tra:
-<CodeBlock language="powershell">code --version</CodeBlock>
-</StepBlock>
+## Sử dụng
 
-<StepBlock number={3} title="Cấu hình cơ bản">
-Mở Settings (`Ctrl+,`) và cấu hình:
-<CodeBlock language="text">"editor.formatOnSave": true
-"editor.fontSize": 14
-"terminal.integrated.fontSize": 13
-"editor.minimap.enabled": false
-"workbench.colorTheme": "Visual Studio Dark"</CodeBlock>
-</StepBlock>
+<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
+# 2. Bắt đầu sử dụng
 
-## Essential Extensions
+# Xem documentation để biết chi tiết usage examples`} />
 
-<MermaidDiagram chart={`
-flowchart TD
-    A[VS Code] --> B[Extensions cần thiết]
-    B --> C[GitHub Copilot - AI coding]
-    B --> D[Prettier - Format code]
-    B --> E[ESLint - Lint code]
-    B --> F[Tailwind IntelliSense]
-    B --> G[GitLens - Git viz]
-    B --> H[Error Lens - Inline error]
-    C --> I[Sẵn sàng phát triển]
-    D --> I
-    E --> I
-    F --> I
-    G --> I
-    H --> I
-`} caption="VS Code Extensions cho AI Development" />
+## Tips
 
-### Extensions bắt buộc cho AI Development
-
-| Extension | Mục đích | Cài bằng |
-|-----------|----------|----------|
-| GitHub Copilot | AI pair programming | `ext install github.copilot` |
-| GitHub Copilot Chat | Chat với AI | `ext install github.copilot-chat` |
-| Prettier | Format code tự động | `ext install esbenp.prettier-vscode` |
-| ESLint | Linting | `ext install dbaeumer.vscode-eslint` |
-
-### Extensions hữu ích khác
-
-| Extension | Mục đích |
-|-----------|----------|
-| Tailwind CSS IntelliSense | Tailwind CSS hỗ trợ |
-| GitLens | Git visualization |
-| Error Lens | Hiển thị lỗi inline |
-| Material Icon Theme | Icons đẹp hơn |
-| Thunder Client | API testing trong editor |
-
-## Shortcuts quan trọng
-
-| Shortcut | Hành động |
-|----------|-----------|
-| `Ctrl+P` | Quick open file |
-| `Ctrl+Shift+P` | Command palette |
-| `Ctrl+\`` | Toggle terminal |
-| `Ctrl+B` | Toggle sidebar |
-| `Alt+Up/Down` | Move line up/down |
-| `Ctrl+D` | Select next occurrence |
-| `Ctrl+Shift+L` | Select all occurrences |
-| `Ctrl+\` | Split editor |
-| `Ctrl+Shift+Alt+Down` | Add cursor below |
-
-## Khắc phục sự cố
-
-### "code command not found in PATH"
-
-Trong VS Code:
-1. Mở Command Palette (`Ctrl+Shift+P`)
-2. Gõ "Shell Command: Install 'code' command in PATH"
-3. Chọn và Enter
-4. Restart VS Code và terminal
-
-### VS Code chậm
-
-Tắt extensions không dùng:
-1. Mở Extensions (`Ctrl+Shift+X`)
-2. Disable extensions không cần thiết
-3. Settings → Search "search: exclude" → exclude `node_modules`
-
-### Extensions không cài được
-
-Kiểm tra Internet, hoặc tải .vsix từ marketplace và cài thủ công.
-
-### Font rendering xấu trên Windows
-
-Settings → Search "terminal integrated font family" → set:
-<CodeBlock language="text">"editor.fontFamily": "'Cascadia Code', 'Fira Code', Consolas, monospace"
-"terminal.integrated.fontFamily": "Cascadia Code"</CodeBlock>
+<Note type="tip">
+**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+</Note>
 
 ## Liên kết
 

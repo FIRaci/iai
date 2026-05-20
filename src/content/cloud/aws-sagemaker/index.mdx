@@ -9,7 +9,26 @@ tags: ["cloud", "api"]
 ## Tổng quan
 
 <Note type="info">
-**aws-sagemaker** là công cụ developer. Xem tài liệu chính thức để biết chi tiết.
+**aws-sagemaker** là fully managed ML platform của AWS. Build, train, và deploy ML models ở scale.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install sagemaker`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`import sagemaker
+from sagemaker import get_execution_role
+role = get_execution_role()
+# Tạo training job
+estimator = sagemaker.estimator.Estimator(...)
+estimator.fit({'train': 's3://bucket/train-data'})`} />
+
+## Tips
+
+<Note type="tip">
+**Spot Instances:** Sử dụng spot training để giảm 70% chi phí training.
 </Note>
 
 ## Liên kết
