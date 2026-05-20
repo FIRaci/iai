@@ -1,0 +1,28 @@
+---
+title: "ModelScope"
+category: "model-hubs"
+icon: "brain"
+difficulty: "beginner"
+tags: ["creative", "cli", "multi-model", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**ModelScope** là model hub từ Alibaba, tập trung vào Chinese và Asian AI models. Đa dạng models cho NLP, vision, audio.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install modelscope`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`from modelscope import pipeline
+pipe = pipeline("text-generation", model="damo/nlp_gpt3_text-generation_125M")
+result = pipe("Hello")
+print(result)`} />
+
+## Liên kết
+
+- [ModelScope](https://modelscope.cn)

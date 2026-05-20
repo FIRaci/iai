@@ -1,0 +1,25 @@
+---
+title: "DeepSpeed Chat"
+category: "tools"
+icon: "message-square"
+difficulty: "advanced"
+tags: ["cli", "opensource", "multi-model", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**DeepSpeed Chat** là framework cho RLHF training của LLMs. Implement InstructGPT-style training với DeepSpeed.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install deepspeed`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`deepspeed --num_gpus=8 main.py --actor_model mistralai/Mistral-7B-v0.1`} />
+
+## Liên kết
+
+- [DeepSpeed Chat GitHub](https://github.com/microsoft/DeepSpeedExamples/tree/master/applications/DeepSpeed-Chat)

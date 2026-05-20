@@ -1,0 +1,98 @@
+---
+title: "ElevenLabs"
+category: "ai-tools"
+icon: "mic"
+difficulty: "beginner"
+tags: ["creative", "paid", "autocomplete", "free", "cloud", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**ElevenLabs** là AI text-to-speech hàng đầu, tạo giọng nói tự nhiên từ văn bản. Hỗ trợ nhiều ngôn ngữ bao gồm tiếng Việt, với khả năng clone giọng nói và điều chỉnh cảm xúc.
+</Note>
+
+## Truy cập
+
+Đăng ký tại [elevenlabs.io](https://elevenlabs.io).
+
+| Gói | Giá | Ký tự/tháng |
+|-----|-----|-------------|
+| Free | $0 | 10,000 |
+| Starter | $5 | 30,000 |
+| Creator | $22 | 100,000 |
+| Pro | $99 | 500,000 |
+
+## Sử dụng cơ bản
+
+### Bước 1: Chọn giọng nói
+
+1. Vào **Voice Library**
+2. Duyệt hoặc tìm kiếm giọng phù hợp
+3. Nhấn **Use Voice** để chọn
+
+### Bước 2: Nhập văn bản
+
+1. Vào **Speech Synthesis**
+2. Dán hoặc gõ văn bản vào ô input
+3. Chọn **Model**: Multilingual v2 (cho tiếng Việt)
+
+### Bước 3: Điều chỉnh và generate
+
+1. **Stability**: Độ ổn định giọng (cao = đều, thấp = biểu cảm)
+2. **Clarity + Similarity**: Độ rõ và giống giọng gốc
+3. Nhấn **Generate** để tạo audio
+4. Nhấn **Download** để tải file MP3
+
+### Voice Cloning
+
+1. Vào **Voice Lab** → **Instant Voice Cloning**
+2. Upload mẫu giọng (tối thiểu 1 phút audio rõ)
+3. Đặt tên và mô tả giọng
+4. Sử dụng giọng đã clone như bình thường
+
+## Tips sử dụng
+
+<Note type="tip">
+**Tiếng Việt:** ElevenLabs hỗ trợ tiếng Việt khá tốt. Chọn model "Multilingual v2" để có kết quả tốt nhất. Dùng dấu câu đầy đủ để AI ngắt nghỉ đúng.
+</Note>
+
+<Note type="tip">
+**Prompt engineering:** Thêm mô tả cảm xúc vào text: "Xin chào!" (vui vẻ) vs "Xin chào..." (buồn). ElevenLabs hiểu ngữ cảnh cảm xúc.
+</Note>
+
+<Note type="tip">
+**SSML:** Dùng SSML tags để điều khiển pause, emphasis, và pronunciation chi tiết hơn.
+</Note>
+
+## Khắc phục sự cố
+
+### Giọng nói bị robotic
+
+- Tăng **Stability** lên 0.5-0.7
+- Thử giọng khác từ Voice Library
+- Đảm bảo text có dấu câu đầy đủ
+
+### Tiếng Việt phát âm sai
+
+- Dùng model **Multilingual v2** (không dùng v1)
+- Viết đầy đủ dấu tiếng Việt
+- Thử viết lại câu với cấu trúc đơn giản hơn
+
+### Hết ký tự free tier
+
+- Free tier reset mỗi tháng
+- Upgrade lên Starter ($5/tháng) để có 30,000 ký tự
+- Dùng API để tích hợp vào workflow tự động
+
+### Voice Cloning không hoạt động
+
+- Mẫu audio cần tối thiểu 1 phút, rõ ràng, không noise
+- Định dạng hỗ trợ: MP3, WAV, M4A
+- Tiếng Việt clone giọng chưa ổn định — thử tiếng Anh trước
+
+## Liên kết
+
+- [ElevenLabs](https://elevenlabs.io)
+- [API Docs](https://elevenlabs.io/docs)
+- [Voice Library](https://elevenlabs.io/voice-library)

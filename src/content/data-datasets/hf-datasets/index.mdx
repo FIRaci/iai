@@ -1,0 +1,37 @@
+---
+title: "Hugging Face Datasets"
+category: "data-datasets"
+icon: "database"
+difficulty: "beginner"
+tags: ["cli", "autocomplete", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Hugging Face Datasets** là library cho loading và processing ML datasets. Truy cập hàng ngàn datasets từ Hugging Face Hub.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install datasets`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`from datasets import load_dataset
+dataset = load_dataset("imdb")
+print(dataset["train"][0])
+# Iterate
+for item in dataset["train"]:
+    print(item["text"])`} />
+
+## Tips
+
+<Note type="tip">
+**Streaming:** Dùng `streaming=True` để load datasets lớn mà không cần tải toàn bộ.
+</Note>
+
+## Liên kết
+
+- [Hugging Face Datasets](https://huggingface.co/datasets)
+- [Docs](https://huggingface.co/docs/datasets)

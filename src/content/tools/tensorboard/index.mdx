@@ -1,0 +1,32 @@
+---
+title: "TensorBoard"
+category: "tools"
+icon: "bar-chart-3"
+difficulty: "beginner"
+tags: ["creative", "cli", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**TensorBoard** là visualization toolkit cho ML experiments. Theo dõi metrics, view model graphs, và analyze training.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install tensorboard`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`from torch.utils.tensorboard import SummaryWriter
+writer = SummaryWriter()
+for epoch in range(100):
+    loss = train_epoch()
+    writer.add_scalar("Loss/train", loss, epoch)
+writer.close()`} />
+
+<CodeBlock language="powershell" code={`tensorboard --logdir runs`} />
+
+## Liên kết
+
+- [TensorBoard](https://www.tensorflow.org/tensorboard)

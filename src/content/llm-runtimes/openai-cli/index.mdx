@@ -1,0 +1,32 @@
+---
+title: "OpenAI CLI"
+category: "llm-runtimes"
+icon: "terminal"
+difficulty: "beginner"
+tags: ["creative", "paid", "cli", "autocomplete", "cloud", "multi-model", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**OpenAI CLI** là command-line tool tương tác với OpenAI API. Cho phép generate text, chat, và embeddings trực tiếp từ terminal.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install openai`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`# Set API key
+$env:OPENAI_API_KEY="your-key"
+
+# Chat completion
+openai api chat_completions.create -m gpt-4 -g user "Hello"
+
+# Text generation
+openai api completions.create -m gpt-3.5-turbo-instruct -p "Write a poem"`} />
+
+## Liên kết
+
+- [OpenAI CLI](https://platform.openai.com/docs/api-reference)

@@ -67,6 +67,151 @@
   --sidebar-ring: oklch(0.72 0.02 265);
 }
 
+/* ===== Star Theme ===== */
+.star {
+  --background: oklch(0.06 0.02 260);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.08 0.02 260);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.08 0.02 260);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.75 0.22 200);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.14 0.03 260);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.14 0.03 260);
+  --muted-foreground: oklch(0.65 0.05 200);
+  --accent: oklch(0.14 0.03 260);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: oklch(0.18 0.03 260);
+  --input: oklch(0.18 0.03 260);
+  --ring: oklch(0.75 0.22 200);
+  --sidebar-background: oklch(0.04 0.02 260);
+  --sidebar-foreground: oklch(0.72 0.05 200);
+  --sidebar-primary: oklch(0.75 0.22 200);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.14 0.03 260);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.18 0.03 260);
+  --sidebar-ring: oklch(0.72 0.05 200);
+}
+
+/* Star background animation */
+.star body {
+  position: relative;
+  overflow-x: hidden;
+}
+
+.star body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(2px 2px at 20px 30px, oklch(0.85 0.2 200 / 0.8), transparent),
+    radial-gradient(2px 2px at 40px 70px, oklch(0.8 0.18 210 / 0.6), transparent),
+    radial-gradient(1px 1px at 90px 40px, oklch(0.9 0.22 195 / 0.9), transparent),
+    radial-gradient(1px 1px at 130px 80px, oklch(0.75 0.15 220 / 0.5), transparent),
+    radial-gradient(2px 2px at 160px 30px, oklch(0.85 0.2 200 / 0.7), transparent),
+    radial-gradient(1px 1px at 200px 60px, oklch(0.9 0.22 195 / 0.8), transparent),
+    radial-gradient(2px 2px at 250px 20px, oklch(0.8 0.18 210 / 0.6), transparent),
+    radial-gradient(1px 1px at 300px 90px, oklch(0.85 0.2 200 / 0.7), transparent),
+    radial-gradient(2px 2px at 350px 50px, oklch(0.9 0.22 195 / 0.9), transparent),
+    radial-gradient(1px 1px at 400px 70px, oklch(0.75 0.15 220 / 0.5), transparent),
+    radial-gradient(2px 2px at 450px 30px, oklch(0.85 0.2 200 / 0.8), transparent),
+    radial-gradient(1px 1px at 500px 80px, oklch(0.8 0.18 210 / 0.6), transparent),
+    radial-gradient(2px 2px at 550px 40px, oklch(0.9 0.22 195 / 0.9), transparent),
+    radial-gradient(1px 1px at 600px 60px, oklch(0.75 0.15 220 / 0.5), transparent),
+    radial-gradient(2px 2px at 650px 20px, oklch(0.85 0.2 200 / 0.7), transparent),
+    radial-gradient(1px 1px at 700px 90px, oklch(0.9 0.22 195 / 0.8), transparent),
+    radial-gradient(2px 2px at 750px 50px, oklch(0.8 0.18 210 / 0.6), transparent),
+    radial-gradient(1px 1px at 800px 30px, oklch(0.85 0.2 200 / 0.7), transparent),
+    radial-gradient(2px 2px at 850px 70px, oklch(0.9 0.22 195 / 0.9), transparent),
+    radial-gradient(1px 1px at 900px 40px, oklch(0.75 0.15 220 / 0.5), transparent);
+  background-size: 1000px 100px;
+  animation: stars-move 100s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes stars-move {
+  from { transform: translateX(0); }
+  to { transform: translateX(-1000px); }
+}
+
+/* Twinkling stars layer */
+.star body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(2px 2px at 100px 100px, oklch(0.9 0.22 195), transparent),
+    radial-gradient(1px 1px at 200px 200px, oklch(0.85 0.2 200), transparent),
+    radial-gradient(2px 2px at 300px 150px, oklch(0.8 0.18 210), transparent),
+    radial-gradient(1px 1px at 400px 300px, oklch(0.9 0.22 195), transparent),
+    radial-gradient(2px 2px at 500px 250px, oklch(0.85 0.2 200), transparent),
+    radial-gradient(1px 1px at 600px 400px, oklch(0.8 0.18 210), transparent),
+    radial-gradient(2px 2px at 700px 350px, oklch(0.9 0.22 195), transparent),
+    radial-gradient(1px 1px at 800px 500px, oklch(0.85 0.2 200), transparent),
+    radial-gradient(2px 2px at 150px 450px, oklch(0.8 0.18 210), transparent),
+    radial-gradient(1px 1px at 250px 550px, oklch(0.9 0.22 195), transparent),
+    radial-gradient(2px 2px at 350px 600px, oklch(0.85 0.2 200), transparent),
+    radial-gradient(1px 1px at 450px 700px, oklch(0.8 0.18 210), transparent),
+    radial-gradient(2px 2px at 550px 800px, oklch(0.9 0.22 195), transparent),
+    radial-gradient(1px 1px at 650px 900px, oklch(0.85 0.2 200), transparent),
+    radial-gradient(2px 2px at 750px 100px, oklch(0.8 0.18 210), transparent),
+    radial-gradient(1px 1px at 850px 200px, oklch(0.9 0.22 195), transparent),
+    radial-gradient(2px 2px at 50px 300px, oklch(0.85 0.2 200), transparent),
+    radial-gradient(1px 1px at 150px 600px, oklch(0.8 0.18 210), transparent),
+    radial-gradient(2px 2px at 250px 700px, oklch(0.9 0.22 195), transparent),
+    radial-gradient(1px 1px at 350px 800px, oklch(0.85 0.2 200), transparent);
+  background-size: 1000px 1000px;
+  animation: stars-twinkle 4s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes stars-twinkle {
+  0% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0.4; }
+}
+
+/* Ensure content is above stars */
+.star #root,
+.star .app-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Star theme card glow */
+.star .card-hover:hover {
+  box-shadow: 0 0 20px oklch(0.75 0.22 200 / 0.15), 0 8px 25px -5px oklch(0.75 0.22 200 / 0.1);
+  border-color: oklch(0.75 0.22 200 / 0.3);
+}
+
+/* Star theme primary glow */
+.star .bg-primary {
+  box-shadow: 0 0 15px oklch(0.75 0.22 200 / 0.3);
+}
+
+/* Star theme link glow */
+.star .prose a:hover {
+  text-shadow: 0 0 8px oklch(0.75 0.22 200 / 0.5);
+}
+
+/* Star theme sidebar active glow */
+.star .sidebar-link[aria-current="page"] {
+  box-shadow: 0 0 10px oklch(0.75 0.22 200 / 0.2);
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -114,13 +259,9 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  /* Theme transition */
+  /* Theme transition - applied only after mount via class */
   html {
     scroll-behavior: smooth;
-  }
-  html.dark,
-  html:not(.dark) {
-    transition: background-color 0.25s ease, color 0.25s ease;
   }
   /* Scrollbar */
   ::-webkit-scrollbar {
@@ -363,7 +504,305 @@
   color: var(--foreground);
 }
 
-/* Horizontal rule */
+/* ===== Animations ===== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 oklch(0.546 0.245 262.881 / 0.3); }
+  50% { box-shadow: 0 0 0 8px oklch(0.546 0.245 262.881 / 0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Animation utility classes */
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out both;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out both;
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown 0.3s ease-out both;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.4s ease-out both;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.4s ease-out both;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.3s ease-out both;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent 0%, oklch(0.96 0.005 265) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+.dark .animate-shimmer {
+  background: linear-gradient(90deg, transparent 0%, oklch(0.2 0.02 265) 50%, transparent 100%);
+  background-size: 200% 100%;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Stagger delays for list animations */
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.1s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.2s; }
+.stagger-5 { animation-delay: 0.25s; }
+.stagger-6 { animation-delay: 0.3s; }
+.stagger-7 { animation-delay: 0.35s; }
+.stagger-8 { animation-delay: 0.4s; }
+.stagger-9 { animation-delay: 0.45s; }
+.stagger-10 { animation-delay: 0.5s; }
+.stagger-11 { animation-delay: 0.55s; }
+.stagger-12 { animation-delay: 0.6s; }
+
+/* ===== Interactive Element Enhancements ===== */
+@layer components {
+  /* Card hover effect */
+  .card-hover {
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px -5px oklch(0.546 0.245 262.881 / 0.1), 0 4px 10px -5px oklch(0.546 0.245 262.881 / 0.05);
+    border-color: oklch(0.546 0.245 262.881 / 0.3);
+  }
+  .dark .card-hover:hover {
+    box-shadow: 0 8px 25px -5px oklch(0.65 0.2 260 / 0.15), 0 4px 10px -5px oklch(0.65 0.2 260 / 0.08);
+    border-color: oklch(0.65 0.2 260 / 0.4);
+  }
+
+  /* Button press effect */
+  .btn-press {
+    transition: transform 0.1s ease, box-shadow 0.15s ease;
+  }
+  .btn-press:active {
+    transform: scale(0.97);
+  }
+
+  /* Interactive badge hover */
+  .badge-interactive {
+    transition: transform 0.15s ease, box-shadow 0.15s ease, ring-width 0.15s ease;
+  }
+  .badge-interactive:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px oklch(0.546 0.245 262.881 / 0.15);
+  }
+
+  /* Sidebar link hover */
+  .sidebar-link {
+    transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease, padding-left 0.2s ease;
+  }
+  .sidebar-link:hover {
+    padding-left: 0.75rem;
+  }
+  .sidebar-link:active {
+    transform: scale(0.98);
+  }
+
+  /* Search button enhanced hover */
+  .search-btn-hover {
+    transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+  }
+  .search-btn-hover:hover {
+    box-shadow: 0 0 0 1px oklch(0.546 0.245 262.881 / 0.2);
+  }
+  .search-btn-hover:active {
+    transform: scale(0.96);
+  }
+
+  /* Theme toggle transition */
+  .theme-toggle {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.15s ease;
+  }
+  .theme-toggle:active {
+    transform: rotate(180deg) scale(0.9);
+  }
+
+  /* Code block copy button */
+  .copy-btn {
+    transition: opacity 0.15s ease, background-color 0.15s ease, transform 0.1s ease;
+  }
+  .copy-btn:hover {
+    opacity: 1 !important;
+    background-color: oklch(0.546 0.245 262.881 / 0.2);
+  }
+  .copy-btn:active {
+    transform: scale(0.9);
+  }
+
+  /* Note block hover */
+  .note-hover {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .note-hover:hover {
+    transform: translateX(2px);
+    box-shadow: 0 2px 8px oklch(0 0 0 / 0.08);
+  }
+  .dark .note-hover:hover {
+    box-shadow: 0 2px 8px oklch(0 0 0 / 0.2);
+  }
+
+  /* Tag hover effect */
+  .tag-hover {
+    transition: transform 0.15s ease, ring-width 0.15s ease, box-shadow 0.15s ease;
+  }
+  .tag-hover:hover {
+    transform: scale(1.05);
+  }
+
+  /* Breadcrumb link hover */
+  .breadcrumb-link {
+    transition: color 0.15s ease;
+  }
+  .breadcrumb-link:hover {
+    color: var(--primary);
+  }
+
+  /* Footer link hover */
+  .footer-link {
+    transition: color 0.15s ease, transform 0.1s ease;
+  }
+  .footer-link:hover {
+    color: var(--primary);
+  }
+  .footer-link:active {
+    transform: scale(0.97);
+  }
+
+  /* Category chevron transition */
+  .category-chevron {
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .category-chevron:hover {
+    transform: translateX(3px);
+  }
+
+  /* TOC link hover */
+  .toc-link {
+    transition: color 0.15s ease, border-color 0.15s ease, padding-left 0.15s ease;
+  }
+  .toc-link:hover {
+    padding-left: 0.5rem;
+  }
+
+  /* Mobile menu animation */
+  .mobile-menu-enter {
+    animation: slideInRight 0.25s ease-out both;
+  }
+
+  /* Search dialog animation */
+  .search-dialog-enter {
+    animation: scaleIn 0.2s ease-out both;
+  }
+
+  /* Collapsible section animation */
+  .collapsible-content {
+    transition: max-height 0.3s ease-out, opacity 0.2s ease;
+  }
+}
+
+/* ===== Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .animate-fade-in,
+  .animate-fade-in-up,
+  .animate-fade-in-down,
+  .animate-slide-in-left,
+  .animate-slide-in-right,
+  .animate-scale-in {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* ===== Horizontal rule */
 .prose hr {
   margin: 2.5em 0;
 }

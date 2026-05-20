@@ -1,0 +1,37 @@
+---
+title: "Rich"
+category: "utilities"
+icon: "palette"
+difficulty: "beginner"
+tags: ["cli", "opensource", "autocomplete", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Rich** là Python library cho rich text và beautiful formatting trong terminal. Hỗ trợ tables, progress bars, syntax highlighting.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install rich`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`from rich import print
+from rich.console import Console
+from rich.table import Table
+
+console = Console()
+console.print("Hello", style="bold red")
+
+table = Table(title="Users")
+table.add_column("Name")
+table.add_column("Age")
+table.add_row("John", "30")
+console.print(table)`} />
+
+## Liên kết
+
+- [Rich](https://rich.readthedocs.io)
+- [GitHub](https://github.com/Textualize/rich)

@@ -1,0 +1,33 @@
+---
+title: "Axolotl"
+category: "fine-tuning"
+icon: "brain"
+difficulty: "intermediate"
+tags: ["cli", "opensource", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Axolotl** là fine-tuning tool cho LLMs, hỗ trợ nhiều models và configurations. Dễ dùng với YAML configs.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install axolotl`} />
+
+## Sử dụng
+
+Tạo config file `config.yaml`:
+
+<CodeBlock language="yaml" code={`base_model: mistralai/Mistral-7B-v0.1
+datasets:
+  - path: data.json
+    type: alpaca
+output_dir: ./output`} />
+
+<CodeBlock language="powershell" code={`accelerate launch -m axolotl.cli.train config.yaml`} />
+
+## Liên kết
+
+- [Axolotl GitHub](https://github.com/OpenAccess-AI-Collective/axolotl)

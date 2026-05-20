@@ -1,0 +1,123 @@
+---
+title: "ChatGPT / OpenAI"
+category: "ai-tools"
+icon: "message-square"
+difficulty: "beginner"
+tags: ["creative", "paid", "opensource", "free", "cloud", "multi-model", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**ChatGPT** là AI chatbot phổ biến nhất thế giới, được phát triển bởi OpenAI. Hỗ trợ viết code, phân tích dữ liệu, sáng tạo nội dung, và nhiều tác vụ khác. Model mới nhất GPT-4o có khả năng đa phương thức: text, image, voice.
+</Note>
+
+## Truy cập
+
+Không cần cài đặt — truy cập trực tiếp tại [chat.openai.com](https://chat.openai.com)
+
+| Gói | Giá | Model | Tính năng |
+|-----|-----|-------|-----------|
+| Free | $0 | GPT-4o mini | Chat cơ bản, giới hạn |
+| Plus | $20/th | GPT-4o | Unlimited, DALL-E, voice |
+| Team | $25/user/th | GPT-4o | Team workspace, admin |
+| Enterprise | Liên hệ | GPT-4o | SSO, compliance, priority |
+
+### Cài đặt ứng dụng desktop (tùy chọn)
+
+<StepBlock number={1} title="Tải PWA">
+Mở Edge hoặc Chrome, truy cập chat.openai.com, nhấp vào icon "Install" trên thanh địa chỉ.
+</StepBlock>
+
+<StepBlock number={2} title="Đăng ký tài khoản">
+Tạo tài khoản miễn phí tại openai.com hoặc đăng nhập bằng Google/Microsoft.
+</StepBlock>
+
+## Sử dụng cơ bản
+
+### Bước 1: Bắt đầu chat
+
+1. Vào [chat.openai.com](https://chat.openai.com)
+2. Gõ câu hỏi hoặc yêu cầu vào ô chat
+3. Nhấn Enter hoặc nút Send
+
+### Bước 2: Sử dụng tính năng nâng cao
+
+- **Voice Mode:** Nhấn icon microphone để chat bằng giọng nói
+- **Image Upload:** Nhấn icon camera để upload ảnh phân tích
+- **Canvas:** Nhấn icon Canvas để chỉnh sửa code/document trực tiếp
+- **File Upload:** Upload PDF, DOCX, TXT để phân tích nội dung
+
+### Bước 3: Custom Instructions
+
+1. Vào **Settings** → **Custom Instructions**
+2. Điền:
+   - "What would you like ChatGPT to know about you?" — Thông tin về bạn
+   - "How would you like ChatGPT to respond?" — Phong cách trả lời
+3. Lưu — áp dụng cho mọi conversation mới
+
+### Bước 4: GPTs (Custom AI)
+
+1. Vào **Explore GPTs**
+2. Tìm hoặc tạo GPT tùy chỉnh:
+   - **Code Interpreter GPT:** Chuyên code
+   - **Data Analysis GPT:** Phân tích dữ liệu
+   - **Creative Writing GPT:** Sáng tạo nội dung
+3. Hoặc tự tạo GPT với custom instructions và knowledge files
+
+## Tips sử dụng
+
+<Note type="tip">
+**Prompt engineering:** Càng cụ thể càng tốt. Thay vì "Viết code", hãy nói "Viết function TypeScript xử lý login với JWT token, bao gồm error handling và type definitions".
+</Note>
+
+<Note type="tip">
+**Chain of thought:** Yêu cầu AI "suy nghĩ từng bước" để có kết quả chính xác hơn: "Hãy giải thích từng bước cách hoạt động của function này".
+</Note>
+
+<Note type="tip">
+**System prompt:** Dùng Custom Instructions để định nghĩa role cho AI: "Bạn là senior developer chuyên React và TypeScript".
+</Note>
+
+<Note type="warning">
+ChatGPT có thể "hallucinate" — luôn kiểm tra lại code và thông tin quan trọng. Đặc biệt cẩn thận với code production và thông tin y tế/pháp lý.
+</Note>
+
+## Khắc phục sự cố
+
+### "Network Error" hoặc không phản hồi
+
+- Kiểm tra kết nối internet
+- Refresh trang (Ctrl+R)
+- Thử logout và login lại
+- Clear browser cache nếu vấn đề kéo dài
+
+### Rate limit / "Too many requests"
+
+- Free tier có giới hạn số tin nhắn/giờ
+- Đợi vài phút rồi thử lại
+- Upgrade Plus để có limit cao hơn
+
+### Câu trả lời bị cắt ngang
+
+- Nhấn "Continue" để AI tiếp tục
+- Hoặc gõ "tiếp tục" để AI hoàn thành câu trả lời
+
+### Code không chạy được
+
+- Yêu cầu AI debug: "Code này bị lỗi [mô tả lỗi], fix giúp tôi"
+- Cung cấp error message cụ thể
+- Yêu cầu AI giải thích từng dòng code
+
+### Không hiểu tiếng Việt tốt
+
+- Thử hỏi bằng tiếng Anh
+- Dùng Custom Instructions: "Always respond in Vietnamese"
+- GPT-4o hỗ trợ tiếng Việt tốt hơn GPT-3.5
+
+## Liên kết
+
+- [ChatGPT](https://chat.openai.com)
+- [OpenAI API](https://platform.openai.com)
+- [API Docs](https://platform.openai.com/docs)
+- [OpenAI Blog](https://openai.com/blog)

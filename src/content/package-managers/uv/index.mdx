@@ -1,0 +1,30 @@
+---
+title: "uv"
+category: "package-managers"
+icon: "package"
+difficulty: "beginner"
+tags: ["creative", "cli", "opensource", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**uv** là extremely fast Python package installer và resolver, viết bằng Rust. Nhanh hơn pip hàng chục lần.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install uv`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`# Install packages
+uv pip install requests numpy
+# Create venv
+uv venv
+# Install from requirements
+uv pip install -r requirements.txt`} />
+
+## Liên kết
+
+- [uv GitHub](https://github.com/astral-sh/uv)

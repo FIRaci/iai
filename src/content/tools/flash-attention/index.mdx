@@ -1,0 +1,29 @@
+---
+title: "Flash Attention"
+category: "tools"
+icon: "zap"
+difficulty: "advanced"
+tags: ["cli", "opensource", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Flash Attention** là fast và memory-efficient exact attention algorithm cho GPUs. Tăng tốc training và inference.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install flash-attn`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`from flash_attn import flash_attn_func
+q = torch.randn(2, 1024, 16, 64, device="cuda")
+k = torch.randn(2, 1024, 16, 64, device="cuda")
+v = torch.randn(2, 1024, 16, 64, device="cuda")
+out = flash_attn_func(q, k, v)`} />
+
+## Liên kết
+
+- [Flash Attention GitHub](https://github.com/Dao-AILab/flash-attention)

@@ -3,7 +3,7 @@ title: "Git & GitHub"
 category: "dev-tools"
 icon: "git"
 difficulty: "beginner"
-tags: ["version-control", "github"]
+tags: ["creative", "cli", "opensource", "ide", "api"]
 ---
 
 ## Tổng quan
@@ -129,6 +129,32 @@ git push`} />
 Cấu hình chưa set:
 <CodeBlock language="powershell">git config --global user.name "Your Name"
 git config --global user.email "your@email.com"</CodeBlock>
+
+## Tips sử dụng
+
+<Note type="tip">
+**Conventional Commits:** Dùng format `type: description` cho commit messages:
+- `feat: thêm tính năng login`
+- `fix: sửa lỗi null reference`
+- `docs: cập nhật README`
+- `refactor: tối ưu function parse`
+</Note>
+
+<Note type="tip">
+**.gitignore:** Tạo file `.gitignore` ngay từ đầu để loại bỏ: `node_modules/`, `.env`, `dist/`, `.DS_Store`. Dùng [gitignore.io](https://gitignore.io) để generate template.
+</Note>
+
+<Note type="tip">
+**Git stash:** Dùng `git stash` để tạm lưu changes chưa commit, `git stash pop` để lấy lại. Hữu ích khi cần switch branch gấp.
+</Note>
+
+<Note type="tip">
+**Git bisect:** Dùng `git bisect` để tìm commit gây bug: `git bisect start`, `git bisect bad`, `git bisect good <commit>`, rồi test từng commit.
+</Note>
+
+<Note type="tip">
+**Interactive rebase:** `git rebase -i HEAD~5` để squash, reorder, hoặc edit commits — giữ git history sạch.
+</Note>
 
 ## Liên kết
 

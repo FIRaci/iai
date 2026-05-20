@@ -1,0 +1,36 @@
+---
+title: "Streamlit"
+category: "frameworks"
+icon: "layout"
+difficulty: "beginner"
+tags: ["creative", "cli", "opensource", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Streamlit** là framework cho building data apps và dashboards từ Python scripts. Dễ dùng và nhanh chóng deploy.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install streamlit`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`import streamlit as st
+import pandas as pd
+
+st.title("My Dashboard")
+df = pd.read_csv("data.csv")
+st.dataframe(df)
+st.line_chart(df)`} />
+
+### Run
+
+<CodeBlock language="powershell" code={`streamlit run app.py`} />
+
+## Liên kết
+
+- [Streamlit](https://streamlit.io)
+- [GitHub](https://github.com/streamlit/streamlit)

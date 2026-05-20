@@ -1,0 +1,34 @@
+---
+title: "FAISS"
+category: "vector-databases"
+icon: "database"
+difficulty: "intermediate"
+tags: ["cli", "opensource", "autocomplete", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**FAISS** (Facebook) là library cho efficient similarity search và clustering của dense vectors. Tối ưu cho large-scale vector search.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install faiss-cpu`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`import faiss
+import numpy as np
+d = 128  # dimension
+nb = 10000  # database size
+nq = 100  # queries
+xb = np.random.random((nb, d)).astype("float32")
+xq = np.random.random((nq, d)).astype("float32")
+index = faiss.IndexFlatL2(d)
+index.add(xb)
+D, I = index.search(xq, 5)  # search 5 nearest neighbors`} />
+
+## Liên kết
+
+- [FAISS GitHub](https://github.com/facebookresearch/faiss)

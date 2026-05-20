@@ -1,0 +1,35 @@
+---
+title: "DVC"
+category: "mlops"
+icon: "database"
+difficulty: "intermediate"
+tags: ["cli", "opensource", "autocomplete", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**DVC** (Data Version Control) là version control cho ML datasets và models. Hoạt động như Git nhưng cho data files lớn.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install dvc`} />
+
+## Sử dụng
+
+### Tracking Data
+
+<CodeBlock language="powershell" code={`dvc init
+dvc add data/dataset.csv
+git add data/dataset.csv.dvc .gitignore
+git commit -m "Add dataset"`} />
+
+### Pipeline
+
+<CodeBlock language="powershell" code={`dvc run -n train -d train.py -d data/ -o model/ python train.py`} />
+
+## Liên kết
+
+- [DVC](https://dvc.org)
+- [GitHub](https://github.com/iterative/dvc)

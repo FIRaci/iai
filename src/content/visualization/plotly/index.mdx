@@ -1,0 +1,29 @@
+---
+title: "Plotly"
+category: "visualization"
+icon: "bar-chart-3"
+difficulty: "beginner"
+tags: ["creative", "cli", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Plotly** là interactive visualization library, tạo charts đẹp và dashboards. Hỗ trợ Python, R, và JavaScript.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install plotly`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`import plotly.express as px
+df = px.data.iris()
+fig = px.scatter(df, x="sepal_width", y="sepal_length", color="species")
+fig.show()`} />
+
+## Liên kết
+
+- [Plotly](https://plotly.com)
+- [Python Docs](https://plotly.com/python)

@@ -1,0 +1,46 @@
+---
+title: "DALL-E"
+category: "ai-tools"
+icon: "palette"
+difficulty: "beginner"
+tags: ["creative", "paid", "cli", "cloud", "multi-model", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+DALL-E là AI tạo ảnh của OpenAI, tích hợp sẵn trong ChatGPT Plus. Tạo ảnh từ mô tả văn bản với chất lượng cao.
+</Note>
+
+## Sử dụng
+
+### Qua ChatGPT Plus
+
+1. Đăng ký ChatGPT Plus tại [chat.openai.com](https://chat.openai.com)
+2. Nhấp vào icon "Tạo ảnh" hoặc gõ "Tạo ảnh..."
+3. Nhập mô tả và nhận kết quả
+
+### Qua API
+
+```bash
+curl https://api.openai.com/v1/images/generations \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "dall-e-3",
+    "prompt": "A cute robot painting a sunset",
+    "n": 1,
+    "size": "1024x1024"
+  }'
+```
+
+## Tips sử dụng
+
+<Note type="tip">
+**Prompt tốt:** Càng chi tiết càng tốt. Bao gồm phong cách, màu sắc, bố cục, ánh sáng.
+</Note>
+
+## Liên kết
+
+- [DALL-E](https://openai.com/dall-e-3)
+- [API Docs](https://platform.openai.com/docs/api-reference/images)

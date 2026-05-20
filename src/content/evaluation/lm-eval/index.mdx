@@ -1,0 +1,25 @@
+---
+title: "LM Evaluation Harness"
+category: "evaluation"
+icon: "circle-check"
+difficulty: "intermediate"
+tags: ["cli", "opensource", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**LM Evaluation Harness** là framework cho evaluating LLMs trên nhiều benchmarks: MMLU, HellaSwag, TruthfulQA.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install lm-eval`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`lm-eval --model hf --model_args pretrained=mistralai/Mistral-7B-v0.1 --tasks mmlu --device cuda`} />
+
+## Liên kết
+
+- [LM Eval GitHub](https://github.com/EleutherAI/lm-evaluation-harness)

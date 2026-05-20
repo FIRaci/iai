@@ -1,0 +1,33 @@
+---
+title: "KServe"
+category: "deployment"
+icon: "package"
+difficulty: "advanced"
+tags: ["cli", "opensource", "cloud", "api", "agent"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**KServe** (trước đây là KFServing) là serverless model serving trên Kubernetes. Hỗ trợ nhiều frameworks và auto-scaling.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`kubectl apply -f https://github.com/kserve/kserve/releases/latest/download/kserve.yaml`} />
+
+## Sử dụng
+
+<CodeBlock language="yaml" code={`apiVersion: serving.kserve.io/v1beta1
+kind: InferenceService
+metadata:
+  name: my-model
+spec:
+  predictor:
+    sklearn:
+      storageUri: gs://my-bucket/model`} />
+
+## Liên kết
+
+- [KServe](https://kserve.github.io)
+- [GitHub](https://github.com/kserve/kserve)

@@ -1,0 +1,41 @@
+---
+title: "Typer"
+category: "utilities"
+icon: "terminal"
+difficulty: "beginner"
+tags: ["cli", "opensource", "cloud", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Typer** là Python CLI framework, tạo CLI apps dễ dàng với type hints. Từ tác giả FastAPI.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install typer`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`import typer
+app = typer.Typer()
+
+@app.command()
+def hello(name: str):
+    typer.echo(f"Hello {name}")
+
+@app.command()
+def goodbye(name: str, formal: bool = False):
+    if formal:
+        typer.echo(f"Goodbye Ms. {name}")
+    else:
+        typer.echo(f"Bye {name}!")
+
+if __name__ == "__main__":
+    app()`} />
+
+## Liên kết
+
+- [Typer](https://typer.tiangolo.com)
+- [GitHub](https://github.com/tiangolo/typer)

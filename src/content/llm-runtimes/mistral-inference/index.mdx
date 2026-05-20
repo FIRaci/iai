@@ -1,0 +1,27 @@
+---
+title: "Mistral-inference"
+category: "llm-runtimes"
+icon: "brain"
+difficulty: "intermediate"
+tags: ["creative", "cli", "opensource", "api", "local"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Mistral-inference** (mistral.cpp) là lightweight inference engine cho Mistral models, tối ưu cho deployment và local use.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install mistral-inference`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`from mistral_inference import Mistral
+model = Mistral.from_pretrained("mistralai/Mistral-7B-v0.1")
+output = model.generate("Hello, how are you?")`} />
+
+## Liên kết
+
+- [mistral.cpp GitHub](https://github.com/mistralai/mistral-inference)

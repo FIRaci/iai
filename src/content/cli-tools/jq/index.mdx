@@ -1,0 +1,33 @@
+---
+title: "jq"
+category: "cli-tools"
+icon: "terminal"
+difficulty: "intermediate"
+tags: ["cli", "opensource", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**jq** là command-line JSON processor. Parse, filter, và transform JSON data trong terminal.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`winget install jqlang.jq`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`# Pretty print
+cat data.json | jq .
+# Extract field
+cat data.json | jq '.name'
+# Filter array
+cat data.json | jq '.items[] | select(.age > 25)'
+# Transform
+cat data.json | jq '{name, email: .contact.email}'`} />
+
+## Liên kết
+
+- [jq Manual](https://jqlang.github.io/jq/manual)
+- [GitHub](https://github.com/jqlang/jq)

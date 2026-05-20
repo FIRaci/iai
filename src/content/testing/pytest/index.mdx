@@ -1,0 +1,40 @@
+---
+title: "pytest"
+category: "testing"
+icon: "circle-check"
+difficulty: "beginner"
+tags: ["cli", "extension", "opensource", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**pytest** là testing framework phổ biến nhất cho Python. Đơn giản, mạnh mẽ, và hỗ trợ fixtures, parametrization, và plugins.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install pytest`} />
+
+## Sử dụng
+
+### Test File
+
+<CodeBlock language="python" code={`# test_math.py
+def add(a, b):
+    return a + b
+
+def test_add():
+    assert add(2, 3) == 5
+    assert add(-1, 1) == 0`} />
+
+### Run Tests
+
+<CodeBlock language="powershell" code={`pytest
+pytest -v  # verbose
+pytest test_math.py::test_add  # specific test`} />
+
+## Liên kết
+
+- [pytest](https://docs.pytest.org)
+- [GitHub](https://github.com/pytest-dev/pytest)

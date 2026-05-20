@@ -3,7 +3,7 @@ title: "So sánh AI Coding Tools"
 category: "comparisons"
 icon: "comparison"
 difficulty: "beginner"
-tags: ["comparison"]
+tags: ["creative", "paid", "cli", "extension", "opensource", "autocomplete", "free", "ide", "cloud", "multi-model", "api", "agent", "ai-native", "local", "editor"]
 ---
 
 import { comparisonColumns, comparisonRows } from "@/data/comparison-data"
@@ -11,72 +11,200 @@ import { comparisonColumns, comparisonRows } from "@/data/comparison-data"
 ## Tổng quan
 
 <Note type="info">
-Bảng so sánh chi tiết các AI coding tools phổ biến giúp bạn chọn công cụ phù hợp nhất với nhu cầu và ngân sách của mình.
+Bảng so sánh chi tiết **15 AI coding tools** phổ biến nhất 2026 — từ terminal assistants đến autonomous agents. Giúp bạn chọn công cụ phù hợp nhất với nhu cầu và ngân sách.
 </Note>
 
-## Bảng so sánh
+## Bảng so sánh tổng quan
 
 <ComparisonTable columns={comparisonColumns} rows={comparisonRows} />
+
+## Phân loại theo use case
+
+### Terminal Lovers — Code trong CLI
+
+| Tool | Giá | Model support | Best feature |
+|------|-----|---------------|--------------|
+| **Claude Code CLI** | Free (API) | Claude | Codebase context + web search |
+| **OpenCode** | Free | Multi-model | Open source, extensible |
+| **Aider** | Free | Multi-model | Git auto-commit, pair programming |
+| **OpenClaw** | Free | Multi-model | MIT license, fully free |
+
+<Note type="tip">
+**Khuyến nghị:** Claude Code CLI cho chất lượng tốt nhất. Aider cho pair programming với git.
+</Note>
+
+### IDE Users — Code trong editor
+
+| Tool | Giá | Type | Best feature |
+|------|-----|------|--------------|
+| **Cursor** | $20/th | AI-native IDE | Composer, Agent mode, .cursorrules |
+| **Windsurf** | Free/$15 | AI-native IDE | Cascade, free tier tốt |
+| **GitHub Copilot** | $10/th | VS Code extension | Tab completion, chat, free tier |
+| **Continue** | Free | Extension | Self-hosted, local LLM support |
+| **Cline** | Free | Extension | Autonomous agent mode |
+
+<Note type="tip">
+**Khuyến nghị:** Cursor cho pro devs. Windsurf cho free AI IDE. Copilot cho VS Code users.
+</Note>
+
+### Autonomous Agents — AI tự làm việc
+
+| Tool | Giá | Capability | Best feature |
+|------|-----|------------|--------------|
+| **Devin** | $500/th | Full-stack agent | Tự động test + deploy |
+| **JetBrains Junie** | $20/th | IDE agent | Refactor, fix bugs, viết tests |
+| **Cline** | Free | VS Code agent | Autonomous coding trong IDE |
+
+<Note type="warning">
+Devin rất đắt — chỉ phù hợp enterprise. Junie và Cline là alternatives rẻ hơn.
+</Note>
+
+### Cloud & No-Code — Không cần cài đặt
+
+| Tool | Giá | Type | Best feature |
+|------|-----|------|--------------|
+| **Copilot Workspace** | Included | Cloud IDE | GitHub integration, shared workspace |
+| **GitHub Spark** | Free | No-code app builder | Tạo apps từ natural language |
+
+<Note type="tip">
+**Khuyến nghị:** Copilot Workspace cho teams. GitHub Spark cho non-technical users.
+</Note>
+
+### API & Web — Integration
+
+| Tool | Giá | Access | Best feature |
+|------|-----|--------|--------------|
+| **DeepSeek** | Free/API | Web + API | Cost-effective, open weights |
+| **Amazon Q Developer** | Free/$19 | IDE + CLI | AWS integration, code transform |
 
 ## Decision Tree
 
 <MermaidDiagram chart={`
 flowchart TD
-    S["Bạn muốn dùng AI tool nào?"] --> Q1{"Cần IDE hay Terminal?"}
-    Q1 -->|Terminal| Q2{"Cần orchestrate agents?"}
-    Q2 -->|Có| CK["ClaudeKit"]
-    Q2 -->|Không| Q3{"Ngân sách?"}
-    Q3 -->|0 đồng| O["OpenClaw"]
-    Q3 -->|Có budget| CC["Claude Code CLI"]
-    Q1 -->|IDE| Q4{"Editor hiện tại?"}
-    Q4 -->|VS Code| GH["GitHub Copilot"]
-    Q4 -->|Muốn IDE mới| Q5{"Cần full-stack?"}
-    Q5 -->|Có| CR["Cursor"]
-    Q5 -->|Không| W["Windsurf"]
-    Q1 -->|Web| D["Devin"]
-`} caption="Nên chọn AI tool nào? — sơ đồ quyết định" />
+    S["Bạn cần AI tool cho việc gì?"] --> Q1{"Thích code ở đâu?"}
+
+    Q1 -->|Terminal| Q2{"Ngân sách?"}
+    Q2 -->|0 đồng| A1["OpenClaw / Aider"]
+    Q2 -->|Có API budget| A2["Claude Code CLI"]
+    A1 --> A1b["Aider: pair programming\nOpenClaw: fully free"]
+    A2 --> A2b["Best quality + context"]
+
+    Q1 -->|IDE/Editor| Q3{"Editor hiện tại?"}
+    Q3 -->|VS Code| Q4{"Cần autonomous?"}
+    Q4 -->|Có| B1["Cline (free)"]
+    Q4 -->|Không| B2["Copilot ($10) / Continue (free)"]
+    Q3 -->|JetBrains| B3["Junie ($20)"]
+    Q3 -->|Muốn IDE mới| Q5{"Cần free?"}
+    Q5 -->|Có| B4["Windsurf (free tier)"]
+    Q5 -->|Không| B5["Cursor ($20) — tốt nhất"]
+
+    Q1 -->|Cloud/Web| Q6{"Cần code hay app?"}
+    Q6 -->|Code| C1["Copilot Workspace"]
+    Q6 -->|App không code| C2["GitHub Spark"]
+
+    Q1 -->|Autonomous Agent| Q7{"Budget?"}
+    Q7 -->|Enterprise ($500/th)| D1["Devin"]
+    Q7 -->|Normal ($20/th)| D2["Junie"]
+    Q7 -->|Free| D3["Cline"]
+
+    Q1 -->|API/Integration| E1["DeepSeek (rẻ)\nAmazon Q (AWS)"]
+`} caption="Sơ đồ chọn AI coding tool phù hợp" />
 
 ## Phân tích chi tiết
 
-### Claude Code CLI — Tốt nhất cho terminal
-- Miễn phí (chỉ trả API), mạnh mẽ, hiểu context codebase
-- Phù hợp: Developer yêu thích terminal và vibe coding
+### Claude Code CLI — Tốt nhất cho terminal developers
+- **Ưu điểm:** Miễn phí (chỉ trả API), hiểu context codebase sâu, web search, multi-file editing
+- **Nhược điểm:** Chỉ chạy terminal, cần API key
+- **Phù hợp:** Developer yêu thích terminal và vibe coding
 
-### Cursor — Tốt nhất cho AI-native IDE
-- Tích hợp AI sâu, Composer, Agent mode, Rules system
-- Phù hợp: Developer chuyên nghiệp cần IDE AI-native
+### Cursor — Tốt nhất AI-native IDE
+- **Ưu điểm:** Composer multi-file, Agent mode tự động, .cursorrules customization, multi-model
+- **Nhược điểm:** $20/tháng, không free tier
+- **Phù hợp:** Developer chuyên nghiệp cần IDE AI-native mạnh nhất
 
 ### GitHub Copilot — Tốt nhất cho VS Code
-- Tích hợp sâu với VS Code, free tier, dễ dùng
-- Phù hợp: Người mới bắt đầu, dân VS Code
-
-### Devin — Tốt nhất cho tự động hóa
-- Full-stack automation, tự động test và deploy
-- Phù hợp: Team/Enterprise cần automation
+- **Ưu điểm:** $10/tháng, free tier available, tab completion mượt, tích hợp VS Code sâu
+- **Nhược điểm:** Không có terminal access, context hạn chế
+- **Phù hợp:** Người mới bắt đầu, VS Code users
 
 ### Windsurf — Tốt nhất free AI IDE
-- Miễn phí, Cascade feature mạnh
-- Phù hợp: Người dùng muốn IDE AI miễn phí
+- **Ưu điểm:** Free tier hào phóng, Cascade feature mạnh, multi-model support
+- **Nhược điểm:** Ít features hơn Cursor bản paid
+- **Phù hợp:** Người dùng muốn AI IDE miễn phí
 
-### ClaudeKit — Tốt nhất cho orchestration
-- Mã nguồn mở, miễn phí, linh hoạt
-- Phù hợp: Developer muốn custom AI workflow
+### Devin — Tốt nhất enterprise automation
+- **Ưu điểm:** Full-stack automation, tự động test và deploy, làm việc độc lập
+- **Nhược điểm:** $500/tháng — rất đắt
+- **Phù hợp:** Team/Enterprise cần automation hoàn toàn
 
-### OpenClaw — Tốt nhất cho open source
-- Hoàn toàn miễn phí, mã nguồn mở (MIT)
-- Phù hợp: Developer muốn tool AI miễn phí
+### JetBrains Junie — Tốt nhất cho JetBrains ecosystem
+- **Ưu điểm:** Tích hợp sâu IntelliJ/PyCharm/WebStorm, refactor thông minh, viết tests
+- **Nhược điểm:** $20/tháng, chỉ JetBrains IDEs
+- **Phù hợp:** Java/Kotlin/Python devs dùng JetBrains
 
-## Khuyến nghị
+### Amazon Q Developer — Tốt nhất cho AWS developers
+- **Ưu điểm:** Free tier, AWS integration sâu, code transformation, security scanning
+- **Nhược điểm:** Best khi dùng AWS ecosystem
+- **Phù hợp:** Developers làm việc với AWS
+
+### DeepSeek — Tốt nhất budget API
+- **Ưu điểm:** API rất rẻ, open weights, self-hostable, chất lượng tốt
+- **Nhược điểm:** Không có IDE integration native
+- **Phù hợp:** Developers cần API rẻ cho coding tasks
+
+### Copilot Workspace — Tốt nhất cho cloud teams
+- **Ưu điểm:** GitHub integration hoàn hảo, shared workspace, zero setup
+- **Nhược điểm:** Cần internet, không local
+- **Phù hợp:** Teams làm việc trên GitHub
+
+### GitHub Spark — Tốt nhất no-code
+- **Ưu điểm:** Tạo apps từ natural language, không cần coding, GitHub hosting
+- **Nhược điểm:** Giới hạn complexity, không cho complex apps
+- **Phù hợp:** Non-technical users, quick prototypes
+
+### OpenCode — Tốt nhất open source terminal
+- **Ưu điểm:** Open source, multi-model, extensible, free
+- **Nhược điểm:** Community-driven, ít features hơn Claude Code
+- **Phù hợp:** Developers muốn open source solution
+
+### Aider — Tốt nhất pair programming
+- **Ưu điểm:** Git auto-commit, pair programming, multi-model, free
+- **Nhược điểm:** Chỉ terminal, không autonomous
+- **Phù hợp:** Developers muốn AI pair programmer
+
+### Continue — Tốt nhất self-hosted
+- **Ưu điểm:** Self-hosted, local LLM support, free, open source
+- **Nhược điểm:** Cần setup, không autonomous
+- **Phù hợp:** Privacy-conscious developers
+
+### Cline — Tốt nhất autonomous free
+- **Ưu điểm:** Autonomous agent mode, free, VS Code integration
+- **Nhược điểm:** Chỉ VS Code, cần API key
+- **Phù hợp:** Developers muốn autonomous agent miễn phí
+
+### OpenClaw — Tốt nhất fully free
+- **Ưu điểm:** MIT license, hoàn toàn miễn phí, terminal-native
+- **Nhược điểm:** Ít features nhất, community nhỏ
+- **Phù hợp:** Developers muốn tool 100% free
+
+## Khuyến nghị theo profile
 
 <Note type="tip">
-**Người mới bắt đầu:** Bắt đầu với Claude Code CLI + GitHub Copilot  
-**Developer chuyên nghiệp:** Cursor hoặc ClaudeKit  
-**Team/Enterprise:** ClaudeKit + Devin  
-**Budget 0 đồng:** Claude Code CLI + OpenClaw  
-**AI-native experience:** Cursor
+**Người mới bắt đầu:** GitHub Copilot ($10) hoặc Windsurf (free)  
+**Developer chuyên nghiệp:** Cursor ($20) — đáng đồng tiền  
+**Terminal lover:** Claude Code CLI + Aider  
+**Team/Enterprise:** Cursor + Copilot Workspace  
+**Budget 0 đồng:** Claude Code CLI + OpenClaw + Aider  
+**AWS developer:** Amazon Q Developer  
+**JetBrains user:** Junie  
+**Privacy-focused:** Continue (self-hosted)  
+**No-code user:** GitHub Spark  
+**API budget thấp:** DeepSeek  
+**Autonomous agent:** Devin (enterprise) hoặc Cline (free)
 </Note>
 
 ## Liên kết
 
 - [Bắt đầu với AI Tools](/getting-started)
-- [Tất cả AI Tools](/ai-tools)
+- [Tất cả AI Coding Tools](/ai-tools)
+- [Tất cả AI Coding](/ai-coding)

@@ -1,0 +1,86 @@
+---
+title: "WSL (Windows Subsystem for Linux)"
+category: "dev-tools"
+icon: "terminal"
+difficulty: "intermediate"
+tags: ["creative", "paid", "cli", "extension", "opensource", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+WSL cho phép chạy Linux environment trực tiếp trên Windows 11 mà không cần virtual machine. Hỗ trợ Ubuntu, Debian, Fedora và nhiều distro khác.
+</Note>
+
+## Cài đặt trên Windows 11
+
+### Bước 1: Cài WSL
+
+<CodeBlock language="powershell" code={`wsl --install`} />
+
+Lệnh này sẽ:
+- Bật WSL feature
+- Cài Ubuntu (default)
+- Yêu cầu restart máy
+
+### Bước 2: Cấu hình
+
+Sau restart, mở Ubuntu từ Start Menu và tạo username/password.
+
+### Bước 3: Cập nhật
+
+<CodeBlock language="bash" code={`sudo apt update && sudo apt upgrade -y`} />
+
+## Sử dụng cơ bản
+
+### Truy cập WSL
+
+```powershell
+# Mở terminal WSL
+wsl
+
+# Chạy lệnh cụ thể
+wsl ls -la
+
+# Mở folder hiện tại trong WSL
+wsl code .
+```
+
+### Cài đặt tools trong WSL
+
+<CodeBlock language="bash" code={`# Cài Node.js
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt install -y nodejs
+
+# Cài Python
+sudo apt install python3 python3-pip
+
+# Cài Git
+sudo apt install git`} />
+
+### Truy cập Windows files từ WSL
+
+<CodeBlock language="bash" code={`# Truy cập C: drive
+cd /mnt/c/
+
+# Truy cập Documents
+cd /mnt/c/Users/YourName/Documents`} />
+
+## Tips sử dụng
+
+<Note type="tip">
+**VS Code Integration:** Cài extension "Remote - WSL" trong VS Code để code trực tiếp trong WSL environment.
+</Note>
+
+<Note type="tip">
+**WSL 2 vs WSL 1:** WSL 2 dùng full Linux kernel, performance tốt hơn. Kiểm tra bằng `wsl -l -v`.
+</Note>
+
+<Note type="warning">
+File access giữa Windows và WSL chậm. Nên lưu project files trong WSL filesystem (`\\wsl$\`) thay vì `/mnt/c/`.
+</Note>
+
+## Liên kết
+
+- [WSL Docs](https://learn.microsoft.com/windows/wsl)
+- [WSL GitHub](https://github.com/microsoft/WSL)

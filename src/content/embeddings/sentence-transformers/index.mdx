@@ -1,0 +1,30 @@
+---
+title: "Sentence Transformers"
+category: "embeddings"
+icon: "layers"
+difficulty: "intermediate"
+tags: ["cli", "opensource", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Sentence Transformers** là library cho generating sentence embeddings. Hỗ trợ semantic search và clustering.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install sentence-transformers`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`from sentence_transformers import SentenceTransformer
+model = SentenceTransformer("all-MiniLM-L6-v2")
+sentences = ["Hello world", "AI is great"]
+embeddings = model.encode(sentences)
+print(embeddings.shape)`} />
+
+## Liên kết
+
+- [Sentence Transformers](https://www.sbert.net)
+- [GitHub](https://github.com/UKPLab/sentence-transformers)

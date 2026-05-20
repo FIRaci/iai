@@ -1,0 +1,37 @@
+---
+title: "Prometheus"
+category: "monitoring"
+icon: "activity"
+difficulty: "intermediate"
+tags: ["cli", "opensource", "cloud", "api", "local"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Prometheus** là monitoring và alerting toolkit cho cloud-native applications. Thu thập metrics và query qua PromQL.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`docker run -p 9090:9090 prom/prometheus`} />
+
+## Sử dụng
+
+### Configuration
+
+<CodeBlock language="yaml" code={`global:
+  scrape_interval: 15s
+scrape_configs:
+  - job_name: 'my-app'
+    static_configs:
+      - targets: ['localhost:8080']`} />
+
+### Query
+
+Truy cập `http://localhost:9090` để query metrics qua PromQL.
+
+## Liên kết
+
+- [Prometheus](https://prometheus.io)
+- [GitHub](https://github.com/prometheus/prometheus)

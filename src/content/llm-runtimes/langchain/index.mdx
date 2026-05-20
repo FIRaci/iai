@@ -1,0 +1,56 @@
+---
+title: "LangChain"
+category: "llm-runtimes"
+icon: "layers"
+difficulty: "intermediate"
+tags: ["cli", "opensource", "multi-model", "api", "agent", "local"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**LangChain** là agent/chain orchestration framework phổ biến nhất cho LLM applications. Hỗ trợ RAG, agents, chains, và nhiều patterns khác.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install langchain langchain-openai langchain-community`} />
+
+## Sử dụng cơ bản
+
+### Simple Chain
+
+<CodeBlock language="python" code={`from langchain_openai import ChatOpenAI
+from langchain_core.prompts import ChatPromptTemplate
+
+llm = ChatOpenAI(model="gpt-3.5-turbo")
+prompt = ChatPromptTemplate.from_template("Explain {topic} simply")
+chain = prompt | llm
+result = chain.invoke({"topic": "quantum computing"})
+print(result.content)`} />
+
+### RAG Pipeline
+
+<CodeBlock language="python" code={`from langchain_community.document_loaders import TextLoader
+from langchain_text_splitters import CharacterTextSplitter
+from langchain_community.vectorstores import FAISS
+from langchain_openai import OpenAIEmbeddings
+
+loader = TextLoader("document.txt")
+docs = loader.load()
+splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+chunks = splitter.split_documents(docs)
+vectorstore = FAISS.from_documents(chunks, OpenAIEmbeddings())
+retriever = vectorstore.as_retriever()`} />
+
+## Tips
+
+<Note type="tip">
+**Local models:** Dùng LangChain với Ollama: `from langchain_community.llms import Ollama`
+</Note>
+
+## Liên kết
+
+- [LangChain](https://langchain.com)
+- [Docs](https://python.langchain.com)
+- [GitHub](https://github.com/langchain-ai/langchain)

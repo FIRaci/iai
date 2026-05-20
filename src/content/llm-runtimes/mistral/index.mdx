@@ -1,0 +1,46 @@
+---
+title: "Mistral"
+category: "llm-runtimes"
+icon: "brain"
+difficulty: "intermediate"
+tags: ["creative", "cli", "cloud", "api", "local"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Mistral** là open LLM family từ Mistral AI, nổi tiếng với hiệu suất cao và kích thước nhỏ. Các model như Mistral 7B, Mixtral 8x7B được tối ưu cho local inference.
+</Note>
+
+## Cài đặt
+
+### Chạy qua Ollama (khuyến nghị)
+
+<CodeBlock language="powershell" code={`ollama run mistral`} />
+
+### Chạy qua llama.cpp
+
+<CodeBlock language="powershell" code={`# Tải model GGUF từ Hugging Face
+# https://huggingface.co/TheBloke/Mistral-7B-v0.1-GGUF
+.\llama-cli.exe -m mistral-7b.Q4_K_M.gguf -p "Hello" -n 256`} />
+
+## Sử dụng cơ bản
+
+### API qua Ollama
+
+<CodeBlock language="powershell" code={`curl http://localhost:11434/api/generate -d '{
+  "model": "mistral",
+  "prompt": "Explain quantum computing",
+  "stream": false
+}'`} />
+
+## Tips
+
+<Note type="tip">
+**Mixtral 8x7B:** Model MoE (Mixture of Experts) — chất lượng cao hơn Mistral 7B nhưng cần nhiều RAM hơn (~24GB).
+</Note>
+
+## Liên kết
+
+- [Mistral AI](https://mistral.ai)
+- [Mistral on Hugging Face](https://huggingface.co/mistralai)

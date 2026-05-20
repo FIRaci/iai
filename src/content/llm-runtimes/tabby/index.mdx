@@ -1,0 +1,28 @@
+---
+title: "Tabby"
+category: "llm-runtimes"
+icon: "code2"
+difficulty: "beginner"
+tags: ["paid", "cli", "extension", "opensource", "autocomplete", "ide", "cloud", "api", "local"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Tabby** là self-hosted AI coding assistant, tương tự GitHub Copilot nhưng chạy local. Hỗ trợ VS Code, JetBrains, Vim.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`docker run -it --gpus all -p 8080:8080 -v $HOME/.tabby:/data tabbyml/tabby`} />
+
+## Sử dụng
+
+1. Cài Tabby extension cho VS Code/JetBrains
+2. Cấu hình endpoint: `http://localhost:8080`
+3. Bắt đầu code với AI completion
+
+## Liên kết
+
+- [Tabby GitHub](https://github.com/TabbyML/tabby)
+- [Docs](https://tabby.tabbyml.com)

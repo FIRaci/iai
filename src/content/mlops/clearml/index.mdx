@@ -1,0 +1,30 @@
+---
+title: "ClearML"
+category: "mlops"
+icon: "activity"
+difficulty: "intermediate"
+tags: ["cli", "opensource", "autocomplete", "api", "agent"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**ClearML** là end-to-end MLOps platform: experiment tracking, orchestration, và model serving. Open-source và self-hostable.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install clearml`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`from clearml import Task
+task = Task.init(project_name="my-project", task_name="training")
+task.connect({"learning_rate": 0.01, "epochs": 10})
+# Training code...
+task.close()`} />
+
+## Liên kết
+
+- [ClearML](https://clear.ml)
+- [GitHub](https://github.com/allegroai/clearml)

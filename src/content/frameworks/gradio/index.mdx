@@ -1,0 +1,31 @@
+---
+title: "Gradio"
+category: "frameworks"
+icon: "layout"
+difficulty: "beginner"
+tags: ["cli", "opensource", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Gradio** là Python library cho building ML demo UIs nhanh chóng. Tạo web interface cho models chỉ với vài dòng code.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install gradio`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`import gradio as gr
+def greet(name):
+    return f"Hello {name}!"
+
+demo = gr.Interface(fn=greet, inputs="text", outputs="text")
+demo.launch()`} />
+
+## Liên kết
+
+- [Gradio](https://gradio.app)
+- [GitHub](https://github.com/gradio-app/gradio)

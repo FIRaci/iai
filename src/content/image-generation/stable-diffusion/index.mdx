@@ -1,0 +1,32 @@
+---
+title: "Stable Diffusion"
+category: "image-generation"
+icon: "image"
+difficulty: "intermediate"
+tags: ["creative", "cli", "autocomplete", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Stable Diffusion** là text-to-image model từ Stability AI. Tạo images từ text prompts với chất lượng cao.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install diffusers transformers accelerate`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`from diffusers import StableDiffusionPipeline
+import torch
+
+pipe = StableDiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5")
+pipe = pipe.to("cuda")
+image = pipe("a photo of an astronaut riding a horse").images[0]
+image.save("output.png")`} />
+
+## Liên kết
+
+- [Stability AI](https://stability.ai)
+- [Hugging Face](https://huggingface.co/runwayml/stable-diffusion-v1-5)

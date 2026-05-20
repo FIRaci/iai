@@ -1,0 +1,35 @@
+---
+title: "Weights & Biases Sweeps"
+category: "tools"
+icon: "activity"
+difficulty: "intermediate"
+tags: ["cli", "ide", "api", "agent"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**W&B Sweeps** là hyperparameter optimization tool từ Weights & Biases. Tự động tìm best hyperparameters cho models.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install wandb`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`import wandb
+sweep_config = {
+    "method": "bayes",
+    "metric": {"name": "accuracy", "goal": "maximize"},
+    "parameters": {
+        "learning_rate": {"min": 0.0001, "max": 0.1},
+        "batch_size": {"values": [16, 32, 64]}
+    }
+}
+sweep_id = wandb.sweep(sweep_config, project="my-project")
+wandb.agent(sweep_id, function=train)`} />
+
+## Liên kết
+
+- [W&B Sweeps](https://docs.wandb.ai/guides/sweeps)

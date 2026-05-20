@@ -1,0 +1,36 @@
+---
+title: "Haystack"
+category: "llm-runtimes"
+icon: "search"
+difficulty: "intermediate"
+tags: ["cli", "opensource", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Haystack** (deepset) là retrieval-augmented generation (RAG) framework cho production. Hỗ trợ nhiều document stores, retrievers, và generators.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install farm-haystack`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`from haystack import Pipeline
+from haystack.document_stores import InMemoryDocumentStore
+from haystack.nodes import BM25Retriever, PromptNode
+
+document_store = InMemoryDocumentStore()
+retriever = BM25Retriever(document_store)
+prompt_node = PromptNode(model_name_or_path="mistralai/Mistral-7B-v0.1")
+
+pipeline = Pipeline()
+pipeline.add_node(component=retriever, name="Retriever", inputs=["Query"])
+pipeline.add_node(component=prompt_node, name="PromptNode", inputs=["Retriever"])`} />
+
+## Liên kết
+
+- [Haystack](https://haystack.deepset.ai)
+- [GitHub](https://github.com/deepset-ai/haystack)

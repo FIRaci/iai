@@ -1,0 +1,72 @@
+---
+title: "PowerShell 7"
+category: "dev-tools"
+icon: "terminal"
+difficulty: "beginner"
+tags: ["paid", "cli", "opensource", "autocomplete", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+PowerShell 7 là phiên bản cross-platform, open-source của PowerShell. Nhanh hơn, nhiều tính năng mới hơn Windows PowerShell 5.1.
+</Note>
+
+## Cài đặt trên Windows 11
+
+### Phương pháp 1: Winget (khuyến nghị)
+
+<CodeBlock language="powershell" code={`winget install Microsoft.PowerShell`} />
+
+### Phương pháp 2: Microsoft Store
+
+Tìm "PowerShell" trong Microsoft Store và install.
+
+### Phương pháp 3: GitHub Releases
+
+Tải từ [github.com/PowerShell/PowerShell](https://github.com/PowerShell/PowerShell/releases)
+
+## Sử dụng cơ bản
+
+### Kiểm tra phiên bản
+
+<CodeBlock language="powershell" code={`$PSVersionTable.PSVersion`} />
+
+### Các lệnh hữu ích
+
+| Lệnh | Mô tả |
+|------|-------|
+| `Get-ChildItem` | List files (alias: `ls`, `dir`) |
+| `Get-Content` | Đọc file (alias: `cat`, `type`) |
+| `Set-Content` | Ghi file |
+| `Select-String` | Tìm trong file (alias: `select-string`) |
+| `Invoke-WebRequest` | Tải file từ web (alias: `curl`, `wget`) |
+| `Install-Module` | Cài PowerShell module |
+
+### Pipeline
+
+<CodeBlock language="powershell" code={`# Pipeline cơ bản
+Get-Process | Where-Object { $_.CPU -gt 100 } | Sort-Object CPU -Descending
+
+# Export kết quả
+Get-Service | Export-Csv services.csv`} />
+
+## Tips sử dụng
+
+<Note type="tip">
+**Profiles:** Tạo `$PROFILE` file để tự động load settings mỗi khi mở PowerShell.
+</Note>
+
+<CodeBlock language="powershell" code={`# Tạo profile
+if (!(Test-Path $PROFILE)) { New-Item -ItemType File -Path $PROFILE -Force }
+notepad $PROFILE`} />
+
+<Note type="tip">
+**Oh My Posh:** Cài theme đẹp cho PowerShell: `winget install JanDeDobbeleer.OhMyPosh`
+</Note>
+
+## Liên kết
+
+- [PowerShell](https://microsoft.com/powershell)
+- [Docs](https://learn.microsoft.com/powershell)
+- [Oh My Posh](https://ohmyposh.dev)

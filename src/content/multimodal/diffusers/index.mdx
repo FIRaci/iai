@@ -1,0 +1,28 @@
+---
+title: "Diffusers (Hugging Face)"
+category: "multimodal"
+icon: "layers"
+difficulty: "intermediate"
+tags: ["creative", "cli", "opensource", "autocomplete", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Diffusers** là library từ Hugging Face cho image/audio generation với diffusion models. Hỗ trợ Stable Diffusion, DALL-E, và nhiều models khác.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install diffusers transformers accelerate`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`from diffusers import StableDiffusionPipeline
+pipe = StableDiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5")
+image = pipe("a cat in space").images[0]
+image.save("output.png")`} />
+
+## Liên kết
+
+- [Diffusers GitHub](https://github.com/huggingface/diffusers)

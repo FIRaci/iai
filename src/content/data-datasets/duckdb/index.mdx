@@ -1,0 +1,34 @@
+---
+title: "DuckDB"
+category: "data-datasets"
+icon: "database"
+difficulty: "intermediate"
+tags: ["cli", "opensource", "autocomplete", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**DuckDB** là in-process SQL OLAP database, tối ưu cho analytical queries trên datasets lớn. Nhanh và dễ dùng.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install duckdb`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`import duckdb
+# Query CSV
+result = duckdb.query("SELECT * FROM 'data.csv' WHERE age > 25").df()
+# Query Parquet
+result = duckdb.query("SELECT * FROM 'data.parquet'").df()
+# Query Pandas DataFrame
+import pandas as pd
+df = pd.read_csv("data.csv")
+result = duckdb.query("SELECT * FROM df WHERE age > 25").df()`} />
+
+## Liên kết
+
+- [DuckDB](https://duckdb.org)
+- [GitHub](https://github.com/duckdb/duckdb)

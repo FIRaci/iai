@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 
-type Theme = "light" | "dark"
+type Theme = "light" | "dark" | "star"
 
 export function useTheme() {
   const [theme, setTheme] = useState<Theme>(() => {
@@ -12,11 +12,32 @@ export function useTheme() {
 
   useEffect(() => {
     const root = document.documentElement
-    root.classList.toggle("dark", theme === "dark")
+    root.classList.remove("dark", "star")
+    if (theme === "dark") root.classList.add("dark")
+    if (theme === "star") root.classList.add("star", "dark")
     localStorage.setItem("iai-theme", theme)
   }, [theme])
 
-  const toggle = () => setTheme((t) => (t === "dark" ? "light" : "dark"))
+  const toggleLightDark = useCallback(() => {
+    setTheme((t) => {
+      if (t === "star") return "dark"
+      return t === "light" ? "dark" : "light"
+    })
+  }, [])
 
-  return { theme, toggle }
+  const toggleStar = useCallback(() => {
+    setTheme((t) => {
+      if (t === "star") return "dark"
+      return "star"
+    })
+  }, [])
+
+  const setThemeDirect = useCallback((t: Theme) => {
+    setTheme(t)
+  }, [])
+
+  const isStar = theme === "star"
+  const isDark = theme === "dark" || theme === "star"
+
+  return { theme, toggleLightDark, toggleStar, setThemeDirect, isStar, isDark }
 }

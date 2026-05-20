@@ -1,0 +1,43 @@
+---
+title: "OpenCode"
+category: "ai-coding"
+icon: "code2"
+difficulty: "beginner"
+tags: ["cli", "opensource", "ide", "multi-model", "api", "local"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**OpenCode** là AI coding assistant open-source chạy trong terminal. Hỗ trợ nhiều LLM backends, tương tự Aider nhưng với focus vào simplicity và extensibility.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`npm install -g opencode`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`# Mở project
+opencode .
+
+# Chat với AI về codebase
+# "Add error handling to this function"
+# "Refactor this module"
+
+# Với model cụ thể
+opencode --model claude-sonnet-4-20250514 .`} />
+
+## Tips
+
+<Note type="tip">
+**Multi-model:** Hỗ trợ Claude, GPT-4, Gemini, và local models qua Ollama.
+</Note>
+
+<Note type="tip">
+**Context awareness:** Tự động đọc file structure và hiểu codebase context.
+</Note>
+
+## Liên kết
+
+- [OpenCode GitHub](https://github.com/opencode-ai/opencode)

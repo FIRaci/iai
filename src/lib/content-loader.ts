@@ -87,9 +87,30 @@ export function getContentModule(path: string): () => MdxModule {
 
 function getCategoryTitle(category: string): string {
   const titles: Record<string, string> = {
+    "frontend": "Frontend",
+    "backend": "Backend",
     "ai-tools": "AI Tools",
+    "llm-runtimes": "LLM Runtimes & RAG",
+    "ai-creative": "AI Creative",
+    "video": "Video & Media",
+    "visualization": "Visualization",
+    "databases": "Data & Databases",
+    "ml-training": "ML & Training",
+    "cloud": "Cloud & Model Hubs",
+    "evaluation": "Evaluation & Benchmarking",
+    "testing": "Testing",
+    "observability": "Observability & Monitoring",
+    "security": "Security & Ethics",
     "dev-tools": "Dev Tools",
-    comparisons: "So sánh",
+    "devops": "DevOps & Infra",
+    "search": "Search & Automation",
+    "package-managers": "Package Managers",
+    "utilities": "Utilities",
+    "documentation": "Documentation",
+    "notebooks": "Notebooks",
+    "windows-setup": "Windows 11 Setup",
+    "comparisons": "So sánh",
+    "pages": "Pages",
   }
   return titles[category] || category
 }

@@ -1,0 +1,30 @@
+---
+title: "BitsAndBytes"
+category: "tools"
+icon: "cpu"
+difficulty: "intermediate"
+tags: ["cli", "opensource", "api", "agent"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**BitsAndBytes** là library cho quantizing LLMs để giảm memory usage. Hỗ trợ 4-bit và 8-bit quantization.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install bitsandbytes`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`from transformers import AutoModelForCausalLM
+model = AutoModelForCausalLM.from_pretrained(
+    "mistralai/Mistral-7B-v0.1",
+    load_in_4bit=True,
+    device_map="auto"
+)`} />
+
+## Liên kết
+
+- [BitsAndBytes GitHub](https://github.com/TimDettmers/bitsandbytes)

@@ -1,0 +1,68 @@
+---
+title: "npm"
+category: "dev-tools"
+icon: "package"
+difficulty: "beginner"
+tags: ["creative", "cli", "api", "local"]
+---
+
+## Tổng quan
+
+<Note type="info">
+npm (Node Package Manager) là package manager mặc định của Node.js, dùng để cài đặt và quản lý JavaScript packages.
+</Note>
+
+## Cài đặt
+
+npm đi kèm với Node.js. Nếu đã cài Node.js, npm đã có sẵn.
+
+<CodeBlock language="powershell" code={`node --version
+npm --version`} />
+
+## Sử dụng cơ bản
+
+### Cài đặt package
+
+<CodeBlock language="powershell" code={`# Cài global
+npm install -g typescript
+
+# Cài local (cho project)
+npm install express
+npm install --save-dev typescript`} />
+
+### Các lệnh quan trọng
+
+| Lệnh | Mô tả |
+|------|-------|
+| `npm init` | Tạo package.json mới |
+| `npm install` | Cài dependencies từ package.json |
+| `npm install [pkg]` | Cài package mới |
+| `npm uninstall [pkg]` | Gỡ package |
+| `npm update` | Cập nhật packages |
+| `npm run [script]` | Chạy script |
+| `npm outdated` | Kiểm tra package cũ |
+
+### Scripts trong package.json
+
+<CodeBlock language="json" code={`{
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  }
+}`} />
+
+## Tips sử dụng
+
+<Note type="tip">
+**npm vs npx:** Dùng `npx` để chạy package mà không cần install global. Ví dụ: `npx create-react-app my-app`
+</Note>
+
+<Note type="warning">
+Tránh install quá nhiều global packages. Ưu tiên install local và dùng npx.
+</Note>
+
+## Liên kết
+
+- [npm](https://npmjs.com)
+- [npm Docs](https://docs.npmjs.com)

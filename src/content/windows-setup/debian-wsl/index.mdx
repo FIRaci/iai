@@ -1,0 +1,273 @@
+---
+title: "Debian on WSL"
+category: "windows-setup"
+icon: "terminal"
+difficulty: "beginner"
+tags: ["wsl", "linux", "debian", "development-environment", "windows"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Windows Subsystem for Linux (WSL)** cho phép chạy môi trường Linux trực tiếp trên Windows mà không cần máy ảo. Debian là một trong những distro phổ biến nhất nhờ ổn định, nhẹ và phù hợp cho development.
+</Note>
+
+## Yêu cầu hệ thống
+
+- Windows 11 (build 22000 trở lên) hoặc Windows 10 (build 19041 trở lên)
+- RAM tối thiểu: 4GB (khuyến nghị 8GB+)
+- Dung lượng ổ cứng trống: tối thiểu 10GB
+- Quyền Administrator để cài đặt WSL
+
+## Cài đặt WSL
+
+### Bước 1: Kích hoạt WSL
+
+Mở **PowerShell** với quyền Administrator và chạy:
+
+```powershell
+wsl --install
+```
+
+Lệnh này sẽ tự động:
+- Kích hoạt tính năng WSL
+- Cài đặt kernel Linux cập nhật
+- Cài đặt Ubuntu làm distro mặc định
+- Yêu cầu khởi động lại máy
+
+<Note type="warning">
+Nếu lệnh trên không hoạt động, bạn có thể kích hoạt thủ công:
+```powershell
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+```
+Sau đó khởi động lại máy.
+</Note>
+
+### Bước 2: Cài đặt WSL 2
+
+Sau khi khởi động lại, mở PowerShell (Admin) và đảm bảo WSL 2 là phiên bản mặc định:
+
+```powershell
+wsl --set-default-version 2
+```
+
+Kiểm tra phiên bản:
+
+```powershell
+wsl --list --verbose
+```
+
+Kết quả mong đợi:
+
+```
+  NAME      STATE           VERSION
+* Debian    Running         2
+```
+
+## Cài đặt Debian
+
+### Bước 1: Tải Debian từ Microsoft Store
+
+1. Mở **Microsoft Store**
+2. Tìm kiếm **"Debian"**
+3. Nhấn **Get** hoặc **Install**
+
+Hoặc cài đặt qua PowerShell:
+
+```powershell
+winget install Debian.Debian
+```
+
+### Bước 2: Khởi tạo Debian
+
+1. Mở **Debian** từ Start Menu
+2. Đợi quá trình giải nén hoàn tất (1-2 phút)
+3. Tạo username và password cho user Linux
+
+<Note type="tip">
+Password sẽ không hiển thị khi gõ - đây là bảo mật bình thường của Linux.
+</Note>
+
+## Cấu hình sau cài đặt
+
+### Bước 1: Cập nhật hệ thống
+
+```bash
+sudo apt update && sudo apt upgrade -y
+```
+
+### Bước 2: Cài đặt công cụ development cơ bản
+
+```bash
+sudo apt install -y \
+  build-essential \
+  git \
+  curl \
+  wget \
+  zip \
+  unzip \
+  vim \
+  htop \
+  net-tools \
+  openssh-server
+```
+
+### Bước 3: Cài đặt Node.js (tùy chọn)
+
+```bash
+# Sử dụng nvm để quản lý phiên bản Node.js
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+source ~/.bashrc
+nvm install --lts
+node --version
+```
+
+### Bước 4: Cài đặt Python (tùy chọn)
+
+```bash
+sudo apt install -y python3 python3-pip python3-venv
+python3 --version
+pip3 --version
+```
+
+## Tích hợp với Windows
+
+### Truy cập file Windows từ WSL
+
+File Windows được mount tại `/mnt`:
+
+```bash
+# Truy cập ổ C:
+cd /mnt/c
+
+# Truy cập thư mục Documents
+cd /mnt/c/Users/YourName/Documents
+```
+
+### Truy cập file WSL từ Windows
+
+Mở File Explorer và nhập:
+
+```
+\\wsl$\Debian
+```
+
+Hoặc từ PowerShell:
+
+```powershell
+explorer.exe .
+```
+
+### Sử dụng VS Code với WSL
+
+1. Cài đặt extension **[Remote - WSL](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl)** trong VS Code
+2. Mở terminal trong WSL
+3. Chạy:
+
+```bash
+code .
+```
+
+VS Code sẽ mở với remote connection vào WSL.
+
+## Cấu hình nâng cao
+
+### Cấp phát tài nguyên
+
+Tạo file `.wslconfig` tại `C:\Users\YourName\`:
+
+```ini
+[wsl2]
+memory=4GB
+processors=2
+swap=2GB
+localhostForwarding=true
+```
+
+### Tự động khởi động services
+
+Tạo file `/etc/wsl.conf` trong WSL:
+
+```ini
+[boot]
+systemd=true
+
+[user]
+default=yourusername
+```
+
+### Cài đặt ZSH (optional)
+
+```bash
+sudo apt install -y zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+## Xử lý sự cố
+
+### Lỗi: "WslRegisterDistribution failed with error: 0x80370102"
+
+**Nguyên nhân:** Virtualization chưa được bật trong BIOS.
+
+**Giải pháp:**
+1. Khởi động lại máy, vào BIOS/UEI
+2. Bật **Intel VT-x** hoặc **AMD-V**
+3. Lưu và khởi động lại
+
+### Lỗi: "The requested operation could not be completed due to a virtual disk system limitation"
+
+**Nguyên nhân:** Ổ cứng định dạng ReFS hoặc compression.
+
+**Giải pháp:**
+```powershell
+# Trong PowerShell (Admin)
+wsl --shutdown
+compact.exe /compactos:never
+```
+
+### Lỗi: Network không hoạt động trong WSL
+
+```bash
+# Restart WSL
+wsl --shutdown
+
+# Khởi động lại Debian từ Start Menu
+```
+
+### Reset hoàn toàn WSL
+
+```powershell
+# Xóa distro
+wsl --unregister Debian
+
+# Cài đặt lại từ Microsoft Store
+```
+
+## Kiểm tra cài đặt
+
+Xác minh mọi thứ hoạt động:
+
+```bash
+# Kiểm tra phiên bản WSL
+wsl.exe --list --verbose
+
+# Kiểm tra kernel Linux
+uname -r
+
+# Kiểm tra network
+ping -c 3 google.com
+
+# Kiểm tra Git
+git --version
+
+# Kiểm tra Node.js (nếu đã cài)
+node --version
+npm --version
+```
+
+## Tài liệu tham khảo
+
+- [WSL Official Documentation](https://learn.microsoft.com/en-us/windows/wsl/)
+- [Debian Wiki](https://wiki.debian.org/)
+- [WSL GitHub Repository](https://github.com/microsoft/WSL)

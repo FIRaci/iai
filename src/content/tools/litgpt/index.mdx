@@ -1,0 +1,27 @@
+---
+title: "LitGPT"
+category: "tools"
+icon: "brain"
+difficulty: "intermediate"
+tags: ["creative", "cli", "opensource", "multi-model", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**LitGPT** từ Lightning AI là hackable LLM framework cho pretraining, fine-tuning, và serving. Built trên PyTorch Lightning.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install litgpt`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`litgpt download mistralai/Mistral-7B-v0.1
+litgpt finetune_lora mistralai/Mistral-7B-v0.1
+litgpt generate mistralai/Mistral-7B-v0.1 --prompt "Hello"}`} />
+
+## Liên kết
+
+- [LitGPT GitHub](https://github.com/Lightning-AI/litgpt)

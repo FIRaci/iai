@@ -1,0 +1,34 @@
+---
+title: "Florence-2"
+category: "multimodal"
+icon: "eye"
+difficulty: "intermediate"
+tags: ["creative", "cli", "opensource", "api", "agent"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Florence-2** (Microsoft) là vision foundation model cho nhiều tasks: captioning, VQA, detection, segmentation. Unified vision-language model.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install transformers`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`from transformers import AutoProcessor, AutoModelForCausalLM
+from PIL import Image
+
+model = AutoModelForCausalLM.from_pretrained("microsoft/Florence-2-base")
+processor = AutoProcessor.from_pretrained("microsoft/Florence-2-base")
+image = Image.open("image.jpg")
+prompt = "<CAPTION>"
+inputs = processor(text=prompt, images=image, return_tensors="pt")
+generated_ids = model.generate(**inputs)
+caption = processor.batch_decode(generated_ids, skip_special_tokens=True)[0]`} />
+
+## Liên kết
+
+- [Florence-2 GitHub](https://github.com/microsoft/Florence-2)

@@ -1,0 +1,31 @@
+---
+title: "Core ML Tools"
+category: "tools"
+icon: "smartphone"
+difficulty: "intermediate"
+tags: ["creative", "cli", "opensource", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Core ML Tools** là Python library cho converting ML models sang Core ML format cho iOS/macOS deployment.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install coremltools`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`import coremltools as ct
+import torch
+model = torch.load("model.pt")
+traced_model = torch.jit.trace(model, example_input)
+mlmodel = ct.convert(traced_model, inputs=[ct.TensorType(shape=example_input.shape)])
+mlmodel.save("model.mlmodel")`} />
+
+## Liên kết
+
+- [Core ML Tools](https://coremltools.readme.io)
+- [GitHub](https://github.com/apple/coremltools)

@@ -1,0 +1,94 @@
+---
+title: "Backend Frameworks"
+category: "comparisons"
+icon: "server"
+difficulty: "beginner"
+tags: ["comparison", "backend", "framework", "api", "node"]
+---
+
+## Tổng quan
+
+<Note type="info">
+So sánh các backend frameworks phổ biến — Express, FastAPI, Django, NestJS, Hono, và Fastify.
+</Note>
+
+## Bảng so sánh
+
+| Tiêu chí | Express | FastAPI | Django | NestJS | Hono | Fastify |
+|----------|---------|---------|--------|--------|------|---------|
+| **Language** | JavaScript | Python | Python | TypeScript | TypeScript | TypeScript |
+| **Type** | Minimal | Modern | Full-stack | Enterprise | Edge-first | Performance |
+| **Learning curve** | ⭐ | ⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐ |
+| **Performance** | ⭐ | ⭐⭐⭐ | ⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ |
+| **Type safety** | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ |
+| **Auto docs** | ❌ | ✅ | ❌ | ✅ | ✅ | ❌ |
+| **ORM built-in** | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ |
+| **Async** | Callback | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Edge runtime** | ❌ | ❌ |  | ❌ | ✅ | ❌ |
+| **Ecosystem** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐ | ⭐⭐ |
+
+## Khi nào dùng gì
+
+### Express
+- **Mạnh nhất**: Đơn giản, ecosystem lớn nhất
+- **Phù hợp**: Quick APIs, legacy projects
+- **Điểm yếu**: Không type-safe, callback hell
+
+### FastAPI
+- **Mạnh nhất**: Auto docs, type-safe, async
+- **Phù hợp**: Python APIs, ML backends
+- **Điểm yếu**: Python ecosystem limitations
+
+### Django
+- **Mạnh nhất**: Full-stack, ORM, admin panel
+- **Phù hợp**: Full web apps, rapid development
+- **Điểm yếu**: Heavy, monolithic
+
+### NestJS
+- **Mạnh nhất**: Architecture, TypeScript, enterprise
+- **Phù hợp**: Large teams, enterprise apps
+- **Điểm yếu**: Boilerplate, learning curve
+
+### Hono
+- **Mạnh nhất**: Edge runtime, ultra-fast
+- **Phù hợp**: Cloudflare Workers, edge computing
+- **Điểm yếu**: Ecosystem nhỏ
+
+### Fastify
+- **Mạnh nhất**: Performance, plugin system
+- **Phù hợp**: High-throughput Node.js APIs
+- **Điểm yếu**: Ít phổ biến hơn Express
+
+## Sơ đồ quyết định
+
+<MermaidDiagram chart={`flowchart TD
+    A[Cần backend framework?] --> B{Ngôn ngữ?}
+    B -->|JavaScript/TypeScript| C{Scale?}
+    B -->|Python| D{Type?}
+    C -->|Quick/Simple| E[Express]
+    C -->|Enterprise| F[NestJS]
+    C -->|Edge/Serverless| G[Hono]
+    C -->|Performance| H[Fastify]
+    D -->|API-only| I[FastAPI]
+    D -->|Full-stack| J[Django]
+`} caption="Sơ đồ chọn backend framework" />
+
+## Kết luận
+
+| Nhu cầu | Recommendation |
+|---------|---------------|
+| Quick Node.js API | **Express** |
+| Python API | **FastAPI** |
+| Full-stack Python | **Django** |
+| Enterprise TypeScript | **NestJS** |
+| Edge/Serverless | **Hono** |
+| High performance | **Fastify** |
+
+## Liên kết
+
+- [Express](https://expressjs.com)
+- [FastAPI](https://fastapi.tiangolo.com)
+- [Django](https://djangoproject.com)
+- [NestJS](https://nestjs.com)
+- [Hono](https://hono.dev)
+- [Fastify](https://fastify.dev)

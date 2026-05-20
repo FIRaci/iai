@@ -48,10 +48,10 @@ export function NoteBlock({ type = "info", children }: NoteBlockProps) {
   const Icon = s.icon
 
   return (
-    <div className={cn("my-5 flex gap-3 rounded-xl border p-4", s.bg, s.border)}>
+    <div className={cn("note-hover my-5 flex gap-3 rounded-xl border p-4", s.bg, s.border)}>
       <Icon className={cn("mt-0.5 h-5 w-5 shrink-0", s.iconColor)} />
       <div className="flex-1">
-        <div className={cn("text-xs font-semibold uppercase tracking-wider mb-1", s.iconColor)}>{s.label}</div>
+        <div className={cn("text-xs font-semibold capitalize mb-1", s.iconColor)}>{s.label}</div>
         <div className={cn("text-sm leading-relaxed", s.text)}>{children}</div>
       </div>
     </div>

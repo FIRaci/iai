@@ -1,0 +1,37 @@
+---
+title: "DeepEval"
+category: "testing"
+icon: "circle-check"
+difficulty: "intermediate"
+tags: ["cli", "opensource", "ide", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**DeepEval** là testing framework cho LLM applications. Đánh giá chất lượng outputs qua các metrics: faithfulness, relevance, toxicity.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install deepeval`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`from deepeval import assert_test
+from deepeval.metrics import AnswerRelevancyMetric
+from deepeval.test_case import LLMTestCase
+
+test_case = LLMTestCase(
+    input="What is Python?",
+    actual_output="Python is a programming language",
+    expected_output="Python is a high-level programming language"
+)
+metric = AnswerRelevancyMetric()
+metric.measure(test_case)
+print(metric.score)`} />
+
+## Liên kết
+
+- [DeepEval](https://docs.confident-ai.com)
+- [GitHub](https://github.com/confident-ai/deepeval)

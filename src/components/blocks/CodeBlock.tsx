@@ -15,25 +15,34 @@ export function CodeBlock({ language = "text", code, children }: CodeBlockProps)
   const [copied, setCopied] = useState(false)
 
   const handleCopy = async () => {
-    await navigator.clipboard.writeText(text)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {
+      // Clipboard access denied or not available
+    }
   }
 
   return (
-    <div className="my-5 overflow-hidden rounded-xl border border-[#d0d7de] dark:border-[#30363d]">
-      <div className="flex items-center justify-between bg-[#f6f8fa] dark:bg-[#161b22] px-4 py-2 border-b border-[#d0d7de] dark:border-[#30363d]">
-        <span className="text-xs font-semibold uppercase tracking-wider text-[#656d76] dark:text-[#8b949e]">{language}</span>
+    <div className="my-5 overflow-hidden rounded-xl border border-border">
+      <div className="flex items-center justify-between bg-muted/50 px-4 py-2 border-b border-border">
+        <span className="text-xs font-medium capitalize text-muted-foreground">{language}</span>
         <Button
           variant="ghost"
           size="icon"
-          className="h-7 w-7 text-[#656d76] hover:bg-[#d0d7de] hover:text-[#1f2328] dark:text-[#8b949e] dark:hover:bg-[#30363d] dark:hover:text-[#e6edf3]"
+          className="copy-btn h-7 w-7 opacity-60 text-muted-foreground"
           onClick={handleCopy}
+          aria-label={copied ? "Copied to clipboard" : "Copy to clipboard"}
         >
-          {copied ? <Check className="h-3.5 w-3.5 text-emerald-500" /> : <Copy className="h-3.5 w-3.5" />}
+          {copied ? (
+            <Check className="h-3.5 w-3.5 text-emerald-500" />
+          ) : (
+            <Copy className="h-3.5 w-3.5" />
+          )}
         </Button>
       </div>
-      <pre className="overflow-x-auto bg-[#f6f8fa] dark:bg-[#0d1117] p-4 text-sm leading-relaxed text-[#1f2328] dark:text-[#e6edf3]">
+      <pre className="overflow-x-auto bg-muted/30 dark:bg-muted/50 p-4 text-sm leading-relaxed text-foreground">
         <code>{text}</code>
       </pre>
     </div>

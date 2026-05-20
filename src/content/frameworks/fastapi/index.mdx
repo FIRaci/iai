@@ -1,0 +1,39 @@
+---
+title: "FastAPI"
+category: "frameworks"
+icon: "zap"
+difficulty: "beginner"
+tags: ["creative", "cli", "opensource", "cloud", "api", "agent"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**FastAPI** là modern, fast web framework cho building APIs với Python. Auto-generates OpenAPI docs và có built-in validation.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install fastapi uvicorn`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`from fastapi import FastAPI
+app = FastAPI()
+
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
+
+@app.get("/items/{item_id}")
+def read_item(item_id: int, q: str = None):
+    return {"item_id": item_id, "q": q}`} />
+
+### Run
+
+<CodeBlock language="powershell" code={`uvicorn main:app --reload`} />
+
+## Liên kết
+
+- [FastAPI](https://fastapi.tiangolo.com)
+- [GitHub](https://github.com/tiangolo/fastapi)

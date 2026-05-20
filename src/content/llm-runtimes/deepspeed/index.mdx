@@ -1,0 +1,30 @@
+---
+title: "DeepSpeed"
+category: "llm-runtimes"
+icon: "zap"
+difficulty: "advanced"
+tags: ["cli", "opensource", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**DeepSpeed** (Microsoft) là deep learning optimization library cho training và inference LLMs. Hỗ trợ ZeRO, pipeline parallelism, và 3D parallelism.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install deepspeed`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`import deepspeed
+deepspeed.init_distributed()
+model_engine, optimizer, _, _ = deepspeed.initialize(
+    args=args, model=model, model_parameters=params
+)`} />
+
+## Liên kết
+
+- [DeepSpeed GitHub](https://github.com/microsoft/DeepSpeed)
+- [Docs](https://www.deepspeed.ai)

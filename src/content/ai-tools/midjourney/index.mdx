@@ -1,0 +1,139 @@
+---
+title: "Midjourney"
+category: "ai-tools"
+icon: "image"
+difficulty: "beginner"
+tags: ["creative", "paid", "free", "ide", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Midjourney** là AI tạo ảnh hàng đầu, tạo ra hình ảnh chất lượng cao từ mô tả văn bản. Hoạt động chủ yếu qua Discord, với chất lượng nghệ thuật vượt trội so với các đối thủ.
+</Note>
+
+## Cài đặt trên Windows 11
+
+### Bước 1: Tạo tài khoản Discord
+
+Nếu chưa có, đăng ký tại [discord.com](https://discord.com)
+
+### Bước 2: Tham gia Midjourney Server
+
+Truy cập [midjourney.com/join](https://midjourney.com/join) để tham gia server chính thức.
+
+### Bước 3: Đăng ký gói
+
+| Gói | Giá | Fast hours/tháng |
+|-----|-----|------------------|
+| Basic | $10 | 3.3 giờ |
+| Standard | $30 | 15 giờ |
+| Pro | $60 | 30 giờ |
+| Mega | $120 | 60 giờ |
+
+<Note type="warning">
+Midjourney không có free tier vĩnh viễn. Có thể dùng trial miễn phí giới hạn khi có sự kiện.
+</Note>
+
+## Sử dụng cơ bản
+
+### Bước 1: Generate ảnh đầu tiên
+
+1. Vào Midjourney server trên Discord
+2. Vào channel `#newbies-xxx` hoặc tạo private channel
+3. Gõ lệnh:
+   ```
+   /imagine prompt: a futuristic city at sunset, cyberpunk style, 8k, highly detailed
+   ```
+4. Đợi 30-60 giây để AI generate
+
+### Bước 2: Upscale và Variations
+
+Sau khi generate, bạn sẽ thấy 4 ảnh (U1-U4, V1-V4):
+- **U1-U4:** Upscale ảnh tương ứng (độ phân giải cao)
+- **V1-V4:** Tạo 4 biến thể của ảnh tương ứng
+- **🔄:** Regenerate toàn bộ 4 ảnh
+
+### Bước 3: Sử dụng tham số
+
+```
+/imagine prompt: portrait of a woman --ar 16:9 --v 6 --style raw --q 2
+```
+
+| Tham số | Mô tả | Ví dụ |
+|---------|-------|-------|
+| `--ar` | Tỉ lệ khung hình | `--ar 16:9`, `--ar 1:1`, `--ar 9:16` |
+| `--v` | Phiên bản model | `--v 6` (mới nhất) |
+| `--style` | Phong cách | `--style raw` (tự nhiên), `--style cute` |
+| `--q` | Chất lượng | `--q 1` (default), `--q 2` (cao) |
+| `--no` | Loại bỏ | `--no text, watermark` |
+| `--seed` | Seed cố định | `--seed 1234` (reproducible) |
+| `--iw` | Image weight | `--iw 2` (khi dùng image prompt) |
+
+### Bước 4: Image Prompt
+
+Upload ảnh + text prompt để AI lấy cảm hứng từ ảnh:
+1. Upload ảnh vào Discord
+2. Copy link ảnh
+3. `/imagine prompt: [link ảnh] a cat sitting on the image`
+
+### Bước 5: Zoom và Pan
+
+Sau khi upscale:
+- **Zoom Out 2x/1.5x:** Mở rộng khung hình
+- **Pan ←↑→↓:** Dịch chuyển khung hình
+- **Custom Zoom:** Zoom với tỉ lệ tùy chỉnh
+
+## Tips sử dụng
+
+<Note type="tip">
+**Prompt structure:** `[subject], [environment], [lighting], [style], [camera], [quality]`. Ví dụ: "a wolf howling at the moon, snowy mountain peak, dramatic lighting, oil painting style, wide angle, masterpiece"
+</Note>
+
+<Note type="tip">
+**Style references:** Dùng `--sref [link ảnh]` để lấy style từ ảnh tham chiếu (v6.1+).
+</Note>
+
+<Note type="tip">
+**Character consistency:** Dùng `--cref [link ảnh nhân vật]` để giữ khuôn mặt nhân vật xuyên suốt các ảnh (v6+).
+</Note>
+
+## Khắc phục sự cố
+
+### "Job queued too long"
+
+- Server đang quá tải — thử lại sau
+- Dùng private channel thay vì newbies channel (nhanh hơn)
+- Upgrade gói để có priority queue
+
+### Ảnh không như mong muốn
+
+- Thử lại với prompt cụ thể hơn
+- Dùng `--style raw` để giảm "Midjourney style"
+- Tăng `--v 6` để dùng model mới nhất
+- Dùng V1-V4 để tạo biến thể
+
+### Discord không nhận lệnh /imagine
+
+- Đảm bảo đã tham gia Midjourney server
+- Kiểm tra đã đăng ký gói (subscription active)
+- Thử logout và login Discord lại
+
+### Ảnh bị blur / low quality
+
+- Nhấn U1-U4 để upscale
+- Dùng `--q 2` cho chất lượng cao hơn
+- Tránh tỉ lệ khung hình quá lớn (max 1:2 hoặc 2:1)
+
+### Hết Fast hours
+
+- Fast hours dùng cho generate nhanh
+- Khi hết, chuyển sang Relax mode (chậm hơn nhưng free)
+- Upgrade gói để có thêm Fast hours
+
+## Liên kết
+
+- [Midjourney](https://midjourney.com)
+- [Docs](https://docs.midjourney.com)
+- [Showcase](https://midjourney.com/showcase)
+- [Prompt Guide](https://promptomania.com/midjourney)

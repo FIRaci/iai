@@ -1,0 +1,132 @@
+---
+title: "Google Gemini"
+category: "ai-tools"
+icon: "sparkles"
+difficulty: "beginner"
+tags: ["creative", "paid", "cli", "opensource", "free", "ide", "cloud", "multi-model", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Google Gemini** là AI ecosystem từ Google, bao gồm nhiều variants: Flash (nhanh, rẻ), Pro (mạnh, reasoning), Ultra (enterprise), và Gemini CLI (terminal coding). Tất cả thuộc cùng family — chọn variant phù hợp với use case.
+</Note>
+
+## Các variants
+
+| Variant | Use case | Access |
+|---------|----------|--------|
+| **Gemini Flash** | Fast responses, high volume | Web, API |
+| **Gemini Pro** | Complex reasoning, analysis | Web, API |
+| **Gemini Ultra** | Enterprise,最高 quality | API only |
+| **Gemini CLI** | Terminal coding, dev workflow | Terminal |
+| **Google AI Studio** | Prototyping, prompt engineering | Web |
+
+## Truy cập Web
+
+Truy cập [gemini.google.com](https://gemini.google.com) — miễn phí với tài khoản Google.
+
+| Gói | Giá | Model | Tính năng |
+|-----|-----|-------|-----------|
+| Free | $0 | Gemini Flash | Chat cơ bản, image upload |
+| Advanced | $20/th | Gemini Pro | Reasoning nâng cao, 2M context |
+| Ultra | Liên hệ | Gemini Ultra | Enterprise, API priority |
+
+## Gemini CLI
+
+### Cài đặt
+
+<CodeBlock language="powershell" code={`npm install -g @google/gemini-cli`} />
+
+### Sử dụng
+
+<CodeBlock language="powershell" code={`# Chat trong terminal
+gemini
+
+# Hỏi về code
+gemini "Explain this Python function" --file script.py
+
+# Generate code
+gemini "Create a REST API with Express" --output api/`} />
+
+## Google AI Studio
+
+### Sử dụng
+
+1. Truy cập [aistudio.google.com](https://aistudio.google.com)
+2. Chọn model (Flash, Pro, Ultra)
+3. Viết prompt và test
+4. Export code hoặc get API key
+
+### Tips
+
+<Note type="tip">
+**System prompts:** AI Studio cho phép set system instructions để control behavior.
+</Note>
+
+<Note type="tip">
+**Temperature:** Điều chỉnh creativity vs determinism qua temperature slider.
+</Note>
+
+## Sử dụng cơ bản (Web)
+
+### Bước 1: Bắt đầu chat
+
+1. Vào [gemini.google.com](https://gemini.google.com)
+2. Đăng nhập bằng tài khoản Google
+3. Gõ câu hỏi vào ô chat
+
+### Bước 2: Upload files
+
+1. Nhấn icon **Upload** (hình kẹp giấy)
+2. Chọn file: ảnh, PDF, video, audio
+3. Hỏi câu hỏi về nội dung file
+
+### Bước 3: Tích hợp Google Workspace
+
+1. Nhấn icon **Google** trong thanh công cụ
+2. Chọn dịch vụ: Gmail, Docs, Drive, YouTube
+3. Gemini sẽ search và tổng hợp thông tin
+
+## API Usage
+
+<CodeBlock language="python" code={`import google.generativeai as genai
+genai.configure(api_key="your-api-key")
+model = genai.GenerativeModel("gemini-2.0-flash")
+response = model.generate_content("Explain quantum computing")
+print(response.text)`} />
+
+## Tips sử dụng
+
+<Note type="tip">
+**2M context window:** Gemini Pro hỗ trợ context window lớn nhất — upload cả cuốn sách hoặc codebase lớn.
+</Note>
+
+<Note type="tip">
+**Code generation:** Gemini hỗ trợ nhiều ngôn ngữ lập trình. Yêu cầu cụ thể kèm ví dụ.
+</Note>
+
+<Note type="tip">
+**CLI for devs:** Gemini CLI perfect cho quick coding tasks trong terminal mà không cần mở browser.
+</Note>
+
+## Khắc phục sự cố
+
+### Gemini không hiểu câu hỏi
+
+- Hỏi lại với từ khóa cụ thể hơn
+- Chia câu hỏi lớn thành nhiều câu nhỏ
+- Dùng tiếng Anh nếu tiếng Việt không chính xác
+
+### Image upload không hoạt động
+
+- Kiểm tra định dạng: JPG, PNG, WEBP, GIF
+- File tối đa 20MB
+- Thử compress ảnh nếu quá lớn
+
+## Liên kết
+
+- [Gemini Web](https://gemini.google.com)
+- [Gemini CLI](https://github.com/google-gemini/gemini-cli)
+- [AI Studio](https://aistudio.google.com)
+- [API Docs](https://ai.google.dev)

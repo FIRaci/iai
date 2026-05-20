@@ -1,0 +1,27 @@
+---
+title: "Coqui TTS"
+category: "voice-audio"
+icon: "volume2"
+difficulty: "intermediate"
+tags: ["creative", "cli", "opensource", "cloud", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Coqui TTS** là text-to-speech library hỗ trợ nhiều ngôn ngữ và voices. Cho phép tạo custom voice models.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install TTS`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`from TTS.api import TTS
+tts = TTS(model_name="tts_models/en/ljspeech/tacotron2-DDC")
+tts.tts_to_file(text="Hello world", file_path="output.wav")`} />
+
+## Liên kết
+
+- [Coqui TTS GitHub](https://github.com/coqui-ai/TTS)

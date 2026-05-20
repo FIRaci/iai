@@ -1,0 +1,50 @@
+---
+title: "Transformers (Hugging Face)"
+category: "llm-runtimes"
+icon: "brain"
+difficulty: "intermediate"
+tags: ["creative", "cli", "autocomplete", "api", "agent"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Hugging Face Transformers** là library Python phổ biến nhất cho NLP và LLM. Cung cấp access đến hàng ngàn pre-trained models từ Hugging Face Hub.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install transformers torch accelerate`} />
+
+## Sử dụng cơ bản
+
+### Text Generation
+
+<CodeBlock language="python" code={`from transformers import pipeline
+generator = pipeline("text-generation", model="mistralai/Mistral-7B-v0.1")
+result = generator("Hello, how are you?", max_length=100)
+print(result[0]["generated_text"])`} />
+
+### Chat Completion
+
+<CodeBlock language="python" code={`from transformers import AutoModelForCausalLM, AutoTokenizer
+model = AutoModelForCausalLM.from_pretrained("mistralai/Mistral-7B-v0.1")
+tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-v0.1")
+inputs = tokenizer("Hello", return_tensors="pt")
+outputs = model.generate(**inputs, max_length=100)
+print(tokenizer.decode(outputs[0]))`} />
+
+## Tips
+
+<Note type="tip">
+**GPU acceleration:** Cài `pip install transformers[torch]` và đảm bảo CUDA available.
+</Note>
+
+<Note type="tip">
+**Quantization:** Dùng `load_in_4bit=True` để giảm memory usage 75%.
+</Note>
+
+## Liên kết
+
+- [Hugging Face](https://huggingface.co)
+- [Transformers Docs](https://huggingface.co/docs/transformers)

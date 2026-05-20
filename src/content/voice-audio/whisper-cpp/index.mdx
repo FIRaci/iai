@@ -1,0 +1,28 @@
+---
+title: "whisper.cpp"
+category: "voice-audio"
+icon: "mic"
+difficulty: "intermediate"
+tags: ["creative", "cli", "opensource", "api", "local"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**whisper.cpp** là C/C++ implementation của Whisper, tối ưu cho local inference trên CPU. Nhẹ và nhanh hơn Python version.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`git clone https://github.com/ggerganov/whisper.cpp
+cd whisper.cpp
+cmake -B build
+cmake --build build --config Release`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`.\build\bin\Release\main.exe -m models\ggml-base.bin -f samples\jfk.wav`} />
+
+## Liên kết
+
+- [whisper.cpp GitHub](https://github.com/ggerganov/whisper.cpp)

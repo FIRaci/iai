@@ -1,0 +1,36 @@
+---
+title: "Matplotlib"
+category: "visualization"
+icon: "bar-chart-3"
+difficulty: "beginner"
+tags: ["creative", "cli", "autocomplete", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Matplotlib** là plotting library phổ biến nhất cho Python. Tạo static, animated, và interactive visualizations.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install matplotlib`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0, 10, 100)
+y = np.sin(x)
+
+plt.plot(x, y)
+plt.xlabel("X")
+plt.ylabel("Y")
+plt.title("Sine Wave")
+plt.show()`} />
+
+## Liên kết
+
+- [Matplotlib](https://matplotlib.org)
+- [Gallery](https://matplotlib.org/stable/gallery/index.html)

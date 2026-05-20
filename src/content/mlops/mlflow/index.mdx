@@ -1,0 +1,37 @@
+---
+title: "MLflow"
+category: "mlops"
+icon: "activity"
+difficulty: "intermediate"
+tags: ["creative", "cli", "opensource", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**MLflow** là platform cho machine learning lifecycle: experiment tracking, model registry, và deployment.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install mlflow`} />
+
+## Sử dụng
+
+### Experiment Tracking
+
+<CodeBlock language="python" code={`import mlflow
+mlflow.set_experiment("my-experiment")
+with mlflow.start_run():
+    mlflow.log_param("learning_rate", 0.01)
+    mlflow.log_metric("accuracy", 0.95)
+    mlflow.sklearn.log_model(model, "model")`} />
+
+### UI
+
+<CodeBlock language="powershell" code={`mlflow ui`} />
+
+## Liên kết
+
+- [MLflow](https://mlflow.org)
+- [GitHub](https://github.com/mlflow/mlflow)

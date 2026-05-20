@@ -1,0 +1,39 @@
+---
+title: "Pandas"
+category: "data-datasets"
+icon: "table"
+difficulty: "beginner"
+tags: ["cli", "autocomplete", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Pandas** là data manipulation library phổ biến nhất cho Python. Xử lý tabular data, cleaning, và analysis.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install pandas`} />
+
+## Sử dụng
+
+### Load Data
+
+<CodeBlock language="python" code={`import pandas as pd
+df = pd.read_csv("data.csv")
+df = pd.read_excel("data.xlsx")`} />
+
+### Manipulation
+
+<CodeBlock language="python" code={`# Filter
+filtered = df[df["age"] > 25]
+# Group by
+grouped = df.groupby("category").mean()
+# Merge
+merged = pd.merge(df1, df2, on="id")`} />
+
+## Liên kết
+
+- [Pandas](https://pandas.pydata.org)
+- [Docs](https://pandas.pydata.org/docs)

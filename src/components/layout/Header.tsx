@@ -11,14 +11,14 @@ export function Header() {
   const [searchOpen, setSearchOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-40 flex h-14 items-center gap-4 border-b border-[#d0d7de] dark:border-[#30363d] bg-background/80 backdrop-blur-xl px-4 lg:px-6">
+    <header className="sticky top-0 z-40 flex h-14 items-center gap-4 border-b border-border bg-background/80 backdrop-blur-xl px-4 lg:px-6">
       <Sheet>
         <SheetTrigger asChild>
-          <Button variant="ghost" size="icon" className="lg:hidden text-[#656d76] dark:text-[#8b949e]">
+          <Button variant="ghost" size="icon" className="lg:hidden text-muted-foreground" aria-label="Open menu">
             <Menu className="h-5 w-5" />
           </Button>
         </SheetTrigger>
-        <SheetContent side="left" className="w-64 p-0">
+        <SheetContent side="left" className="w-64 p-0 mobile-menu-enter">
           <Sidebar />
         </SheetContent>
       </Sheet>
@@ -33,13 +33,14 @@ export function Header() {
 
       <Button
         variant="outline"
-        className="gap-2 text-[#656d76] dark:text-[#8b949e] border-[#d0d7de] dark:border-[#30363d] hover:bg-[#f6f8fa] dark:hover:bg-[#161b22]"
+        className="search-btn-hover gap-2 text-muted-foreground border-border btn-press"
         onClick={() => setSearchOpen(true)}
+        aria-label="Search tools and guides"
       >
         <Search className="h-4 w-4" />
         <span className="hidden sm:inline">Tìm kiếm...</span>
-        <kbd className="hidden rounded border border-[#d0d7de] dark:border-[#30363d] bg-[#f6f8fa] dark:bg-[#161b22] px-1.5 text-xs font-mono text-[#656d76] dark:text-[#8b949e] sm:inline">
-          ⌘K
+        <kbd className="hidden rounded border border-border bg-muted px-1.5 text-xs font-mono text-muted-foreground sm:inline">
+          Ctrl+K
         </kbd>
       </Button>
 

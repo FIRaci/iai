@@ -1,0 +1,86 @@
+---
+title: "LLM Runtimes"
+category: "comparisons"
+icon: "cpu"
+difficulty: "intermediate"
+tags: ["comparison", "llm", "runtime", "local", "inference"]
+---
+
+## Tổng quan
+
+<Note type="info">
+So sánh các LLM runtimes để chạy AI models locally — từ Ollama, vLLM, TGI đến LM Studio.
+</Note>
+
+## Bảng so sánh
+
+| Tiêu chí | Ollama | vLLM | TGI | LM Studio | llama.cpp |
+|----------|--------|------|-----|-----------|-----------|
+| **Type** | CLI + API | Python library | Docker container | Desktop app | C++ library |
+| **Ease of use** | ⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐ |
+| **Performance** | ⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ |
+| **GPU support** | CUDA, Metal | CUDA, ROCm | CUDA | CUDA, Metal | CUDA, Metal, Vulkan |
+| **Model format** | GGUF | PyTorch, GGUF | PyTorch | GGUF, PyTorch | GGUF |
+| **Multi-model** | ✅ | ❌ |  | ✅ | ❌ |
+| **API server** | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Batch inference** | ❌ | ✅ | ✅ |  | ❌ |
+| **Streaming** | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Platform** | macOS, Linux, Windows | Linux, Windows | Linux | macOS, Windows, Linux | All |
+| **Price** | Free | Free | Free | Free | Free |
+
+## Khi nào dùng gì
+
+### Ollama
+- **Mạnh nhất**: Dễ dùng nhất, pull & run
+- **Phù hợp**: Local development, quick testing
+- **Điểm yếu**: Performance không tối ưu nhất
+
+### vLLM
+- **Mạnh nhất**: Throughput cao nhất, PagedAttention
+- **Phù hợp**: Production serving, high throughput
+- **Điểm yếu**: Chỉ CUDA, phức tạp hơn
+
+### TGI (Text Generation Inference)
+- **Mạnh nhất**: Production-ready, Hugging Face official
+- **Phù hợp**: Enterprise deployment, Docker
+- **Điểm yếu**: Heavy, chỉ Linux
+
+### LM Studio
+- **Mạnh nhất**: GUI, dễ dùng cho non-technical
+- **Phù hợp**: Desktop users, exploring models
+- **Điểm yếu**: Không production-ready
+
+### llama.cpp
+- **Mạnh nhất**: Lightweight, chạy trên CPU
+- **Phù hợp**: Low-resource machines, embedded
+- **Điểm yếu**: Setup phức tạp
+
+## Sơ đồ quyết định
+
+<MermaidDiagram chart={`flowchart TD
+    A[Cần chạy LLM locally?] --> B{Mục đích?}
+    B -->|Quick test| C[Ollama]
+    B -->|Desktop app| D[LM Studio]
+    B -->|Production| E{Hardware?}
+    B -->|Low resource| F[llama.cpp]
+    E -->|GPU mạnh| G[vLLM]
+    E -->|Docker/K8s| H[TGI]
+`} caption="Sơ đồ chọn LLM runtime" />
+
+## Kết luận
+
+| Nhu cầu | Recommendation |
+|---------|---------------|
+| Easiest setup | **Ollama** |
+| Best throughput | **vLLM** |
+| Production Docker | **TGI** |
+| Desktop GUI | **LM Studio** |
+| CPU-only | **llama.cpp** |
+
+## Liên kết
+
+- [Ollama](https://ollama.com)
+- [vLLM](https://vllm.ai)
+- [TGI](https://huggingface.co/docs/text-generation-inference)
+- [LM Studio](https://lmstudio.ai)
+- [llama.cpp](https://github.com/ggerganov/llama.cpp)

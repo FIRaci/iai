@@ -23,20 +23,26 @@ Trước khi bắt đầu, bạn cần:
 flowchart TD
     S["Bạn muốn làm gì?"] --> Q1{"Cần IDE hay Terminal?"}
     Q1 -->|Terminal| Q2{"Cần quản lý multi-agent?"}
-    Q2 -->|Có| CK["ClaudeKit — Framework orchestration"]
     Q2 -->|Không| CC["Claude Code CLI — AI trong terminal"]
     Q1 -->|IDE| Q3{"Editor hiện tại?"}
     Q3 -->|VS Code| GH["GitHub Copilot — AI pair programming"]
     Q3 -->|Chưa có| Q4{"Cần IDE mới?"}
     Q4 -->|Có, muốn AI-native| CR["Cursor — AI-native code editor"]
     Q4 -->|Có, miễn phí| WS["Windsurf — AI IDE miễn phí"]
+    Q4 -->|Hiệu năng cao| ZD["Zed — Rust-based editor"]
+    Q4 -->|Python| PY["PyCharm — Python IDE"]
+    Q4 -->|Web dev| WB["WebStorm — JavaScript IDE"]
+    Q4 -->|Mobile| AS["Android Studio — Android IDE"]
     Q1 -->|Web-based| DV["Devin — AI engineer trên web"]
     style CC fill:#6366f1,color:#fff
-    style CK fill:#8b5cf6,color:#fff
     style CR fill:#06b6d4,color:#fff
     style GH fill:#22c55e,color:#fff
     style WS fill:#3b82f6,color:#fff
     style DV fill:#f59e0b,color:#fff
+    style ZD fill:#f59e0b,color:#fff
+    style PY fill:#22c55e,color:#fff
+    style WB fill:#06b6d4,color:#fff
+    style AS fill:#22c55e,color:#fff
 `} caption="Sơ đồ chọn công cụ AI phù hợp" />
 
 ## Lộ trình
@@ -66,12 +72,14 @@ Xem [bảng so sánh chi tiết](/comparisons) để chọn tool phù hợp vớ
 Sau khi chọn tool, theo hướng dẫn chi tiết trong từng bài viết:
 
 - [Claude Code CLI](/ai-tools/claude-code) — AI coding trong terminal
-- [ClaudeKit](/ai-tools/claude-kit) — Framework orchestration
 - [Cursor](/ai-tools/cursor) — AI-native code editor
 - [GitHub Copilot](/ai-tools/copilot) — AI pair programming
 - [Devin](/ai-tools/devin) — AI software engineer
 - [Windsurf](/ai-tools/windsurf) — AI IDE
 - [OpenClaw](/ai-tools/openclaw) — AI coding tool mã nguồn mở
+- [VS Code](/dev-tools/vscode) — Code editor phổ biến nhất
+- [Zed](/dev-tools/zed) — Editor hiệu năng cao viết bằng Rust
+- [Antigravity](/dev-tools/antigravity) — AI-native IDE mới
 
 ## Tips cho người mới
 

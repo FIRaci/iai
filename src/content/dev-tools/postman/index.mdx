@@ -1,0 +1,149 @@
+---
+title: "Postman"
+category: "dev-tools"
+icon: "send"
+difficulty: "beginner"
+tags: ["creative", "autocomplete", "ide", "cloud", "api", "agent"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Postman** là công cụ test API phổ biến nhất, hỗ trợ REST, GraphQL, WebSocket và nhiều giao thức khác. Cho phép tạo, test, và document APIs — từ simple GET requests đến complex workflows với authentication.
+</Note>
+
+## Cài đặt trên Windows 11
+
+### Bước 1: Tải Postman
+
+Truy cập [postman.com/downloads](https://postman.com/downloads) và tải bản Windows.
+
+### Bước 2: Cài đặt
+
+Chạy installer và làm theo hướng dẫn. Postman sẽ tự động cập nhật.
+
+### Bước 3: Đăng ký tài khoản
+
+Tạo tài khoản miễn phí để sync collections và environments across devices.
+
+## Sử dụng cơ bản
+
+### Tạo request đầu tiên
+
+1. Nhấp **New** → **HTTP Request**
+2. Chọn method (GET, POST, PUT, DELETE)
+3. Nhập URL
+4. Nhấp **Send**
+
+### POST request với JSON body
+
+1. Chọn method **POST**
+2. Nhập URL: `https://api.example.com/users`
+3. Tab **Body** → chọn **raw** → chọn **JSON**
+4. Nhập JSON body:
+
+<CodeBlock language="json" code={`{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "role": "admin"
+}`} />
+
+5. Tab **Headers** → thêm `Content-Type: application/json`
+6. Nhấp **Send**
+
+### Sử dụng Environments
+
+1. Tạo Environment: **Environments** → **New**
+2. Thêm variables:
+
+| Variable | Initial Value | Current Value |
+|----------|--------------|---------------|
+| baseUrl | https://api.dev.com | https://api.dev.com |
+| apiKey | your-api-key | your-api-key |
+| token | | (empty, sẽ được set bởi script) |
+
+3. Dùng trong request: `{{baseUrl}}/users`
+
+### Viết Tests
+
+Tab **Tests** — viết JavaScript để validate response:
+
+<CodeBlock language="javascript" code={`// Kiểm tra status code
+pm.test("Status is 200", () => {
+  pm.response.to.have.status(200)
+})
+
+// Kiểm tra response time
+pm.test("Response time < 500ms", () => {
+  pm.expect(pm.response.responseTime).to.be.below(500)
+})
+
+// Kiểm tra JSON body
+const json = pm.response.json()
+pm.test("Has name field", () => {
+  pm.expect(json).to.have.property("name")
+})
+
+// Lưu token vào environment
+pm.environment.set("token", json.token)`} />
+
+### Các tính năng chính
+
+| Tính năng | Mô tả |
+|-----------|-------|
+| Collections | Nhóm và tổ chức requests |
+| Environments | Biến môi trường (dev, staging, prod) |
+| Tests | Viết test scripts cho API |
+| Mock Server | Tạo mock API để test |
+| Monitors | Tự động test API định kỳ |
+| API Documentation | Auto-generate docs từ collections |
+
+## Tips sử dụng
+
+<Note type="tip">
+**Environment Variables:** Dùng `{{baseUrl}}` thay vì hardcode URL. Dễ dàng switch giữa environments.
+</Note>
+
+<Note type="tip">
+**Pre-request Scripts:** Dùng để tự động generate tokens, timestamps trước khi send request.
+</Note>
+
+<Note type="tip">
+**Collection Runner:** Chạy toàn bộ requests trong collection để test workflow end-to-end.
+</Note>
+
+## Khắc phục sự cố
+
+### SSL Certificate Error
+
+- Vào **Settings** → **General** → tắt "SSL certificate verification" (chỉ cho dev)
+- Hoặc import certificate vào Postman
+
+### CORS Issues
+
+- Postman bypass CORS (không giống browser)
+- Nếu API vẫn lỗi, kiểm tra server-side CORS config
+
+### Environment variable không resolve
+
+- Kiểm tra đã chọn đúng Environment (dropdown góc trên phải)
+- Kiểm tra spelling: `{{baseUrl}}` không phải `{{baseurl}}`
+- Restart Postman nếu variable mới không hiển thị
+
+### Authentication failures
+
+- Kiểm tra token còn hạn không
+- Dùng Pre-request Script để auto-refresh token
+- Kiểm tra Auth type đúng (Bearer, Basic, OAuth 2.0)
+
+### Timeout errors
+
+- Tăng timeout: **Settings** → **General** → Request timeout
+- Kiểm tra server có đang chạy không
+- Thử request bằng curl để isolate vấn đề
+
+## Liên kết
+
+- [Postman](https://postman.com)
+- [Learning Center](https://learning.postman.com)
+- [API Testing Guide](https://learning.postman.com/docs/sending-requests/requests)

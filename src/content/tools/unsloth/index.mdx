@@ -1,0 +1,29 @@
+---
+title: "Unsloth"
+category: "tools"
+icon: "zap"
+difficulty: "intermediate"
+tags: ["cli", "opensource", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Unsloth** là library cho fast và memory-efficient fine-tuning của LLMs. 2x faster training với 60% less memory.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install unsloth`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`from unsloth import FastLanguageModel
+model, tokenizer = FastLanguageModel.from_pretrained("mistralai/Mistral-7B-v0.1")
+model = FastLanguageModel.get_peft_model(model, r=16)
+trainer = SFTTrainer(model=model, train_dataset=dataset, ...)
+trainer.train()`} />
+
+## Liên kết
+
+- [Unsloth GitHub](https://github.com/unslothai/unsloth)

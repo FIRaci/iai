@@ -1,0 +1,80 @@
+---
+title: "MongoDB"
+category: "dev-tools"
+icon: "database"
+difficulty: "intermediate"
+tags: ["creative", "paid", "cli", "autocomplete", "free", "cloud", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+MongoDB là NoSQL database phổ biến, lưu trữ dữ liệu dạng document (JSON-like). Phù hợp cho ứng dụng web, mobile, và real-time analytics.
+</Note>
+
+## Cài đặt trên Windows 11
+
+### Phương pháp 1: MongoDB Community Server
+
+<StepBlock number={1} title="Tải MongoDB">
+Truy cập [mongodb.com/try/download/community](https://mongodb.com/try/download/community) và tải MSI installer.
+</StepBlock>
+
+<StepBlock number={2} title="Cài đặt">
+Chạy installer, chọn "Complete" installation.
+</StepBlock>
+
+<StepBlock number={3} title="Cài MongoDB Compass (GUI)">
+Tùy chọn cài MongoDB Compass để quản lý database qua giao diện.
+</StepBlock>
+
+### Phương pháp 2: MongoDB Atlas (Cloud)
+
+Không cần cài đặt — tạo free cluster tại [mongodb.com/atlas](https://mongodb.com/atlas)
+
+## Sử dụng cơ bản
+
+### Kết nối với MongoDB Shell
+
+<CodeBlock language="powershell">mongosh</CodeBlock>
+
+### Các lệnh cơ bản
+
+<CodeBlock language="javascript" code={`// Show databases
+show dbs
+
+// Use database
+use mydb
+
+// Create collection
+db.createCollection("users")
+
+// Insert document
+db.users.insertOne({ name: "John", age: 30, email: "john@example.com" })
+
+// Find documents
+db.users.find()
+db.users.find({ age: { $gt: 25 } })
+
+// Update document
+db.users.updateOne({ name: "John" }, { $set: { age: 31 } })
+
+// Delete document
+db.users.deleteOne({ name: "John" })`} />
+
+## Tips sử dụng
+
+<Note type="tip">
+**Indexes:** Tạo index cho fields thường query để tăng performance: `db.users.createIndex({ email: 1 })`
+</Note>
+
+<Note type="warning">
+MongoDB không có transactions mạnh như SQL databases. Cân nhắc dùng cho use cases phù hợp.
+</Note>
+
+## Liên kết
+
+- [MongoDB](https://mongodb.com)
+- [MongoDB Atlas](https://mongodb.com/atlas)
+- [MongoDB Compass](https://mongodb.com/products/compass)
+- [MongoDB Shell](https://mongodb.com/products/shell)

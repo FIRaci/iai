@@ -1,0 +1,28 @@
+---
+title: "Clip Interrogator"
+category: "multimodal"
+icon: "search"
+difficulty: "intermediate"
+tags: ["creative", "cli", "opensource", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Clip Interrogator** reverse-engineers prompts từ images. Upload ảnh → nhận prompt mô tả để tái tạo ảnh tương tự.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install clip-interrogator`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`from clip_interrogator import Config, Interrogator
+ci = Interrogator(Config())
+prompt = ci.interrogate("image.jpg")
+print(prompt)`} />
+
+## Liên kết
+
+- [Clip Interrogator GitHub](https://github.com/pharmapsychotic/clip-interrogator)

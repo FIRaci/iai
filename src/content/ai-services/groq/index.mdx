@@ -1,0 +1,32 @@
+---
+title: "Groq"
+category: "ai-services"
+icon: "zap"
+difficulty: "beginner"
+tags: ["creative", "cli", "autocomplete", "cloud", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Groq** là ultra-fast LLM inference API. Chạy Llama, Mistral, và nhiều models với tốc độ cực nhanh.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install groq`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`from groq import Groq
+client = Groq()
+response = client.chat.completions.create(
+    model="llama3-8b-8192",
+    messages=[{"role": "user", "content": "Hello"}]
+)
+print(response.choices[0].message.content)`} />
+
+## Liên kết
+
+- [Groq](https://groq.com)
+- [Docs](https://console.groq.com/docs)

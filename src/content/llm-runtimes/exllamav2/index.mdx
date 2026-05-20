@@ -1,0 +1,29 @@
+---
+title: "ExLlamaV2"
+category: "llm-runtimes"
+icon: "zap"
+difficulty: "intermediate"
+tags: ["creative", "cli", "opensource", "multi-model", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**ExLlamaV2** là high-performance inference library cho LLMs, tối ưu cho NVIDIA GPUs. Hỗ trợ GPTQ models và quantization.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install exllamav2`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`from exllamav2 import ExLlamaV2, ExLlamaV2Config, ExLlamaV2Tokenizer
+config = ExLlamaV2Config("model_path")
+model = ExLlamaV2(config)
+tokenizer = ExLlamaV2Tokenizer(config)
+output = model.generate("Hello", tokenizer)`} />
+
+## Liên kết
+
+- [ExLlamaV2 GitHub](https://github.com/turboderp/exllamav2)

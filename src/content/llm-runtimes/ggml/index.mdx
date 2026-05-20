@@ -1,0 +1,34 @@
+---
+title: "ggml"
+category: "llm-runtimes"
+icon: "cpu"
+difficulty: "advanced"
+tags: ["opensource", "autocomplete", "api", "local"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**ggml** là low-level tensor library và format cho LLM models, được phát triển bởi cùng tác giả llama.cpp. Là nền tảng cho nhiều local AI tools.
+</Note>
+
+## Sử dụng
+
+ggml chủ yếu được dùng như library, không phải standalone tool. Các tools sử dụng ggml:
+- llama.cpp
+- whisper.cpp
+- stable-diffusion.cpp
+
+### Format model
+
+GGML đã được thay thế bằng GGUF. Nếu có model GGML cũ, cần convert sang GGUF.
+
+## Tips
+
+<Note type="tip">
+**GGUF vs GGML:** GGUF là format mới, hỗ trợ metadata tốt hơn. Luôn dùng GGUF cho projects mới.
+</Note>
+
+## Liên kết
+
+- [ggml GitHub](https://github.com/ggerganov/ggml)

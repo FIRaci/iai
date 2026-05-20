@@ -1,0 +1,31 @@
+---
+title: "Chroma"
+category: "vector-databases"
+icon: "database"
+difficulty: "beginner"
+tags: ["creative", "cli", "opensource", "autocomplete", "api", "local"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Chroma** là open-source embedding database, dễ dùng cho AI applications. Local-first và lightweight.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install chromadb`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`import chromadb
+client = chromadb.Client()
+collection = client.create_collection("my-collection")
+collection.add(documents=["Hello world", "AI is great"], ids=["1", "2"])
+results = collection.query(query_texts=["hello"], n_results=2)
+print(results)`} />
+
+## Liên kết
+
+- [Chroma](https://trychroma.com)
+- [GitHub](https://github.com/chroma-core/chroma)

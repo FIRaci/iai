@@ -1,0 +1,51 @@
+---
+title: "pnpm"
+category: "dev-tools"
+icon: "zap"
+difficulty: "beginner"
+tags: ["cli", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+pnpm là package manager nhanh và tiết kiệm disk space cho JavaScript. Dùng hard links để chia sẻ packages giữa projects.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`# Cài qua npm
+npm install -g pnpm
+
+# Hoặc qua Corepack (Node.js 16.13+)
+corepack enable
+corepack prepare pnpm@latest --activate`} />
+
+## Sử dụng
+
+### So sánh với npm
+
+| npm | pnpm |
+|-----|------|
+| `npm install` | `pnpm install` |
+| `npm install [pkg]` | `pnpm add [pkg]` |
+| `npm install -D [pkg]` | `pnpm add -D [pkg]` |
+| `npm uninstall [pkg]` | `pnpm remove [pkg]` |
+| `npm run [script]` | `pnpm [script]` |
+
+### Ưu điểm
+
+- **Nhanh hơn:** 2-3x so với npm
+- **Tiết kiệm disk:** Chia sẻ packages qua hard links
+- **Strict:** Chỉ cho phép access packages đã khai báo
+
+## Tips sử dụng
+
+<Note type="tip">
+**Monorepo:** pnpm hỗ trợ workspace tuyệt vời cho monorepo. Dùng `pnpm-workspace.yaml` để config.
+</Note>
+
+## Liên kết
+
+- [pnpm](https://pnpm.io)
+- [Docs](https://pnpm.io/motivation)

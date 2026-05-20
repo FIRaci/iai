@@ -1,0 +1,40 @@
+---
+title: "LlamaIndex"
+category: "llm-runtimes"
+icon: "layers"
+difficulty: "intermediate"
+tags: ["cli", "opensource", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**LlamaIndex** là data connector và retrieval framework cho LLM applications. Chuyên về RAG (Retrieval-Augmented Generation) và data indexing.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install llama-index`} />
+
+## Sử dụng
+
+### Simple RAG
+
+<CodeBlock language="python" code={`from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
+
+documents = SimpleDirectoryReader("data").load_data()
+index = VectorStoreIndex.from_documents(documents)
+query_engine = index.as_query_engine()
+response = query_engine.query("What is the main topic?")
+print(response)`} />
+
+## Tips
+
+<Note type="tip">
+**Data connectors:** LlamaIndex hỗ trợ 100+ data sources: PDF, Notion, Slack, GitHub, v.v.
+</Note>
+
+## Liên kết
+
+- [LlamaIndex](https://llamaindex.ai)
+- [Docs](https://docs.llamaindex.ai)

@@ -1,0 +1,38 @@
+---
+title: "Whisper"
+category: "voice-audio"
+icon: "mic"
+difficulty: "beginner"
+tags: ["creative", "cli", "opensource", "cloud", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Whisper** (OpenAI) là speech-to-text model, hỗ trợ 100+ ngôn ngữ. Chuyển đổi audio thành text với độ chính xác cao.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install openai-whisper`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`whisper audio.mp3 --model base --language Vietnamese`} />
+
+### Python API
+
+<CodeBlock language="python" code={`import whisper
+model = whisper.load_model("base")
+result = model.transcribe("audio.mp3")
+print(result["text"])`} />
+
+## Tips
+
+<Note type="tip">
+**Model sizes:** tiny, base, small, medium, large — model càng lớn càng chính xác nhưng cần nhiều RAM hơn.
+</Note>
+
+## Liên kết
+
+- [Whisper GitHub](https://github.com/openai/whisper)

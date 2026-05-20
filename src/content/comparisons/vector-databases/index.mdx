@@ -1,0 +1,88 @@
+---
+title: "Vector Databases"
+category: "comparisons"
+icon: "database"
+difficulty: "intermediate"
+tags: ["comparison", "vector-db", "database", "rag", "embedding"]
+---
+
+## Tổng quan
+
+<Note type="info">
+So sánh các vector databases phổ biến cho AI applications — từ Pinecone, Qdrant, Milvus đến Weaviate và Chroma.
+</Note>
+
+## Bảng so sánh
+
+| Tiêu chí | Pinecone | Qdrant | Milvus | Weaviate | Chroma |
+|----------|----------|--------|--------|----------|--------|
+| **Type** | Managed | Self-hosted/Cloud | Self-hosted/Cloud | Self-hosted/Cloud | Local/Cloud |
+| **Language** | REST API | Rust | Go | Go | Python |
+| **Index type** | Proprietary | HNSW | IVF + HNSW | HNSW | HNSW |
+| **Max vectors** | Unlimited | Unlimited | Billions | Unlimited | Limited |
+| **Free tier** | 2GB | Yes (self-hosted) | Yes (self-hosted) | Yes (self-hosted) | Yes |
+| **Metadata filter** | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Hybrid search** | ✅ | ✅ | ✅ | ✅ |  |
+| **Multi-tenancy** | ✅ | ✅ | ✅ | ✅ | ❌ |
+| **Python SDK** | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **JS/TS SDK** | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **GraphQL** | ❌ |  | ❌ | ✅ | ❌ |
+| **Price** | $0.07/GB/tháng | Free/Mã nguồn mở | Free/Mã nguồn mở | Free/Mã nguồn mở | Free |
+
+## Khi nào dùng gì
+
+### Pinecone
+- **Mạnh nhất**: Managed service, dễ dùng nhất
+- **Phù hợp**: Production RAG, không muốn quản lý infra
+- **Điểm yếu**: Đắt, proprietary
+
+### Qdrant
+- **Mạnh nhất**: Rust-based, performance cao
+- **Phù hợp**: Self-hosted, performance-critical apps
+- **Điểm yếu**: Ít tính năng managed
+
+### Milvus
+- **Mạnh nhất**: Scale lớn nhất, distributed
+- **Phù hợp**: Enterprise, billions of vectors
+- **Điểm yếu**: Phức tạp, heavy infrastructure
+
+### Weaviate
+- **Mạnh nhất**: GraphQL, built-in ML modules
+- **Phù hợp**: Semantic search, GraphQL lovers
+- **Điểm yếu**: Learning curve cao
+
+### Chroma
+- **Mạnh nhất**: Đơn giản, Python-native
+- **Phù hợp**: Prototyping, local development
+- **Điểm yếu**: Không production-ready
+
+## Sơ đồ quyết định
+
+<MermaidDiagram chart={`flowchart TD
+    A[Cần vector database?] --> B{Managed hay self-hosted?}
+    B -->|Managed| C[Pinecone]
+    B -->|Self-hosted| D{Scale?}
+    D -->|Prototype/Local| E[Chroma]
+    D -->|Production| F{Ưu tiên?}
+    F -->|Performance| G[Qdrant]
+    F -->|Scale lớn| H[Milvus]
+    F -->|GraphQL/ML| I[Weaviate]
+`} caption="Sơ đồ chọn vector database" />
+
+## Kết luận
+
+| Nhu cầu | Recommendation |
+|---------|---------------|
+| Easiest to use | **Pinecone** |
+| Best performance | **Qdrant** |
+| Largest scale | **Milvus** |
+| GraphQL + ML | **Weaviate** |
+| Quick prototyping | **Chroma** |
+
+## Liên kết
+
+- [Pinecone](https://pinecone.io)
+- [Qdrant](https://qdrant.tech)
+- [Milvus](https://milvus.io)
+- [Weaviate](https://weaviate.io)
+- [Chroma](https://trychroma.com)

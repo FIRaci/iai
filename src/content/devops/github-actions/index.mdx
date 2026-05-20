@@ -1,0 +1,34 @@
+---
+title: "GitHub Actions"
+category: "devops"
+icon: "github"
+difficulty: "intermediate"
+tags: ["opensource", "api", "agent"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**GitHub Actions** là CI/CD platform tích hợp sẵn trong GitHub. Automate workflows: tests, builds, deployments.
+</Note>
+
+## Sử dụng
+
+Tạo `.github/workflows/ci.yml`:
+
+<CodeBlock language="yaml" code={`name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - run: pytest`} />
+
+## Liên kết
+
+- [GitHub Actions](https://github.com/features/actions)

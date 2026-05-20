@@ -1,0 +1,42 @@
+---
+title: "PyTorch Lightning"
+category: "tools"
+icon: "zap"
+difficulty: "intermediate"
+tags: ["cli", "opensource", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**PyTorch Lightning** là lightweight PyTorch wrapper cho scalable training. Simplifies boilerplate code và enables multi-GPU training.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install pytorch-lightning`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`import pytorch_lightning as pl
+class MyModel(pl.LightningModule):
+    def __init__(self):
+        super().__init__()
+        self.layer = torch.nn.Linear(10, 1)
+    def forward(self, x):
+        return self.layer(x)
+    def training_step(self, batch, batch_idx):
+        x, y = batch
+        y_hat = self(x)
+        loss = torch.nn.functional.mse_loss(y_hat, y)
+        return loss
+    def configure_optimizers(self):
+        return torch.optim.Adam(self.parameters(), lr=0.001)
+
+trainer = pl.Trainer(max_epochs=10)
+trainer.fit(model, train_dataloader)`} />
+
+## Liên kết
+
+- [PyTorch Lightning](https://lightning.ai)
+- [GitHub](https://github.com/Lightning-AI/pytorch-lightning)

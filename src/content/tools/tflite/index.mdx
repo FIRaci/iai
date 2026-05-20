@@ -1,0 +1,31 @@
+---
+title: "TensorFlow Lite"
+category: "tools"
+icon: "smartphone"
+difficulty: "intermediate"
+tags: ["creative", "cli", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**TensorFlow Lite** là lightweight solution cho running ML models trên mobile và edge devices.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install tflite-runtime`} />
+
+## Sử dụng
+
+### Convert model
+
+<CodeBlock language="python" code={`import tensorflow as tf
+converter = tf.lite.TFLiteConverter.from_saved_model("saved_model")
+tflite_model = converter.convert()
+with open("model.tflite", "wb") as f:
+    f.write(tflite_model)`} />
+
+## Liên kết
+
+- [TensorFlow Lite](https://www.tensorflow.org/lite)

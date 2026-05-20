@@ -1,0 +1,32 @@
+---
+title: "FFmpeg"
+category: "video"
+icon: "film"
+difficulty: "intermediate"
+tags: ["creative", "cli", "ide", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**FFmpeg** là multimedia framework cho processing video và audio. Convert, edit, stream media files.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`winget install FFmpeg`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`# Convert format
+ffmpeg -i input.mp4 output.avi
+# Extract audio
+ffmpeg -i video.mp4 -vn audio.mp3
+# Resize video
+ffmpeg -i input.mp4 -vf scale=1280:720 output.mp4
+# Trim video
+ffmpeg -i input.mp4 -ss 00:00:10 -t 00:00:20 output.mp4`} />
+
+## Liên kết
+
+- [FFmpeg](https://ffmpeg.org)

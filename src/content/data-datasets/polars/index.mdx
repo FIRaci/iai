@@ -1,0 +1,38 @@
+---
+title: "Polars"
+category: "data-datasets"
+icon: "table"
+difficulty: "intermediate"
+tags: ["cli", "opensource", "autocomplete", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Polars** là fast DataFrame library viết bằng Rust, nhanh hơn Pandas đáng kể cho datasets lớn.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install polars`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`import polars as pl
+df = pl.read_csv("data.csv")
+result = (
+    df.filter(pl.col("age") > 25)
+    .group_by("category")
+    .agg(pl.col("value").mean())
+)`} />
+
+## Tips
+
+<Note type="tip">
+**Lazy evaluation:** Dùng `pl.scan_csv()` và `.collect()` để tối ưu performance cho datasets lớn.
+</Note>
+
+## Liên kết
+
+- [Polars](https://pola.rs)
+- [GitHub](https://github.com/pola-rs/polars)

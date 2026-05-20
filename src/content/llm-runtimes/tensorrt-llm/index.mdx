@@ -1,0 +1,28 @@
+---
+title: "TensorRT-LLM"
+category: "llm-runtimes"
+icon: "zap"
+difficulty: "advanced"
+tags: ["creative", "cli", "opensource", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**TensorRT-LLM** (NVIDIA) là LLM inference optimization library, tối ưu cho NVIDIA GPUs. Hỗ trợ quantization, batching, và kernel fusion.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install tensorrt-llm`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`import tensorrt_llm
+from tensorrt_llm import LLM
+llm = LLM(model="mistralai/Mistral-7B-v0.1")
+outputs = llm.generate(["Hello, how are you?"])`} />
+
+## Liên kết
+
+- [TensorRT-LLM GitHub](https://github.com/NVIDIA/TensorRT-LLM)

@@ -1,8 +1,17 @@
 import { Link, useLocation } from "react-router-dom"
 import { cn } from "@/lib/utils"
-import { BookOpen, Code2, GitCompare, ChevronDown, Compass } from "lucide-react"
+import {
+  BookOpen, GitCompare, ChevronDown, Compass, Database, Monitor,
+  Cpu, Shield, Eye, FolderTree,
+  BarChart3, Video, Cloud, Settings, FileText,
+  Package, TestTube, Brain,
+  Server, Workflow, Sparkles,
+  Notebook,
+  Palette,
+} from "lucide-react"
 import { useState, useEffect } from "react"
 import { ThemeToggle } from "@/components/ThemeToggle"
+import { StarThemeToggle } from "@/components/StarThemeToggle"
 import { getToolIcon } from "@/lib/icons"
 
 const topLinks = [
@@ -23,27 +32,670 @@ interface NavGroup {
 
 const navItems: NavGroup[] = [
   {
+    title: "Frontend",
+    icon: Monitor,
+    path: "/frontend",
+    children: [
+      { title: "Angular", path: "/frontend/angular" },
+      { title: "Astro", path: "/frontend/astro" },
+      { title: "Chakra UI", path: "/frontend/chakra-ui" },
+      { title: "Chromatic", path: "/frontend/chromatic" },
+      { title: "CSS Modules", path: "/frontend/css-modules" },
+      { title: "DaisyUI", path: "/frontend/daisyui" },
+      { title: "Formik", path: "/frontend/formik" },
+      { title: "Framer Motion", path: "/frontend/framer-motion" },
+      { title: "Headless UI", path: "/frontend/headless-ui" },
+      { title: "Jest", path: "/frontend/jest" },
+      { title: "Jotai", path: "/frontend/jotai" },
+      { title: "Ladle", path: "/frontend/ladle" },
+      { title: "Mantine", path: "/frontend/mantine" },
+      { title: "Material UI", path: "/frontend/material-ui" },
+      { title: "Motion One", path: "/frontend/motion-one" },
+      { title: "MSW", path: "/frontend/msw" },
+      { title: "Next.js", path: "/frontend/next-js" },
+      { title: "Nuxt", path: "/frontend/nuxt" },
+      { title: "Panda CSS", path: "/frontend/panda-css" },
+      { title: "Qwik", path: "/frontend/qwik" },
+      { title: "Radix UI", path: "/frontend/radix-ui" },
+      { title: "React Hook Form", path: "/frontend/react-hook-form" },
+      { title: "Recoil", path: "/frontend/recoil" },
+      { title: "Redux Toolkit", path: "/frontend/redux-toolkit" },
+      { title: "Remix", path: "/frontend/remix" },
+      { title: "SolidStart", path: "/frontend/solidstart" },
+      { title: "SvelteKit", path: "/frontend/sveltekit" },
+      { title: "TanStack Query", path: "/frontend/tanstack-query" },
+      { title: "TanStack Router", path: "/frontend/tanstack-router" },
+      { title: "TanStack Start", path: "/frontend/tanstack-start" },
+      { title: "Testing Library", path: "/frontend/testing-library" },
+      { title: "TypeScript", path: "/frontend/typescript" },
+      { title: "UnoCSS", path: "/frontend/unocss" },
+      { title: "Valibot", path: "/frontend/valibot" },
+      { title: "Valtio", path: "/frontend/valtio" },
+      { title: "Vue.js", path: "/frontend/vue" },
+      { title: "XState", path: "/frontend/xstate" },
+      { title: "Yup", path: "/frontend/yup" },
+      { title: "Zod", path: "/frontend/zod" },
+      { title: "Zustand", path: "/frontend/zustand" },
+    ],
+  },
+  {
+    title: "Backend",
+    icon: Server,
+    path: "/backend",
+    children: [
+      { title: "Agenda", path: "/backend/agenda" },
+      { title: "Appwrite", path: "/backend/appwrite" },
+      { title: "Auth.js", path: "/backend/auth-js" },
+      { title: "Better Auth", path: "/backend/better-auth" },
+      { title: "Bruno", path: "/backend/bruno" },
+      { title: "BullMQ", path: "/backend/bullmq" },
+      { title: "Clerk", path: "/backend/clerk" },
+      { title: "DBeaver", path: "/backend/dbeaver" },
+      { title: "Django", path: "/backend/django" },
+      { title: "Express", path: "/backend/express" },
+      { title: "FastAPI", path: "/backend/fastapi" },
+      { title: "Fastify", path: "/backend/fastify" },
+      { title: "Firebase", path: "/backend/firebase" },
+      { title: "Flask", path: "/backend/flask" },
+      { title: "Gradio", path: "/backend/gradio" },
+      { title: "Hasura", path: "/backend/hasura" },
+      { title: "Hono", path: "/backend/hono" },
+      { title: "Hoppscotch", path: "/backend/hoppscotch" },
+      { title: "Insomnia", path: "/backend/insomnia" },
+      { title: "Kafka", path: "/backend/kafka" },
+      { title: "Koa", path: "/backend/koa" },
+      { title: "Kysely", path: "/backend/kysely" },
+      { title: "Litestar", path: "/backend/litestar" },
+      { title: "Logtail", path: "/backend/logtail" },
+      { title: "Loki", path: "/backend/loki" },
+      { title: "Lucia", path: "/backend/lucia" },
+      { title: "MikroORM", path: "/backend/mikro-orm" },
+      { title: "MongoDB", path: "/backend/mongodb" },
+      { title: "NATS", path: "/backend/nats" },
+      { title: "Neon", path: "/backend/neon" },
+      { title: "NestJS", path: "/backend/nestjs" },
+      { title: "OpenAPI", path: "/backend/openapi" },
+      { title: "OpenTelemetry", path: "/backend/opentelemetry" },
+      { title: "pgAdmin", path: "/backend/pgadmin" },
+      { title: "PlanetScale", path: "/backend/planetscale" },
+      { title: "PocketBase", path: "/backend/pocketbase" },
+      { title: "Postman", path: "/backend/postman" },
+      { title: "RabbitMQ", path: "/backend/rabbitmq" },
+      { title: "Readme API", path: "/backend/readme-api" },
+      { title: "Redis", path: "/backend/redis" },
+      { title: "Stoplight", path: "/backend/stoplight" },
+      { title: "Streamlit", path: "/backend/streamlit" },
+      { title: "Supabase", path: "/backend/supabase" },
+      { title: "Swagger", path: "/backend/swagger" },
+      { title: "TablePlus", path: "/backend/tableplus" },
+      { title: "TypeORM", path: "/backend/typeorm" },
+      { title: "Valkey", path: "/backend/valkey" },
+    ],
+  },
+  {
     title: "AI Tools",
-    icon: BookOpen,
+    icon: Sparkles,
     path: "/ai-tools",
     children: [
-      { title: "Claude Code CLI", path: "/ai-tools/claude-code" },
-      { title: "ClaudeKit", path: "/ai-tools/claude-kit" },
+      { title: "Aider", path: "/ai-tools/aider" },
+      { title: "AI21 Studio", path: "/ai-tools/ai21-studio" },
+      { title: "Amazon Q", path: "/ai-tools/amazon-q" },
+      { title: "Amazon Q CLI", path: "/ai-tools/amazon-q-cli" },
+      { title: "Anthropic API", path: "/ai-tools/anthropic-api" },
+      { title: "AnythingLLM", path: "/ai-tools/anything-llm" },
+      { title: "Arc Search", path: "/ai-tools/arc-search" },
+      { title: "Augment Code", path: "/ai-tools/augment-code" },
+      { title: "AutoGen", path: "/ai-tools/autogen" },
+      { title: "AWS Kiro", path: "/ai-tools/aws-kiro" },
+      { title: "Base44", path: "/ai-tools/base44" },
+      { title: "Bolt.new", path: "/ai-tools/bolt-new" },
+      { title: "Brave Leo", path: "/ai-tools/brave-leo" },
+      { title: "Cerebras Inference", path: "/ai-tools/cerebras-inference" },
+      { title: "ChatGPT", path: "/ai-tools/chatgpt" },
+      { title: "ChatGPT Desktop", path: "/ai-tools/chatgpt-desktop" },
+      { title: "Chrome DevTools AI", path: "/ai-tools/chrome-devtools-ai" },
+      { title: "Claude Code", path: "/ai-tools/claude-code" },
+      { title: "Claude Desktop", path: "/ai-tools/claude-desktop" },
+      { title: "Claude Kit", path: "/ai-tools/claude-kit" },
+      { title: "Cline", path: "/ai-tools/cline" },
+      { title: "Continue", path: "/ai-tools/continue" },
+      { title: "Copilot", path: "/ai-tools/copilot" },
+      { title: "Copilot Workspace", path: "/ai-tools/copilot-workspace" },
+      { title: "CrewAI", path: "/ai-tools/crewai" },
       { title: "Cursor", path: "/ai-tools/cursor" },
-      { title: "GitHub Copilot", path: "/ai-tools/copilot" },
+      { title: "DALL-E", path: "/ai-tools/dalle" },
+      { title: "DeepSeek", path: "/ai-tools/deepseek" },
+      { title: "DeepSeek API", path: "/ai-tools/deepseek-api" },
       { title: "Devin", path: "/ai-tools/devin" },
-      { title: "Windsurf", path: "/ai-tools/windsurf" },
+      { title: "Dify", path: "/ai-tools/dify" },
+      { title: "ElevenLabs", path: "/ai-tools/elevenlabs" },
+      { title: "Fireworks AI", path: "/ai-tools/fireworks-ai" },
+      { title: "Flowise", path: "/ai-tools/flowise" },
+      { title: "Gemini", path: "/ai-tools/gemini" },
+      { title: "Gemini CLI", path: "/ai-tools/gemini-cli" },
+      { title: "GitHub Spark", path: "/ai-tools/github-spark" },
+      { title: "Google AI Studio", path: "/ai-tools/google-ai-studio" },
+      { title: "Groq", path: "/ai-tools/groq" },
+      { title: "HeyGen", path: "/ai-tools/heygen" },
+      { title: "Hugging Face Inference", path: "/ai-tools/hugging-face-inference" },
+      { title: "Hugging Face TGI", path: "/ai-tools/hugging-face-tgi" },
+      { title: "Jan", path: "/ai-tools/jan" },
+      { title: "Jasper AI", path: "/ai-tools/jasper" },
+      { title: "JetBrains Junie", path: "/ai-tools/jetbrains-junie" },
+      { title: "Kagi", path: "/ai-tools/kagi" },
+      { title: "Kite", path: "/ai-tools/kite" },
+      { title: "Langflow", path: "/ai-tools/langflow" },
+      { title: "LangGraph", path: "/ai-tools/langgraph" },
+      { title: "Leonardo AI", path: "/ai-tools/leonardo" },
+      { title: "LM Studio", path: "/ai-tools/lm-studio" },
+      { title: "LM Sys Arena", path: "/ai-tools/lmsys-arena" },
+      { title: "LocalAI", path: "/ai-tools/localai" },
+      { title: "Lovable", path: "/ai-tools/lovable" },
+      { title: "Mastra", path: "/ai-tools/mastra" },
+      { title: "Mem", path: "/ai-tools/mem" },
+      { title: "Metaphor", path: "/ai-tools/metaphor" },
+      { title: "Midjourney", path: "/ai-tools/midjourney" },
+      { title: "Microsoft AI Dev", path: "/ai-tools/microsoft-ai-dev" },
+      { title: "Mistral API", path: "/ai-tools/mistral-api" },
+      { title: "Notion AI", path: "/ai-tools/notion-ai" },
+      { title: "Obsidian LLM", path: "/ai-tools/obsidian-llm" },
+      { title: "Open Interpreter", path: "/ai-tools/open-interpreter" },
+      { title: "Open WebUI", path: "/ai-tools/open-webui" },
+      { title: "OpenAI API", path: "/ai-tools/openai-api" },
+      { title: "OpenAI Codex", path: "/ai-tools/openai-codex" },
       { title: "OpenClaw", path: "/ai-tools/openclaw" },
+      { title: "OpenCode", path: "/ai-tools/opencode" },
+      { title: "OpenHands", path: "/ai-tools/openhands" },
+      { title: "OpenRouter", path: "/ai-tools/openrouter" },
+      { title: "Perplexity", path: "/ai-tools/perplexity" },
+      { title: "Phind", path: "/ai-tools/phind" },
+      { title: "Replit Agent", path: "/ai-tools/replit-agent" },
+      { title: "Roo Code", path: "/ai-tools/roo-code" },
+      { title: "Runway ML", path: "/ai-tools/runway" },
+      { title: "SmolAgents", path: "/ai-tools/smolagents" },
+      { title: "Sourcegraph Cody", path: "/ai-tools/sourcegraph-cody" },
+      { title: "Stable Diffusion", path: "/ai-tools/stable-diffusion" },
+      { title: "Together AI", path: "/ai-tools/together" },
+      { title: "Vercel v0", path: "/ai-tools/vercel-v0" },
+      { title: "Windsurf", path: "/ai-tools/windsurf" },
+      { title: "xAI Grok API", path: "/ai-tools/xai-grok-api" },
+      { title: "You.com", path: "/ai-tools/you-com" },
+    ],
+  },
+  {
+    title: "LLM Runtimes & RAG",
+    icon: Cpu,
+    path: "/llm-runtimes",
+    children: [
+      { title: "AutoGPT", path: "/llm-runtimes/autogpt" },
+      { title: "BabyAGI", path: "/llm-runtimes/babyagi" },
+      { title: "CodeGeeX", path: "/llm-runtimes/codegeex" },
+      { title: "Codeium", path: "/llm-runtimes/codeium" },
+      { title: "CTranslate2", path: "/llm-runtimes/ctranslate2" },
+      { title: "DeepSpeed", path: "/llm-runtimes/deepspeed" },
+      { title: "DSPy", path: "/llm-runtimes/dspy" },
+      { title: "Enchant", path: "/llm-runtimes/enchant" },
+      { title: "ExLlamaV2", path: "/llm-runtimes/exllamav2" },
+      { title: "GGML", path: "/llm-runtimes/ggml" },
+      { title: "GPT4All", path: "/llm-runtimes/gpt4all" },
+      { title: "Haystack", path: "/llm-runtimes/haystack" },
+      { title: "KoboldAI", path: "/llm-runtimes/koboldai" },
+      { title: "KoboldCPP", path: "/llm-runtimes/koboldcpp" },
+      { title: "LangChain", path: "/llm-runtimes/langchain" },
+      { title: "Llama.cpp", path: "/llm-runtimes/llama-cpp" },
+      { title: "Llamafile", path: "/llm-runtimes/llamafile" },
+      { title: "LlamaIndex", path: "/llm-runtimes/llamaindex" },
+      { title: "MemGPT", path: "/llm-runtimes/memgpt" },
+      { title: "Mistral", path: "/llm-runtimes/mistral" },
+      { title: "Mistral Inference", path: "/llm-runtimes/mistral-inference" },
+      { title: "MLX", path: "/llm-runtimes/mlx" },
+      { title: "Msty", path: "/llm-runtimes/msty" },
+      { title: "NumPy", path: "/llm-runtimes/numpy" },
+      { title: "Ollama", path: "/llm-runtimes/ollama" },
+      { title: "OpenAI CLI", path: "/llm-runtimes/openai-cli" },
+      { title: "OpenCV", path: "/llm-runtimes/opencv" },
+      { title: "Pillow", path: "/llm-runtimes/pillow" },
+      { title: "PirateX", path: "/llm-runtimes/piratex" },
+      { title: "PrivateGPT", path: "/llm-runtimes/privategpt" },
+      { title: "RAGFlow", path: "/llm-runtimes/ragflow" },
+      { title: "Replit", path: "/llm-runtimes/replit" },
+      { title: "scikit-learn", path: "/llm-runtimes/scikit-learn" },
+      { title: "SciPy", path: "/llm-runtimes/scipy" },
+      { title: "Sentence Transformers", path: "/llm-runtimes/sentence-transformers" },
+      { title: "Tabby", path: "/llm-runtimes/tabby" },
+      { title: "TensorRT LLM", path: "/llm-runtimes/tensorrt-llm" },
+      { title: "Text Generation WebUI", path: "/llm-runtimes/text-generation-webui" },
+      { title: "Transformers", path: "/llm-runtimes/transformers" },
+      { title: "Triton", path: "/llm-runtimes/triton" },
+      { title: "vLLM", path: "/llm-runtimes/vllm" },
+      { title: "Warp", path: "/llm-runtimes/warp" },
+    ],
+  },
+  {
+    title: "AI Creative",
+    icon: Palette,
+    path: "/ai-creative",
+    children: [
+      { title: "Automatic1111", path: "/ai-creative/automatic1111" },
+      { title: "Bark", path: "/ai-creative/bark" },
+      { title: "BLIP", path: "/ai-creative/blip" },
+      { title: "CLIP", path: "/ai-creative/clip" },
+      { title: "CLIP Interrogator", path: "/ai-creative/clip-interrogator" },
+      { title: "Coqui TTS", path: "/ai-creative/coqui-tts" },
+      { title: "ComfyUI", path: "/ai-creative/comfyui" },
+      { title: "ControlNet", path: "/ai-creative/controlnet" },
+      { title: "Descript", path: "/ai-creative/descript" },
+      { title: "Descript Overdub", path: "/ai-creative/descript-overdub" },
+      { title: "Diffusers", path: "/ai-creative/diffusers" },
+      { title: "Edge TTS", path: "/ai-creative/edge-tts" },
+      { title: "Faster Whisper", path: "/ai-creative/faster-whisper" },
+      { title: "Flux", path: "/ai-creative/flux" },
+      { title: "Florence 2", path: "/ai-creative/florence-2" },
+      { title: "InvokeAI", path: "/ai-creative/invokeai" },
+      { title: "Kaiber", path: "/ai-creative/kaiber" },
+      { title: "Kandinsky", path: "/ai-creative/kandinsky" },
+      { title: "LLaVA", path: "/ai-creative/llava" },
+      { title: "Melobytes", path: "/ai-creative/melobytes" },
+      { title: "Mozilla TTS", path: "/ai-creative/mozilla-tts" },
+      { title: "NovelAI WebUI", path: "/ai-creative/novelai-webui" },
+      { title: "Pika Labs", path: "/ai-creative/pika-labs" },
+      { title: "Playground", path: "/ai-creative/playground" },
+      { title: "Resemble AI", path: "/ai-creative/resemble-ai" },
+      { title: "Riffusion", path: "/ai-creative/riffusion" },
+      { title: "Silero", path: "/ai-creative/silero" },
+      { title: "Silero VAD", path: "/ai-creative/silero-vad" },
+      { title: "Sora", path: "/ai-creative/sora" },
+      { title: "Soundraw", path: "/ai-creative/soundraw" },
+      { title: "Vocode", path: "/ai-creative/vocode" },
+      { title: "Whisper", path: "/ai-creative/whisper" },
+      { title: "Whisper.cpp", path: "/ai-creative/whisper-cpp" },
+    ],
+  },
+  {
+    title: "Video & Media",
+    icon: Video,
+    path: "/video",
+    children: [
+      { title: "FFmpeg", path: "/video/ffmpeg" },
+      { title: "HandBrake", path: "/video/handbrake" },
+      { title: "Kdenlive", path: "/video/kdenlive" },
+      { title: "MPV", path: "/video/mpv" },
+      { title: "OBS Studio", path: "/video/obs-studio" },
+      { title: "Shotcut", path: "/video/shotcut" },
+      { title: "VLC", path: "/video/vlc" },
+    ],
+  },
+  {
+    title: "Visualization",
+    icon: BarChart3,
+    path: "/visualization",
+    children: [
+      { title: "Chart.js", path: "/visualization/chart-js" },
+      { title: "D3", path: "/visualization/d3" },
+      { title: "ECharts", path: "/visualization/echarts" },
+      { title: "Matplotlib", path: "/visualization/matplotlib" },
+      { title: "Plotly", path: "/visualization/plotly" },
+      { title: "Vega Lite", path: "/visualization/vega-lite" },
+    ],
+  },
+  {
+    title: "Data & Databases",
+    icon: Database,
+    path: "/databases",
+    children: [
+      { title: "Chroma", path: "/databases/chroma" },
+      { title: "Cloudflare D1", path: "/databases/cloudflare-d1" },
+      { title: "Cohere Embeddings", path: "/databases/cohere-embeddings" },
+      { title: "Common Crawl", path: "/databases/common-crawl" },
+      { title: "CVAT", path: "/databases/cvat" },
+      { title: "Dask", path: "/databases/dask" },
+      { title: "DataFusion", path: "/databases/datafusion" },
+      { title: "DuckDB", path: "/databases/duckdb" },
+      { title: "Faiss", path: "/databases/faiss" },
+      { title: "FiftyOne", path: "/databases/fiftyone" },
+      { title: "HF Datasets", path: "/databases/hf-datasets" },
+      { title: "Jina Embeddings", path: "/databases/jina-embeddings" },
+      { title: "Kaggle", path: "/databases/kaggle" },
+      { title: "Label Studio", path: "/databases/label-studio" },
+      { title: "LibSQL", path: "/databases/libsql" },
+      { title: "Milvus", path: "/databases/milvus" },
+      { title: "MinIO", path: "/databases/minio" },
+      { title: "Nomic Embed", path: "/databases/nomic-embed" },
+      { title: "OpenAI Embeddings", path: "/databases/openai-embeddings" },
+      { title: "Pandas", path: "/databases/pandas" },
+      { title: "Pinecone", path: "/databases/pinecone" },
+      { title: "Polars", path: "/databases/polars" },
+      { title: "Qdrant", path: "/databases/qdrant" },
+      { title: "Ray", path: "/databases/ray" },
+      { title: "Redis", path: "/databases/redis" },
+      { title: "Roboflow", path: "/databases/roboflow" },
+      { title: "Snorkel", path: "/databases/snorkel" },
+      { title: "SQLite", path: "/databases/sqlite" },
+      { title: "Apache Spark", path: "/databases/spark" },
+      { title: "SurrealDB", path: "/databases/surrealdb" },
+      { title: "Turso", path: "/databases/turso" },
+      { title: "Voyage AI", path: "/databases/voyage-ai" },
+      { title: "Weaviate", path: "/databases/weaviate" },
+    ],
+  },
+  {
+    title: "ML & Training",
+    icon: Brain,
+    path: "/ml-training",
+    children: [
+      { title: "Accelerate", path: "/ml-training/accelerate" },
+      { title: "AutoTrain", path: "/ml-training/autotrain" },
+      { title: "Axolotl", path: "/ml-training/axolotl" },
+      { title: "BentoML", path: "/ml-training/bentoml" },
+      { title: "BitsAndBytes", path: "/ml-training/bitsandbytes" },
+      { title: "Catalyst", path: "/ml-training/catalyst" },
+      { title: "ClearML", path: "/ml-training/clearml" },
+      { title: "Core ML", path: "/ml-training/coreml" },
+      { title: "DeepSpeed Chat", path: "/ml-training/deepspeed-chat" },
+      { title: "DVC", path: "/ml-training/dvc" },
+      { title: "Flash Attention", path: "/ml-training/flash-attention" },
+      { title: "Gradio", path: "/ml-training/gradio" },
+      { title: "KServe", path: "/ml-training/kserve" },
+      { title: "Kubeflow", path: "/ml-training/kubeflow" },
+      { title: "LitGPT", path: "/ml-training/litgpt" },
+      { title: "Ludwig", path: "/ml-training/ludwig" },
+      { title: "MLflow", path: "/ml-training/mlflow" },
+      { title: "Modal", path: "/ml-training/modal" },
+      { title: "Neptune", path: "/ml-training/neptune" },
+      { title: "ONNX", path: "/ml-training/onnx" },
+      { title: "PEFT", path: "/ml-training/peft" },
+      { title: "PyTorch Lightning", path: "/ml-training/pytorch-lightning" },
+      { title: "Seldon", path: "/ml-training/seldon" },
+      { title: "Streamlit", path: "/ml-training/streamlit" },
+      { title: "TensorBoard", path: "/ml-training/tensorboard" },
+      { title: "TFX", path: "/ml-training/tfx" },
+      { title: "TFLite", path: "/ml-training/tflite" },
+      { title: "TRL", path: "/ml-training/trl" },
+      { title: "Unsloth", path: "/ml-training/unsloth" },
+      { title: "W&B", path: "/ml-training/wandb" },
+      { title: "W&B Sweeps", path: "/ml-training/wandb-sweeps" },
+    ],
+  },
+  {
+    title: "Cloud & Model Hubs",
+    icon: Cloud,
+    path: "/cloud",
+    children: [
+      { title: "AWS Bedrock", path: "/cloud/aws-bedrock" },
+      { title: "AWS SageMaker", path: "/cloud/aws-sagemaker" },
+      { title: "Azure ML", path: "/cloud/azure-ml" },
+      { title: "Azure OpenAI", path: "/cloud/azure-openai" },
+      { title: "Civitai", path: "/cloud/civitai" },
+      { title: "Google Colab", path: "/cloud/colab" },
+      { title: "GCP Vertex", path: "/cloud/gcp-vertex" },
+      { title: "HF Hub", path: "/cloud/hf-hub" },
+      { title: "HF Spaces", path: "/cloud/hf-spaces" },
+      { title: "Hugging Face", path: "/cloud/huggingface" },
+      { title: "Lambda Cloud", path: "/cloud/lambda-cloud" },
+      { title: "ModelScope", path: "/cloud/modelscope" },
+      { title: "Paperspace", path: "/cloud/paperspace" },
+      { title: "PyTorch Hub", path: "/cloud/pytorch-hub" },
+      { title: "Replicate", path: "/cloud/replicate" },
+      { title: "RunPod", path: "/cloud/runpod" },
+      { title: "TensorFlow Hub", path: "/cloud/tensorflow-hub" },
+      { title: "Titan", path: "/cloud/titan" },
+      { title: "Vertex AI", path: "/cloud/vertex-ai" },
+    ],
+  },
+  {
+    title: "Evaluation & Benchmarking",
+    icon: TestTube,
+    path: "/evaluation",
+    children: [
+      { title: "Arize Phoenix", path: "/evaluation/arize-phoenix" },
+      { title: "Big Bench", path: "/evaluation/big-bench" },
+      { title: "DeepEval", path: "/evaluation/deepeval" },
+      { title: "GPQA", path: "/evaluation/gpqa" },
+      { title: "HELM", path: "/evaluation/helm" },
+      { title: "Human Eval", path: "/evaluation/human-eval" },
+      { title: "LangSmith", path: "/evaluation/langsmith" },
+      { title: "LM Eval", path: "/evaluation/lm-eval" },
+      { title: "MMLU", path: "/evaluation/mmlu" },
+      { title: "Open LLM Leaderboard", path: "/evaluation/open-llm-leaderboard" },
+      { title: "Promptfoo", path: "/evaluation/promptfoo" },
+      { title: "RAGAS", path: "/evaluation/ragas" },
+    ],
+  },
+  {
+    title: "Testing",
+    icon: TestTube,
+    path: "/testing",
+    children: [
+      { title: "Cypress", path: "/testing/cypress" },
+      { title: "DeepEval", path: "/testing/deepeval" },
+      { title: "Jest", path: "/testing/jest" },
+      { title: "Playwright", path: "/testing/playwright" },
+      { title: "Pytest", path: "/testing/pytest" },
+      { title: "Vitest", path: "/testing/vitest" },
+    ],
+  },
+  {
+    title: "Observability & Monitoring",
+    icon: Eye,
+    path: "/observability",
+    children: [
+      { title: "Arize Phoenix", path: "/observability/arize-phoenix" },
+      { title: "Artillery", path: "/observability/artillery" },
+      { title: "Datadog", path: "/observability/datadog" },
+      { title: "Evidently", path: "/observability/evidently" },
+      { title: "Grafana", path: "/observability/grafana" },
+      { title: "Great Expectations", path: "/observability/great-expectations" },
+      { title: "Helicone", path: "/observability/helicone" },
+      { title: "LangSmith", path: "/observability/langsmith" },
+      { title: "Locust", path: "/observability/locust" },
+      { title: "New Relic", path: "/observability/new-relic" },
+      { title: "OpenLIT", path: "/observability/openlit" },
+      { title: "Prometheus", path: "/observability/prometheus" },
+      { title: "Sentry", path: "/observability/sentry" },
+      { title: "Uptime Kuma", path: "/observability/uptime-kuma" },
+    ],
+  },
+  {
+    title: "Security & Ethics",
+    icon: Shield,
+    path: "/security",
+    children: [
+      { title: "Bandit", path: "/security/bandit" },
+      { title: "Data Privacy", path: "/security/data-privacy" },
+      { title: "Dependabot", path: "/security/dependabot" },
+      { title: "GitGuardian", path: "/security/gitguardian" },
+      { title: "Gitleaks", path: "/security/gitleaks" },
+      { title: "Model Cards", path: "/security/model-cards" },
+      { title: "OPA", path: "/security/opa" },
+      { title: "OWASP ZAP", path: "/security/owasp-zap" },
+      { title: "Renovate", path: "/security/renovate" },
+      { title: "Semgrep", path: "/security/semgrep" },
+      { title: "Snyk", path: "/security/snyk" },
+      { title: "Trivy", path: "/security/trivy" },
+      { title: "TruffleHog", path: "/security/trufflehog" },
     ],
   },
   {
     title: "Dev Tools",
-    icon: Code2,
+    icon: Monitor,
     path: "/dev-tools",
     children: [
-      { title: "Node.js", path: "/dev-tools/nodejs" },
+      { title: "Alacritty", path: "/dev-tools/alacritty" },
+      { title: "Android Studio", path: "/dev-tools/android-studio" },
+      { title: "Antigravity", path: "/dev-tools/antigravity" },
+      { title: "Bat", path: "/dev-tools/bat" },
+      { title: "curl", path: "/dev-tools/curl" },
+      { title: "Docker", path: "/dev-tools/docker" },
+      { title: "Emacs", path: "/dev-tools/emacs" },
+      { title: "fd", path: "/dev-tools/fd" },
+      { title: "Figma", path: "/dev-tools/figma" },
+      { title: "fzf", path: "/dev-tools/fzf" },
       { title: "Git", path: "/dev-tools/git" },
+      { title: "GitKraken", path: "/dev-tools/gitkraken" },
+      { title: "GitHub Desktop", path: "/dev-tools/github-desktop" },
+      { title: "GitUI", path: "/dev-tools/gitui" },
+      { title: "Helix", path: "/dev-tools/helix" },
+      { title: "HTTPie", path: "/dev-tools/httpie" },
+      { title: "JetBrains AI", path: "/dev-tools/jetbrains-ai" },
+      { title: "jq", path: "/dev-tools/jq" },
+      { title: "Kite", path: "/dev-tools/kite" },
+      { title: "Lazygit", path: "/dev-tools/lazygit" },
+      { title: "Lapce", path: "/dev-tools/lapce" },
+      { title: "LunarVim", path: "/dev-tools/lunarvim" },
+      { title: "MongoDB", path: "/dev-tools/mongodb" },
+      { title: "Neovim", path: "/dev-tools/neovim" },
+      { title: "Neovim AI", path: "/dev-tools/neovim-ai" },
+      { title: "Node.js", path: "/dev-tools/nodejs" },
+      { title: "npm", path: "/dev-tools/npm" },
+      { title: "OniVim", path: "/dev-tools/onivim" },
+      { title: "pnpm", path: "/dev-tools/pnpm" },
+      { title: "PostgreSQL", path: "/dev-tools/postgresql" },
+      { title: "PowerShell", path: "/dev-tools/powershell" },
+      { title: "PyCharm", path: "/dev-tools/pycharm" },
+      { title: "ripgrep", path: "/dev-tools/ripgrep" },
+      { title: "SourceTree", path: "/dev-tools/sourcetree" },
+      { title: "Sublime Merge", path: "/dev-tools/sublime-merge" },
+      { title: "Sublime Text", path: "/dev-tools/sublime-text" },
+      { title: "TabNine", path: "/dev-tools/tabnine" },
+      { title: "Tabby", path: "/dev-tools/tabby" },
+      { title: "Tig", path: "/dev-tools/tig" },
+      { title: "Vim", path: "/dev-tools/vim" },
       { title: "VS Code", path: "/dev-tools/vscode" },
+      { title: "WebStorm", path: "/dev-tools/webstorm" },
+      { title: "WezTerm", path: "/dev-tools/wezterm" },
+      { title: "wget", path: "/dev-tools/wget" },
+      { title: "Windows Terminal", path: "/dev-tools/windows-terminal" },
+      { title: "WSL", path: "/dev-tools/wsl" },
+      { title: "Zed", path: "/dev-tools/zed" },
+    ],
+  },
+  {
+    title: "DevOps & Infra",
+    icon: FolderTree,
+    path: "/devops",
+    children: [
+      { title: "Ansible", path: "/devops/ansible" },
+      { title: "ArgoCD", path: "/devops/argocd" },
+      { title: "Bun", path: "/devops/bun" },
+      { title: "Consul", path: "/devops/consul" },
+      { title: "Crossplane", path: "/devops/crossplane" },
+      { title: "Deno", path: "/devops/deno" },
+      { title: "Docker", path: "/devops/docker" },
+      { title: "Fly.io", path: "/devops/fly-io" },
+      { title: "GitHub Actions", path: "/devops/github-actions" },
+      { title: "Hasura", path: "/devops/hasura" },
+      { title: "Kubernetes", path: "/devops/kubernetes" },
+      { title: "nvm-windows", path: "/devops/nvm-windows" },
+      { title: "Packer", path: "/devops/packer" },
+      { title: "Railway", path: "/devops/railway" },
+      { title: "Render", path: "/devops/render" },
+      { title: "Terraform", path: "/devops/terraform" },
+      { title: "Vault", path: "/devops/vault" },
+      { title: "Yarn", path: "/devops/yarn" },
+    ],
+  },
+  {
+    title: "Search & Automation",
+    icon: Workflow,
+    path: "/search",
+    children: [
+      { title: "ActivePieces", path: "/search/activepieces" },
+      { title: "Algolia", path: "/search/algolia" },
+      { title: "Elasticsearch", path: "/search/elasticsearch" },
+      { title: "Huginn", path: "/search/huginn" },
+      { title: "Make", path: "/search/make" },
+      { title: "Meilisearch", path: "/search/meilisearch" },
+      { title: "n8n", path: "/search/n8n" },
+      { title: "Solr", path: "/search/solr" },
+      { title: "Tantivy", path: "/search/tantivy" },
+      { title: "Typesense", path: "/search/typesense" },
+      { title: "Vespa", path: "/search/vespa" },
+      { title: "Windmill", path: "/search/windmill" },
+      { title: "Zapier", path: "/search/zapier" },
+    ],
+  },
+  {
+    title: "Package Managers",
+    icon: Package,
+    path: "/package-managers",
+    children: [
+      { title: "apt", path: "/package-managers/apt" },
+      { title: "Bun", path: "/package-managers/bun" },
+      { title: "Cargo", path: "/package-managers/cargo" },
+      { title: "Chocolatey", path: "/package-managers/chocolatey" },
+      { title: "Composer", path: "/package-managers/composer" },
+      { title: "Conda", path: "/package-managers/conda" },
+      { title: "Deno", path: "/package-managers/deno" },
+      { title: "dnf", path: "/package-managers/dnf" },
+      { title: "gem", path: "/package-managers/gem" },
+      { title: "Gradle", path: "/package-managers/gradle" },
+      { title: "Homebrew", path: "/package-managers/homebrew" },
+      { title: "Maven", path: "/package-managers/maven" },
+      { title: "NuGet", path: "/package-managers/nuget" },
+      { title: "pacman", path: "/package-managers/pacman" },
+      { title: "pip", path: "/package-managers/pip" },
+      { title: "Scoop", path: "/package-managers/scoop" },
+      { title: "uv", path: "/package-managers/uv" },
+      { title: "winget", path: "/package-managers/winget" },
+      { title: "Yarn", path: "/package-managers/yarn" },
+    ],
+  },
+  {
+    title: "Utilities",
+    icon: Settings,
+    path: "/utilities",
+    children: [
+      { title: "Argparse", path: "/utilities/argparse" },
+      { title: "Click", path: "/utilities/click" },
+      { title: "Inquirer", path: "/utilities/inquirer" },
+      { title: "Prompts", path: "/utilities/prompts" },
+      { title: "Rich", path: "/utilities/rich" },
+      { title: "Typer", path: "/utilities/typer" },
+    ],
+  },
+  {
+    title: "Documentation",
+    icon: FileText,
+    path: "/documentation",
+    children: [
+      { title: "Astro Docs", path: "/documentation/astro-docs" },
+      { title: "Docusaurus", path: "/documentation/docusaurus" },
+      { title: "GitBook", path: "/documentation/gitbook" },
+      { title: "MDBook", path: "/documentation/mdbook" },
+      { title: "Mintlify", path: "/documentation/mintlify" },
+      { title: "Nextra", path: "/documentation/nextra" },
+      { title: "Readme", path: "/documentation/readme" },
+      { title: "VitePress", path: "/documentation/vitepress" },
+    ],
+  },
+  {
+    title: "Notebooks",
+    icon: Notebook,
+    path: "/notebooks",
+    children: [
+      { title: "DeepNote", path: "/notebooks/deepnote" },
+      { title: "Hex", path: "/notebooks/hex" },
+      { title: "Jupyter", path: "/notebooks/jupyter" },
+      { title: "JupyterLab", path: "/notebooks/jupyterlab" },
+      { title: "Observable", path: "/notebooks/observable" },
+    ],
+  },
+  {
+    title: "Windows 11 Setup",
+    icon: Monitor,
+    path: "/windows-setup",
+    children: [
+      { title: "Debian on WSL", path: "/windows-setup/debian-wsl" },
+      { title: "Dev Home", path: "/windows-setup/dev-home" },
+      { title: "Fedora on WSL", path: "/windows-setup/fedora-wsl" },
+      { title: "Git for Windows", path: "/windows-setup/git-for-windows" },
+      { title: "GitHub Desktop", path: "/windows-setup/github-desktop" },
+      { title: "Hyper-V", path: "/windows-setup/hyper-v" },
+      { title: "Podman Desktop", path: "/windows-setup/podman-desktop" },
+      { title: "PowerToys", path: "/windows-setup/powertoys" },
+      { title: "Sysinternals Suite", path: "/windows-setup/sysinternals" },
+      { title: "Ubuntu on WSL", path: "/windows-setup/ubuntu-wsl" },
+      { title: "Visual Studio 2022", path: "/windows-setup/visual-studio-2022" },
     ],
   },
   {
@@ -52,6 +704,11 @@ const navItems: NavGroup[] = [
     path: "/comparisons",
     children: [
       { title: "AI Coding Tools", path: "/comparisons/ai-coding-tools" },
+      { title: "AI Chat Models", path: "/comparisons/ai-chat-models" },
+      { title: "Vector Databases", path: "/comparisons/vector-databases" },
+      { title: "LLM Runtimes", path: "/comparisons/llm-runtimes" },
+      { title: "Frontend Frameworks", path: "/comparisons/frontend-frameworks" },
+      { title: "Backend Frameworks", path: "/comparisons/backend-frameworks" },
     ],
   },
 ]
@@ -71,15 +728,20 @@ function NavItem({
     if (childActive) setOpen(true)
   }, [childActive])
 
+  const childCount = item.children.length
+  const maxHeight = childCount * 36 + 16
+
   return (
     <div>
       <button
         onClick={() => setOpen(!open)}
+        aria-expanded={open}
+        aria-controls={`nav-group-${item.title}`}
         className={cn(
-          "flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200",
+          "sidebar-link flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium",
           isActive || childActive
-            ? "bg-[#f6f8fa] dark:bg-[#161b22] text-[#1f2328] dark:text-[#e6edf3]"
-            : "text-[#656d76] dark:text-[#8b949e] hover:bg-[#f6f8fa] dark:hover:bg-[#161b22] hover:text-[#1f2328] dark:hover:text-[#e6edf3]",
+            ? "bg-sidebar-accent text-sidebar-accent-foreground"
+            : "text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
         )}
       >
         {item.icon && <item.icon className="h-4 w-4 shrink-0" />}
@@ -92,12 +754,12 @@ function NavItem({
         />
       </button>
       <div
-        className={cn(
-          "ml-2 mt-1 space-y-0.5 overflow-hidden transition-all duration-200",
-          open ? "max-h-96 opacity-100" : "max-h-0 opacity-0",
-        )}
+        id={`nav-group-${item.title}`}
+        role="region"
+        className="overflow-hidden collapsible-content"
+        style={{ maxHeight: open ? `${maxHeight}px` : "0px", opacity: open ? 1 : 0 }}
       >
-        <div className="border-l border-[#d0d7de] dark:border-[#30363d] pl-2">
+        <div className="ml-3 mt-1 space-y-0.5 border-l border-sidebar-border pl-2">
           {item.children.map((child) => {
             const slug = child.path.split("/").pop() || ""
             const ChildIcon = getToolIcon(slug)
@@ -106,11 +768,12 @@ function NavItem({
               <Link
                 key={child.path}
                 to={child.path}
+                aria-current={isChildActive ? "page" : undefined}
                 className={cn(
-                  "flex items-center gap-2 rounded-md px-3 py-1.5 text-sm transition-all duration-150",
+                  "sidebar-link flex items-center gap-2 rounded-md px-3 py-1.5 text-sm",
                   isChildActive
                     ? "bg-primary/10 font-semibold text-primary"
-                    : "text-[#656d76] dark:text-[#8b949e] hover:bg-[#f6f8fa] dark:hover:bg-[#161b22] hover:text-[#1f2328] dark:hover:text-[#e6edf3]",
+                    : "text-sidebar-foreground/60 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
                 )}
               >
                 <ChildIcon className="h-3.5 w-3.5 shrink-0" />
@@ -128,29 +791,30 @@ export function Sidebar() {
   const location = useLocation()
 
   return (
-    <aside className="hidden w-64 shrink-0 border-r border-[#d0d7de] dark:border-[#30363d] bg-sidebar-background text-sidebar-foreground lg:block">
+    <aside className="hidden w-64 shrink-0 border-r border-sidebar-border bg-sidebar-background text-sidebar-foreground lg:block">
       <div className="flex h-full flex-col">
         <Link
           to="/"
-          className="flex items-center gap-2.5 border-b border-[#d0d7de] dark:border-[#30363d] px-4 py-4 font-semibold text-[#1f2328] dark:text-[#e6edf3] transition-colors hover:bg-[#f6f8fa] dark:hover:bg-[#161b22]"
+          className="sidebar-link flex items-center gap-2.5 border-b border-sidebar-border px-4 py-4 font-semibold"
         >
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-blue-500 text-white">
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-blue-500 text-white shadow-sm">
             <BookOpen className="h-4 w-4" />
           </div>
           <span className="bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-transparent">IAI</span>
         </Link>
-        <nav className="flex-1 space-y-1 overflow-y-auto p-3">
+        <nav className="flex-1 space-y-1 overflow-y-auto p-3" aria-label="Main navigation">
           {topLinks.map((link) => {
             const isActive = location.pathname === link.path
             return (
               <Link
                 key={link.path}
                 to={link.path}
+                aria-current={isActive ? "page" : undefined}
                 className={cn(
-                  "flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-150",
+                  "sidebar-link flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium",
                   isActive
-                    ? "bg-[#f6f8fa] dark:bg-[#161b22] text-[#1f2328] dark:text-[#e6edf3]"
-                    : "text-[#656d76] dark:text-[#8b949e] hover:bg-[#f6f8fa] dark:hover:bg-[#161b22] hover:text-[#1f2328] dark:hover:text-[#e6edf3]",
+                    ? "bg-sidebar-accent text-sidebar-accent-foreground"
+                    : "text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
                 )}
               >
                 <link.icon className="h-4 w-4 shrink-0" />
@@ -158,17 +822,18 @@ export function Sidebar() {
               </Link>
             )
           })}
-          <div className="my-2 border-t border-[#d0d7de] dark:border-[#30363d]" />
+          <div className="my-2 border-t border-sidebar-border" />
           {navItems.map((item) => (
             <NavItem
-              key={item.path}
+              key={item.title}
               item={item}
               isActive={location.pathname.startsWith(item.path)}
             />
           ))}
         </nav>
-        <div className="border-t border-[#d0d7de] dark:border-[#30363d] p-3">
+        <div className="border-t border-sidebar-border p-3 flex items-center gap-2">
           <ThemeToggle />
+          <StarThemeToggle />
         </div>
       </div>
     </aside>

@@ -1,0 +1,30 @@
+---
+title: "Apache Spark"
+category: "data-processing"
+icon: "zap"
+difficulty: "advanced"
+tags: ["creative", "cli", "opensource", "free", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Apache Spark** là unified analytics engine cho large-scale data processing. Hỗ trợ batch và streaming data.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install pyspark`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`from pyspark.sql import SparkSession
+spark = SparkSession.builder.appName("MyApp").getOrCreate()
+df = spark.read.csv("data.csv", header=True, inferSchema=True)
+df.show()
+df.filter(df["age"] > 25).show()
+spark.stop()`} />
+
+## Liên kết
+
+- [Apache Spark](https://spark.apache.org)

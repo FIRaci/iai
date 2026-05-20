@@ -1,0 +1,29 @@
+---
+title: "Silero VAD"
+category: "voice-audio"
+icon: "mic"
+difficulty: "intermediate"
+tags: ["creative", "cli", "opensource", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Silero VAD** là voice activity detection model, phát hiện khi nào có giọng nói trong audio. Hữu ích cho preprocessing và real-time applications.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install silero-vad`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`from silero_vad import load_silero_vad, read_audio, get_speech_timestamps
+model = load_silero_vad()
+wav = read_audio("audio.wav")
+speech_timestamps = get_speech_timestamps(wav, model)
+print(speech_timestamps)`} />
+
+## Liên kết
+
+- [Silero VAD GitHub](https://github.com/snakers4/silero-vad)

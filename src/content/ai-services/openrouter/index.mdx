@@ -1,0 +1,35 @@
+---
+title: "OpenRouter"
+category: "ai-services"
+icon: "cloud"
+difficulty: "beginner"
+tags: ["creative", "cli", "autocomplete", "ide", "cloud", "multi-model", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**OpenRouter** là unified API cho accessing multiple AI models. Một API key cho nhiều providers: OpenAI, Anthropic, Google, v.v.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install openai`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`from openai import OpenAI
+client = OpenAI(
+    base_url="https://openrouter.ai/api/v1",
+    api_key="your-api-key"
+)
+response = client.chat.completions.create(
+    model="mistralai/mistral-7b-instruct",
+    messages=[{"role": "user", "content": "Hello"}]
+)
+print(response.choices[0].message.content)`} />
+
+## Liên kết
+
+- [OpenRouter](https://openrouter.ai)
+- [Docs](https://openrouter.ai/docs)

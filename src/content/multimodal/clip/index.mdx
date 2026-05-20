@@ -1,0 +1,43 @@
+---
+title: "CLIP"
+category: "multimodal"
+icon: "image"
+difficulty: "intermediate"
+tags: ["creative", "cli", "opensource", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**CLIP** (OpenAI) là model kết hợp vision và language, học mối quan hệ giữa image và text. Dùng cho image classification, search, và zero-shot tasks.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install openai-clip`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`import clip
+import torch
+from PIL import Image
+
+device = "cuda" if torch.cuda.is_available() else "cpu"
+model, preprocess = clip.load("ViT-B/32", device=device)
+image = preprocess(Image.open("image.jpg")).unsqueeze(0).to(device)
+text = clip.tokenize(["a photo of a cat", "a photo of a dog"]).to(device)
+
+with torch.no_grad():
+    image_features = model.encode_image(image)
+    text_features = model.encode_text(text)
+    logits_per_image, logits_per_text = model(image, text)`} />
+
+## Tips
+
+<Note type="tip">
+**Zero-shot classification:** CLIP có thể classify images vào categories chưa từng thấy trong training.
+</Note>
+
+## Liên kết
+
+- [CLIP GitHub](https://github.com/openai/CLIP)

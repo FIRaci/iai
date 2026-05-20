@@ -1,0 +1,33 @@
+---
+title: "Hugging Face Accelerate"
+category: "tools"
+icon: "zap"
+difficulty: "intermediate"
+tags: ["cli", "opensource", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Accelerate** từ Hugging Face là library cho easy distributed training. Run Pytorch code trên any setup (CPU, GPU, TPU, multi-GPU).
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install accelerate`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`from accelerate import Accelerator
+accelerator = Accelerator()
+model, optimizer, dataloader = accelerator.prepare(model, optimizer, dataloader)
+for batch in dataloader:
+    optimizer.zero_grad()
+    outputs = model(batch["input"])
+    loss = loss_fn(outputs, batch["label"])
+    accelerator.backward(loss)
+    optimizer.step()`} />
+
+## Liên kết
+
+- [Accelerate GitHub](https://github.com/huggingface/accelerate)

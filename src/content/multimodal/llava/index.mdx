@@ -1,0 +1,34 @@
+---
+title: "LLaVA"
+category: "multimodal"
+icon: "eye"
+difficulty: "intermediate"
+tags: ["creative", "cli", "opensource", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**LLaVA** là large language-and-vision assistant, cho phép chat với images. Kết hợp vision encoder với LLM để hiểu và mô tả hình ảnh.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`git clone https://github.com/haotian-liu/LLaVA
+cd LLaVA
+pip install -e .`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`from llava.model.builder import load_pretrained_model
+from llava.mm_utils import get_model_name_from_path
+
+model_name = get_model_name_from_path("liuhaotian/llava-v1.5-7b")
+tokenizer, model, image_processor, context_len = load_pretrained_model(
+    "liuhaotian/llava-v1.5-7b", None, model_name
+)`} />
+
+## Liên kết
+
+- [LLaVA GitHub](https://github.com/haotian-liu/LLaVA)
+- [Demo](https://llava.hliu.cc)

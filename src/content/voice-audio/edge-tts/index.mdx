@@ -1,0 +1,36 @@
+---
+title: "Edge TTS"
+category: "voice-audio"
+icon: "volume2"
+difficulty: "beginner"
+tags: ["creative", "cli", "opensource", "cloud", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Edge TTS** sử dụng Microsoft Edge online text-to-speech service, miễn phí và chất lượng cao.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install edge-tts`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`edge-tts --text "Hello world" --write-media output.mp3`} />
+
+### Python API
+
+<CodeBlock language="python" code={`import edge_tts
+import asyncio
+
+async def main():
+    tts = edge_tts.Communicate("Hello world", "en-US-AriaNeural")
+    await tts.save("output.mp3")
+
+asyncio.run(main())`} />
+
+## Liên kết
+
+- [Edge TTS GitHub](https://github.com/rany2/edge-tts)

@@ -1,0 +1,67 @@
+DANH SÁCH CÔNG CỤ ĐƯỢC HƯỚNG DẪN TRÊN IAI
+============================================
+
+AI CODING (6)
+-------------
+1. Claude Code CLI
+2. Cursor
+3. GitHub Copilot
+4. Devin
+5. Windsurf
+6. OpenClaw
+
+AI CREATIVE (6)
+---------------
+7. ChatGPT / OpenAI
+8. Midjourney
+9. DALL-E
+10. Stable Diffusion
+11. Leonardo AI
+12. Runway ML
+
+AI PRODUCTIVITY (5)
+-------------------
+13. Perplexity AI
+14. Google Gemini
+15. Notion AI
+16. Jasper AI
+17. ElevenLabs
+
+IDEs & EDITORS (7)
+------------------
+18. VS Code
+19. Antigravity
+20. Zed
+21. Sublime Text
+22. WebStorm
+23. PyCharm
+24. Android Studio
+
+DEV ESSENTIALS (5)
+------------------
+25. Node.js
+26. Git
+27. Docker Desktop
+28. npm
+29. pnpm
+
+DEV UTILITIES (6)
+-----------------
+30. Postman
+31. Figma
+32. GitHub Desktop
+33. WSL
+34. PowerShell 7
+35. Windows Terminal
+
+DATABASES (2)
+-------------
+36. MongoDB
+37. PostgreSQL
+
+SO SÁNH (1)
+-----------
+38. So sánh AI Coding Tools
+
+TỔNG CỘNG: 38 công cụ
+=====================

@@ -1,0 +1,73 @@
+---
+title: "Llama.cpp"
+category: "llm-runtimes"
+icon: "cpu"
+difficulty: "intermediate"
+tags: ["cli", "opensource", "api", "local"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Llama.cpp** là local LLM runner tối ưu cho CPU/GPU, viết bằng C/C++. Cho phép chạy các model Llama, Mistral, và nhiều model khác trên máy cá nhân mà không cần internet.
+</Note>
+
+## Cài đặt trên Windows 11
+
+### Phương pháp 1: Tải binary (khuyến nghị)
+
+1. Truy cập [GitHub Releases](https://github.com/ggerganov/llama.cpp/releases)
+2. Tải bản `llama-...-bin-win-...` phù hợp
+3. Giải nén và chạy từ thư mục
+
+### Phương pháp 2: Build từ source
+
+<CodeBlock language="powershell" code={`git clone https://github.com/ggerganov/llama.cpp
+cd llama.cpp
+cmake -B build
+cmake --build build --config Release`} />
+
+## Sử dụng cơ bản
+
+### Tải model
+
+Tải model GGUF từ [Hugging Face](https://huggingface.co):
+
+<CodeBlock language="powershell" code={`# Ví dụ: Llama 3 8B
+# Tải từ Hugging Face hoặc Civitai`} />
+
+### Chạy model
+
+<CodeBlock language="powershell" code={`.\build\bin\Release\llama-cli.exe -m model.gguf -p "Hello, how are you?" -n 256`} />
+
+### Server mode
+
+<CodeBlock language="powershell" code={`.\build\bin\Release\llama-server.exe -m model.gguf --port 8080`} />
+
+## Tips sử dụng
+
+<Note type="tip">
+**GPU offload:** Dùng `-ngl 999` để offload toàn bộ layers lên GPU (nếu có NVIDIA GPU).
+</Note>
+
+<Note type="tip">
+**Context size:** Dùng `-c 4096` hoặc cao hơn tùy model hỗ trợ.
+</Note>
+
+## Khắc phục sự cố
+
+### "Failed to load model"
+
+- Kiểm tra file model không bị corrupt
+- Đảm bảo dùng đúng format GGUF (không dùng GGML cũ)
+
+### Chạy chậm trên CPU
+
+- Dùng `-ngl` để offload lên GPU
+- Giảm context size: `-c 2048`
+- Dùng model quantized (Q4_K_M thay vì Q8_0)
+
+## Liên kết
+
+- [llama.cpp GitHub](https://github.com/ggerganov/llama.cpp)
+- [Hugging Face Models](https://huggingface.co/models?search=gguf)

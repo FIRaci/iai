@@ -1,0 +1,40 @@
+---
+title: "Docker"
+category: "devops"
+icon: "container"
+difficulty: "intermediate"
+tags: ["cli", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Docker** là containerization platform, đóng gói applications và dependencies vào containers cho consistent deployment.
+</Note>
+
+## Cài đặt
+
+Tải từ [docker.com](https://www.docker.com/products/docker-desktop)
+
+## Sử dụng
+
+### Dockerfile
+
+<CodeBlock language="dockerfile" code={`FROM python:3.11-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY . .
+CMD ["python", "app.py"]`} />
+
+### Commands
+
+<CodeBlock language="powershell" code={`docker build -t my-app .
+docker run -p 8000:8000 my-app
+docker ps
+docker logs my-app`} />
+
+## Liên kết
+
+- [Docker](https://www.docker.com)
+- [Docs](https://docs.docker.com)

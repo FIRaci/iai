@@ -1,0 +1,150 @@
+---
+title: "Stable Diffusion"
+category: "ai-tools"
+icon: "sparkles"
+difficulty: "intermediate"
+tags: ["creative", "cli", "extension", "opensource", "autocomplete", "cloud", "api", "agent", "local"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Stable Diffusion** là AI tạo ảnh mã nguồn mở, có thể chạy local trên máy tính. Miễn phí, không giới hạn, riêng tư — không cần internet sau khi cài đặt. Hỗ trợ nhiều model và tùy chỉnh sâu.
+</Note>
+
+## Cài đặt trên Windows 11
+
+### Phương pháp 1: Automatic1111 (WebUI) — Khuyến nghị
+
+<StepBlock number={1} title="Cài đặt Python 3.10+">
+Tải từ [python.org](https://python.org), chọn "Add to PATH" khi cài.
+</StepBlock>
+
+<StepBlock number={2} title="Cài đặt Git">
+Tải từ [git-scm.com](https://git-scm.com)
+</StepBlock>
+
+<StepBlock number={3} title="Clone WebUI">
+<CodeBlock language="powershell">git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui
+cd stable-diffusion-webui</CodeBlock>
+</StepBlock>
+
+<StepBlock number={4} title="Chạy WebUI">
+<CodeBlock language="powershell">.\webui-user.bat</CodeBlock>
+Lần đầu chạy sẽ tải model và dependencies — có thể mất 10-30 phút.
+</StepBlock>
+
+### Phương pháp 2: ComfyUI (Node-based)
+
+Alternativetự động1111, dùng node-based workflow. Phù hợp cho advanced users muốn control chi tiết pipeline.
+
+<CodeBlock language="powershell">git clone https://github.com/comfyanonymous/ComfyUI
+cd ComfyUI
+.\run_nvidia_gpu.bat</CodeBlock>
+
+### Yêu cầu hệ thống
+
+| Yêu cầu | Tối thiểu | Khuyến nghị |
+|---------|-----------|-------------|
+| GPU | NVIDIA 4GB VRAM | NVIDIA 8GB+ VRAM (RTX 3060+) |
+| RAM | 8GB | 16GB+ |
+| Storage | 10GB | 50GB+ (cho models) |
+| OS | Windows 10/11 | Windows 11 |
+
+<Note type="warning">
+AMD GPU và Intel GPU hỗ trợ hạn chế. NVIDIA là lựa chọn tốt nhất cho Stable Diffusion.
+</Note>
+
+## Sử dụng cơ bản
+
+### Bước 1: Tải model
+
+1. Truy cập [Civitai](https://civitai.com)
+2. Tìm model phù hợp:
+   - **SDXL:** Đa dụng, chất lượng cao
+   - **Juggernaut XL:** Realistic photos
+   - **Realistic Vision:** Chân thực
+   - **DreamShaper:** Artistic, illustration
+3. Tải file `.safetensors` vào thư mục `models/Stable-diffusion/`
+
+### Bước 2: Generate ảnh đầu tiên
+
+1. Mở WebUI tại `http://127.0.0.1:7860`
+2. **Prompt:** Mô tả ảnh muốn tạo (tiếng Anh)
+   - Ví dụ: "A beautiful sunset over mountains, photorealistic, 8k"
+3. **Negative Prompt:** Những gì KHÔNG muốn
+   - Ví dụ: "blurry, low quality, distorted"
+4. Chọn **Model** từ dropdown
+5. Nhấn **Generate**
+
+### Bước 3: Điều chỉnh thông số
+
+| Thông số | Mô tả | Khuyến nghị |
+|----------|-------|-------------|
+| Sampling Steps | Số bước generate | 20-30 |
+| Sampler | Thuật toán sampling | DPM++ 2M Karras |
+| CFG Scale | Độ tuân thủ prompt | 7-9 |
+| Width/Height | Kích thước ảnh | 512x512 (SD 1.5), 1024x1024 (SDXL) |
+| Batch Count | Số ảnh generate | 1-4 |
+
+### Bước 4: Img2Img và Inpainting
+
+- **Img2Img:** Upload ảnh có sẵn → AI modify theo prompt
+- **Inpainting:** Tô vùng muốn sửa → AI fill vùng đó
+- **Outpainting:** Mở rộng ảnh ra ngoài khung
+
+## Tips sử dụng
+
+<Note type="tip">
+**Prompt engineering:** Cấu trúc prompt tốt: `[subject], [style], [lighting], [camera angle], [quality tags]`. Ví dụ: "portrait of a woman, oil painting style, golden hour lighting, shallow depth of field, masterpiece, best quality"
+</Note>
+
+<Note type="tip">
+**Negative prompts:** Luôn dùng negative prompts để loại bỏ artifacts: "ugly, blurry, low quality, distorted, deformed, extra limbs, bad anatomy"
+</Note>
+
+<Note type="tip">
+**Model management:** Dùng extension "Civitai Helper" để tự động tải và quản lý models từ Civitai.
+</Note>
+
+## Khắc phục sự cố
+
+### "CUDA out of memory"
+
+- Giảm kích thước ảnh (512x512 thay vì 1024x1024)
+- Giảm batch size xuống 1
+- Thêm `--medvram` hoặc `--lowvram` vào `webui-user.bat`
+- Đóng các ứng dụng dùng GPU khác
+
+### WebUI không khởi động
+
+- Kiểm tra Python version (cần 3.10.x)
+- Xóa thư mục `venv` và chạy lại `webui-user.bat` để reinstall
+- Kiểm tra GPU driver đã cập nhật chưa
+
+### Ảnh bị distorted / extra limbs
+
+- Tăng CFG Scale lên 8-10
+- Thêm negative prompt: "extra limbs, bad anatomy, deformed"
+- Thử model khác — một số model tốt hơn cho human subjects
+
+### Generation quá chậm
+
+- Dùng GPU NVIDIA (AMD/Intel chậm hơn nhiều)
+- Giảm sampling steps xuống 15-20
+- Dùng sampler nhanh hơn: Euler a, DPM++ SDE
+- Upgrade GPU hoặc dùng cloud service (RunPod, Lambda Labs)
+
+### Model không load được
+
+- Kiểm tra file `.safetensors` không bị corrupt (so sánh hash)
+- Đảm bảo file trong đúng thư mục `models/Stable-diffusion/`
+- Restart WebUI sau khi thêm model mới
+
+## Liên kết
+
+- [Stable Diffusion](https://stability.ai)
+- [Automatic1111 WebUI](https://github.com/AUTOMATIC1111/stable-diffusion-webui)
+- [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
+- [Civitai Models](https://civitai.com)
+- [OpenArt Prompts](https://openart.ai)

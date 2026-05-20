@@ -1,0 +1,37 @@
+---
+title: "Seldon Core"
+category: "deployment"
+icon: "package"
+difficulty: "advanced"
+tags: ["creative", "cli", "opensource", "cloud", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Seldon Core** là Kubernetes-native model serving platform. Hỗ trợ A/B testing, canary deployments, và monitoring.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`helm install seldon-core seldon-core-operator --repo https://storage.googleapis.com/seldon-charts`} />
+
+## Sử dụng
+
+Deploy model qua Kubernetes manifest:
+
+<CodeBlock language="yaml" code={`apiVersion: machinelearning.seldon.io/v1
+kind: SeldonDeployment
+metadata:
+  name: my-model
+spec:
+  predictors:
+  - name: default
+    graph:
+      name: classifier
+      modelUri: gs://my-bucket/model`} />
+
+## Liên kết
+
+- [Seldon Core](https://www.seldon.io)
+- [GitHub](https://github.com/SeldonIO/seldon-core)

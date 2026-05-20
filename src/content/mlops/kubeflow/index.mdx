@@ -1,0 +1,31 @@
+---
+title: "Kubeflow"
+category: "mlops"
+icon: "container"
+difficulty: "advanced"
+tags: ["cli", "opensource", "cloud", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Kubeflow** là ML toolkit cho Kubernetes, giúp deploy và manage ML pipelines trên cloud infrastructure.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`# Deploy trên Kubernetes
+kubectl apply -k github.com/kubeflow/manifests.git`} />
+
+## Sử dụng
+
+Kubeflow cung cấp:
+- **Pipelines:** Orchestrated ML workflows
+- **Katib:** Hyperparameter tuning
+- **TFJob/PyTorchJob:** Distributed training
+- **KFServing:** Model serving
+
+## Liên kết
+
+- [Kubeflow](https://www.kubeflow.org)
+- [GitHub](https://github.com/kubeflow/kubeflow)

@@ -1,0 +1,29 @@
+---
+title: "SQLite"
+category: "databases"
+icon: "database"
+difficulty: "beginner"
+tags: ["creative", "opensource", "autocomplete", "api", "local"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**SQLite** là embedded SQL database engine, lightweight và serverless. Perfect cho local development và small apps.
+</Note>
+
+## Cài đặt
+
+SQLite đã có sẵn trong Python:
+
+<CodeBlock language="python" code={`import sqlite3
+conn = sqlite3.connect("my.db")
+cursor = conn.cursor()
+cursor.execute("CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT)")
+cursor.execute("INSERT INTO users (name) VALUES ('John')")
+conn.commit()
+conn.close()`} />
+
+## Liên kết
+
+- [SQLite](https://www.sqlite.org)

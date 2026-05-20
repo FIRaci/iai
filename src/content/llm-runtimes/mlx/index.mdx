@@ -1,0 +1,28 @@
+---
+title: "MLX"
+category: "llm-runtimes"
+icon: "cpu"
+difficulty: "intermediate"
+tags: ["creative", "cli", "opensource", "api", "local"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**MLX** là machine learning framework từ Apple, tối ưu cho Apple Silicon (M1/M2/M3). Chạy LLMs locally trên Mac với hiệu suất cao.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install mlx-llm`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`from mlx_llm import generate
+output = generate("mistralai/Mistral-7B-v0.1", "Hello, how are you?")
+print(output)`} />
+
+## Liên kết
+
+- [MLX GitHub](https://github.com/ml-explore/mlx)
+- [MLX LLM](https://github.com/Blaizzy/mlx-llm)

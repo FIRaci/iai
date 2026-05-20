@@ -1,0 +1,31 @@
+---
+title: "Replicate"
+category: "ai-services"
+icon: "cloud"
+difficulty: "beginner"
+tags: ["cli", "autocomplete", "cloud", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Replicate** là platform cho running ML models via API. Truy cập hàng ngàn models mà không cần quản lý infrastructure.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install replicate`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`import replicate
+output = replicate.run(
+    "stability-ai/stable-diffusion",
+    input={"prompt": "a cat in space"}
+)
+print(output)`} />
+
+## Liên kết
+
+- [Replicate](https://replicate.com)
+- [Docs](https://replicate.com/docs)

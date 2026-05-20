@@ -1,0 +1,37 @@
+---
+title: "Modal"
+category: "deployment"
+icon: "cloud"
+difficulty: "intermediate"
+tags: ["cli", "cloud", "api", "local"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Modal** là serverless platform cho Python applications. Deploy code với GPU support trong vài giây.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install modal`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`import modal
+app = modal.App("my-app")
+
+@app.function(gpu="T4")
+def run_inference(text: str) -> str:
+    # GPU code here
+    return f"Processed: {text}"
+
+@app.local_entrypoint()
+def main():
+    result = run_inference.remote("Hello world")
+    print(result)`} />
+
+## Liên kết
+
+- [Modal](https://modal.com)
+- [Docs](https://modal.com/docs)

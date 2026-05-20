@@ -1,0 +1,63 @@
+---
+title: "Ollama"
+category: "llm-runtimes"
+icon: "cpu"
+difficulty: "beginner"
+tags: ["creative", "cli", "opensource", "cloud", "api", "local"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Ollama** là local LLM manager cho Mac/Windows/Linux. Cài đặt và chạy LLM chỉ với 1 lệnh. Hỗ trợ Llama, Mistral, CodeLlama và nhiều model khác.
+</Note>
+
+## Cài đặt
+
+### Windows
+
+1. Tải từ [ollama.com](https://ollama.com/download)
+2. Chạy installer
+3. Mở PowerShell và kiểm tra:
+
+<CodeBlock language="powershell" code={`ollama --version`} />
+
+## Sử dụng cơ bản
+
+### Chạy model
+
+<CodeBlock language="powershell" code={`ollama run llama3
+ollama run mistral
+ollama run codellama`} />
+
+### API
+
+<CodeBlock language="powershell" code={`curl http://localhost:11434/api/generate -d '{
+  "model": "llama3",
+  "prompt": "Why is the sky blue?"
+}'`} />
+
+### Quản lý models
+
+<CodeBlock language="powershell" code={`ollama list        # Xem models đã tải
+ollama pull llama3  # Tải model mới
+ollama rm llama3    # Xóa model`} />
+
+## Tips
+
+<Note type="tip">
+**Custom models:** Tạo Modelfile để customize system prompt và parameters.
+</Note>
+
+## Khắc phục sự cố
+
+### "connection refused"
+
+- Đảm bảo Ollama service đang chạy (kiểm tra system tray)
+- Restart Ollama service
+
+## Liên kết
+
+- [Ollama](https://ollama.com)
+- [Model Library](https://ollama.com/library)
+- [GitHub](https://github.com/ollama/ollama)

@@ -1,0 +1,92 @@
+---
+title: "PostgreSQL"
+category: "dev-tools"
+icon: "database"
+difficulty: "intermediate"
+tags: ["creative", "cli", "extension", "autocomplete", "api", "local"]
+---
+
+## Tổng quan
+
+<Note type="info">
+PostgreSQL là relational database mã nguồn mở, mạnh mẽ và tuân thủ chuẩn SQL. Phù hợp cho ứng dụng enterprise và complex queries.
+</Note>
+
+## Cài đặt trên Windows 11
+
+### Bước 1: Tải PostgreSQL
+
+Truy cập [postgresql.org/download](https://postgresql.org/download/windows) và tải bản Windows.
+
+### Bước 2: Cài đặt
+
+1. Chạy installer
+2. Chọn components: PostgreSQL Server, pgAdmin 4, Command Line Tools
+3. Đặt password cho user `postgres`
+4. Port mặc định: 5432
+
+### Bước 3: Kiểm tra
+
+<CodeBlock language="powershell">psql --version
+pgAdmin4</CodeBlock>
+
+## Sử dụng cơ bản
+
+### Kết nối với psql
+
+<CodeBlock language="powershell">psql -U postgres</CodeBlock>
+
+### Các lệnh cơ bản
+
+<CodeBlock language="sql" code={`-- List databases
+\l
+
+-- Create database
+CREATE DATABASE mydb;
+
+-- Connect to database
+\c mydb
+
+-- Create table
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Insert data
+INSERT INTO users (name, email) VALUES ('John', 'john@example.com');
+
+-- Query data
+SELECT * FROM users;
+SELECT name, email FROM users WHERE id > 1;
+
+-- Update data
+UPDATE users SET name = 'Jane' WHERE id = 1;
+
+-- Delete data
+DELETE FROM users WHERE id = 1;`} />
+
+### pgAdmin 4
+
+pgAdmin là GUI để quản lý PostgreSQL:
+- Mở pgAdmin 4 từ Start Menu
+- Kết nối với server (localhost:5432)
+- Quản lý databases, tables, queries qua giao diện
+
+## Tips sử dụng
+
+<Note type="tip">
+**Extensions:** PostgreSQL hỗ trợ nhiều extensions hữu ích như PostGIS (geospatial), pgcrypto (encryption).
+</Note>
+
+<Note type="tip">
+**Backup:** Dùng `pg_dump` để backup database: `pg_dump -U postgres mydb &gt; backup.sql`
+</Note>
+
+## Liên kết
+
+- [PostgreSQL](https://postgresql.org)
+- [pgAdmin](https://pgadmin.org)
+- [PostgreSQL Docs](https://postgresql.org/docs)

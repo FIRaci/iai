@@ -1,0 +1,40 @@
+---
+title: "vLLM"
+category: "llm-runtimes"
+icon: "zap"
+difficulty: "intermediate"
+tags: ["creative", "cli", "opensource", "cloud", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**vLLM** là high-performance LLM serving engine, tối ưu cho production deployment. Hỗ trợ continuous batching và PagedAttention cho throughput cao.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install vllm`} />
+
+## Sử dụng
+
+### API Server
+
+<CodeBlock language="powershell" code={`python -m vllm.entrypoints.openai.api_server --model mistralai/Mistral-7B-v0.1`} />
+
+### Python API
+
+<CodeBlock language="python" code={`from vllm import LLM
+llm = LLM(model="mistralai/Mistral-7B-v0.1")
+outputs = llm.generate("Hello, how are you?")`} />
+
+## Tips
+
+<Note type="tip">
+**GPU required:** vLLM cần NVIDIA GPU với CUDA support.
+</Note>
+
+## Liên kết
+
+- [vLLM GitHub](https://github.com/vllm-project/vllm)
+- [Docs](https://docs.vllm.ai)

@@ -1,0 +1,32 @@
+---
+title: "Weights & Biases"
+category: "mlops"
+icon: "activity"
+difficulty: "intermediate"
+tags: ["cli", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Weights & Biases** (W&B) là experiment tracking và visualization platform cho ML. Theo dõi experiments, visualize results, và collaborate với team.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install wandb`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`import wandb
+wandb.init(project="my-project")
+wandb.config.learning_rate = 0.01
+for epoch in range(10):
+    loss = train_epoch()
+    wandb.log({"loss": loss, "epoch": epoch})
+wandb.finish()`} />
+
+## Liên kết
+
+- [Weights & Biases](https://wandb.ai)
+- [Docs](https://docs.wandb.ai)

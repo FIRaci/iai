@@ -1,0 +1,27 @@
+---
+title: "ctranslate2"
+category: "llm-runtimes"
+icon: "cpu"
+difficulty: "advanced"
+tags: ["cli", "opensource", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**CTranslate2** là fast inference engine cho transformer models, hỗ trợ translation và text generation. Tối ưu cho CPU và GPU.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install ctranslate2`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`import ctranslate2
+translator = ctranslate2.Translator("model_dir")
+results = translator.translate_batch([["Hello", "world"]])`} />
+
+## Liên kết
+
+- [CTranslate2 GitHub](https://github.com/OpenNMT/CTranslate2)

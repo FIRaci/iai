@@ -1,0 +1,32 @@
+---
+title: "Together AI"
+category: "ai-services"
+icon: "cloud"
+difficulty: "beginner"
+tags: ["creative", "cli", "autocomplete", "cloud", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Together AI** là cloud platform cho running và fine-tuning LLMs. Hỗ trợ nhiều open-source models với API.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install together`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`from together import Together
+client = Together()
+response = client.chat.completions.create(
+    model="mistralai/Mistral-7B-Instruct-v0.1",
+    messages=[{"role": "user", "content": "Hello"}]
+)
+print(response.choices[0].message.content)`} />
+
+## Liên kết
+
+- [Together AI](https://together.ai)
+- [Docs](https://docs.together.ai)

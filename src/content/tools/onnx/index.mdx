@@ -1,0 +1,38 @@
+---
+title: "ONNX"
+category: "tools"
+icon: "package"
+difficulty: "intermediate"
+tags: ["cli", "opensource", "api"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**ONNX** (Open Neural Network Exchange) là open format cho ML models. Cho phép interchange giữa frameworks (PyTorch, TensorFlow, v.v.).
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install onnx onnxruntime`} />
+
+## Sử dụng
+
+### Export từ PyTorch
+
+<CodeBlock language="python" code={`import torch
+import torchvision
+model = torchvision.models.resnet18()
+dummy_input = torch.randn(1, 3, 224, 224)
+torch.onnx.export(model, dummy_input, "model.onnx")`} />
+
+### Inference
+
+<CodeBlock language="python" code={`import onnxruntime as ort
+sess = ort.InferenceSession("model.onnx")
+result = sess.run(None, {"input": dummy_input.numpy()})`} />
+
+## Liên kết
+
+- [ONNX](https://onnx.ai)
+- [GitHub](https://github.com/onnx/onnx)
