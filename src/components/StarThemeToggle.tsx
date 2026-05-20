@@ -16,14 +16,14 @@ export function StarThemeToggle() {
       aria-label={isStar ? "Disable star theme" : "Enable star theme"}
       title={isStar ? "Tắt theme sao" : "Bật theme sao"}
       className={cn(
-        "theme-toggle text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all duration-300",
+        "theme-toggle text-muted-foreground hover:bg-accent hover:text-accent-foreground",
         isStar && "text-sky-400 hover:text-sky-300"
       )}
     >
       <span className="relative h-4 w-4">
         <Sparkles
           className={cn(
-            "h-4 w-4 absolute inset-0 transition-all duration-300",
+            "h-4 w-4 absolute inset-0",
             isStar && "animate-pulse-glow"
           )}
         />
