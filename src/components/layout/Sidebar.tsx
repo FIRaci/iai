@@ -10,8 +10,6 @@ import {
   Palette,
 } from "lucide-react"
 import { useState, useEffect } from "react"
-import { ThemeToggle } from "@/components/ThemeToggle"
-import { StarThemeToggle } from "@/components/StarThemeToggle"
 import { getToolIcon } from "@/lib/icons"
 
 const topLinks = [
@@ -653,10 +651,6 @@ export function Sidebar() {
             />
           ))}
         </nav>
-        <div className="border-t border-sidebar-border p-3 flex items-center gap-2">
-          <ThemeToggle />
-          <StarThemeToggle />
-        </div>
       </div>
     </aside>
   )

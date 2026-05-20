@@ -5,7 +5,6 @@ import { SearchDialog } from "@/components/SearchDialog"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Sidebar } from "./Sidebar"
 import { Breadcrumbs } from "./Breadcrumbs"
-import { ThemeToggle } from "@/components/ThemeToggle"
 
 export function Header() {
   const [searchOpen, setSearchOpen] = useState(false)
@@ -28,8 +27,6 @@ export function Header() {
       </div>
 
       <div className="flex-1" />
-
-      <ThemeToggle />
 
       <Button
         variant="outline"

@@ -3,8 +3,6 @@
 @plugin 'tailwindcss-animate';
 @plugin '@tailwindcss/typography';
 
-@custom-variant dark (&:is(.dark *));
-
 /* ===== Design Tokens ===== */
 :root {
   --background: oklch(1 0 0);
@@ -35,88 +33,6 @@
   --sidebar-accent-foreground: oklch(0.205 0.042 265.755);
   --sidebar-border: oklch(0.922 0.004 286.375);
   --sidebar-ring: oklch(0.708 0.015 286.375);
-}
-
-.dark {
-  --background: oklch(0.12 0.02 265);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.14 0.02 265);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.14 0.02 265);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.65 0.2 260);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.22 0.03 265);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.22 0.03 265);
-  --muted-foreground: oklch(0.72 0.02 265);
-  --accent: oklch(0.22 0.03 265);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.28 0.03 265);
-  --input: oklch(0.28 0.03 265);
-  --ring: oklch(0.65 0.2 260);
-  --sidebar-background: oklch(0.10 0.02 265);
-  --sidebar-foreground: oklch(0.72 0.02 265);
-  --sidebar-primary: oklch(0.65 0.2 260);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.22 0.03 265);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.28 0.03 265);
-  --sidebar-ring: oklch(0.72 0.02 265);
-}
-
-/* ===== Star Theme ===== */
-.star {
-  --background: oklch(0.06 0.02 260);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.08 0.02 260);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.08 0.02 260);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.75 0.22 200);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.14 0.03 260);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.14 0.03 260);
-  --muted-foreground: oklch(0.65 0.05 200);
-  --accent: oklch(0.14 0.03 260);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.18 0.03 260);
-  --input: oklch(0.18 0.03 260);
-  --ring: oklch(0.75 0.22 200);
-  --sidebar-background: oklch(0.04 0.02 260);
-  --sidebar-foreground: oklch(0.72 0.05 200);
-  --sidebar-primary: oklch(0.75 0.22 200);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.14 0.03 260);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.18 0.03 260);
-  --sidebar-ring: oklch(0.72 0.05 200);
-}
-
-/* Star theme card glow */
-.star .card-hover:hover {
-  box-shadow: 0 0 20px oklch(0.75 0.22 200 / 0.15), 0 8px 25px -5px oklch(0.75 0.22 200 / 0.1);
-  border-color: oklch(0.75 0.22 200 / 0.3);
-}
-
-/* Star theme primary glow */
-.star .bg-primary {
-  box-shadow: 0 0 15px oklch(0.75 0.22 200 / 0.3);
-}
-
-/* Star theme link glow */
-.star .prose a:hover {
-  text-shadow: 0 0 8px oklch(0.75 0.22 200 / 0.5);
-}
-
-/* Star theme sidebar active glow */
-.star .sidebar-link[aria-current="page"] {
-  box-shadow: 0 0 10px oklch(0.75 0.22 200 / 0.2);
 }
 
 @theme inline {

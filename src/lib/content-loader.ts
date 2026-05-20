@@ -63,6 +63,7 @@ export function getContentTree(): RouteNode[] {
       type: "guide",
       icon: mod.icon,
       difficulty: mod.difficulty as RouteNode["difficulty"],
+      tags: mod.tags || [],
       headings: [],
       frontmatter: {},
       children: [],

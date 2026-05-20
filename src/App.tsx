@@ -13,7 +13,7 @@ const NotFound = lazy(() => import("@/pages/NotFound").then(m => ({ default: m.N
 function ScrollToTop() {
   const { pathname } = useLocation()
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
+    window.scrollTo({ top: 0, behavior: "instant" })
   }, [pathname])
   return null
 }
