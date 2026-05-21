@@ -54,6 +54,7 @@ interface SearchDialogProps {
 export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
   const navigate = useNavigate()
   const [query, setQuery] = useState("")
+  const [activeCategory, setActiveCategory] = useState<string>("")
 
   const searchItems = useMemo<SearchItem[]>(() => {
     const tree = getContentTree()
@@ -94,9 +95,17 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
   }, [open, onOpenChange])
 
   const results = useMemo(() => {
-    if (!query) return searchItems
-    return fuse.search(query).map((r) => r.item)
-  }, [query, fuse, searchItems])
+    let items = query ? fuse.search(query).map((r) => r.item) : searchItems
+    if (activeCategory) {
+      items = items.filter((item) => item.category === activeCategory)
+    }
+    return items
+  }, [query, fuse, searchItems, activeCategory])
+
+  const categories = useMemo(() => {
+    const cats = [...new Set(searchItems.map((item) => item.category))]
+    return cats.sort()
+  }, [searchItems])
 
   const grouped = useMemo(() => {
     return results.reduce(
@@ -122,6 +131,35 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
         value={query}
         onValueChange={setQuery}
       />
+      {categories.length > 0 && (
+        <div className="flex gap-1 px-3 py-2 overflow-x-auto border-b border-border">
+          <button
+            onClick={() => setActiveCategory("")}
+            className={cn(
+              "shrink-0 rounded-full px-3 py-1 text-xs font-medium transition-colors",
+              activeCategory === ""
+                ? "bg-primary text-primary-foreground"
+                : "bg-muted text-muted-foreground hover:bg-muted/80"
+            )}
+          >
+            Tất cả
+          </button>
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat === activeCategory ? "" : cat)}
+              className={cn(
+                "shrink-0 rounded-full px-3 py-1 text-xs font-medium transition-colors",
+                activeCategory === cat
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-muted text-muted-foreground hover:bg-muted/80"
+              )}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      )}
       <CommandList>
         <CommandEmpty>
           <div className="flex flex-col items-center gap-2 py-6 text-muted-foreground">

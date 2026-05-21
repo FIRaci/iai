@@ -1,12 +1,13 @@
 import { useParams, Link } from "react-router-dom"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft } from "lucide-react"
+import { ArrowLeft, Pencil, MessageCircle, ExternalLink } from "lucide-react"
 import { StepBlock } from "@/components/blocks/StepBlock"
 import { CodeBlock } from "@/components/blocks/CodeBlock"
 import { NoteBlock } from "@/components/blocks/NoteBlock"
 import { ComparisonTable } from "@/components/blocks/ComparisonTable"
 import { MermaidDiagram } from "@/components/blocks/MermaidDiagram"
 import { TableOfContents } from "@/components/TableOfContents"
+import { RelatedArticles } from "@/components/RelatedArticles"
 import { Seo } from "@/components/Seo"
 import { YesNoBadge } from "@/components/YesNoBadge"
 import { PageTags } from "@/components/PageTags"
@@ -268,6 +269,42 @@ export function ToolGuide() {
         {/* Content */}
         <div className="prose prose-neutral dark:prose-invert max-w-none">
           <Content components={blockComponents} />
+        </div>
+
+        {/* Feedback & Related */}
+        <div className="mt-12 pt-8 border-t border-border">
+          <div className="flex flex-wrap gap-3 mb-6">
+            <a
+              href={`https://github.com/FIRaci/iai/blob/main/src/content${path}/index.mdx`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Pencil className="h-4 w-4" />
+              Edit on GitHub
+            </a>
+            <a
+              href={`https://github.com/FIRaci/iai/issues/new?title=Feedback: ${encodeURIComponent(item?.title || slug || "")}&labels=feedback`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <MessageCircle className="h-4 w-4" />
+              Report issue
+            </a>
+            {item?.title && (
+              <a
+                href={`https://www.google.com/search?q=${encodeURIComponent(item.title + " Windows 11")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <ExternalLink className="h-4 w-4" />
+                Search more
+              </a>
+            )}
+          </div>
+          <RelatedArticles currentPath={path} category={category || ""} tags={mod.tags || []} />
         </div>
       </div>
 
