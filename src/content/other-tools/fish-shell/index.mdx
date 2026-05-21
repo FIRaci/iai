@@ -9,24 +9,30 @@ tags: ["creative", "cli", "autocomplete", "api", "agent"]
 ## Tổng quan
 
 <Note type="info">
-**Fish Shell** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**Fish Shell** là smart and user-friendly shell. Auto-suggestions, syntax highlighting, và không cần config phức tạp.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`winget install fish-shell.fish-shell`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Fish shell
+# Auto-suggestions hiện ra khi gõ (Tab để accept)
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Functions
+function greet
+    echo "Hello, $argv!"
+end
+
+# Universal variables (persist across sessions)
+set -U fish_greeting "Welcome to Fish!"`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Web config:** Chạy `fish_config` để mở web UI cấu hình theme và prompts.
 </Note>
 
 ## Liên kết

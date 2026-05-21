@@ -9,24 +9,26 @@ tags: ["opensource", "cloud", "api", "agent"]
 ## Tổng quan
 
 <Note type="info">
-**Release Please** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**Release Please** là automated changelog và version bump tool từ Google. Conventional commits driven releases.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`npm install --save-dev release-please`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Tạo release PR
+npx release-please release-pr --token=$GITHUB_TOKEN --repo-url=https://github.com/owner/repo
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Hoặc dùng GitHub Action
+# .github/workflows/release.yml
+# uses: googleapis/release-please-action@v4`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Conventional Commits:** Release-please dựa vào commit messages để determine version bumps.
 </Note>
 
 ## Liên kết

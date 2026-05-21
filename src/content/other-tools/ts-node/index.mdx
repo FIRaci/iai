@@ -9,24 +9,33 @@ tags: ["cli", "api"]
 ## Tổng quan
 
 <Note type="info">
-**ts-node** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**ts-node** là TypeScript execution engine cho Node.js. Run TypeScript files trực tiếp không cần compile trước.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`npm install --save-dev ts-node typescript`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Run TypeScript file
+npx ts-node script.ts
 
-# Xem documentation để biết chi tiết usage examples`} />
+# REPL
+npx ts-node
+
+# Với ESM
+npx ts-node --esm script.ts
+
+# Trong package.json
+"scripts": {
+  "dev": "ts-node src/index.ts"
+}`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**tsx:** Consider dùng `tsx` thay thế - nhanh hơn và hỗ trợ ESM tốt hơn.
 </Note>
 
 ## Liên kết

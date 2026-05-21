@@ -9,24 +9,31 @@ tags: ["api"]
 ## Tổng quan
 
 <Note type="info">
-**VitePress** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**VitePress** là static site generator powered by Vite. Build documentation sites với Vue components và Markdown.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`npm install -D vitepress`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Khởi tạo
+npx vitepress init
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Dev server
+npx vitepress dev
+
+# Build
+npx vitepress build
+
+# Preview production
+npx vitepress preview`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Vue SFC:** VitePress hỗ trợ Vue Single File Components trong Markdown.
 </Note>
 
 ## Liên kết

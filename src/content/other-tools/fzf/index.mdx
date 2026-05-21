@@ -9,24 +9,31 @@ tags: ["opensource", "api"]
 ## Tổng quan
 
 <Note type="info">
-**fzf** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**fzf** là command-line fuzzy finder. Fuzzy search files, history, processes với interactive UI.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`winget install junegunn.fzf`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Fuzzy find files
+fd . | fzf
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Fuzzy search history (Ctrl+R)
+# Tích hợp với bash/zsh/fish
+
+# Fuzzy kill processes
+fzf --pid
+
+# Preview files while searching
+fzf --preview 'bat --color=always {}'`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Keybindings:** Cài đặt keybindings để dùng Ctrl+T, Ctrl+R, Alt+C với fzf.
 </Note>
 
 ## Liên kết

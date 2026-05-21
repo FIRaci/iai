@@ -9,24 +9,31 @@ tags: ["cli", "cloud", "api"]
 ## Tổng quan
 
 <Note type="info">
-**HTTPie** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**HTTPie** là user-friendly HTTP client thay thế curl. Syntax đơn giản hơn, output đẹp hơn với colors.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`winget install httpie`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# GET request
+http GET https://api.example.com/users
 
-# Xem documentation để biết chi tiết usage examples`} />
+# POST với JSON
+http POST https://api.example.com/users name="John" email="john@test.com"
+
+# Với headers
+http GET https://api.example.com Authorization:"Bearer token"
+
+# Download
+http --download https://example.com/file.zip`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Sessions:** Dùng `http --session=user` để persist cookies và auth giữa các requests.
 </Note>
 
 ## Liên kết

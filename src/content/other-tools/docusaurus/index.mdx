@@ -9,24 +9,29 @@ tags: ["api"]
 ## Tổng quan
 
 <Note type="info">
-**Docusaurus** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**Docusaurus** là static site generator của Meta cho documentation websites. Hỗ trợ Markdown, versioning, và i18n.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`npx create-docusaurus@latest my-docs classic`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`cd my-docs
+# Start dev server
+npm start
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Build production
+npm run build
+
+# Serve production build
+npm run serve`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Versioning:** Dùng `npm run docusaurus docs:version 1.0.0` để tạo docs versions.
 </Note>
 
 ## Liên kết

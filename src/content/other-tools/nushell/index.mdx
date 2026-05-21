@@ -9,24 +9,29 @@ tags: ["cli", "autocomplete", "api"]
 ## Tổng quan
 
 <Note type="info">
-**Nushell** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**Nushell** là modern shell viết bằng Rust. Structured data pipelines thay vì text-based pipes.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`winget install Nushell.Nushell`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Nushell shell
+# Structured data pipelines
+ls | where size > 1kb | sort-by name
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Filter table data
+ps | where cpu > 0
+
+# JSON processing
+open data.json | get users | each { |u| echo $u.name }`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Data-first:** Nu treats everything as structured data - dễ dàng filter và transform.
 </Note>
 
 ## Liên kết

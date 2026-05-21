@@ -9,24 +9,32 @@ tags: ["cli", "opensource", "api"]
 ## Tổng quan
 
 <Note type="info">
-**tmux** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**tmux** là terminal multiplexer. Split terminals, persistent sessions, và remote pair programming.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`winget install tmux`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Start new session
+tmux new -s mysession
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Split panes
+# Ctrl+b % - vertical
+# Ctrl+b " - horizontal
+
+# Detach
+# Ctrl+b d
+
+# Reattach
+tmux attach -t mysession`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Prefix key:** Mặc định Ctrl+b - đổi thành Ctrl+a trong `.tmux.conf` cho dễ bấm.
 </Note>
 
 ## Liên kết

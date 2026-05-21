@@ -9,24 +9,28 @@ tags: ["creative", "opensource", "ide", "api"]
 ## Tổng quan
 
 <Note type="info">
-**zoxide** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**zoxide** là smarter cd command. Học từ navigation patterns để jump đến directories thường dùng nhanh hơn.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`winget install ajeetdsouza.zoxide`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Thêm vào shell config
+# PowerShell:
+Invoke-Expression (& { (zoxide init powershell | Out-String) })
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Usage
+z project  # cd đến directory chứa "project"
+z -i       # interactive select
+z -l       # list directories`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Fuzzy matching:** zoxide dùng fuzzy matching - không cần nhớ exact path.
 </Note>
 
 ## Liên kết

@@ -9,24 +9,30 @@ tags: ["cli", "api"]
 ## Tổng quan
 
 <Note type="info">
-**Storybook** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**Storybook** là frontend workshop cho UI components. Develop, test, và document components trong isolation.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`npx storybook@latest init`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Start dev server
+npm run storybook
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Tạo story
+// Button.stories.ts
+export default { title: 'Button' }
+export const Primary = () => '<button class="primary">Click me</button>'
+
+# Build static
+npm run build-storybook`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Addons:** Storybook addons thêm capabilities: controls, actions, a11y testing, v.v.
 </Note>
 
 ## Liên kết

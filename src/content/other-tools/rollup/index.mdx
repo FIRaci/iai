@@ -9,24 +9,32 @@ tags: ["cli", "api"]
 ## Tổng quan
 
 <Note type="info">
-**Rollup** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**Rollup** là module bundler cho JavaScript. Tối ưu cho libraries và code splitting với tree-shaking.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`npm install --save-dev rollup`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`// rollup.config.js
+export default {
+  input: 'src/index.js',
+  output: {
+    file: 'dist/bundle.js',
+    format: 'esm'
+  },
+  plugins: []
+}
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Build
+npx rollup -c`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Tree-shaking:** Rollup tự động loại bỏ unused code - bundle size nhỏ hơn.
 </Note>
 
 ## Liên kết

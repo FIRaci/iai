@@ -9,24 +9,36 @@ tags: ["creative", "cli", "autocomplete", "api", "agent"]
 ## Tổng quan
 
 <Note type="info">
-**Prisma** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**Prisma** là next-generation ORM cho Node.js và TypeScript. Type-safe database queries với intuitive API.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`npm install prisma --save-dev
+npm install @prisma/client`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`// schema.prisma
+model User {
+  id    Int    @id @default(autoincrement())
+  email String @unique
+  name  String?
+}
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Generate client
+npx prisma generate
+
+# Migrate database
+npx prisma migrate dev
+
+# Query trong code
+const users = await prisma.user.findMany()`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Prisma Studio:** Dùng `npx prisma studio` để xem và edit data trong browser.
 </Note>
 
 ## Liên kết

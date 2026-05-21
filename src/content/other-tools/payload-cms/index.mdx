@@ -9,24 +9,36 @@ tags: ["autocomplete", "cloud", "api"]
 ## Tổng quan
 
 <Note type="info">
-**Payload CMS** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**Payload CMS** là headless CMS viết bằng TypeScript/Node.js. Code-first approach với React admin panel.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`npx create-payload-app@latest`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`// payload.config.ts
+import { buildConfig } from 'payload/config'
+export default buildConfig({
+  collections: [
+    {
+      slug: 'posts',
+      fields: [
+        { name: 'title', type: 'text', required: true },
+        { name: 'content', type: 'richText' }
+      ]
+    }
+  ]
+})
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Start dev server
+npm run dev`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Code-first:** Định nghĩa collections và fields trong code thay vì UI.
 </Note>
 
 ## Liên kết

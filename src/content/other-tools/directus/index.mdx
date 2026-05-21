@@ -9,24 +9,25 @@ tags: ["autocomplete", "cloud", "api"]
 ## Tổng quan
 
 <Note type="info">
-**Directus** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**Directus** là headless CMS và data platform. Wrap SQL database với REST/GraphQL API và admin app.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`docker run -d -p 8055:8055 directus/directus`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
-
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`# Truy cập http://localhost:8055
+# 1. Tạo project mới
+# 2. Define collections (tables)
+# 3. Add fields và configure permissions
+# 4. Access data via REST API hoặc GraphQL`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Auto-Admin:** Directus tự động tạo admin UI từ database schema.
 </Note>
 
 ## Liên kết

@@ -9,24 +9,32 @@ tags: ["api"]
 ## Tổng quan
 
 <Note type="info">
-**Cargo** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**Cargo** là package manager và build tool cho Rust. Quản lý dependencies, build, test, và publish crates.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`winget install Rustlang.Rustup`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Tạo project mới
+cargo new my-project
+cd my-project
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Build
+cargo build
+
+# Run
+cargo run
+
+# Test
+cargo test`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Crates.io:** Tìm packages tại crates.io - Rust's package registry.
 </Note>
 
 ## Liên kết

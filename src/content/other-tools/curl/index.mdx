@@ -9,24 +9,31 @@ tags: ["cli", "api"]
 ## Tổng quan
 
 <Note type="info">
-**curl** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**curl** là command-line tool để transfer data với URLs. Hỗ trợ HTTP, HTTPS, FTP, và nhiều protocols khác.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`# Đã có sẵn trên Windows 10+`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# GET request
+curl https://api.example.com/data
 
-# Xem documentation để biết chi tiết usage examples`} />
+# POST với JSON
+curl -X POST -H "Content-Type: application/json" -d '{"name":"test"}' https://api.example.com/users
+
+# Download file
+curl -o file.zip https://example.com/file.zip
+
+# Với headers
+curl -H "Authorization: Bearer token" https://api.example.com/protected`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Verbose mode:** Dùng `-v` để xem request/response chi tiết khi debug.
 </Note>
 
 ## Liên kết

@@ -9,24 +9,31 @@ tags: ["cli", "api"]
 ## Tổng quan
 
 <Note type="info">
-**eza** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**eza** là modern replacement cho ls. Viết bằng Rust, hỗ trợ colors, icons, Git status, và tree view.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`winget install eza.eza`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# List files với icons và colors
+eza --icons --color=always
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Long format với Git status
+eza -l --git
+
+# Tree view
+eza --tree
+
+# Sort by modified
+eza -l --sort=modified`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Alias:** Thêm `alias ls=eza --icons` vào shell profile.
 </Note>
 
 ## Liên kết

@@ -9,24 +9,28 @@ tags: ["cli", "api", "local"]
 ## Tổng quan
 
 <Note type="info">
-**ngrok** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**ngrok** là tunneling service để expose localhost ra internet. Tạo secure public URLs cho development.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`npm install -g ngrok`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Authenticate
+ngrok config add-authtoken YOUR_TOKEN
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Expose port 3000
+ngrok http 3000
+
+# Với custom domain
+ngrok http --domain=myapp.ngrok-free.app 3000`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Web UI:** Ngrok cung cấp web UI tại http://localhost:4040 để inspect requests.
 </Note>
 
 ## Liên kết

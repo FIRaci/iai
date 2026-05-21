@@ -9,24 +9,31 @@ tags: ["cli", "api"]
 ## Tổng quan
 
 <Note type="info">
-**pipx** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**pipx** là tool để install và run Python applications trong isolated environments. Tránh dependency conflicts.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`pip install pipx`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Install package
+pipx install black
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Run without install
+pipx run black --check .
+
+# List installed
+pipx list
+
+# Upgrade all
+pipx upgrade-all`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Isolated envs:** Mỗi package được install trong virtual environment riêng - không conflict.
 </Note>
 
 ## Liên kết

@@ -9,24 +9,28 @@ tags: ["cli", "opensource", "api"]
 ## Tổng quan
 
 <Note type="info">
-**Commitlint** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**Commitlint** là tool để lint commit messages theo conventional commits format. Đảm bảo consistency trong commit history.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`npm install --save-dev @commitlint/cli @commitlint/config-conventional`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Tạo config file
+echo "module.exports = {extends: ['@commitlint/config-conventional']}" > commitlint.config.js
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Test commit message
+echo "feat: add user authentication" | npx commitlint
+
+# Tích hợp với Husky
+npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Conventional Commits:** Format: `type(scope): description` - types: feat, fix, docs, style, refactor, test, chore.
 </Note>
 
 ## Liên kết

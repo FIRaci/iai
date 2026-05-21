@@ -9,24 +9,33 @@ tags: ["cli", "api"]
 ## Tổng quan
 
 <Note type="info">
-**Vitest** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**Vitest** là fast unit testing framework powered by Vite. Compatible với Jest API, native TypeScript support.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`npm install --save-dev vitest`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`// tests/example.test.ts
+import { describe, it, expect } from 'vitest'
+describe('Math', () => {
+  it('should add numbers', () => {
+    expect(1 + 2).toBe(3)
+  })
+})
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Run tests
+npx vitest
+
+# Watch mode
+npx vitest watch`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Jest compat:** Vitest tương thích với hầu hết Jest APIs - migrate dễ dàng.
 </Note>
 
 ## Liên kết

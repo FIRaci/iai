@@ -9,24 +9,31 @@ tags: ["cli", "api"]
 ## Tổng quan
 
 <Note type="info">
-**uv** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**uv** là extremely fast Python package installer. Viết bằng Rust, nhanh hơn pip 10-100x.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`pip install uv`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Install packages
+uv pip install requests
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Create venv
+uv venv
+
+# Run script với dependencies
+uv run --with requests python script.py
+
+# Sync from requirements
+uv pip sync requirements.txt`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Drop-in replacement:** `uv pip` thay thế `pip` với cùng interface nhưng nhanh hơn nhiều.
 </Note>
 
 ## Liên kết

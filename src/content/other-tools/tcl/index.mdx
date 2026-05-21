@@ -9,24 +9,28 @@ tags: ["api", "agent"]
 ## Tổng quan
 
 <Note type="info">
-**Tcl** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**Tcl** là Tool Command Language. Scripting language đơn giản, thường dùng cho testing và automation.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`winget install ActiveState.ActiveTcl`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# script.tcl
+puts "Hello, World!"
 
-# Xem documentation để biết chi tiết usage examples`} />
+set name "TCL"
+puts "Hello, $name!"
+
+# Run
+tclsh script.tcl`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Tk:** Tcl đi kèm Tk toolkit cho GUI development.
 </Note>
 
 ## Liên kết

@@ -9,24 +9,31 @@ tags: ["cli", "opensource", "api"]
 ## Tổng quan
 
 <Note type="info">
-**fd** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**fd** là fast alternative cho find. Viết bằng Rust, hỗ trợ regex, ignore .gitignore, và colors.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`winget install sharkdp.fd`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Tìm files
+fd pattern
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Tìm với extension
+fd -e ts
+
+# Tìm với regex
+fd --type f "^test.*\.ts$"
+
+# Execute command trên kết quả
+fd -e js -x wc -l`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Speed:** fd nhanh hơn find đáng kể trên large directories nhờ parallel processing.
 </Note>
 
 ## Liên kết

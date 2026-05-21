@@ -9,24 +9,31 @@ tags: ["cli", "api"]
 ## Tổng quan
 
 <Note type="info">
-**wget** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**wget** là non-interactive network downloader. Download files từ web với resume support và recursive download.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`# Đã có sẵn trên WSL. Windows: winget install GNU.Wget`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Download file
+wget https://example.com/file.zip
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Resume download
+wget -c https://example.com/file.zip
+
+# Download entire site
+wget --recursive --no-clobber https://example.com
+
+# With output filename
+wget -o output.zip https://example.com/file.zip`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Recursive:** wget có thể download entire websites với `--recursive` flag.
 </Note>
 
 ## Liên kết

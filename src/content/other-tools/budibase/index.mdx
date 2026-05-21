@@ -9,24 +9,25 @@ tags: ["autocomplete", "api"]
 ## Tổng quan
 
 <Note type="info">
-**Budibase** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**Budibase** là low-code platform để build internal apps nhanh chóng. Tạo CRUD apps, admin panels, và dashboards.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`docker run -d --name budibase -p 80:80 budibase/budibase`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
-
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`# Truy cập http://localhost
+# 1. Create app from template hoặc blank
+# 2. Connect data source (PostgreSQL, REST API, CSV)
+# 3. Build UI với drag-and-drop components
+# 4. Publish app`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Built-in DB:** Budibase có internal database - không cần external DB cho simple apps.
 </Note>
 
 ## Liên kết

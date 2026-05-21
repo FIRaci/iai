@@ -9,24 +9,30 @@ tags: ["autocomplete", "api"]
 ## Tổng quan
 
 <Note type="info">
-**Drizzle ORM** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**Drizzle ORM** là TypeScript ORM nhẹ và nhanh. Type-safe queries với developer experience tốt hơn Prisma.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`npm install drizzle-orm better-sqlite3`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`import { drizzle } from 'drizzle-orm/better-sqlite3'
+import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core'
 
-# Xem documentation để biết chi tiết usage examples`} />
+const users = sqliteTable('users', {
+  id: integer('id').primaryKey(),
+  name: text('name').notNull()
+})
+
+const db = drizzle(database)
+const result = await db.select().from(users)`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Drizzle Kit:** Dùng `drizzle-kit generate` để auto-create migrations từ schema.
 </Note>
 
 ## Liên kết

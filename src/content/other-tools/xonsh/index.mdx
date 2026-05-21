@@ -9,24 +9,30 @@ tags: ["cli", "api"]
 ## Tổng quan
 
 <Note type="info">
-**xonsh** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**xonsh** là Python-powered shell. Combines bash-like syntax với Python capabilities trong một shell.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`pip install xonsh`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Xonsh shell
+# Python syntax trong shell
+for i in range(5):
+    echo $i
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Subprocess commands
+ls -la | grep .py
+
+# Run script
+xonsh script.xsh`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Python first:** Mọi thứ trong xonsh là Python - dễ dàng viết complex scripts.
 </Note>
 
 ## Liên kết

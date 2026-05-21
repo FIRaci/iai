@@ -9,24 +9,31 @@ tags: ["cli", "opensource", "api"]
 ## Tổng quan
 
 <Note type="info">
-**jq** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**jq** là command-line JSON processor. Parse, filter, và transform JSON data từ terminal.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`winget install jqlang.jq`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Pretty print JSON
+cat data.json | jq .
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Extract field
+cat data.json | jq '.name'
+
+# Filter array
+cat data.json | jq '.[] | select(.age > 25)'
+
+# Transform
+cat data.json | jq '{name: .name, email: .email}'`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Chaining:** Kết hợp multiple filters với `|` operator giống bash pipes.
 </Note>
 
 ## Liên kết

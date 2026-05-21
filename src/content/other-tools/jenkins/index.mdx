@@ -9,24 +9,26 @@ tags: ["extension", "api", "agent"]
 ## Tổng quan
 
 <Note type="info">
-**Jenkins** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**Jenkins** là open-source automation server cho CI/CD. Build, test, và deploy applications với pipelines.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`docker run -d -p 8080:8080 -p 50000:50000 jenkins/jenkins:lts`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
-
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`# Truy cập http://localhost:8080
+# 1. Unlock với admin password
+# 2. Cài suggested plugins
+# 3. Tạo new item (pipeline)
+# 4. Define Jenkinsfile
+# 5. Build và monitor`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Jenkinsfile:** Định nghĩa pipelines as code với declarative hoặc scripted syntax.
 </Note>
 
 ## Liên kết

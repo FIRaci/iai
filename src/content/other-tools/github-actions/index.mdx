@@ -9,24 +9,33 @@ tags: ["opensource", "api", "agent"]
 ## Tổng quan
 
 <Note type="info">
-**GitHub Actions** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**GitHub Actions** là CI/CD platform của GitHub. Automate workflows từ GitHub events như push, pull request, release.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`# Tích hợp sẵn với GitHub repositories`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
-
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`# .github/workflows/ci.yml
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm test`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Secrets:** Lưu API keys và tokens trong repository Settings > Secrets.
 </Note>
 
 ## Liên kết

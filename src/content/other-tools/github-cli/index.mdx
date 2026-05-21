@@ -9,24 +9,31 @@ tags: ["cli", "opensource", "api"]
 ## Tổng quan
 
 <Note type="info">
-**GitHub CLI** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**GitHub CLI** là command-line interface cho GitHub. Tạo PRs, issues, quản lý repositories từ terminal.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`winget install GitHub.cli`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Authenticate
+gh auth login
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Tạo PR
+gh pr create --title "Fix bug" --body "Description"
+
+# List PRs
+gh pr list
+
+# Clone repo
+gh repo clone owner/repo`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Aliases:** Tạo custom aliases với `gh alias set` để shortcut commands.
 </Note>
 
 ## Liên kết

@@ -9,24 +9,29 @@ tags: ["cloud", "api"]
 ## Tổng quan
 
 <Note type="info">
-**tRPC** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**tRPC** là end-to-end typesafe API framework. Shared types giữa client và server không cần code generation.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`npm install @trpc/server @trpc/client zod`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`// server/router.ts
+export const appRouter = router({
+  greeting: publicProcedure
+    .input(z.object({ name: z.string() }))
+    .query((opts) => 'Hello ' + opts.input.name + '!')
+})
 
-# Xem documentation để biết chi tiết usage examples`} />
+// client
+const greeting = await trpc.greeting.query({ name: 'World' })`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Zod:** tRPC dùng Zod cho input validation - typesafe từ đầu đến cuối.
 </Note>
 
 ## Liên kết

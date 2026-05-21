@@ -9,24 +9,32 @@ tags: ["cli", "api"]
 ## Tổng quan
 
 <Note type="info">
-**Ruff** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**Ruff** là extremely fast Python linter và formatter. Viết bằng Rust, nhanh hơn flake8 + black 10-100x.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`pip install ruff`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Lint
+ruff check src/
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Fix auto-fixable issues
+ruff check --fix src/
+
+# Format
+ruff format src/
+
+# Config trong pyproject.toml
+[tool.ruff]
+line-length = 88`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Drop-in replacement:** Ruff thay thế flake8, isort, black với single tool.
 </Note>
 
 ## Liên kết

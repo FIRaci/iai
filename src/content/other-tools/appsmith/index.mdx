@@ -9,24 +9,25 @@ tags: ["opensource", "api"]
 ## Tổng quan
 
 <Note type="info">
-**Appsmith** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**Appsmith** là open-source low-code platform để build internal tools. Kéo thả UI components và kết nối với databases/APIs.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`docker run -d --name appsmith -p 80:80 -p 443:443 appsmith/appsmith-ce`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
-
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`# Truy cập http://localhost
+# 1. Tạo new application
+# 2. Kéo thả widgets (Table, Form, Button)
+# 3. Connect datasource (PostgreSQL, REST API)
+# 4. Bind data to widgets`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**JS Queries:** Sử dụng JavaScript để transform data trước khi hiển thị.
 </Note>
 
 ## Liên kết

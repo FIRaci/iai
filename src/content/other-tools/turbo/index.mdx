@@ -9,24 +9,32 @@ tags: ["cli", "api"]
 ## Tổng quan
 
 <Note type="info">
-**Turbo** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**Turbo** là incremental bundler và task runner cho monorepos. Smart caching và parallel execution.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`npm install --save-dev turbo`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# turbo.json
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "build": { "dependsOn": ["^build"], "outputs": ["dist/**"] },
+    "test": { "dependsOn": ["build"] },
+    "dev": { "cache": false }
+  }
+}
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Run
+npx turbo run build`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Remote Cache:** Turbo remote cache chia sẻ cache giữa team members và CI.
 </Note>
 
 ## Liên kết

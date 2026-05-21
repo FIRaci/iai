@@ -9,24 +9,31 @@ tags: ["api"]
 ## Tổng quan
 
 <Note type="info">
-**ssh** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**ssh** là secure shell protocol. Remote login và command execution với encryption.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`# Đã có sẵn trên Windows 10+`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Connect to server
+ssh user@hostname
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Với specific port
+ssh -p 2222 user@hostname
+
+# SSH key authentication
+ssh -i ~/.ssh/id_rsa user@hostname
+
+# Port forwarding
+ssh -L 8080:localhost:80 user@hostname`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Config file:** Dùng `~/.ssh/config` để định nghĩa host aliases và options.
 </Note>
 
 ## Liên kết

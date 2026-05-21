@@ -9,24 +9,28 @@ tags: ["cli", "opensource", "api"]
 ## Tổng quan
 
 <Note type="info">
-**aria2** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**aria2** là lightweight multi-protocol download utility. Hỗ trợ HTTP/HTTPS, FTP, SFTP, BitTorrent, Metalink.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`winget install aria2`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Download file đơn
+aria2c https://example.com/file.zip
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Download với nhiều connections
+aria2c -x 16 -s 16 https://example.com/file.zip
+
+# Download torrent
+aria2c file.torrent`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Multi-connection:** Dùng `-x 16 -s 16` để tăng tốc download đáng kể.
 </Note>
 
 ## Liên kết

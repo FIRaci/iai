@@ -9,24 +9,32 @@ tags: ["api", "agent"]
 ## Tổng quan
 
 <Note type="info">
-**AutoHotkey** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**AutoHotkey** là scripting language cho Windows automation. Tạo hotkeys, macros, và tự động hóa GUI tasks.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`winget install AutoHotkey.AutoHotkey`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`; script.ahk
+; Remap keys
+CapsLock::Ctrl
 
-# Xem documentation để biết chi tiết usage examples`} />
+; Hotkey để mở ứng dụng
+#n::Run notepad.exe
+
+; Auto-replace text
+::btw::by the way
+
+; Chạy script
+autohotkey script.ahk`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Window Spy:** Dùng Window Spy (có sẵn) để inspect window controls và tạo automation chính xác.
 </Note>
 
 ## Liên kết

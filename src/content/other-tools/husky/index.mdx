@@ -9,24 +9,28 @@ tags: ["cli", "opensource", "api"]
 ## Tổng quan
 
 <Note type="info">
-**Husky** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**Husky** là Git hooks manager. Chạy scripts trước commit, push, v.v. để enforce code quality.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`npm install --save-dev husky`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Khởi tạo
+npx husky init
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Thêm pre-commit hook
+echo "npm test" >> .husky/pre-commit
+
+# Thêm commit-msg hook
+echo "npx commitlint --edit $1" >> .husky/commit-msg`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Git Hooks:** Husky thay thế manual git hooks setup với simple npm commands.
 </Note>
 
 ## Liên kết

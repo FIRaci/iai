@@ -9,24 +9,33 @@ tags: ["cli", "api"]
 ## Tổng quan
 
 <Note type="info">
-**SWC** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**SWC** là super-fast JavaScript/TypeScript compiler. Viết bằng Rust, nhanh hơn Babel 20x.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`npm install --save-dev @swc/core @swc/cli`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`// .swcrc
+{
+  "jsc": {
+    "parser": { "syntax": "typescript" },
+    "target": "es2020"
+  }
+}
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Compile
+npx swc src -d dist
+
+# Watch mode
+npx swc src -d dist -w`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Next.js:** Next.js dùng SWC mặc định cho fast refresh và minification.
 </Note>
 
 ## Liên kết

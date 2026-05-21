@@ -9,24 +9,26 @@ tags: ["cli", "extension", "api"]
 ## Tổng quan
 
 <Note type="info">
-**Oh My Zsh** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**Oh My Zsh** là framework quản lý Zsh configuration. Themes, plugins, và auto-completion out of the box.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Cấu hình trong ~/.zshrc
+ZSH_THEME="robbyrussell"
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Apply changes
+source ~/.zshrc`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Plugins:** Cài thêm zsh-autosuggestions và zsh-syntax-highlighting để trải nghiệm tốt hơn.
 </Note>
 
 ## Liên kết

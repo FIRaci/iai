@@ -9,24 +9,28 @@ tags: ["cli", "opensource", "api"]
 ## Tổng quan
 
 <Note type="info">
-**dotenv** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**dotenv** là module để load environment variables từ .env file vào process.env. Quản lý config secrets an toàn.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`npm install dotenv`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`// index.js
+require('dotenv').config()
+console.log(process.env.DB_HOST)
+console.log(process.env.API_KEY)
 
-# Xem documentation để biết chi tiết usage examples`} />
+# .env file
+DB_HOST=localhost
+API_KEY=your-secret-key`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Never commit .env:** Thêm `.env` vào `.gitignore` để tránh leak secrets.
 </Note>
 
 ## Liên kết

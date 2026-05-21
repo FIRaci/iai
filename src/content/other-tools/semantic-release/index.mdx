@@ -9,24 +9,32 @@ tags: ["api", "agent"]
 ## Tổng quan
 
 <Note type="info">
-**semantic-release** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**semantic-release** là automated versioning và package publishing. Conventional commits trigger releases tự động.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`npm install --save-dev semantic-release @semantic-release/github`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# .releaserc.json
+{
+  "branches": ["main"],
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/github"
+  ]
+}
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Run (thường qua CI)
+npx semantic-release`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**CI Integration:** Chạy semantic-release trong GitHub Actions sau mỗi merge to main.
 </Note>
 
 ## Liên kết

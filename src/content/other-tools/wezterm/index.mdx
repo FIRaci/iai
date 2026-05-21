@@ -9,24 +9,30 @@ tags: ["cli", "api"]
 ## Tổng quan
 
 <Note type="info">
-**WezTerm** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**WezTerm** là GPU-accelerated terminal emulator viết bằng Rust. Cross-platform, ligatures, và Lua config.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`winget install wez.wezterm`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Config trong ~/.wezterm.lua
+local wezterm = require 'wezterm'
+return {
+  font = wezterm.font('Cascadia Code'),
+  font_size = 12.0,
+  color_scheme = 'Catppuccin Mocha',
+}
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Mở WezTerm
+wezterm`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Lua config:** WezTerm dùng Lua cho configuration - powerful và flexible.
 </Note>
 
 ## Liên kết

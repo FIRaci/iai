@@ -9,24 +9,31 @@ tags: ["creative", "cli", "opensource", "api", "agent"]
 ## Tổng quan
 
 <Note type="info">
-**Changesets** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**Changesets** là tool để quản lý changelogs và versioning cho monorepos. Tạo changeset files và tự động generate changelogs.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`npm install --save-dev @changesets/cli`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Khởi tạo
+npx changeset init
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Tạo changeset mới
+npx changeset
+
+# Version bump
+npx changeset version
+
+# Publish packages
+npx changeset publish`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**CI Integration:** Dùng GitHub Actions để auto-version và publish trên mỗi merge.
 </Note>
 
 ## Liên kết

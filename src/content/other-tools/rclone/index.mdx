@@ -9,24 +9,31 @@ tags: ["ide", "cloud", "api"]
 ## Tổng quan
 
 <Note type="info">
-**rclone** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**rclone** là command-line program để sync files với cloud storage. Hỗ trợ 70+ providers (S3, GDrive, Dropbox).
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`winget install Rclone.Rclone`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Configure remote
+rclone configure
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Sync local to remote
+rclone sync /local/path remote:bucket/path
+
+# List files
+rclone ls remote:bucket
+
+# Mount cloud storage
+rclone mount remote:bucket X:`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Dry run:** Dùng `--dry-run` để xem what would happen trước khi sync thật.
 </Note>
 
 ## Liên kết

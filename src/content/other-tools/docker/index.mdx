@@ -9,24 +9,31 @@ tags: ["api"]
 ## Tổng quan
 
 <Note type="info">
-**Docker** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**Docker** là containerization platform. Package applications và dependencies vào containers để deploy nhất quán across environments.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`winget install Docker.DockerDesktop`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Chạy container
+docker run -d -p 80:80 nginx
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Build image từ Dockerfile
+docker build -t my-app .
+
+# Docker Compose
+docker-compose up -d
+
+# List containers
+docker ps`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Dockerfile:** Dùng multi-stage builds để giảm image size đáng kể.
 </Note>
 
 ## Liên kết

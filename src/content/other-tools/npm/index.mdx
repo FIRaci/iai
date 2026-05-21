@@ -9,24 +9,31 @@ tags: ["api"]
 ## Tổng quan
 
 <Note type="info">
-**npm** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**npm** là package manager cho Node.js. Cài đặt, quản lý dependencies, và publish JavaScript packages.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`# Đi kèm với Node.js installation`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Cài đặt package
+npm install express
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Dev dependency
+npm install --save-dev typescript
+
+# Run scripts
+npm run build
+
+# Initialize project
+npm init -y`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**npx:** Dùng `npx` để run packages mà không cần install global.
 </Note>
 
 ## Liên kết

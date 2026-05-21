@@ -9,24 +9,31 @@ tags: ["cli", "api"]
 ## Tổng quan
 
 <Note type="info">
-**GitLab CLI** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**GitLab CLI** là command-line interface cho GitLab. Quản lý projects, issues, và CI/CD pipelines từ terminal.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`winget install GitLab.CLI`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Authenticate
+glab auth login
 
-# Xem documentation để biết chi tiết usage examples`} />
+# List MRs
+glab mr list
+
+# Tạo MR
+glab mr create --title "Fix bug" --description "Description"
+
+# View pipeline
+glab ci view`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**GLAB_EDITOR:** Set editor preference với `glab config set editor vim`.
 </Note>
 
 ## Liên kết

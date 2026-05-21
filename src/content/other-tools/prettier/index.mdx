@@ -9,24 +9,32 @@ tags: ["cli", "api"]
 ## Tổng quan
 
 <Note type="info">
-**Prettier** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**Prettier** là opinionated code formatter. Hỗ trợ JS, TS, CSS, HTML, JSON, YAML, và nhiều languages khác.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`npm install --save-dev prettier`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Format files
+npx prettier --write src/**/*.js
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Check without writing
+npx prettier --check src/**/*.js
+
+# Config trong .prettierrc
+{
+  "semi": true,
+  "singleQuote": true,
+  "tabWidth": 2
+}`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Editor integration:** Cài Prettier extension trong VS Code để format on save.
 </Note>
 
 ## Liên kết

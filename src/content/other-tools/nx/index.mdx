@@ -9,24 +9,31 @@ tags: ["creative", "api"]
 ## Tổng quan
 
 <Note type="info">
-**Nx** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**Nx** là build system và monorepo framework. Smart caching, affected commands, và task orchestration.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`npx create-nx-workspace@latest`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Tạo workspace
+npx create-nx-workspace my-workspace
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Generate app
+nx generate @nx/react:app my-app
+
+# Build affected projects
+nx affected --target=build
+
+# Run tests
+nx test my-app`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Nx Cloud:** Sử dụng Nx Cloud để remote caching và distributed task execution.
 </Note>
 
 ## Liên kết

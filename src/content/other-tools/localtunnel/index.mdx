@@ -9,24 +9,27 @@ tags: ["cli", "opensource", "api", "local"]
 ## Tổng quan
 
 <Note type="info">
-**localtunnel** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**localtunnel** là tool để expose localhost servers ra internet. Tạo public URLs cho development và testing.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`npm install -g localtunnel`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Expose port 3000
+lt --port 3000
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Với custom subdomain
+lt --port 3000 --subdomain myapp
+
+# Output: your url is https://myapp.loca.lt`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Security:** Chỉ expose khi cần testing - tắt khi không sử dụng.
 </Note>
 
 ## Liên kết

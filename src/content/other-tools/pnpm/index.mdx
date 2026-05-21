@@ -9,24 +9,31 @@ tags: ["cli", "api"]
 ## Tổng quan
 
 <Note type="info">
-**pnpm** là developer tool hữu ích. Xem tài liệu chính thức để biết chi tiết về tính năng và cách sử dụng.
+**pnpm** là fast, disk-efficient package manager. Symlink-based node_modules tiết kiệm disk space và install time.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Xem tài liệu chính thức để biết cách cài đặt`} />
+<CodeBlock language="powershell" code={`npm install -g pnpm`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Install dependencies
+pnpm install
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Add package
+pnpm add express
+
+# Dev dependency
+pnpm add -D typescript
+
+# Run scripts
+pnpm run build`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Workspace:** pnpm workspace hỗ trợ monorepo management tốt hơn npm/yarn.
 </Note>
 
 ## Liên kết
