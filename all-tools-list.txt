@@ -1,0 +1,931 @@
+TONG CONG: 772 CONG CU
+============================================================
+
+[AI-CODING] (11 tools)
+----------------------------------------
+    1. Aider
+    2. Amazon Q Developer
+    3. AWS Kiro
+    4. Chrome DevTools AI
+    5. Continue
+    6. GitHub Copilot Workspace
+    7. DeepSeek
+    8. GitHub Spark
+    9. JetBrains Junie
+   10. Microsoft AI Dev Gallery
+   11. OpenCode
+
+[AI-SERVICES] (4 tools)
+----------------------------------------
+    1. Groq
+    2. OpenRouter
+    3. Replicate
+    4. Together AI
+
+[AI-TOOLS] (183 tools)
+----------------------------------------
+    1. AI21 Studio
+    2. Aider
+    3. JetBrains Air
+    4. Amazon Q Developer
+    5. Amazon Q CLI
+    6. Amp
+    7. Anthropic API
+    8. AnythingLLM
+    9. Arc Search
+   10. Arize Phoenix
+   11. Augment Code
+   12. AutoGen
+   13. AUTOMATIC1111
+   14. AutoTrain
+   15. AWS Kiro
+   16. AWS SageMaker
+   17. Axolotl
+   18. Azure ML
+   19. Base44
+   20. Big-Bench
+   21. Bolt.new
+   22. Bolt.new
+   23. Brave Leo
+   24. Cerebras Inference
+   25. ChatGPT / OpenAI
+   26. ChatGPT Desktop
+   27. Chroma
+   28. Chrome DevTools AI
+   29. Civitai
+   30. Claude Code CLI
+   31. Claude Desktop
+   32. Cline
+   33. Clip Interrogator
+   34. CodeScene
+   35. OpenAI Codex
+   36. Cohere Embeddings
+   37. Google Colab
+   38. ComfyUI
+   39. Continue
+   40. ControlNet
+   41. GitHub Copilot
+   42. Copilot Workspace
+   43. Coqui TTS
+   44. CrewAI
+   45. Cursor
+   46. DALL-E
+   47. DeepEval
+   48. DeepSeek Coder
+   49. DeepSeek API
+   50. Descript
+   51. Descript Overdub
+   52. Devin
+   53. Diffusers (HF)
+   54. Dify
+   55. DSPy
+   56. ElevenLabs
+   57. Enchant
+   58. Faiss
+   59. Faster Whisper
+   60. Fireworks AI
+   61. Flowise
+   62. GCP Vertex AI
+   63. Google Gemini
+   64. Gemini CLI
+   65. Gemini Code Assist
+   66. GGML
+   67. GitHub Spark
+   68. Google AI Studio
+   69. GPQA
+   70. GPT4All
+   71. Groq
+   72. Guardrails AI
+   73. Haystack
+   74. Helicone
+   75. HELM
+   76. HeyGen
+   77. Hugging Face Spaces
+   78. HF Inference Endpoints
+   79. Hugging Face TGI
+   80. Hugging Face Hub
+   81. HumanEval
+   82. InvokeAI
+   83. Jan
+   84. Jasper AI
+   85. JetBrains AI Assistant
+   86. JetBrains Junie
+   87. Jina Embeddings
+   88. JetBrains Junie
+   89. Kagi
+   90. Kaiber
+   91. KoboldCpp
+   92. Lambda Cloud
+   93. LambdaTest
+   94. LangChain
+   95. Langflow
+   96. LangGraph
+   97. LangSmith
+   98. Leonardo AI
+   99. llama.cpp
+  100. llamafile
+  101. LlamaIndex
+  102. LM Evaluation Harness
+  103. LM Studio
+  104. LMSYS Chatbot Arena
+  105. LocalAI
+  106. Lovable
+  107. Ludwig
+  108. Mastra
+  109. Melobytes
+  110. Mem
+  111. MemGPT
+  112. Metaphor
+  113. Microsoft AI Dev
+  114. Midjourney
+  115. Milvus
+  116. Mistral API
+  117. MMLU
+  118. Modal
+  119. ModelScope
+  120. Mozilla TTS
+  121. Msty
+  122. NeMo Guardrails
+  123. Nomic Embed
+  124. Notion AI
+  125. NovelAI WebUI
+  126. Obsidian LLM
+  127. Ollama
+  128. Open Interpreter
+  129. Open LLM Leaderboard
+  130. Open WebUI
+  131. OpenAI API
+  132. OpenAI Codex
+  133. OpenAI Embeddings
+  134. OpenClaw
+  135. OpenCode
+  136. OpenHands
+  137. OpenLIT
+  138. OpenRouter
+  139. PEFT
+  140. Perplexity AI
+  141. Phind
+  142. Pika Labs
+  143. Pinecone
+  144. PrivateGPT
+  145. Promptfoo
+  146. PyTorch Hub
+  147. Qdrant
+  148. Qodo
+  149. Ragas
+  150. RAGFlow
+  151. Replicate
+  152. Replit Agent
+  153. Replit Agent
+  154. Resemble AI
+  155. Riffusion
+  156. Roo Code
+  157. RunPod
+  158. Runway ML
+  159. Sentence Transformers
+  160. Silero
+  161. Smolagents
+  162. Snyk Code
+  163. Sora
+  164. Soundraw
+  165. Sourcegraph Cody
+  166. Stable Diffusion
+  167. Tabnine
+  168. Tembo
+  169. TensorFlow Hub
+  170. Text Generation WebUI
+  171. Together AI
+  172. Triton Inference
+  173. TRL
+  174. Unsloth
+  175. Vercel v0
+  176. vLLM
+  177. Vocode
+  178. Voyage AI
+  179. Weaviate
+  180. Whisper
+  181. Windsurf
+  182. xAI Grok API
+  183. You.com
+
+[APIS] (6 tools)
+----------------------------------------
+    1. bruno
+    2. hoppscotch
+    3. insomnia
+    4. Postman
+    5. readme-api
+    6. stoplight
+
+[AUTOMATION] (6 tools)
+----------------------------------------
+    1. activepieces
+    2. huginn
+    3. make
+    4. n8n
+    5. windmill
+    6. zapier
+
+[BACKEND] (37 tools)
+----------------------------------------
+    1. Agenda
+    2. Appwrite
+    3. Auth.js
+    4. Better Auth
+    5. Bruno
+    6. BullMQ
+    7. Clerk
+    8. DBeaver
+    9. Express
+   10. Fastify
+   11. Firebase
+   12. Hasura
+   13. Hono
+   14. Hoppscotch
+   15. Kafka
+   16. Koa
+   17. Kysely
+   18. Logtail
+   19. Loki
+   20. Lucia
+   21. MikroORM
+   22. MongoDB
+   23. NATS
+   24. Neon
+   25. NestJS
+   26. OpenAPI
+   27. OpenTelemetry
+   28. pgAdmin
+   29. PlanetScale
+   30. PocketBase
+   31. RabbitMQ
+   32. Redis
+   33. Supabase
+   34. Swagger
+   35. TablePlus
+   36. TypeORM
+   37. Valkey
+
+[BENCHMARKING] (6 tools)
+----------------------------------------
+    1. big-bench
+    2. gpqa
+    3. helm
+    4. human-eval
+    5. mmlu
+    6. Open LLM Leaderboard
+
+[CLI-TOOLS] (8 tools)
+----------------------------------------
+    1. bat
+    2. curl
+    3. fd
+    4. fzf
+    5. HTTPie
+    6. jq
+    7. ripgrep
+    8. wget
+
+[CLOUD] (8 tools)
+----------------------------------------
+    1. aws-sagemaker
+    2. azure-ml
+    3. Google Colab
+    4. gcp-vertex
+    5. Hugging Face Spaces
+    6. lambda-cloud
+    7. modal
+    8. runpod
+
+[COMPARISONS] (5 tools)
+----------------------------------------
+    1. AI Chat Models
+    2. Backend Frameworks
+    3. Frontend Frameworks
+    4. LLM Runtimes
+    5. Vector Databases
+
+[DATA-DATASETS] (5 tools)
+----------------------------------------
+    1. DuckDB
+    2. Hugging Face Datasets
+    3. Kaggle
+    4. Pandas
+    5. Polars
+
+[DATA-PROCESSING] (6 tools)
+----------------------------------------
+    1. dask
+    2. datafusion
+    3. pandas
+    4. polars
+    5. ray
+    6. Apache Spark
+
+[DATABASES] (6 tools)
+----------------------------------------
+    1. cloudflare-d1
+    2. duckdb
+    3. libsql
+    4. SQLite
+    5. surrealdb
+    6. turso
+
+[DATASETS] (6 tools)
+----------------------------------------
+    1. Common Crawl
+    2. CVAT
+    3. FiftyOne
+    4. Label Studio
+    5. Roboflow
+    6. Snorkel
+
+[DEPLOYMENT] (4 tools)
+----------------------------------------
+    1. BentoML
+    2. KServe
+    3. Modal
+    4. Seldon Core
+
+[DEV-INFRA] (10 tools)
+----------------------------------------
+    1. Bun
+    2. Deno
+    3. Fly.io
+    4. Hasura
+    5. Kubernetes
+    6. nvm-windows
+    7. Railway
+    8. Render
+    9. Terraform
+   10. Yarn
+
+[DEV-TOOLS] (20 tools)
+----------------------------------------
+    1. Android Studio
+    2. Antigravity
+    3. Docker Desktop
+    4. Figma
+    5. Git & GitHub
+    6. GitHub Desktop
+    7. MongoDB
+    8. Node.js
+    9. npm
+   10. pnpm
+   11. PostgreSQL
+   12. Postman
+   13. PowerShell 7
+   14. PyCharm
+   15. Sublime Text
+   16. VS Code
+   17. WebStorm
+   18. Windows Terminal
+   19. WSL (Windows Subsystem for Linux)
+   20. Zed
+
+[DEVOPS] (9 tools)
+----------------------------------------
+    1. ansible
+    2. argocd
+    3. consul
+    4. crossplane
+    5. Docker
+    6. GitHub Actions
+    7. packer
+    8. terraform
+    9. vault
+
+[DOCUMENTATION] (8 tools)
+----------------------------------------
+    1. astro-docs
+    2. docusaurus
+    3. gitbook
+    4. mdbook
+    5. Mintlify
+    6. nextra
+    7. readme
+    8. vitepress
+
+[EDITORS] (6 tools)
+----------------------------------------
+    1. emacs
+    2. helix
+    3. lapce
+    4. neovim
+    5. vim
+    6. Zed
+
+[EMBEDDINGS] (6 tools)
+----------------------------------------
+    1. cohere-embeddings
+    2. jina-embeddings
+    3. nomic-embed
+    4. openai-embeddings
+    5. Sentence Transformers
+    6. voyage-ai
+
+[EVALUATION] (6 tools)
+----------------------------------------
+    1. arize-phoenix
+    2. deepeval
+    3. langsmith
+    4. LM Evaluation Harness
+    5. promptfoo
+    6. ragas
+
+[FINE-TUNING] (6 tools)
+----------------------------------------
+    1. autotrain
+    2. Axolotl
+    3. ludwig
+    4. peft
+    5. trl
+    6. unsloth
+
+[FRAMEWORKS] (6 tools)
+----------------------------------------
+    1. django
+    2. FastAPI
+    3. flask
+    4. Gradio
+    5. litestar
+    6. Streamlit
+
+[FRONTEND] (40 tools)
+----------------------------------------
+    1. Angular
+    2. Astro
+    3. Chakra UI
+    4. Chromatic
+    5. CSS Modules
+    6. DaisyUI
+    7. Formik
+    8. Framer Motion
+    9. Headless UI
+   10. Jest
+   11. Jotai
+   12. Ladle
+   13. Mantine
+   14. Material UI
+   15. Motion One
+   16. MSW
+   17. Next.js
+   18. Nuxt
+   19. Panda CSS
+   20. Qwik
+   21. Radix UI
+   22. React Hook Form
+   23. Recoil
+   24. Redux Toolkit
+   25. Remix
+   26. SolidStart
+   27. SvelteKit
+   28. TanStack Query
+   29. TanStack Router
+   30. TanStack Start
+   31. Testing Library
+   32. TypeScript
+   33. UnoCSS
+   34. Valibot
+   35. Valtio
+   36. Vue.js
+   37. XState
+   38. Yup
+   39. Zod
+   40. Zustand
+
+[GIT-TOOLS] (6 tools)
+----------------------------------------
+    1. gitkraken
+    2. gitui
+    3. Lazygit
+    4. sourcetree
+    5. sublime-merge
+    6. tig
+
+[IDE-PLUGINS] (6 tools)
+----------------------------------------
+    1. JetBrains AI
+    2. Kite
+    3. LunarVim
+    4. Neovim AI
+    5. OniVim
+    6. TabNine
+
+[IMAGE-GENERATION] (6 tools)
+----------------------------------------
+    1. ComfyUI
+    2. flux
+    3. kandinsky
+    4. leonardo-ai
+    5. playground
+    6. Stable Diffusion
+
+[LIBRARIES] (6 tools)
+----------------------------------------
+    1. NumPy
+    2. opencv
+    3. pillow
+    4. scikit-learn
+    5. scipy
+    6. transformers
+
+[LLM-RUNTIMES] (29 tools)
+----------------------------------------
+    1. AutoGPT
+    2. BabyAGI
+    3. CodeGeeX
+    4. Codeium
+    5. ctranslate2
+    6. DeepSpeed
+    7. ExLlamaV2
+    8. ggml
+    9. Haystack
+   10. Jan AI
+   11. KoboldAI
+   12. LangChain
+   13. Llama.cpp
+   14. LlamaIndex
+   15. LM Studio
+   16. Mistral
+   17. Mistral-inference
+   18. MLX
+   19. Ollama
+   20. OpenAI CLI
+   21. PirateX
+   22. Replit Ghostwriter CLI
+   23. Tabby
+   24. TensorRT-LLM
+   25. text-generation-webui
+   26. Transformers (Hugging Face)
+   27. Triton Inference Server
+   28. vLLM
+   29. Warp
+
+[MLOPS] (10 tools)
+----------------------------------------
+    1. Catalyst
+    2. ClearML
+    3. DVC
+    4. Gradio
+    5. Kubeflow
+    6. MLflow
+    7. Neptune
+    8. Streamlit
+    9. TFX
+   10. Weights & Biases
+
+[MODEL-HUBS] (6 tools)
+----------------------------------------
+    1. Civitai
+    2. huggingface
+    3. ModelScope
+    4. pytorch-hub
+    5. replicate
+    6. tensorflow-hub
+
+[MONITORING] (6 tools)
+----------------------------------------
+    1. datadog
+    2. Grafana
+    3. new-relic
+    4. Prometheus
+    5. sentry
+    6. uptime-kuma
+
+[MULTIMODAL] (15 tools)
+----------------------------------------
+    1. AUTOMATIC1111
+    2. BLIP
+    3. CLIP
+    4. Clip Interrogator
+    5. ControlNet
+    6. Diffusers (Hugging Face)
+    7. Florence-2
+    8. InvokeAI
+    9. Kaiber
+   10. LLaVA
+   11. Melobytes
+   12. NovelAI WebUI
+   13. Pika Labs
+   14. Sora
+   15. Soundraw
+
+[NOTEBOOKS] (6 tools)
+----------------------------------------
+    1. deepnote
+    2. google-colab
+    3. hex
+    4. jupyter
+    5. JupyterLab
+    6. observable
+
+[OBSERVABILITY] (9 tools)
+----------------------------------------
+    1. Arize Phoenix
+    2. Datadog
+    3. Grafana
+    4. Helicone
+    5. LangSmith
+    6. New Relic
+    7. OpenLIT
+    8. Prometheus
+    9. Sentry
+
+[OTHER-TOOLS] (121 tools)
+----------------------------------------
+    1. ActivePieces
+    2. Alacritty
+    3. Appsmith
+    4. aria2
+    5. AutoHotkey
+    6. Bash
+    7. bat
+    8. Biome
+    9. BookStack
+   10. Budibase
+   11. Cargo
+   12. Changesets
+   13. Chocolatey
+   14. cmder
+   15. Commitlint
+   16. ConEmu
+   17. Contentful
+   18. curl
+   19. Cypress
+   20. Directus
+   21. Docker
+   22. Docusaurus
+   23. dotenv
+   24. Drizzle ORM
+   25. Elvish
+   26. esbuild
+   27. ESLint
+   28. eza
+   29. fd
+   30. Fish Shell
+   31. fzf
+   32. Ghost
+   33. Ghostty
+   34. GitBook
+   35. GitHub Actions
+   36. GitHub CLI
+   37. GitLab CI
+   38. GitLab CLI
+   39. Homebrew
+   40. HTTPie
+   41. Huginn
+   42. Husky
+   43. Hyper
+   44. Insomnia
+   45. iTerm2
+   46. Jenkins
+   47. Joplin
+   48. jq
+   49. Kitty
+   50. Lazygit
+   51. localtunnel
+   52. Logseq
+   53. Lua
+   54. Make
+   55. Mintlify
+   56. Mosh
+   57. n8n
+   58. ngrok
+   59. Notion
+   60. npm
+   61. Nushell
+   62. Nx
+   63. Obsidian
+   64. Oh My Zsh
+   65. Outline
+   66. Payload CMS
+   67. Pipedream
+   68. pipx
+   69. Playwright
+   70. pnpm
+   71. Poetry
+   72. Postman
+   73. PowerShell
+   74. Prettier
+   75. Prisma
+   76. rclone
+   77. Release Please
+   78. Retool
+   79. ripgrep
+   80. Rollup
+   81. rsync
+   82. Ruff
+   83. Sanity
+   84. Scoop
+   85. semantic-release
+   86. Shortcuts
+   87. Sphinx
+   88. ssh
+   89. Standard Notes
+   90. Starship
+   91. Storybook
+   92. Strapi
+   93. SWC
+   94. Tabby
+   95. Tasker
+   96. Tcl
+   97. TiddlyWiki
+   98. tmux
+   99. Tooljet
+  100. tRPC
+  101. ts-node
+  102. tsx
+  103. Turbo
+  104. uv
+  105. Vite
+  106. VitePress
+  107. Vitest
+  108. Warp
+  109. Webpack
+  110. WezTerm
+  111. wget
+  112. Wiki.js
+  113. Windmill
+  114. Windows Terminal
+  115. winget
+  116. WordPress
+  117. xh
+  118. xonsh
+  119. Zapier
+  120. zoxide
+  121. Zsh
+
+[PACKAGE-MANAGERS] (19 tools)
+----------------------------------------
+    1. apt
+    2. bun
+    3. cargo
+    4. chocolatey
+    5. composer
+    6. conda
+    7. deno
+    8. dnf
+    9. gem
+   10. gradle
+   11. homebrew
+   12. maven
+   13. nuget
+   14. pacman
+   15. pip
+   16. scoop
+   17. uv
+   18. winget
+   19. yarn
+
+[PRODUCTIVITY] (7 tools)
+----------------------------------------
+    1. AI21 Studio
+    2. HeyGen
+    3. Kagi
+    4. Mem
+    5. Metaphor
+    6. Obsidian LLM
+    7. You.com
+
+[RAG] (7 tools)
+----------------------------------------
+    1. crewai
+    2. dspy
+    3. haystack
+    4. langchain
+    5. llamaindex
+    6. memgpt
+    7. RAGFlow
+
+[SEARCH] (7 tools)
+----------------------------------------
+    1. algolia
+    2. elasticsearch
+    3. Meilisearch
+    4. solr
+    5. tantivy
+    6. typesense
+    7. vespa
+
+[SECURITY] (8 tools)
+----------------------------------------
+    1. Dependabot
+    2. GitGuardian
+    3. Gitleaks
+    4. OWASP ZAP
+    5. Renovate
+    6. Semgrep
+    7. Snyk
+    8. TruffleHog
+
+[TERMINALS] (6 tools)
+----------------------------------------
+    1. alacritty
+    2. ghostty
+    3. kitty
+    4. tabby
+    5. wezterm
+    6. Windows Terminal
+
+[TESTING] (6 tools)
+----------------------------------------
+    1. cypress
+    2. DeepEval
+    3. jest
+    4. playwright
+    5. pytest
+    6. vitest
+
+[TOOLS] (14 tools)
+----------------------------------------
+    1. Hugging Face Accelerate
+    2. AutoTrain
+    3. BitsAndBytes
+    4. Core ML Tools
+    5. DeepSpeed Chat
+    6. Flash Attention
+    7. LitGPT
+    8. ONNX
+    9. PEFT
+   10. PyTorch Lightning
+   11. TensorBoard
+   12. TensorFlow Lite
+   13. Unsloth
+   14. Weights & Biases Sweeps
+
+[UTILITIES] (6 tools)
+----------------------------------------
+    1. argparse
+    2. click
+    3. inquirer
+    4. prompts
+    5. Rich
+    6. Typer
+
+[VECTOR-DATABASES] (6 tools)
+----------------------------------------
+    1. Chroma
+    2. FAISS
+    3. milvus
+    4. pinecone
+    5. qdrant
+    6. weaviate
+
+[VECTOR-DB] (6 tools)
+----------------------------------------
+    1. Milvus
+    2. MinIO
+    3. Pinecone
+    4. Qdrant
+    5. Redis
+    6. Weaviate
+
+[VIDEO] (7 tools)
+----------------------------------------
+    1. FFmpeg
+    2. handbrake
+    3. kdenlive
+    4. mpv
+    5. obs-studio
+    6. shotcut
+    7. vlc
+
+[VISUALIZATION] (6 tools)
+----------------------------------------
+    1. chart-js
+    2. d3
+    3. echarts
+    4. Matplotlib
+    5. Plotly
+    6. vega-lite
+
+[VOICE-AUDIO] (12 tools)
+----------------------------------------
+    1. Bark
+    2. Coqui TTS
+    3. Descript Overdub
+    4. Edge TTS
+    5. Mozilla TTS
+    6. Resemble AI
+    7. Riffusion
+    8. Silero
+    9. Silero VAD
+   10. Vocode
+   11. Whisper
+   12. whisper.cpp
+
+[WINDOWS-SETUP] (11 tools)
+----------------------------------------
+    1. Debian on WSL
+    2. Dev Home
+    3. Fedora on WSL
+    4. Git for Windows
+    5. GitHub Desktop
+    6. Hyper-V
+    7. Podman Desktop
+    8. PowerToys
+    9. Sysinternals Suite
+   10. Ubuntu on WSL
+   11. Visual Studio 2022
+

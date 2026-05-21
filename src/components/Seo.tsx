@@ -15,6 +15,31 @@ export function Seo({ title, description, path = "", type = "website", image = D
   const url = `${SITE}${path}`
   const fullTitle = `${title} | IAI`
 
+  const jsonLd = type === "article"
+    ? {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        headline: fullTitle,
+        description,
+        url,
+        datePublished: new Date().toISOString(),
+        dateModified: new Date().toISOString(),
+        author: { "@type": "Organization", name: "IAI" },
+        publisher: { "@type": "Organization", name: "IAI", url: SITE },
+      }
+    : {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: "IAI",
+        url: SITE,
+        description: "AI & Developer Tools Guides for Windows 11",
+        potentialAction: {
+          "@type": "SearchAction",
+          target: `${SITE}?q={search_term_string}`,
+          "query-input": "required name=search_term_string",
+        },
+      }
+
   return (
     <Helmet>
       <title>{fullTitle}</title>
@@ -29,6 +54,7 @@ export function Seo({ title, description, path = "", type = "website", image = D
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={`${SITE}${image}`} />
       <link rel="canonical" href={url} />
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
     </Helmet>
   )
 }
