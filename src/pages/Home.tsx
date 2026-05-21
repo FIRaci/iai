@@ -3,8 +3,118 @@ import { Seo } from "@/components/Seo"
 import {
   BookOpen, Code2, GitCompare, Sparkles, Palette, Database, ArrowRight,
   Cpu, Mic, Search, Shield, Eye, Layers, Monitor, FolderTree, FlaskConical,
+  Server, Brain, Video, BarChart3, Cloud, TestTube, FileText, Notebook,
+  Package, Settings, Workflow, Terminal,
 } from "lucide-react"
 import { getContentTree } from "@/lib/content-loader"
+
+const iconMap: Record<string, any> = {
+  "ai-coding": Code2,
+  "ai-tools": Sparkles,
+  "ai-services": Sparkles,
+  "llm-runtimes": Cpu,
+  "multimodal": Layers,
+  "voice-audio": Mic,
+  "mlops": FolderTree,
+  "vector-db": Database,
+  "vector-databases": Database,
+  "datasets": FlaskConical,
+  "data-datasets": FlaskConical,
+  "observability": Eye,
+  "security": Shield,
+  "dev-tools": Monitor,
+  "dev-infra": FolderTree,
+  "productivity": Search,
+  "frontend": Monitor,
+  "backend": Server,
+  "apis": Workflow,
+  "automation": Workflow,
+  "cloud": Cloud,
+  "model-hubs": Database,
+  "evaluation": TestTube,
+  "benchmarking": TestTube,
+  "testing": TestTube,
+  "documentation": FileText,
+  "notebooks": Notebook,
+  "windows-setup": Monitor,
+  "comparisons": GitCompare,
+  "search": Search,
+  "package-managers": Package,
+  "utilities": Settings,
+  "cli-tools": Terminal,
+  "terminals": Terminal,
+  "editors": Code2,
+  "ide-plugins": Code2,
+  "git-tools": GitCompare,
+  "databases": Database,
+  "data-processing": Layers,
+  "fine-tuning": Brain,
+  "frameworks": Code2,
+  "libraries": Code2,
+  "embeddings": Brain,
+  "rag": Layers,
+  "image-generation": Palette,
+  "video": Video,
+  "visualization": BarChart3,
+  "monitoring": Eye,
+  "devops": FolderTree,
+  "deployment": Cloud,
+  "tools": Settings,
+}
+
+const colorMap: Record<string, string> = {
+  "ai-coding": "text-blue-500",
+  "ai-tools": "text-indigo-500",
+  "ai-services": "text-purple-500",
+  "llm-runtimes": "text-orange-500",
+  "multimodal": "text-purple-500",
+  "voice-audio": "text-green-500",
+  "mlops": "text-cyan-500",
+  "vector-db": "text-red-500",
+  "vector-databases": "text-red-500",
+  "datasets": "text-amber-500",
+  "data-datasets": "text-amber-500",
+  "observability": "text-violet-500",
+  "security": "text-rose-500",
+  "dev-tools": "text-sky-500",
+  "dev-infra": "text-indigo-500",
+  "productivity": "text-teal-500",
+  "frontend": "text-blue-500",
+  "backend": "text-green-500",
+  "apis": "text-cyan-500",
+  "automation": "text-emerald-500",
+  "cloud": "text-blue-500",
+  "model-hubs": "text-purple-500",
+  "evaluation": "text-violet-500",
+  "benchmarking": "text-orange-500",
+  "testing": "text-pink-500",
+  "documentation": "text-slate-500",
+  "notebooks": "text-amber-500",
+  "windows-setup": "text-blue-500",
+  "comparisons": "text-violet-500",
+  "search": "text-teal-500",
+  "package-managers": "text-green-500",
+  "utilities": "text-gray-500",
+  "cli-tools": "text-gray-500",
+  "terminals": "text-gray-500",
+  "editors": "text-blue-500",
+  "ide-plugins": "text-purple-500",
+  "git-tools": "text-orange-500",
+  "databases": "text-blue-500",
+  "data-processing": "text-cyan-500",
+  "fine-tuning": "text-purple-500",
+  "frameworks": "text-green-500",
+  "libraries": "text-blue-500",
+  "embeddings": "text-indigo-500",
+  "rag": "text-cyan-500",
+  "image-generation": "text-pink-500",
+  "video": "text-red-500",
+  "visualization": "text-blue-500",
+  "monitoring": "text-green-500",
+  "devops": "text-indigo-500",
+  "deployment": "text-sky-500",
+  "tools": "text-gray-500",
+}
 
 function getCategoryStats() {
   const tree = getContentTree()
@@ -37,23 +147,22 @@ const devTools = [
   { to: "/dev-tools/figma", title: "Figma", desc: "Design tool", gradient: "from-purple-500 to-pink-600", icon: Palette },
 ]
 
-const categoryLinks = [
-  { to: "/ai-tools", title: "AI Coding", icon: Code2, color: "text-blue-500" },
-  { to: "/llm-runtimes", title: "LLM Runtimes", icon: Cpu, color: "text-orange-500" },
-  { to: "/multimodal", title: "Multimodal", icon: Layers, color: "text-purple-500" },
-  { to: "/voice-audio", title: "Voice & Audio", icon: Mic, color: "text-green-500" },
-  { to: "/mlops", title: "MLOps", icon: FolderTree, color: "text-cyan-500" },
-  { to: "/vector-db", title: "Vector DBs", icon: Database, color: "text-red-500" },
-  { to: "/datasets", title: "Datasets", icon: FlaskConical, color: "text-amber-500" },
-  { to: "/observability", title: "Observability", icon: Eye, color: "text-violet-500" },
-  { to: "/security", title: "Security", icon: Shield, color: "text-rose-500" },
-  { to: "/dev-tools", title: "Dev Tools", icon: Monitor, color: "text-sky-500" },
-  { to: "/dev-infra", title: "Dev Infra", icon: FolderTree, color: "text-indigo-500" },
-  { to: "/productivity", title: "Productivity", icon: Search, color: "text-teal-500" },
-]
+function getCategoryLinks() {
+  const tree = getContentTree()
+  return tree
+    .filter((cat) => cat.path !== "/getting-started" && cat.path !== "/comparisons")
+    .sort((a, b) => (b.children?.length || 0) - (a.children?.length || 0))
+    .map((cat) => {
+      const slug = cat.path.replace("/", "")
+      const Icon = iconMap[slug] || BookOpen
+      const color = colorMap[slug] || "text-muted-foreground"
+      return { to: cat.path, title: cat.title, icon: Icon, color, count: cat.children?.length || 0 }
+    })
+}
 
 export function Home() {
   const { totalTools } = getCategoryStats()
+  const categoryLinks = getCategoryLinks()
 
   return (
     <>
@@ -108,7 +217,7 @@ export function Home() {
             <BookOpen className="h-5 w-5 text-primary" />
             Danh mục
           </h2>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {categoryLinks.map((cat) => (
               <Link
                 key={cat.to}
@@ -116,10 +225,13 @@ export function Home() {
                 className="group flex items-center gap-3 rounded-xl border border-border bg-card p-4 card-hover cursor-pointer"
               >
                 <cat.icon className={`h-5 w-5 ${cat.color} transition-transform group-hover:scale-110`} />
-                <span className="font-medium text-foreground group-hover:text-primary transition-colors">
-                  {cat.title}
-                </span>
-                <ArrowRight className="ml-auto h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" />
+                <div className="flex-1 min-w-0">
+                  <span className="font-medium text-foreground group-hover:text-primary transition-colors truncate block">
+                    {cat.title}
+                  </span>
+                  <span className="text-xs text-muted-foreground">{cat.count} tools</span>
+                </div>
+                <ArrowRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary shrink-0" />
               </Link>
             ))}
           </div>
