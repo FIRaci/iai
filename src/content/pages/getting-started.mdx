@@ -8,14 +8,33 @@ title: "Bắt đầu với AI Tools"
 Chào mừng bạn đến với **IAI** — cẩm nang toàn diện về AI tools và dev tools trên Windows 11. Hướng dẫn này sẽ giúp bạn thiết lập môi trường và chọn công cụ AI phù hợp.
 </Note>
 
-## Yêu cầu
+## Cài đặt môi trường
 
-Trước khi bắt đầu, bạn cần:
+### Node.js
 
-- Máy tính chạy **Windows 11** (bản cập nhật mới nhất)
-- Kết nối Internet
-- Tài khoản GitHub (đăng ký miễn phí tại github.com)
-- Kiến thức cơ bản về command line
+<CodeBlock language="powershell" code={`winget install OpenJS.NodeJS.LTS
+node --version`} />
+
+### Git
+
+<CodeBlock language="powershell" code={`winget install Git.Git
+git --version`} />
+
+### VS Code
+
+<CodeBlock language="powershell" code={`winget install Microsoft.VisualStudioCode
+code --version`} />
+
+## Sử dụng
+
+### Bắt đầu với AI coding tool
+
+<CodeBlock language="powershell" code={`# Claude Code CLI
+npm install -g @anthropic-ai/claude-code
+claude
+
+# Hoặc Cursor - tải từ cursor.com
+# Hoặc GitHub Copilot - cài extension trong VS Code`} />
 
 ## Chọn công cụ phù hợp
 
