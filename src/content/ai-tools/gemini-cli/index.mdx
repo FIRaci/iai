@@ -1,34 +1,39 @@
 ---
 title: "Gemini CLI"
 category: "ai-tools"
-icon: "brain"
-difficulty: "beginner"
-tags: ["cli", "multi-model", "api", "agent"]
+icon: "terminal"
+difficulty: "intermediate"
+tags: ["cli", "free", "google"]
 ---
 
 ## Tổng quan
 
 <Note type="info">
-**Gemini CLI** là công cụ AI hỗ trợ developers trong workflow. Cung cấp các tính năng thông minh để tăng năng suất phát triển phần mềm.
+**Gemini CLI** là AI agent cho terminal từ Google. Powered by Gemini 3.5 Flash, hỗ trợ code understanding, file manipulation, và command execution.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+<CodeBlock language="powershell" code={`npm install -g @anthropic-ai/gemini-cli
+gemini login`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Start Gemini CLI
+gemini
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Ask questions hoặc yêu cầu
+"Explain this codebase"
+"Refactor the auth module"
+"Run tests and fix failures" `} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Free tier:** Gemini CLI có free tier với usage limits cao.
 </Note>
 
 ## Liên kết
 
-- [Gemini CLI](https://gemini-cli.com)
+- [Gemini CLI](https://ai.google.dev/gemini-api/docs/cli)
+- [GitHub](https://github.com/google-gemini/gemini-cli)

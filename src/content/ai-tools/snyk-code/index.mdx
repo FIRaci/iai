@@ -1,0 +1,38 @@
+---
+title: "Snyk Code"
+category: "ai-tools"
+icon: "shield"
+difficulty: "intermediate"
+tags: ["security", "sast", "enterprise"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**Snyk Code** là AI-powered SAST tool. Scan source code để tìm security vulnerabilities trước khi merge. Tích hợp vào IDE và CI/CD.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`npm install -g snyk
+snyk auth`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`# Scan code
+snyk code test
+
+# Trong IDE:
+# Snyk extension sẽ auto-scan khi save
+# Click vào vulnerability để xem fix suggestions`} />
+
+## Tips
+
+<Note type="tip">
+**IDE integration:** Snyk scan real-time trong IDE - fix vulnerabilities trước khi commit.
+</Note>
+
+## Liên kết
+
+- [Snyk Code](https://snyk.io/product/snyk-code)
+- [Docs](https://docs.snyk.io)

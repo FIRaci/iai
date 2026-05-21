@@ -1,34 +1,41 @@
 ---
 title: "Continue"
 category: "ai-tools"
-icon: "brain"
-difficulty: "beginner"
-tags: ["ide", "api", "agent"]
+icon: "infinity"
+difficulty: "intermediate"
+tags: ["ide", "opensource", "custom"]
 ---
 
 ## Tổng quan
 
 <Note type="info">
-**Continue** là công cụ AI hỗ trợ developers trong workflow. Cung cấp các tính năng thông minh để tăng năng suất phát triển phần mềm.
+**Continue** là open-source AI coding assistant. Build custom AI agents cho development workflow. Hỗ trợ nhiều models và IDEs.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+<CodeBlock language="powershell" code={`npm install -g continue
+# Hoặc cài extension từ VS Code Marketplace`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`# Cấu hình trong .continue/config.json
+{
+  "models": [{"provider": "openai", "model": "gpt-4"}],
+  "tabAutocompleteModel": {"provider": "ollama", "model": "codellama"}
+}
 
-# Xem documentation để biết chi tiết usage examples`} />
+# Sử dụng trong IDE:
+# Ctrl+L để mở chat
+# Ctrl+I để inline edit`} />
 
 ## Tips
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Open-source:** Continue cho phép tự host và customize hoàn toàn.
 </Note>
 
 ## Liên kết
 
-- [Continue](https://continue.com)
+- [Continue](https://continue.dev)
+- [GitHub](https://github.com/continuedev/continue)

@@ -1,0 +1,39 @@
+---
+title: "OpenAI Codex"
+category: "ai-tools"
+icon: "brain"
+difficulty: "intermediate"
+tags: ["cli", "agent", "api", "paid"]
+---
+
+## Tổng quan
+
+<Note type="info">
+**OpenAI Codex** là AI coding agent từ OpenAI. Chạy trong terminal và desktop app, powered by GPT-5.2-Codex cho agentic coding với multi-agent support.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`npm install -g @openai/codex
+codex login`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`# Start coding session
+codex
+
+# Assign task
+"Build a REST API with Express and PostgreSQL"
+
+# Codex sẽ plan, implement, test, và tạo PR`} />
+
+## Tips
+
+<Note type="tip">
+**Multi-agent:** Codex app hỗ trợ parallel agents với worktrees - nhiều agents làm việc cùng lúc.
+</Note>
+
+## Liên kết
+
+- [Codex](https://openai.com/codex)
+- [Docs](https://platform.openai.com/docs/codex)
