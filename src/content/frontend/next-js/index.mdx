@@ -1,34 +1,77 @@
 ---
 title: "Next.js"
 category: "frontend"
-icon: "zap"
+tags: ["react", "framework", "ssr", "static-site"]
 difficulty: "intermediate"
-tags: ["api"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**Next.js** là frontend tool/library cho React/JavaScript applications. Giúp xây dựng UI components nhanh hơn.
-</Note>
+Next.js là React framework full-stack hỗ trợ Server-Side Rendering (SSR), Static Site Generation (SSG), và API routes. Được phát triển bởi Vercel, Next.js giúp xây dựng web application nhanh với built-in optimization, routing, và deployment.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`npm install tool-name`} />
+Yêu cầu Node.js 18.17 trở lên. Tạo project Next.js mới:
+
+<CodeBlock language="powershell" code={`# Tạo project với create-next-app
+npx create-next-app@latest my-app --typescript --tailwind --eslint
+
+# Di chuyển vào thư mục project
+cd my-app
+
+# Chạy development server
+npm run dev`} />
+
+Hoặc cài đặt vào project hiện có:
+
+<CodeBlock language="powershell" code={`npm install next react react-dom`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+### Development
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`# Chạy dev server (mặc định http://localhost:3000)
+npm run dev
 
-## Tips
+# Build production bundle
+npm run build
 
-<Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
-</Note>
+# Start production server
+npm start`} />
 
-## Liên kết
+### Cấu trúc thư mục
 
-- [Next.js](https://nextjs.org)
+<CodeBlock language="powershell" code={`my-app/
+├── app/              # App Router (recommended)
+│   ├── page.tsx      # Route /
+│   ├── layout.tsx    # Root layout
+│   └── api/          # API routes
+├── public/           # Static assets
+├── components/       # React components
+└── package.json`} />
+
+### Tạo page đơn giản
+
+<CodeBlock language="powershell" code={`// app/page.tsx
+export default function Home() {
+  return <h1>Hello Next.js</h1>;
+}`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`# Kiểm tra phiên bản Next.js
+npx next --version
+
+# Kiểm tra trong package.json
+npm list next`} />
+
+## Tài liệu tham khảo
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Create Next App](https://nextjs.org/docs/app/api-reference/create-next-app)
+- [Vercel Deployment](https://nextjs.org/docs/deployment)
+
+## Lưu ý
+
+App Router là mặc định từ Next.js 13.4+. Pages Router (cũ) vẫn được hỗ trợ nhưng khuyến nghị dùng App Router cho project mới. Cần Node.js 18.17+ để chạy Next.js 15.

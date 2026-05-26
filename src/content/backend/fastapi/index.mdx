@@ -1,0 +1,79 @@
+---
+title: "FastAPI"
+category: "backend"
+tags: ["python", "api", "rest", "async"]
+difficulty: "intermediate"
+lastUpdated: "2026-05-26"
+---
+
+## Tổng quan
+
+FastAPI là web framework Python hiệu năng cao dành cho xây dựng REST API với type hints, tự động sinh OpenAPI documentation. Dựa trên Starlette và Pydantic, FastAPI hỗ trợ async/await và có performance tương đương Node.js và Go.
+
+## Cài đặt
+
+Cài đặt qua pip trong virtual environment:
+
+<CodeBlock language="powershell" code={`# Tạo virtual environment
+python -m venv venv
+.\venv\Scripts\Activate
+
+# Cài đặt FastAPI và uvicorn
+pip install fastapi uvicorn
+
+# Kiểm tra cài đặt
+pip list | Select-String fastapi
+pip list | Select-String uvicorn`} />
+
+Hoặc cài đặt với đầy đủ dependencies:
+
+<CodeBlock language="powershell" code={`pip install "fastapi[standard]"`} />
+
+## Sử dụng
+
+### API cơ bản
+
+<CodeBlock language="powershell" code={`# main.py
+from fastapi import FastAPI
+
+app = FastAPI(title="My API")
+
+@app.get("/")
+def read_root():
+    return {"message": "Hello World"}
+
+@app.get("/items/{item_id}")
+def read_item(item_id: int, q: str = None):
+    return {"item_id": item_id, "q": q}`} />
+
+### Chạy server
+
+<CodeBlock language="powershell" code={`# Development — auto-reload
+uvicorn main:app --reload --port 8000
+
+# Production
+uvicorn main:app --host 0.0.0.0 --port 8000 --workers 4`} />
+
+### Tự động API docs
+
+Mở browser:
+- Swagger UI: http://localhost:8000/docs
+- ReDoc: http://localhost:8000/redoc
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`# Kiểm tra phiên bản FastAPI
+python -c "import fastapi; print(fastapi.__version__)"
+
+# Kiểm tra Uvicorn
+uvicorn --version`} />
+
+## Tài liệu tham khảo
+
+- [FastAPI Documentation](https://fastapi.tiangolo.com)
+- [FastAPI GitHub](https://github.com/fastapi/fastapi)
+- [Uvicorn Documentation](https://www.uvicorn.org)
+
+## Lưu ý
+
+Khi update code, luôn dùng `--reload` flag để dev server tự động restart. Dùng `pip install "fastapi[standard]"` để cài đầy đủ optional dependencies bao gồm Uvicorn và Pydantic. Để production, dùng Gunicorn với Uvicorn workers.

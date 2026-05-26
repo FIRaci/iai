@@ -1,0 +1,91 @@
+---
+title: "Bandit"
+category: "security"
+icon: "shield"
+difficulty: "beginner"
+tags: ["security", "python", "linting", "static-analysis"]
+lastUpdated: "2026-05-26"
+---
+
+## Tổng quan
+
+<Note type="info">
+**Bandit** là security linter cho Python, được phát triển bởi OpenStack Security Group. Phân tích tĩnh mã nguồn Python để tìm các lỗ hổng bảo mật phổ biến: SQL injection, command injection, hardcoded passwords, unsafe deserialization, và nhiều hơn nữa.
+</Note>
+
+## Cài đặt
+
+### Cài đặt qua pip
+
+<CodeBlock language="powershell" code={`pip install bandit`} />
+
+### Kiểm tra cài đặt
+
+<CodeBlock language="powershell" code={`bandit --version`} />
+
+## Sử dụng
+
+### Quét cơ bản
+
+<CodeBlock language="powershell" code={`# Quét một file
+bandit app.py
+
+# Quét toàn bộ thư mục
+bandit -r src/
+
+# Quét với output format JSON
+bandit -r src/ -f json -o report.json`} />
+
+### Bỏ qua các cảnh báo cụ thể
+
+<CodeBlock language="python" code={`# Bỏ qua hardcoded password warning trong file này
+import subprocess  # nosec - intentional for test setup
+
+password = "local-dev-only"  # nosec`} />
+
+### Cấu hình thông qua .bandit
+
+Tạo file `.bandit` trong project root:
+
+ <CodeBlock language="ini" code={`
+[bandit]
+exclude: tests,venv,.venv
+skips: B101,B311
+targets: .
+confidence: HIGH
+severity: HIGH
+`} />
+
+### Các check phổ biến
+
+| ID | Mô tả | Severity |
+|----|-------|----------|
+| **B101** | `assert` trong production code | Low |
+| **B102** | `exec` sử dụng | Medium |
+| **B105** | Hardcoded password | Medium |
+| **B106** | Hardcoded API key | Medium |
+| **B201** | `eval` sử dụng | High |
+| **B301** | Pickle deserialization | High |
+| **B602** | subprocess với shell=True | High |
+| **B608** | SQL injection | High |
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`bandit --version
+echo 'print(eval(input()))' | bandit -`} />
+
+## Tài liệu tham khảo
+
+- [Bandit Docs](https://bandit.readthedocs.io/)
+- [Bandit GitHub](https://github.com/PyCQA/bandit)
+- [Python Security Best Practices](https://owasp.org/www-project-python-security/)
+
+## Lưu ý
+
+<Note type="info">
+Bandit chỉ phân tích tĩnh — không chạy code. Một số false positives có thể xảy ra. Dùng `# nosec` comment để bỏ qua các dòng đã được kiểm tra thủ công.
+</Note>
+
+<Note type="tip">
+Tích hợp Bandit vào CI/CD pipeline: `bandit -r src/ -f xml -o bandit-report.xml`. Dùng với pre-commit: thêm `repo: https://github.com/PyCQA/bandit` vào `.pre-commit-config.yaml`.
+</Note>

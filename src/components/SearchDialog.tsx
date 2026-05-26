@@ -55,6 +55,7 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
   const navigate = useNavigate()
   const [query, setQuery] = useState("")
   const [activeCategory, setActiveCategory] = useState<string>("")
+  const [activeDifficulty, setActiveDifficulty] = useState<string>("")
 
   const searchItems = useMemo<SearchItem[]>(() => {
     const tree = getContentTree()
@@ -99,8 +100,11 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
     if (activeCategory) {
       items = items.filter((item) => item.category === activeCategory)
     }
+    if (activeDifficulty) {
+      items = items.filter((item) => item.difficulty === activeDifficulty)
+    }
     return items
-  }, [query, fuse, searchItems, activeCategory])
+  }, [query, fuse, searchItems, activeCategory, activeDifficulty])
 
   const categories = useMemo(() => {
     const cats = [...new Set(searchItems.map((item) => item.category))]
@@ -160,6 +164,25 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
           ))}
         </div>
       )}
+      <div className="flex gap-1 px-3 py-1.5 overflow-x-auto border-b border-border">
+        {["", "beginner", "intermediate", "advanced"].map((d) => (
+          <button
+            key={d}
+            onClick={() => setActiveDifficulty(d === activeDifficulty ? "" : d)}
+            className={cn(
+              "shrink-0 rounded-full px-3 py-1 text-xs font-medium transition-colors",
+              activeDifficulty === d
+                ? d === "beginner" ? "bg-green-100 text-green-700"
+                  : d === "intermediate" ? "bg-amber-100 text-amber-700"
+                  : d === "advanced" ? "bg-red-100 text-red-700"
+                  : "bg-primary text-primary-foreground"
+                : "bg-muted text-muted-foreground hover:bg-muted/80"
+            )}
+          >
+            {d === "" ? "All levels" : d.charAt(0).toUpperCase() + d.slice(1)}
+          </button>
+        ))}
+      </div>
       <CommandList>
         <CommandEmpty>
           <div className="flex flex-col items-center gap-2 py-6 text-muted-foreground">

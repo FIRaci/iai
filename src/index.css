@@ -629,3 +629,28 @@
 .prose hr {
   margin: 2.5em 0;
 }
+
+/* ===== Print Styles ===== */
+@media print {
+  body { background: white; color: black; }
+  @page { margin: 1.5cm; }
+
+  header, footer, aside, nav, .sidebar-link, #sidebar,
+  .back-to-top, .toc, .table-of-contents,
+  [aria-label="Main navigation"],
+  [aria-label="Open menu"],
+  [aria-label="Search tools and guides"],
+  .lg\\:block:not(main), .hidden,
+  .feedback-widget, .feedback,
+  .card-hover, .btn-press, .search-btn-hover {
+    display: none !important;
+  }
+
+  main, .prose { max-width: 100% !important; }
+  .prose pre { break-inside: avoid; white-space: pre-wrap; }
+  .prose code { font-size: 9pt; }
+  .prose img { max-width: 100% !important; page-break-inside: avoid; }
+  .prose h1, .prose h2, .prose h3, .prose h4 { break-after: avoid; }
+  .prose table { font-size: 9pt; }
+  .prose p, .prose li { orphans: 3; widows: 3; }
+}

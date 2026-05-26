@@ -1,67 +1,69 @@
 ---
 title: "Zed"
 category: "dev-tools"
-icon: "zap"
+tags: ["code-editor", "ide", "rust", "performance", "collaboration", "multi-model"]
 difficulty: "beginner"
-tags: ["creative", "cli", "extension", "autocomplete", "ide", "api", "local", "editor"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**Zed** là code editor hiệu năng cao viết bằng Rust. Tập trung vào tốc độ, collaboration realtime, và trải nghiệm developer mượt mà. Hỗ trợ multiple cursors, inline AI, và team collaboration.
-</Note>
+Zed là code editor hiệu năng cao viết bằng Rust, được thiết kế cho collaboration realtime và tốc độ tối đa. Hỗ trợ AI inline completion (Claude, GPT-4), multiple cursors, terminal tích hợp, và Vim mode. Đặc biệt phù hợp với Windows developers muốn editor khởi động nhanh và xử lý project lớn mượt mà.
 
-## Cài đặt trên Windows 11
+## Cài đặt
 
-### Bước 1: Tải Zed
+Tải installer từ zed.dev.
 
-Truy cập [zed.dev](https://zed.dev) và tải bản Windows.
+<CodeBlock language="powershell" code={`
+# Visit https://zed.dev/download và tải bản Windows
+# Run Zed-Setup-x.x.x.exe
 
-### Bước 2: Cài đặt
+# Hoặc cài qua winget:
+winget install Zed.Zed
 
-1. Chạy installer
-2. Zed tự động cài đặt và thêm vào PATH
-3. Mở Zed từ Start Menu
+# Yêu cầu: Windows 11 + 8GB RAM khuyến nghị
+`} />
 
-### Bước 3: Cài extensions
+## Sử dụng
 
-Mở Command Palette (`Ctrl+Shift+P`) → `zed: extensions` để cài extensions cho ngôn ngữ bạn dùng.
+Mở Zed và khám phá các tính năng chính.
 
-## Sử dụng cơ bản
+<CodeBlock language="powershell" code={`
+# Mở project từ terminal
+zed .   # mở thư mục hiện tại
+zed C:\Projects\my-app
 
-### Tính năng chính
+# Các phím tắt quan trọng:
+# Ctrl+P           - File finder
+# Ctrl+Shift+P     - Command palette
+# Ctrl+/           - Toggle comment
+# Ctrl+D           - Duplicate line
+# Alt+Click        - Multiple cursors
+# Ctrl+G           - Go to line
+# Ctrl+Shift+F     - Search in project
 
-| Tính năng | Mô tả |
-|-----------|-------|
-| Hiệu năng cao | Viết bằng Rust, khởi động trong mili-giây |
-| Collaboration | Chia sẻ session, code cùng team realtime |
-| Inline AI | AI suggestions ngay trong editor |
-| Multiple cursors | Chỉnh sửa nhiều vị trí cùng lúc |
-| Terminal tích hợp | Terminal built-in |
+# AI Assistant (cần API key):
+# Cấu hình trong Settings → AI:
+# provider: anthropic / openai
+# model: claude-sonnet-4-20250514 / gpt-4o
 
-### Keyboard shortcuts
+# Collaboration:
+# Chia sẻ session: Click icon users ở status bar
+`} />
 
-| Phím tắt | Chức năng |
-|----------|-----------|
-| `Ctrl+P` | Quick open file |
-| `Ctrl+Shift+P` | Command palette |
-| `Alt+Click` | Multiple cursors |
-| `Ctrl+D` | Duplicate line |
-| `Ctrl+/` | Toggle comment |
+## Xác minh cài đặt
 
-## Tips sử dụng
+<CodeBlock language="powershell" code={`
+zed --version
+# Ví dụ output: Zed 0.177.2
+`} />
 
-<Note type="tip">
-**Remote Development:** Zed hỗ trợ remote development qua SSH. Kết nối đến remote server và code như local.
-</Note>
+## Tài liệu tham khảo
 
-<Note type="tip">
-**Performance:** Zed được tối ưu cho performance. Nếu bạn cảm thấy editor khác chậm, hãy thử Zed — đặc biệt với project lớn.
-</Note>
+- [Zed Documentation](https://zed.dev/docs)
+- [Zed Download](https://zed.dev/download)
+- [GitHub Repository](https://github.com/zed-industries/zed)
 
-## Liên kết
+## Lưu ý
 
-- [Zed](https://zed.dev)
-- [Docs](https://zed.dev/docs)
-- [Extensions](https://zed.dev/extensions)
+Zed đang trong giai đoạn early release cho Windows — một số tính năng có thể chưa ổn định. AI Assistant yêu cầu API key riêng (Anthropic/OpenAI). Trên Windows 11, Zed hỗ trợ GPU rendering qua DirectX 12. Nếu gặp lỗi font rendering, cài Cascadia Code hoặc JetBrains Mono.

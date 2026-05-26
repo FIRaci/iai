@@ -1,36 +1,64 @@
 ---
 title: "Windows Terminal"
 category: "dev-tools"
-icon: "layout-grid"
+tags: ["terminal", "microsoft", "cli", "opensource"]
 difficulty: "beginner"
-tags: ["cli", "autocomplete", "api"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**Windows Terminal** là developer tool. Hỗ trợ development workflow.
-</Note>
+Windows Terminal là ứng dụng terminal hiện đại của Microsoft, hỗ trợ nhiều tabs, GPU-accelerated rendering, và tùy biến giao diện. Tích hợp sẵn PowerShell, CMD, WSL, và có thể thêm các shell khác như Git Bash, PowerShell 7.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`npm install tool-name`} />
+### Phương pháp 1: Winget (khuyến nghị)
+
+<CodeBlock language="powershell" code={`winget install Microsoft.WindowsTerminal`} />
+
+### Phương pháp 2: Microsoft Store
+
+Tìm "Windows Terminal" trong Microsoft Store và cài đặt.
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+### Phím tắt cơ bản
 
-# Xem documentation để biết chi tiết usage examples`} />
+| Phím tắt | Chức năng |
+|----------|-----------|
+| `Ctrl+Shift+1/2/3` | Mở tab theo profile |
+| `Ctrl+Shift+D` | Mở tab mới |
+| `Ctrl+Shift+W` | Đóng tab |
+| `Ctrl+Shift+N` | Mở cửa sổ mới |
+| `Ctrl+,` | Mở Settings |
+| `Ctrl+Shift+F` | Tìm kiếm |
+| `Ctrl+Shift+P` | Command palette |
 
-## Tips
+### Cấu hình mẫu
+
+<CodeBlock language="json" code={`{
+  "profiles": {
+    "defaults": {
+      "fontFace": "CascadiaCode NF",
+      "fontSize": 14,
+      "opacity": 90,
+      "useAcrylic": true
+    }
+  }
+}`} />
+
+## Xác minh cài đặt
+
+Mở Windows Terminal từ Start Menu hoặc chạy `wt` từ PowerShell/CMD.
+
+## Tài liệu tham khảo
+
+- [Windows Terminal Docs](https://learn.microsoft.com/windows/terminal/)
+- [Terminal GitHub](https://github.com/microsoft/terminal)
+- [Windows Terminal Themes](https://windowsterminalthemes.dev)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Cài Cascadia Code Nerd Font để có icon và ligatures: `winget install Microsoft.CascadiaCodeNF`. Sau đó set `fontFace: "CascadiaCode NF"` trong settings.
 </Note>
-
-## Liên kết
-
-- [Windows Terminal](https://microsoft.com/windows-terminal)
-- [Docs](https://learn.microsoft.com/windows/terminal)
-- [Themes](https://windowsterminalthemes.dev)

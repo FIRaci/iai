@@ -3,7 +3,8 @@ title: "Docker Desktop"
 category: "dev-tools"
 icon: "container"
 difficulty: "intermediate"
-tags: ["creative", "cli", "api", "agent"]
+tags: ["container", "devops", "virtualization", "wsl2"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
@@ -12,7 +13,7 @@ tags: ["creative", "cli", "api", "agent"]
 **Docker Desktop** là công cụ container hóa ứng dụng, cho phép chạy app trong môi trường isolated trên Windows 11. Đảm bảo app chạy giống nhau trên mọi máy — từ dev đến production.
 </Note>
 
-## Cài đặt trên Windows 11
+## Cài đặt
 
 ### Yêu cầu
 
@@ -36,7 +37,7 @@ wsl --set-default-version 2`} />
 
 Mở Docker Desktop từ Start Menu, đợi icon cá voi xuất hiện ở system tray.
 
-## Sử dụng cơ bản
+## Sử dụng
 
 ### Kiểm tra cài đặt
 
@@ -59,29 +60,9 @@ docker compose version`} />
 | `docker stop <container>` | Dừng container |
 | `docker rm <container>` | Xóa container |
 
-### Dockerfile cơ bản
-
-Tạo file `Dockerfile` trong project root:
-
-<CodeBlock language="dockerfile" code={`FROM node:20-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-EXPOSE 3000
-CMD ["npm", "start"]`} />
-
-Build và chạy:
-
-<CodeBlock language="powershell" code={`docker build -t my-app .
-docker run -p 3000:3000 my-app`} />
-
 ### Docker Compose example
 
-Tạo file `docker-compose.yml`:
-
-<CodeBlock language="yaml" code={`version: "3.8"
-services:
+<CodeBlock language="yaml" code={`services:
   app:
     build: .
     ports:
@@ -97,58 +78,30 @@ services:
 volumes:
   pgdata:`} />
 
-Chạy:
+## Xác minh cài đặt
 
-<CodeBlock language="powershell" code={`docker compose up -d`} />
+<CodeBlock language="powershell" code={`docker --version
+docker compose version
+docker run hello-world`} />
 
-## Tips sử dụng
+## Tài liệu tham khảo
 
-<Note type="tip">
-**WSL 2 Backend:** Luôn dùng WSL 2 backend thay vì Hyper-V để performance tốt hơn.
-</Note>
+- [Docker Desktop](https://docker.com/products/docker-desktop)
+- [Docker Docs](https://docs.docker.com)
+- [Docker Hub](https://hub.docker.com)
+
+## Lưu ý
 
 <Note type="warning">
 Docker Desktop tiêu tốn RAM. Giới hạn RAM trong Settings → Resources nếu cần.
 </Note>
 
 <Note type="tip">
-**Volume mounts:** Dùng volumes để persist data: `docker run -v ./data:/app/data my-app`. Data sẽ được lưu ngay cả khi container bị xóa.
+Luôn dùng WSL 2 backend thay vì Hyper-V để performance tốt hơn.
 </Note>
 
-## Khắc phục sự cố
-
-### WSL 2 not running
+### Troubleshooting: WSL 2 not running
 
 <CodeBlock language="powershell" code={`wsl --update
 wsl --shutdown
 # Restart Docker Desktop`} />
-
-### "Docker Desktop starting" stuck
-
-1. Thoát Docker Desktop hoàn toàn (system tray → Quit)
-2. Xóa file `settings.json` trong `%APPDATA%\Docker\`
-3. Khởi động lại Docker Desktop
-
-### Permission denied on volume mounts
-
-- Chạy PowerShell với quyền Admin
-- Hoặc thêm user vào group `docker-users`
-
-### Networking issues giữa containers
-
-- Dùng Docker network: `docker network create mynet`
-- Connect containers: `docker run --network mynet ...`
-- Hoặc dùng Docker Compose (auto network)
-
-### Image pull failures
-
-- Kiểm tra internet connection
-- Thử Docker Hub mirror nếu ở Việt Nam
-- Clear Docker cache: `docker system prune -a`
-
-## Liên kết
-
-- [Docker Desktop](https://docker.com/products/docker-desktop)
-- [Docker Docs](https://docs.docker.com)
-- [Docker Hub](https://hub.docker.com)
-- [Docker Compose Docs](https://docs.docker.com/compose)

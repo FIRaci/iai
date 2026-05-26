@@ -1,34 +1,80 @@
 ---
 title: "TypeScript"
 category: "frontend"
-icon: "code"
-difficulty: "beginner"
-tags: ["api"]
+tags: ["javascript", "compiler", "static-typing", "language"]
+difficulty: "intermediate"
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**TypeScript** là frontend tool/library cho React/JavaScript applications. Giúp xây dựng UI components nhanh hơn.
-</Note>
+TypeScript là superset của JavaScript thêm static typing, interfaces, và advanced tooling. Được phát triển bởi Microsoft, TypeScript giúp phát hiện lỗi tại compile-time và cải thiện developer experience với autocomplete và refactoring.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`npm install tool-name`} />
+Cài đặt TypeScript globally qua npm:
+
+<CodeBlock language="powershell" code={`# Cài đặt TypeScript globally
+npm install -g typescript
+
+# Kiểm tra cài đặt
+tsc --version`} />
+
+Hoặc cài đặt local cho project:
+
+<CodeBlock language="powershell" code={`npm install --save-dev typescript
+npx tsc --version`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+### Compile TypeScript
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`# Compile file .ts sang .js
+tsc hello.ts
 
-## Tips
+# Watch mode — auto-compile khi file thay đổi
+tsc --watch hello.ts
 
-<Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
-</Note>
+# Compile với tsconfig.json
+tsc
 
-## Liên kết
+# Chỉ check lỗi, không output file
+tsc --noEmit`} />
 
-- [TypeScript](https://typescript.com)
+### Khởi tạo cấu hình
+
+<CodeBlock language="powershell" code={`# Tạo tsconfig.json
+tsc --init
+
+# Các cấu hình thường dùng trong tsconfig.json:
+# - "target": "ES2022"
+# - "module": "ESNext"
+# - "strict": true
+# - "outDir": "./dist"
+# - "rootDir": "./src"`} />
+
+### TypeScript cơ bản
+
+<CodeBlock language="powershell" code={`
+// hello.ts
+function greet(name: string): string {
+  return "Hello, " + name + "!";
+}
+
+const message: string = greet("World");
+console.log(message);
+`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`tsc --version`} />
+
+## Tài liệu tham khảo
+
+- [TypeScript Documentation](https://www.typescriptlang.org/docs)
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
+- [Playground](https://www.typescriptlang.org/play)
+
+## Lưu ý
+
+Luôn bật `strict: true` trong tsconfig.json để tận dụng tối đa type checking. Dùng `tsc --noEmit` trong CI/CD để kiểm tra lỗi type mà không sinh file.

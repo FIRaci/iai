@@ -1,34 +1,93 @@
 ---
 title: "Supabase"
 category: "backend"
-icon: "code"
+tags: ["database", "baas", "postgresql", "realtime"]
 difficulty: "beginner"
-tags: ["autocomplete", "api"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**Supabase** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
-</Note>
+Supabase là open-source Backend-as-a-Service (BaaS) thay thế Firebase với PostgreSQL, authentication, real-time subscriptions, storage, và Edge Functions. Cung cấp REST API và GraphQL tự động từ schema database.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+Sử dụng Supabase CLI cho local development:
+
+<CodeBlock language="powershell" code={`# Cài đặt Supabase CLI qua npm
+npm install -g supabase
+
+# Kiểm tra cài đặt
+supabase --version
+
+# Khởi tạo Supabase trong project
+supabase init`} />
+
+Hoặc dùng Docker:
+
+<CodeBlock language="powershell" code={`# Clone Supabase local
+supabase start
+
+# Dừng local Supabase
+supabase stop`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+### Kết nối từ ứng dụng
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`npm install @supabase/supabase-js`} />
 
-## Tips
+### Client cơ bản
 
-<Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
-</Note>
+<CodeBlock language="powershell" code={`import { createClient } from '@supabase/supabase-js'
 
-## Liên kết
+const supabase = createClient(
+  process.env.SUPABASE_URL!,
+  process.env.SUPABASE_ANON_KEY!
+)
 
-- [Supabase](https://supabase.com)
+// Query data
+const { data, error } = await supabase
+  .from('articles')
+  .select('*')
+  .eq('published', true)
+  .order('created_at', { ascending: false })
+
+// Insert data
+const { data, error } = await supabase
+  .from('articles')
+  .insert({ title: 'New Post', content: '...' })
+  .select()`} />
+
+### Local Development
+
+<CodeBlock language="powershell" code={`# Start local Supabase
+supabase start
+
+# Lấy URLs và keys cho project
+supabase status
+
+# Tạo migration mới
+supabase migration new create_profiles
+
+# Apply migrations
+supabase db push
+
+# Xem Studio UI
+# http://localhost:54323`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`supabase --version
+
+supabase --help`} />
+
+## Tài liệu tham khảo
+
+- [Supabase Documentation](https://supabase.com/docs)
+- [Supabase CLI Reference](https://supabase.com/docs/reference/cli)
+- [Supabase JavaScript Client](https://supabase.com/docs/reference/javascript)
+
+## Lưu ý
+
+Supabase Local cần Docker Desktop để chạy. Free plan gồm 2 database projects, 500MB database, và 50MB file storage. Dùng Row Level Security (RLS) để bảo vệ data — mặc định tất cả tables đều private.

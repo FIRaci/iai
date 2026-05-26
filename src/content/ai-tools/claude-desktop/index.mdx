@@ -1,34 +1,53 @@
 ---
 title: "Claude Desktop"
 category: "ai-tools"
-icon: "brain"
+tags: ["chat", "desktop-app", "anthropic", "agent", "multi-model"]
 difficulty: "beginner"
-tags: ["multi-model", "api"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**Claude Desktop** là công cụ AI hỗ trợ developers trong workflow. Cung cấp các tính năng thông minh để tăng năng suất phát triển phần mềm.
-</Note>
+Claude Desktop là ứng dụng desktop của Anthropic cho phép sử dụng Claude AI trực tiếp trên máy tính Windows. Hỗ trợ đọc file, phân tích code, viết văn bản, và tương tác với file hệ thống. Tích hợp sâu với Claude Code cho terminal-based AI development.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+Tải file .exe từ claude.ai và cài đặt.
+
+<CodeBlock language="powershell" code={`
+# Download from https://claude.ai/download
+# Run the installer Claude Setup x.x.x.exe
+
+# Đăng nhập bằng tài khoản Anthropic
+# Yêu cầu Claude Pro subscription ($20/tháng)
+`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Mở Claude Desktop và bắt đầu chat hoặc upload file để phân tích.
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`
+# Claude Desktop hỗ trợ:
+# - Chat trực tiếp với Claude
+# - Upload file (code, PDF, hình ảnh) để phân tích
+# - Copy-paste code để review/debug
+# - Tích hợp Claude Code CLI: 
+npx claude-code
+`} />
 
-## Tips
+## Xác minh cài đặt
 
-<Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
-</Note>
+<CodeBlock language="powershell" code={`
+# Mở Start Menu và tìm "Claude"
+# Hoặc kiểm tra version trong Settings > About
+`} />
 
-## Liên kết
+## Tài liệu tham khảo
 
-- [Claude Desktop](https://claude-desktop.com)
+- [Claude Desktop Download](https://claude.ai/download)
+- [Claude Documentation](https://docs.anthropic.com)
+- [Claude Code](https://github.com/anthropics/claude-code)
+
+## Lưu ý
+
+Claude Desktop yêu cầu đăng nhập tài khoản Anthropic và subscription Pro. Trên Windows 11, đảm bảo .NET 8 runtime đã được cài đặt. Claude Desktop có thể đọc file local nhưng không có quyền edit file trực tiếp (dùng Claude Code cho việc đó).

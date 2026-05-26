@@ -11,6 +11,7 @@ import { RelatedArticles } from "@/components/RelatedArticles"
 import { Seo } from "@/components/Seo"
 import { YesNoBadge } from "@/components/YesNoBadge"
 import { PageTags } from "@/components/PageTags"
+import { FeedbackWidget } from "@/components/FeedbackWidget"
 import { getToolIcon } from "@/lib/icons"
 import { getContentModule, getContentTree } from "@/lib/content-loader"
 import type { RouteNode } from "@/types/content"
@@ -264,12 +265,22 @@ export function ToolGuide() {
             </h1>
           </div>
           <PageTags difficulty={mod.difficulty} tags={mod.tags} />
+          <div className="mt-2 flex items-center gap-3 text-xs text-muted-foreground">
+            {mod.lastUpdated && (
+              <span>Cập nhật: {mod.lastUpdated}</span>
+            )}
+            {mod.author && (
+              <span>Tác giả: {mod.author}</span>
+            )}
+          </div>
         </div>
 
         {/* Content */}
         <div className="prose prose-neutral dark:prose-invert max-w-none">
           <Content components={blockComponents} />
         </div>
+
+        <FeedbackWidget path={path} />
 
         {/* Feedback & Related */}
         <div className="mt-12 pt-8 border-t border-border">

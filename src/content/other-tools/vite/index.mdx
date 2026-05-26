@@ -1,40 +1,85 @@
 ---
 title: "Vite"
 category: "other-tools"
-icon: "zap"
+tags: ["build-tool", "bundler", "hmr", "dev-server"]
 difficulty: "beginner"
-tags: ["creative", "cli", "api"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**Vite** là fast frontend build tool. Next-gen tooling với instant HMR và optimized production builds.
-</Note>
+Vite là build tool thế hệ mới với tốc độ Hot Module Replacement (HMR) nhanh chóng nhờ native ES modules. Hỗ trợ nhiều framework như React, Vue, Svelte, và Lit, cùng với optimized production builds qua Rollup.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`npm create vite@latest`} />
+Tạo project Vite mới:
+
+<CodeBlock language="powershell" code={`# Tạo project Vite với template React + TypeScript
+npm create vite@latest my-app -- --template react-ts
+
+cd my-app
+npm install
+npm run dev`} />
+
+Các template có sẵn:
+
+<CodeBlock language="powershell" code={`# React
+npm create vite@latest my-app -- --template react
+
+# React + TypeScript
+npm create vite@latest my-app -- --template react-ts
+
+# Vue
+npm create vite@latest my-app -- --template vue
+
+# Svelte
+npm create vite@latest my-app -- --template svelte
+
+# Vanilla JavaScript
+npm create vite@latest my-app -- --template vanilla`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# Tạo project
-npm create vite@latest my-app -- --template react
-cd my-app
-npm install
+### Dev Server & Build
 
-# Dev server
+<CodeBlock language="powershell" code={`# Start dev server (mặc định http://localhost:5173)
 npm run dev
 
-# Build production
-npm run build`} />
+# Build cho production
+npm run build
 
-## Tips
+# Preview production build
+npm run preview
 
-<Note type="tip">
-**Plugins:** Vite plugin ecosystem tương thích với Rollup plugins.
-</Note>
+# Mở dev server ở port khác
+npx vite --port 4000`} />
 
-## Liên kết
+### Cấu hình vite.config.ts
 
-- [Vite](https://vite.dev)
+<CodeBlock language="powershell" code={`// vite.config.ts
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  server: { port: 4000, open: true },
+  build: { outDir: 'dist', sourcemap: true }
+})`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`# Kiểm tra phiên bản Vite
+npx vite --version
+
+# Xem trong package.json
+npm list vite`} />
+
+## Tài liệu tham khảo
+
+- [Vite Documentation](https://vite.dev/guide)
+- [Plugins](https://vite.dev/plugins)
+- [Templates](https://vite.dev/guide/#trying-vite-online)
+
+## Lưu ý
+
+Yêu cầu Node.js 18+ hoặc 20+. Vite sử dụng ES modules — nếu project dùng CommonJS, cần cấu hình đúng trong package.json (`"type": "module"`). Có thể tương thích với Rollup plugins.

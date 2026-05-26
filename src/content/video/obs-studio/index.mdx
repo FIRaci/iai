@@ -1,34 +1,83 @@
 ---
-title: "obs-studio"
+title: "OBS Studio"
 category: "video"
-icon: "code"
+icon: "camera"
 difficulty: "beginner"
-tags: ["creative", "ide", "api"]
+tags: ["streaming", "recording", "video", "broadcast"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
 <Note type="info">
-**obs-studio** là video processing tool. Xử lý, edit, và generate videos.
+**OBS Studio** (Open Broadcaster Software) là phần mềm mã nguồn mở cho recording và live streaming. Hỗ trợ ghi hình màn hình, webcam, microphone, cùng với scene compositing, transitions, và plugins.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+### Cài đặt qua winget
+
+<CodeBlock language="powershell" code={`winget install OBSProject.OBSStudio`} />
+
+### Kiểm tra cài đặt
+
+Sau khi cài, OBS Studio xuất hiện trong Start Menu. Mở lần đầu sẽ có Auto-Configuration Wizard.
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+### Cấu hình ban đầu
 
-# Xem documentation để biết chi tiết usage examples`} />
+Khi mở OBS lần đầu, chọn:
 
-## Tips
+1. **Optimize for recording** hoặc **Optimize for streaming** tùy nhu cầu
+2. Chọn resolution (1920x1080 recommended)
+3. Chọn FPS (30 hoặc 60)
 
-<Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+### Các khái niệm cơ bản
+
+| Khái niệm | Mô tả |
+|-----------|-------|
+| **Scene** | Tập hợp các sources (màn hình, webcam, text, image) |
+| **Source** | Nguồn đầu vào: Display Capture, Window Capture, Video Capture Device, Audio Input |
+| **Transition** | Hiệu ứng chuyển cảnh giữa các scenes |
+| **Dock** | Panel UI có thể kéo thả, tùy chỉnh layout |
+
+### Thêm sources
+
+1. **Scenes** box → Nhấn `+` → Đặt tên scene
+2. **Sources** box → Nhấn `+` → Chọn source type:
+   - **Display Capture**: Ghi toàn bộ màn hình
+   - **Window Capture**: Ghi một cửa sổ cụ thể
+   - **Video Capture Device**: Webcam
+   - **Audio Input Capture**: Microphone
+   - **Text (GDI+)**: Overlay text
+   - **Image**: Overlay image/logo
+
+### Hotkeys mặc định
+
+| Hotkey | Chức năng |
+|--------|-----------|
+| `Ctrl + F5` | Start/Stop recording |
+| `Ctrl + F6` | Start/Stop streaming |
+| `Ctrl + F7` | Pause recording |
+| `Ctrl + F8` | Mute/Unmute microphone |
+
+## Xác minh cài đặt
+
+Mở OBS Studio, tạo scene với Display Capture, nhấn **Start Recording** — kiểm tra file ghi trong thư mục mặc định `Videos/`.
+
+## Tài liệu tham khảo
+
+- [OBS Studio Docs](https://obsproject.com/docs/)
+- [OBS Studio Wiki](https://obsproject.com/wiki/)
+- [OBS Forums](https://obsproject.com/forum/)
+
+## Lưu ý
+
+<Note type="warning">
+OBS sử dụng GPU hardware encoding (NVENC, AMF, QuickSync) theo mặc định — giảm tải CPU. Nếu gặp lag, giảm resolution xuống 720p hoặc chọn software encoding (x264).
 </Note>
 
-## Liên kết
-
-- [obs-studio](https://obs-studio.com)
+<Note type="tip">
+Dùng **Scene Collections** để quản lý nhiều bộ cấu hình khác nhau: một cho recording, một cho streaming, một cho podcast.
+</Note>

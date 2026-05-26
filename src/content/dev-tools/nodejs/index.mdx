@@ -1,35 +1,74 @@
 ---
 title: "Node.js"
 category: "dev-tools"
-icon: "json"
+tags: ["javascript", "runtime", "backend", "opensource"]
 difficulty: "beginner"
-tags: ["creative", "paid", "cli", "opensource", "multi-model", "api"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**Node.js** là developer tool. Hỗ trợ development workflow.
-</Note>
+Node.js là runtime JavaScript phía server dựa trên V8 engine, cho phép xây dựng ứng dụng mạng và web với khả năng non-blocking I/O. Được sử dụng rộng rãi trong phát triển backend, CLI tools, và API servers.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`npm install tool-name`} />
+### Phương pháp 1: Winget (khuyến nghị)
+
+<CodeBlock language="powershell" code={`winget install OpenJS.NodeJS.LTS`} />
+
+### Phương pháp 2: NVM-Windows (quản lý nhiều phiên bản)
+
+<CodeBlock language="powershell" code={`# Cài NVM-Windows trước
+winget install CoreyButler.NVMforWindows
+
+# Sau đó cài Node.js qua NVM
+nvm install lts
+nvm use lts`} />
+
+### Phương pháp 3: Tải trực tiếp từ trang chủ
+
+Tải bản MSI từ [nodejs.org](https://nodejs.org) và chạy installer.
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+### Chạy JavaScript file
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`node app.js`} />
 
-## Tips
+### Mở REPL
+
+<CodeBlock language="powershell" code={`node`} />
+
+### Kiểm tra phiên bản
+
+<CodeBlock language="powershell" code={`node --version
+npm --version`} />
+
+### Chạy server cơ bản
+
+<CodeBlock language="powershell" code={`node -e "const http = require('http');
+http.createServer((req, res) => {
+  res.writeHead(200);
+  res.end('Hello from Node.js!');
+}).listen(3000);"`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`node -v
+# Kết quả mẫu: v22.x.x`} />
+
+## Tài liệu tham khảo
+
+- [Node.js Official Docs](https://nodejs.org/docs/latest/api/)
+- [Node.js GitHub](https://github.com/nodejs/node)
+- [NVM-Windows](https://github.com/coreybutler/nvm-windows)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Luôn dùng bản LTS (Long Term Support) cho production để đảm bảo ổn định. Bản hiện tại (Current) phù hợp để thử nghiệm tính năng mới.
 </Note>
 
-## Liên kết
-
-- [Bắt đầu với AI Tools](/getting-started)
-- [Hướng dẫn Git](/dev-tools/git)
+<Note type="warning">
+Nếu gặp lỗi "node is not recognized", hãy thêm Node.js vào PATH hoặc khởi động lại terminal sau khi cài đặt.
+</Note>

@@ -1,18 +1,16 @@
 ---
 title: "PowerShell 7"
 category: "dev-tools"
-icon: "terminal"
+tags: ["powershell", "microsoft", "cli", "opensource", "cross-platform"]
 difficulty: "beginner"
-tags: ["paid", "cli", "opensource", "autocomplete", "api"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-PowerShell 7 là phiên bản cross-platform, open-source của PowerShell. Nhanh hơn, nhiều tính năng mới hơn Windows PowerShell 5.1.
-</Note>
+PowerShell 7 là phiên bản cross-platform, open-source của PowerShell, chạy trên Windows, Linux, và macOS. Sử dụng .NET Core, nhanh hơn Windows PowerShell 5.1, hỗ trợ modules mới và tương thích ngược.
 
-## Cài đặt trên Windows 11
+## Cài đặt
 
 ### Phương pháp 1: Winget (khuyến nghị)
 
@@ -20,53 +18,61 @@ PowerShell 7 là phiên bản cross-platform, open-source của PowerShell. Nhan
 
 ### Phương pháp 2: Microsoft Store
 
-Tìm "PowerShell" trong Microsoft Store và install.
+Tìm "PowerShell" trong Microsoft Store và cài đặt.
 
 ### Phương pháp 3: GitHub Releases
 
-Tải từ [github.com/PowerShell/PowerShell](https://github.com/PowerShell/PowerShell/releases)
+Tải MSI từ [github.com/PowerShell/PowerShell/releases](https://github.com/PowerShell/PowerShell/releases).
 
-## Sử dụng cơ bản
+## Sử dụng
 
 ### Kiểm tra phiên bản
 
 <CodeBlock language="powershell" code={`$PSVersionTable.PSVersion`} />
 
-### Các lệnh hữu ích
+### Lệnh cơ bản
 
-| Lệnh | Mô tả |
-|------|-------|
-| `Get-ChildItem` | List files (alias: `ls`, `dir`) |
-| `Get-Content` | Đọc file (alias: `cat`, `type`) |
-| `Set-Content` | Ghi file |
-| `Select-String` | Tìm trong file (alias: `select-string`) |
-| `Invoke-WebRequest` | Tải file từ web (alias: `curl`, `wget`) |
-| `Install-Module` | Cài PowerShell module |
+| Lệnh | Mô tả | Alias |
+|------|-------|-------|
+| `Get-ChildItem` | Liệt kê files | `ls`, `dir` |
+| `Get-Content` | Đọc file | `cat`, `type` |
+| `Set-Content` | Ghi file | |
+| `Select-String` | Tìm kiếm trong file | `sls` |
+| `Where-Object` | Lọc dữ liệu | `where` |
 
 ### Pipeline
 
-<CodeBlock language="powershell" code={`# Pipeline cơ bản
-Get-Process | Where-Object { $_.CPU -gt 100 } | Sort-Object CPU -Descending
+<CodeBlock language="powershell" code={`Get-Process | Where-Object CPU -gt 100 | Sort-Object CPU -Descending
+Get-Service | Export-Csv services.csv -NoTypeInformation`} />
 
-# Export kết quả
-Get-Service | Export-Csv services.csv`} />
+### Modules
 
-## Tips sử dụng
+<CodeBlock language="powershell" code={`Get-Module -ListAvailable
+Install-Module -Name Az -Repository PSGallery`} />
 
-<Note type="tip">
-**Profiles:** Tạo `$PROFILE` file để tự động load settings mỗi khi mở PowerShell.
-</Note>
+### Profile
 
-<CodeBlock language="powershell" code={`# Tạo profile
-if (!(Test-Path $PROFILE)) { New-Item -ItemType File -Path $PROFILE -Force }
-notepad $PROFILE`} />
+<CodeBlock language="powershell" code={`notepad $PROFILE
+# Thêm: oh-my-posh init pwsh | Invoke-Expression
+# Thêm: Set-PSReadLineOption -PredictionSource History`} />
 
-<Note type="tip">
-**Oh My Posh:** Cài theme đẹp cho PowerShell: `winget install JanDeDobbeleer.OhMyPosh`
-</Note>
+## Xác minh cài đặt
 
-## Liên kết
+<CodeBlock language="powershell" code={`pwsh --version`} />
 
-- [PowerShell](https://microsoft.com/powershell)
-- [Docs](https://learn.microsoft.com/powershell)
+## Tài liệu tham khảo
+
+- [PowerShell Docs](https://learn.microsoft.com/powershell/)
+- [PowerShell GitHub](https://github.com/PowerShell/PowerShell)
+- [PowerShell Gallery](https://www.powershellgallery.com)
 - [Oh My Posh](https://ohmyposh.dev)
+
+## Lưu ý
+
+<Note type="tip">
+Cài Oh My Posh: `winget install JanDeDobbeleer.OhMyPosh --source winget`. Thêm `oh-my-posh init pwsh | Invoke-Expression` vào `$PROFILE`.
+</Note>
+
+<Note type="warning">
+Windows PowerShell 5.1 (powershell.exe) và PowerShell 7 (pwsh.exe) là 2 phiên bản khác nhau. Dùng `pwsh` để chạy PowerShell 7.
+</Note>

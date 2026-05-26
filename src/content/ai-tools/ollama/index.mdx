@@ -1,34 +1,56 @@
 ---
 title: "Ollama"
 category: "ai-tools"
-icon: "brain"
+tags: ["local-llm", "cli", "opensource", "self-hosted", "api"]
 difficulty: "beginner"
-tags: ["api", "local"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**Ollama** là công cụ AI hỗ trợ developers trong workflow. Cung cấp các tính năng thông minh để tăng năng suất phát triển phần mềm.
-</Note>
+Ollama là tool chạy LLM local trên Windows, hỗ trợ Llama 3, DeepSeek, Mistral, Qwen, Phi-4 và nhiều model khác. Cung cấp REST API tương thích OpenAI, tích hợp với Continue, Cline, Open WebUI mà không cần internet.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+Tải installer từ ollama.com và chạy.
+
+<CodeBlock language="powershell" code={`
+winget install Ollama.Ollama
+`} />
+
+Hoặc tải từ https://ollama.com/download/windows và chạy OllamaSetup.exe.
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Sau khi cài, Ollama chạy background service. Dùng CLI để pull và chạy model.
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`
+# Pull model
+ollama pull llama3.3:70b
+ollama pull deepseek-r1:14b
 
-## Tips
+# Chat trực tiếp
+ollama run llama3.3:70b
 
-<Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
-</Note>
+# REST API (port 11434)
+curl http://localhost:11434/api/generate -d "{""model"": ""llama3.3:70b"", ""prompt"": ""Hello""}"
 
-## Liên kết
+# List models
+ollama list
+`} />
 
-- [Ollama](https://ollama.com)
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`
+ollama --version
+`} />
+
+## Tài liệu tham khảo
+
+- [Ollama Documentation](https://github.com/ollama/ollama/tree/main/docs)
+- [GitHub Repository](https://github.com/ollama/ollama)
+- [Model Library](https://ollama.com/library)
+
+## Lưu ý
+
+Ollama chạy model trên GPU (NVIDIA CUDA) hoặc CPU. Trên Windows 11, GPU acceleration yêu cầu NVIDIA Driver và CUDA. Model càng lớn càng tốn RAM — Llama 3.3 70B cần ~40GB RAM, Mistral 7B cần ~8GB.

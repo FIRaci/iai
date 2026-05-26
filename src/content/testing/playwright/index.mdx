@@ -1,34 +1,102 @@
 ---
-title: "playwright"
+title: "Playwright"
 category: "testing"
-icon: "code"
-difficulty: "beginner"
-tags: ["api"]
+icon: "browser"
+difficulty: "intermediate"
+tags: ["testing", "e2e", "automation", "browser"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
 <Note type="info">
-**playwright** là testing tool/framework. Giúp viết và chạy automated tests.
+**Playwright** là framework end-to-end testing của Microsoft, hỗ trợ Chromium, Firefox, WebKit. Cho phép viết và chạy automated browser tests với auto-wait, network interception, và multi-browser support.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`npm install --save-dev tool-name`} />
+### Khởi tạo Playwright project
+
+<CodeBlock language="powershell" code={`npm init playwright@latest`} />
+
+Quá trình setup sẽ hỏi:
+- Thư mục chứa tests (mặc định: `tests/`)
+- Có thêm GitHub Actions workflow?
+- Có cài browser? `npx playwright install`
+
+### Cài đặt thủ công
+
+<CodeBlock language="powershell" code={`npm install --save-dev @playwright/test
+npx playwright install`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+### File test cơ bản
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="typescript" code={`import { test, expect } from '@playwright/test';
 
-## Tips
+test('homepage has title', async ({ page }) => {
+  await page.goto('https://example.com');
+  await expect(page).toHaveTitle(/Example/);
+});
 
-<Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+test('click and navigate', async ({ page }) => {
+  await page.goto('https://example.com');
+  await page.click('a');
+  expect(page.url()).toContain('https');
+});`} />
+
+### Chạy tests
+
+<CodeBlock language="powershell" code={`# Chạy tất cả tests
+npx playwright test
+
+# Chạy với UI mode
+npx playwright test --ui
+
+# Chạy với specific browser
+npx playwright test --project=chromium
+
+# Chạy và xem report
+npx playwright show-report`} />
+
+### Cấu hình playwright.config.ts
+
+<CodeBlock language="typescript" code={`import { defineConfig } from '@playwright/test';
+
+export default defineConfig({
+  testDir: './tests',
+  fullyParallel: true,
+  retries: 2,
+  use: {
+    baseURL: 'http://localhost:3000',
+    trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
+  },
+  projects: [
+    { name: 'chromium', use: { browserName: 'chromium' } },
+    { name: 'firefox', use: { browserName: 'firefox' } },
+    { name: 'webkit', use: { browserName: 'webkit' } },
+  ],
+});`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`npx playwright --version
+npx playwright install --dry-run`} />
+
+## Tài liệu tham khảo
+
+- [Playwright Docs](https://playwright.dev/docs/intro)
+- [Playwright API](https://playwright.dev/docs/api/class-playwright)
+- [Playwright GitHub](https://github.com/microsoft/playwright)
+
+## Lưu ý
+
+<Note type="warning">
+Playwright tự động download browser binaries (~200-400MB mỗi browser). Nếu muốn dùng browser đã cài sẵn, dùng `PLAYWRIGHT_BROWSERS_PATH=0`.
 </Note>
 
-## Liên kết
-
-- [playwright](https://playwright.com)
+<Note type="tip">
+Dùng `--ui` mode để xem test chạy real-time, inspect DOM state sau mỗi step, và debug dễ dàng hơn.
+</Note>

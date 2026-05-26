@@ -1,34 +1,81 @@
 ---
-title: "scoop"
+title: "Scoop"
 category: "package-managers"
-icon: "code"
+tags: ["windows", "package-manager", "cli", "opensource"]
 difficulty: "beginner"
-tags: ["api"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**scoop** là package manager. Quản lý dependencies và packages.
-</Note>
+Scoop là package manager cho Windows tập trung vào developer tools. Không giống Chocolatey (cần admin), Scoop cài packages vào thư mục user mà không yêu cầu quyền Administrator, và không làm ô nhiễm hệ thống với registry entries.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Tải installer từ trang chủ hoặc sử dụng winget`} />
+<CodeBlock language="powershell" code={`Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+irm get.scoop.sh | iex`} />
+
+### Yêu cầu
+
+- PowerShell 5.0+ (có sẵn trên Windows 11)
+- .NET Framework 4.5+
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+### Cài đặt tools
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`# Cài tool cơ bản
+scoop install curl sudo jq
 
-## Tips
+# Cài developer tools
+scoop install git nodejs python ffmpeg
+
+# Cài từ bucket khác (extra)
+scoop bucket add extras
+scoop install extras/vscode`} />
+
+### Quản lý packages
+
+<CodeBlock language="powershell" code={`# Cập nhật scoop và packages
+scoop update
+scoop update *
+
+# Gỡ package
+scoop uninstall nodejs
+
+# Liệt kê packages
+scoop list
+
+# Kiểm tra trạng thái
+scoop status`} />
+
+### Buckets
+
+<CodeBlock language="powershell" code={`# Thêm buckets phổ biến
+scoop bucket add extras
+scoop bucket add versions    # Nhiều phiên bản
+scoop bucket add nonportable # Ứng dụng cần admin
+
+# Liệt kê buckets
+scoop bucket list`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`scoop --version
+# Kết quả mẫu: Scoop v0.5.2 - ...\scoop\apps\scoop\current`} />
+
+## Tài liệu tham khảo
+
+- [Scoop Official Site](https://scoop.sh)
+- [Scoop GitHub](https://github.com/ScoopInstaller/Scoop)
+- [Scoop Docs](https://github.com/ScoopInstaller/Scoop/wiki)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Scoop không cần admin — lý tưởng cho môi trường dev mà không có quyền Admin. Các tool được cài trong `~\scoop` và tự động thêm vào PATH.
 </Note>
 
-## Liên kết
-
-- [scoop](https://scoop.com)
+<Note type="warning">
+Mặc định Scoop chỉ có bucket `main` (CLI tools). Muốn cài GUI apps, thêm bucket `extras` và `nonportable`. Xem danh sách buckets tại [github.com/ScoopInstaller](https://github.com/ScoopInstaller).
+</Note>

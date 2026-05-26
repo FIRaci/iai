@@ -1,34 +1,75 @@
 ---
-title: "chocolatey"
+title: "Chocolatey"
 category: "package-managers"
-icon: "code"
+tags: ["windows", "package-manager", "automation", "opensource"]
 difficulty: "beginner"
-tags: ["api"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**chocolatey** là package manager. Quản lý dependencies và packages.
-</Note>
+Chocolatey là package manager cho Windows, tự động hóa việc cài đặt, cập nhật và gỡ bỏ phần mềm thông qua command line. Cung cấp hơn 10,000 packages cho các công cụ phổ biến như Node.js, Docker, VS Code, Google Chrome, và 7-Zip.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Tải installer từ trang chủ hoặc sử dụng winget`} />
+Mở PowerShell với quyền Administrator, sau đó chạy:
+
+<CodeBlock language="powershell" code={`Set-ExecutionPolicy Bypass -Scope Process -Force
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+irm https://community.chocolatey.org/install.ps1 | iex`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+### Tìm kiếm và cài đặt
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`# Tìm kiếm package
+choco search nodejs
 
-## Tips
+# Cài đặt package
+choco install nodejs
+choco install vscode googlechrome 7zip -y
+
+# Cài nhiều package cùng lúc
+choco install docker-desktop git firefox -y`} />
+
+### Quản lý packages
+
+<CodeBlock language="powershell" code={`# Cập nhật package
+choco upgrade nodejs
+
+# Cập nhật tất cả
+choco upgrade all -y
+
+# Gỡ package
+choco uninstall nodejs -y
+
+# Liệt kê packages đã cài
+choco list --local-only
+
+# Xem thông tin
+choco info vscode`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`choco --version
+# Kết quả mẫu: 2.4.x`} />
+
+## Tài liệu tham khảo
+
+- [Chocolatey Official Site](https://chocolatey.org)
+- [Chocolatey Docs](https://docs.chocolatey.org)
+- [Package Finder](https://community.chocolatey.org/packages)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Dùng `-y` flag để tự động confirm (yes to all), tiết kiệm thời gian khi cài nhiều package.
 </Note>
 
-## Liên kết
+<Note type="warning">
+Phải mở PowerShell với quyền **Administrator** để chạy Chocolatey. Nếu không, các lệnh `choco install` sẽ thất bại.
+</Note>
 
-- [chocolatey](https://chocolatey.com)
+<Note type="warning">
+Một số antivirus có thể chặn Chocolatey install script. Tạm thời disable hoặc thêm exception cho `community.chocolatey.org`.
+</Note>

@@ -2,6 +2,8 @@ import { BookOpen, GitBranch, Heart, Zap, Shield, BookMarked } from "lucide-reac
 import { Link } from "react-router-dom"
 import { getContentTree } from "@/lib/content-loader"
 
+const APP_VERSION = "v1.3.0"
+
 function getCategoryStats() {
   const tree = getContentTree()
   let totalTools = 0
@@ -100,6 +102,8 @@ export function Footer() {
             <span>20+ categories</span>
             <span className="text-border">|</span>
             <span>Windows 11</span>
+            <span className="text-border">|</span>
+            <span>{APP_VERSION}</span>
           </div>
         </div>
       </div>

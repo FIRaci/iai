@@ -1,34 +1,99 @@
 ---
 title: "Redis"
 category: "backend"
-icon: "code"
-difficulty: "beginner"
-tags: ["api"]
+icon: "database"
+difficulty: "intermediate"
+tags: ["cache", "database", "in-memory", "nosql"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
 <Note type="info">
-**Redis** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**Redis** là kho dữ liệu in-memory mã nguồn mở, hoạt động như database, cache, và message broker. Hỗ trợ cấu trúc dữ liệu phong phú: strings, hashes, lists, sets, sorted sets với TTL tự động.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+### Cài đặt qua winget
+
+<CodeBlock language="powershell" code={`winget install Redis.Redis`} />
+
+### Cài đặt qua Chocolatey (thay thế)
+
+<CodeBlock language="powershell" code={`choco install redis-64`} />
+
+### Kiểm tra cài đặt
+
+<CodeBlock language="powershell" code={`redis-cli --version`} />
+
+### Khởi động Redis server
+
+<CodeBlock language="powershell" code={`# Khởi động service
+Start-Service -Name "Redis"
+
+# Kiểm tra status
+Get-Service -Name "Redis"`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+### Kết nối với Redis CLI
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`redis-cli`} />
 
-## Tips
+### Các lệnh cơ bản
 
-<Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+<CodeBlock language="bash" code={`# SET & GET
+SET mykey "Hello Redis"
+GET mykey
+
+# Với TTL (hết hạn sau 60 giây)
+SET session:123 "user_data" EX 60
+
+# Làm việc với lists
+LPUSH tasks "task1"
+LPUSH tasks "task2"
+LRANGE tasks 0 -1
+
+# Làm việc với hashes
+HSET user:1 name "Alice" age "30"
+HGETALL user:1`} />
+
+### Kết nối từ ứng dụng Node.js
+
+<CodeBlock language="javascript" code={`import { createClient } from 'redis';
+
+const client = createClient();
+await client.connect();
+
+await client.set('key', 'value');
+const value = await client.get('key');
+console.log(value); // 'value'`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`# Kiểm tra version
+redis-cli --version
+
+# Ping Redis server
+redis-cli ping
+# Kết quả: PONG
+
+# Kiểm tra service
+Get-Service -Name "Redis" | Format-Table Status, Name`} />
+
+## Tài liệu tham khảo
+
+- [Redis Docs](https://redis.io/docs/)
+- [Redis Commands](https://redis.io/commands/)
+- [Node.js Redis client](https://github.com/redis/node-redis)
+
+## Lưu ý
+
+<Note type="warning">
+Redis lưu dữ liệu trong RAM. Dùng lệnh `SAVE` hoặc `BGSAVE` để persist xuống disk. Cấu hình trong file `redis.conf`: `save 900 1` (save mỗi 15 phút nếu có ít nhất 1 key thay đổi).
 </Note>
 
-## Liên kết
-
-- [Redis](https://redis.com)
+<Note type="tip">
+Dùng RedisInsight (GUI tool miễn phí của Redis) để visualize và debug dữ liệu.
+</Note>

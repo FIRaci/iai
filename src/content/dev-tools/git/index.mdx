@@ -1,35 +1,86 @@
 ---
-title: "Git & GitHub"
+title: "Git"
 category: "dev-tools"
-icon: "git"
+tags: ["vcs", "version-control", "collaboration", "opensource"]
 difficulty: "beginner"
-tags: ["creative", "cli", "opensource", "ide", "api"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**Git & GitHub** là developer tool. Hỗ trợ development workflow.
-</Note>
+Git là hệ thống quản lý phiên bản phân tán (DVCS) do Linus Torvalds tạo ra. Git cho phép theo dõi thay đổi source code, làm việc nhóm qua branching/merging, và đồng bộ qua remote repositories như GitHub, GitLab.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`npm install tool-name`} />
+### Phương pháp 1: Winget (khuyến nghị)
+
+<CodeBlock language="powershell" code={`winget install Git.Git`} />
+
+### Phương pháp 2: Chocolatey
+
+<CodeBlock language="powershell" code={`choco install git`} />
+
+### Phương pháp 3: Tải trực tiếp
+
+Tải bản standalone installer từ [git-scm.com](https://git-scm.com/download/win).
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+### Cấu hình ban đầu
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+git config --global init.defaultBranch main`} />
 
-## Tips
+### Quy trình cơ bản
+
+<CodeBlock language="powershell" code={`# Clone repository
+git clone https://github.com/user/repo.git
+
+# Kiểm tra trạng thái
+git status
+
+# Thêm file vào staging
+git add <file>
+git add .           # Thêm tất cả
+
+# Commit
+git commit -m "feat: add new feature"
+
+# Đẩy lên remote
+git push origin main`} />
+
+### Branching
+
+<CodeBlock language="powershell" code={`# Tạo branch mới
+git checkout -b feature/new-feature
+
+# Chuyển branch
+git checkout main
+
+# Merge branch
+git merge feature/new-feature
+
+# Xóa branch
+git branch -d feature/new-feature`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`git --version
+# Kết quả mẫu: git version 2.48.x.windows.1`} />
+
+## Tài liệu tham khảo
+
+- [Git Official Docs](https://git-scm.com/doc)
+- [Pro Git Book](https://git-scm.com/book/en/v2)
+- [GitHub Docs](https://docs.github.com)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Sử dụng `.gitignore` để loại trừ file không cần track (node_modules, .env, build artifacts). Tạo mẫu tại [gitignore.io](https://www.toptal.com/developers/gitignore).
 </Note>
 
-## Liên kết
-
-- [Bắt đầu với AI Tools](/getting-started)
-- [Hướng dẫn VS Code](/dev-tools/vscode)
+<Note type="warning">
+Windows mặc định dùng CRLF line endings. Nên set `git config --global core.autocrlf true` khi làm việc trên Windows để tránh lỗi.
+</Note>

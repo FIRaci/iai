@@ -1,34 +1,60 @@
 ---
 title: "Open WebUI"
 category: "ai-tools"
-icon: "brain"
-difficulty: "beginner"
-tags: ["api", "local"]
+tags: ["web-ui", "self-hosted", "docker", "opensource", "multi-model", "ollama"]
+difficulty: "intermediate"
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**Open WebUI** là công cụ AI hỗ trợ developers trong workflow. Cung cấp các tính năng thông minh để tăng năng suất phát triển phần mềm.
-</Note>
+Open WebUI là giao diện web chat giống ChatGPT nhưng self-hosted, kết nối với Ollama hoặc OpenAI-compatible API backend. Hỗ trợ đa người dùng, RAG (Retrieval-Augmented Generation), voice input, image generation, và quản lý model tập trung.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+Chạy qua Docker hoặc cài trực tiếp với Python.
+
+ <CodeBlock language="powershell" code={`
+# Yeu cau: Docker Desktop cho Windows
+docker run -d -p 3000:8080 -v open-webui-data:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+
+# Mo http://localhost:3000
+`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Đăng ký tài khoản admin và bắt đầu chat.
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`
+# 1. Mở http://localhost:3000
+# 2. Đăng ký tài khoản admin
+# 3. Settings → Connections → Ollama
+#    URL: http://host.docker.internal:11434
 
-## Tips
+# Hoặc kết nối OpenAI:
+# Settings → Connections → OpenAI
+# API Key: sk-...
+# API URL: https://api.openai.com/v1
 
-<Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
-</Note>
+# Tính năng:
+# - Chat với nhiều model cùng lúc
+# - Upload PDF/DOCX/Code để RAG
+# - Tạo custom GPTs (Workspaces)
+# - Voice input
+`} />
 
-## Liên kết
+## Xác minh cài đặt
 
-- [Open WebUI](https://open-webui.com)
+<CodeBlock language="powershell" code={`
+docker ps --filter name=open-webui
+# Container phải có status "Up"
+`} />
+
+## Tài liệu tham khảo
+
+- [Open WebUI Documentation](https://docs.openwebui.com)
+- [GitHub Repository](https://github.com/open-webui/open-webui)
+
+## Lưu ý
+
+Open WebUI kết nối với Ollama qua `host.docker.internal` khi chạy Docker trên Windows. Nếu Ollama chạy trên máy host, đảm bảo Ollama bind address là `0.0.0.0`. Có thể dùng với LM Studio, text-generation-webui, hoặc bất kỳ OpenAI-compatible API nào.

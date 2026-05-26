@@ -1,68 +1,90 @@
 ---
 title: "npm"
 category: "dev-tools"
-icon: "package"
+tags: ["javascript", "package-manager", "nodejs", "opensource"]
 difficulty: "beginner"
-tags: ["creative", "cli", "api", "local"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-npm (Node Package Manager) là package manager mặc định của Node.js, dùng để cài đặt và quản lý JavaScript packages.
-</Note>
+npm (Node Package Manager) là package manager mặc định của Node.js, dùng để cài đặt, chia sẻ và quản lý các JavaScript packages từ npm registry. Hiện là registry lớn nhất thế giới với hơn 2 triệu packages.
 
 ## Cài đặt
 
 npm đi kèm với Node.js. Nếu đã cài Node.js, npm đã có sẵn.
 
-<CodeBlock language="powershell" code={`node --version
-npm --version`} />
+### Kiểm tra npm
 
-## Sử dụng cơ bản
+<CodeBlock language="powershell" code={`npm --version
+# Kết quả mẫu: 10.x.x`} />
 
-### Cài đặt package
+### Cập nhật npm lên phiên bản mới nhất
 
-<CodeBlock language="powershell" code={`# Cài global
+<CodeBlock language="powershell" code={`npm install -g npm@latest`} />
+
+## Sử dụng
+
+### Cài đặt packages
+
+<CodeBlock language="powershell" code={`# Cài đặt global
 npm install -g typescript
 
-# Cài local (cho project)
+# Cài đặt local (production dependency)
 npm install express
-npm install --save-dev typescript`} />
 
-### Các lệnh quan trọng
+# Cài đặt local (dev dependency)
+npm install --save-dev typescript
 
-| Lệnh | Mô tả |
-|------|-------|
-| `npm init` | Tạo package.json mới |
-| `npm install` | Cài dependencies từ package.json |
-| `npm install [pkg]` | Cài package mới |
-| `npm uninstall [pkg]` | Gỡ package |
-| `npm update` | Cập nhật packages |
-| `npm run [script]` | Chạy script |
-| `npm outdated` | Kiểm tra package cũ |
+# Cài đặt phiên bản cụ thể
+npm install react@18.3.1`} />
 
-### Scripts trong package.json
+### Quản lý dependencies
 
-<CodeBlock language="json" code={`{
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
-  }
-}`} />
+<CodeBlock language="powershell" code={`# Khởi tạo project mới
+npm init -y
 
-## Tips sử dụng
+# Cài tất cả dependencies từ package.json
+npm install
+
+# Gỡ package
+npm uninstall lodash
+
+# Cập nhật packages
+npm update
+
+# Kiểm tra outdated packages
+npm outdated`} />
+
+### Chạy scripts
+
+<CodeBlock language="powershell" code={`# package.json scripts
+npm run dev
+npm run build
+npm run test
+
+# Chạy trực tiếp package không cần cài (npx)
+npx create-react-app my-app
+npx tsc --init`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`npm --version
+# Kiểm tra packages đã cài global
+npm list -g --depth=0`} />
+
+## Tài liệu tham khảo
+
+- [npm Docs](https://docs.npmjs.com)
+- [npm Registry](https://www.npmjs.com)
+- [package.json Docs](https://docs.npmjs.com/cli/v11/configuring-npm/package-json)
+
+## Lưu ý
 
 <Note type="tip">
-**npm vs npx:** Dùng `npx` để chạy package mà không cần install global. Ví dụ: `npx create-react-app my-app`
+Dùng `npx` thay vì `npm install -g` để chạy package mà không làm đầy global namespace. Ví dụ: `npx create-react-app my-app`.
 </Note>
 
 <Note type="warning">
-Tránh install quá nhiều global packages. Ưu tiên install local và dùng npx.
+Tránh dùng `npm install -g` quá nhiều. Ưu tiên cài local cho từng project để tránh xung đột phiên bản.
 </Note>
-
-## Liên kết
-
-- [npm](https://npmjs.com)
-- [npm Docs](https://docs.npmjs.com)

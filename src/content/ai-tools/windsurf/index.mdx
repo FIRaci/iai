@@ -1,35 +1,58 @@
 ---
 title: "Windsurf"
 category: "ai-tools"
-icon: "waves"
+tags: ["ai-ide", "code-editor", "autocomplete", "agent", "multi-model", "vscode-fork"]
 difficulty: "beginner"
-tags: ["creative", "paid", "cli", "extension", "opensource", "autocomplete", "free", "ide", "cloud", "api", "agent", "ai-native", "local"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**Windsurf** là công cụ AI hỗ trợ developers trong workflow. Cung cấp các tính năng thông minh để tăng năng suất phát triển phần mềm.
-</Note>
+Windsurf (trước đây là Codeium) là AI-native IDE được xây dựng trên VS Code, cung cấp autocomplete miễn phí, chat với context-aware, và agent mode tự động hoá workflow. Đặc biệt mạnh với tính năng Cascade — agent hiểu toàn bộ codebase và thực thi lệnh tự động.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+Tải installer từ windsurf.com và cài đặt như ứng dụng Windows thông thường.
+
+<CodeBlock language="powershell" code={`
+# Option 1: Download from windsurf.com
+# Visit https://codeium.com/windsurf/download and run the installer
+
+# Option 2: Install via winget
+winget install Codeium.Windsurf
+`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Mở Windsurf và bắt đầu với các phím tắt quen thuộc.
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`
+# Cascade (Agent mode):
+# Ctrl+Shift+I - Mở Cascade để thực thi task tự động
+# Cascade có thể: đọc file, edit code, chạy terminal, search web
 
-## Tips
+# Chat:
+# Ctrl+L - Chat với context từ file hiện tại
 
-<Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
-</Note>
+# Autocomplete: Tự động chạy khi gõ code
+# Tab để accept suggestion
 
-## Liên kết
+# Terminal: Windsurf CLI
+windsurf --version
+`} />
 
-- [So sánh AI Tools](/comparisons)
-- [Hướng dẫn Cursor](/ai-tools/cursor)
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`
+windsurf --version
+# Ví dụ output: 1.2.34
+`} />
+
+## Tài liệu tham khảo
+
+- [Official Documentation](https://docs.codeium.com)
+- [Windsurf Download](https://codeium.com/windsurf/download)
+
+## Lưu ý
+
+Windsurf có bản miễn phí không giới hạn autocomplete. Tính năng Cascade yêu cầu tài khoản Pro. Trên Windows 11, Windsurf tương thích tốt với WSL và Dev Drive.

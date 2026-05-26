@@ -1,34 +1,49 @@
 ---
 title: "OpenHands"
 category: "ai-tools"
-icon: "brain"
-difficulty: "beginner"
-tags: ["api", "agent", "local"]
+tags: ["agent", "opensource", "docker", "autonomous", "multi-model"]
+difficulty: "advanced"
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**OpenHands** là công cụ AI hỗ trợ developers trong workflow. Cung cấp các tính năng thông minh để tăng năng suất phát triển phần mềm.
-</Note>
+OpenHands (trước đây là OpenDevin) là nền tảng AI agent mã nguồn mở chạy trong Docker, cho phép AI thực thi các task lập trình phức tạp một cách tự động. Agent có thể viết code, chạy lệnh, tạo file, và quản lý toàn bộ dự án phần mềm từ terminal đến deployment.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+Chạy qua Docker trên Windows 11.
+
+<CodeBlock language="powershell" code={`
+# Yeu cau: Docker Desktop cho Windows
+docker pull ghcr.io/all-hands-ai/openhands:latest
+docker run -it --rm --pull=always -e LLM_API_KEY="sk-ant-..." -e LLM_MODEL="claude-sonnet-4-20250514" -v "$pwd:/workspace" -p 3000:3000 ghcr.io/all-hands-ai/openhands:latest
+`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Mở http://localhost:3000 và giao tiếp với agent qua web UI.
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`
+# Trong web UI, go task nhu: "Build a REST API with Express.js, TypeScript, and SQLite"
 
-## Tips
+# Hoac dung CLI (CodeAct):
+docker run -it --rm --pull=always -e LLM_API_KEY="sk-ant-..." -e LLM_MODEL="claude-sonnet-4-20250514" -v "$pwd:/workspace" ghcr.io/all-hands-ai/openhands:latest python -m openhands.core.main -t "Create a Python script"
 
-<Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
-</Note>
+# File output se o trong thu muc hien tai
+`} />
 
-## Liên kết
+## Xác minh cài đặt
 
-- [OpenHands](https://openhands.com)
+<CodeBlock language="powershell" code={`
+docker run --rm ghcr.io/all-hands-ai/openhands:latest --help
+`} />
+
+## Tài liệu tham khảo
+
+- [OpenHands Documentation](https://docs.all-hands.dev)
+- [GitHub Repository](https://github.com/All-Hands-AI/OpenHands)
+
+## Lưu ý
+
+OpenHands yêu cầu Docker Desktop chạy trên Windows 11. Đảm bảo WSL2 backend được cấu hình trong Docker Desktop. Agent có quyền chạy terminal commands — luôn sandbox trong container. Tốn nhiều tokens API vì agent chạy nhiều bước.

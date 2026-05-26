@@ -1,0 +1,95 @@
+---
+title: "kubectl"
+category: "devops"
+icon: "cloud"
+difficulty: "advanced"
+tags: ["kubernetes", "container", "orchestration", "cli"]
+lastUpdated: "2026-05-26"
+---
+
+## Tổng quan
+
+<Note type="info">
+**kubectl** là command-line tool để tương tác với Kubernetes cluster. Cho phép deploy, inspect, update, và debug ứng dụng containerized trên bất kỳ Kubernetes cluster nào.
+</Note>
+
+## Cài đặt
+
+### Cài đặt qua winget
+
+<CodeBlock language="powershell" code={`winget install Kubernetes.kubectl`} />
+
+### Kiểm tra cài đặt
+
+<CodeBlock language="powershell" code={`kubectl version --client`} />
+
+### Cấu hình autocompletion (PowerShell)
+
+<CodeBlock language="powershell" code={`kubectl completion powershell >> $PROFILE`} />
+
+## Sử dụng
+
+### Kiểm tra cluster
+
+<CodeBlock language="powershell" code={`kubectl cluster-info
+kubectl get nodes`} />
+
+### Quản lý pods
+
+<CodeBlock language="powershell" code={`# List pods
+kubectl get pods
+
+# Xem chi tiết pod
+kubectl describe pod <pod-name>
+
+# Xem logs
+kubectl logs <pod-name>
+
+# Exec vào pod
+kubectl exec -it <pod-name> -- /bin/bash`} />
+
+### Quản lý deployments
+
+<CodeBlock language="powershell" code={`# Tạo deployment
+kubectl create deployment nginx --image=nginx
+
+# Scale deployment
+kubectl scale deployment nginx --replicas=3
+
+# Xem deployments
+kubectl get deployments
+
+# Xóa deployment
+kubectl delete deployment nginx`} />
+
+### Quản lý services
+
+<CodeBlock language="powershell" code={`# Expose deployment
+kubectl expose deployment nginx --port=80 --type=LoadBalancer
+
+# List services
+kubectl get services
+
+# Port forwarding
+kubectl port-forward service/nginx 8080:80`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`kubectl version --client
+kubectl help`} />
+
+## Tài liệu tham khảo
+
+- [kubectl Cheat Sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+- [Kubernetes Docs](https://kubernetes.io/docs/)
+- [Install kubectl](https://kubernetes.io/docs/tasks/tools/)
+
+## Lưu ý
+
+<Note type="warning">
+kubectl yêu cầu file kubeconfig hợp lệ (mặc định `~/.kube/config`) để kết nối đến cluster. Có thể dùng `minikube` để tạo local cluster thử nghiệm.
+</Note>
+
+<Note type="tip">
+Dùng `kubectx` và `kubens` (công cụ phụ trợ) để chuyển đổi nhanh giữa các cluster và namespace.
+</Note>

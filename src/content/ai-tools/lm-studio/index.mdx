@@ -1,34 +1,48 @@
 ---
 title: "LM Studio"
 category: "ai-tools"
-icon: "brain"
+tags: ["local-llm", "desktop-app", "gui", "self-hosted", "api"]
 difficulty: "beginner"
-tags: ["api", "local"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**LM Studio** là công cụ AI hỗ trợ developers trong workflow. Cung cấp các tính năng thông minh để tăng năng suất phát triển phần mềm.
-</Note>
+LM Studio là ứng dụng desktop cho Windows để tải, quản lý, và chạy LLM local với giao diện đồ hoạ trực quan. Hỗ trợ tìm kiếm model từ Hugging Face, chat trực tiếp trong app, và expose REST API tương thích OpenAI.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+Tải file .exe từ lmstudio.ai và cài đặt.
+
+<CodeBlock language="powershell" code={`
+winget install LMStudio.LMStudio
+`} />
+
+Hoặc tải từ https://lmstudio.ai/ và chạy LM-Studio-Setup.exe.
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Mở LM Studio, tìm model từ tab Search, và bắt đầu chat.
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`
+# 1. Tab Search → tìm model (llama, deepseek, mistral...)
+# 2. Download model GGUF
+# 3. Tab Chat → chọn model → Start Server
 
-## Tips
+# REST API (port 1234, tương thích OpenAI)
+curl http://localhost:1234/v1/chat/completions -H "Content-Type: application/json" -d "{""model"": ""local-model"", ""messages"": [{""role"": ""user"", ""content"": ""Hello""}]}"
+`} />
 
-<Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
-</Note>
+## Xác minh cài đặt
 
-## Liên kết
+Mở LM Studio → Help → About để kiểm tra version.
 
-- [LM Studio](https://lm-studio.com)
+## Tài liệu tham khảo
+
+- [LM Studio Documentation](https://lmstudio.ai/docs)
+- [Download](https://lmstudio.ai/)
+- [Model Search](https://lmstudio.ai/models)
+
+## Lưu ý
+
+LM Studio chỉ hỗ trợ model GGUF format. GPU acceleration yêu cầu NVIDIA CUDA hoặc Vulkan. Server mặc định port 1234. Trên Windows 11, model 7B-14B là lựa chọn tốt nếu không có GPU mạnh.

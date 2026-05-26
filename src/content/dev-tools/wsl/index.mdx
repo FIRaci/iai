@@ -1,86 +1,68 @@
 ---
 title: "WSL (Windows Subsystem for Linux)"
 category: "dev-tools"
-icon: "terminal"
+tags: ["linux", "windows", "virtualization", "microsoft"]
 difficulty: "intermediate"
-tags: ["creative", "paid", "cli", "extension", "opensource", "api"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-WSL cho phép chạy Linux environment trực tiếp trên Windows 11 mà không cần virtual machine. Hỗ trợ Ubuntu, Debian, Fedora và nhiều distro khác.
-</Note>
+WSL (Windows Subsystem for Linux) là lớp tương thích của Microsoft cho phép chạy Linux binary executables trực tiếp trên Windows 11 mà không cần virtual machine. WSL 2 sử dụng full Linux kernel, cho hiệu năng gần như native.
 
-## Cài đặt trên Windows 11
+## Cài đặt
 
-### Bước 1: Cài WSL
+### Một lệnh duy nhất (WSL 2 mặc định)
 
 <CodeBlock language="powershell" code={`wsl --install`} />
 
-Lệnh này sẽ:
-- Bật WSL feature
-- Cài Ubuntu (default)
-- Yêu cầu restart máy
+Lệnh này sẽ bật WSL feature, cài Ubuntu (mặc định), và cài WSL 2 kernel.
 
-### Bước 2: Cấu hình
+### Cài đặt distro khác
 
-Sau restart, mở Ubuntu từ Start Menu và tạo username/password.
+<CodeBlock language="powershell" code={`wsl --list --online
+wsl --install -d Debian
+wsl --install -d Fedora
+wsl --install -d Ubuntu-24.04`} />
 
-### Bước 3: Cập nhật
+## Sử dụng
 
-<CodeBlock language="bash" code={`sudo apt update && sudo apt upgrade -y`} />
+### Lệnh cơ bản
 
-## Sử dụng cơ bản
-
-### Truy cập WSL
-
-```powershell
-# Mở terminal WSL
-wsl
-
-# Chạy lệnh cụ thể
+<CodeBlock language="powershell" code={`wsl
 wsl ls -la
+wsl sudo apt update`} />
 
-# Mở folder hiện tại trong WSL
-wsl code .
-```
+### Quản lý WSL
 
-### Cài đặt tools trong WSL
+<CodeBlock language="powershell" code={`wsl -l -v
+wsl --set-default-version 2
+wsl --set-default Ubuntu
+wsl --terminate Ubuntu
+wsl --shutdown`} />
 
-<CodeBlock language="bash" code={`# Cài Node.js
-curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+### Cài dev tools trong WSL
+
+<CodeBlock language="bash" code={`sudo apt update && sudo apt upgrade -y
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
 sudo apt install -y nodejs
+sudo apt install docker.io`} />
 
-# Cài Python
-sudo apt install python3 python3-pip
+## Xác minh cài đặt
 
-# Cài Git
-sudo apt install git`} />
+<CodeBlock language="powershell" code={`wsl --version`} />
 
-### Truy cập Windows files từ WSL
+## Tài liệu tham khảo
 
-<CodeBlock language="bash" code={`# Truy cập C: drive
-cd /mnt/c/
+- [WSL Docs](https://learn.microsoft.com/windows/wsl/)
+- [WSL GitHub](https://github.com/microsoft/WSL)
 
-# Truy cập Documents
-cd /mnt/c/Users/YourName/Documents`} />
-
-## Tips sử dụng
+## Lưu ý
 
 <Note type="tip">
-**VS Code Integration:** Cài extension "Remote - WSL" trong VS Code để code trực tiếp trong WSL environment.
-</Note>
-
-<Note type="tip">
-**WSL 2 vs WSL 1:** WSL 2 dùng full Linux kernel, performance tốt hơn. Kiểm tra bằng `wsl -l -v`.
+Truy cập Windows files từ WSL qua `/mnt/c/`. Nên để project files trong WSL filesystem (`\\wsl.localhost\Ubuntu\...`) để có performance tốt nhất.
 </Note>
 
 <Note type="warning">
-File access giữa Windows và WSL chậm. Nên lưu project files trong WSL filesystem (`\\wsl$\`) thay vì `/mnt/c/`.
+WSL 2 nhanh hơn cho Linux operations nhưng chậm hơn khi access Windows files qua `/mnt/c/`. Dùng `wsl -l -v` để kiểm tra version.
 </Note>
-
-## Liên kết
-
-- [WSL Docs](https://learn.microsoft.com/windows/wsl)
-- [WSL GitHub](https://github.com/microsoft/WSL)

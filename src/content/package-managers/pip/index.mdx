@@ -1,34 +1,95 @@
 ---
 title: "pip"
 category: "package-managers"
-icon: "code"
+tags: ["python", "package-manager", "pypi", "opensource"]
 difficulty: "beginner"
-tags: ["api"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**pip** là package manager. Quản lý dependencies và packages.
-</Note>
+pip (Pip Installs Packages) là package manager chính thức của Python, được dùng để cài đặt và quản lý thư viện từ Python Package Index (PyPI). pip đi kèm với Python từ phiên bản 3.4 trở lên.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Tải installer từ trang chủ hoặc sử dụng winget`} />
+pip đi kèm với Python. Cài Python để có pip.
+
+### Phương pháp 1: Winget
+
+<CodeBlock language="powershell" code={`winget install Python.Python.3.12`} />
+
+### Phương pháp 2: Tải từ python.org
+
+Tải bản installer từ [python.org](https://www.python.org/downloads/) — nhớ tick "Add Python to PATH" khi cài.
+
+### Cài pip riêng (nếu chưa có)
+
+<CodeBlock language="powershell" code={`python -m ensurepip --upgrade`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+### Cài đặt packages
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`# Cài package từ PyPI
+pip install requests
+pip install numpy pandas matplotlib
 
-## Tips
+# Cài phiên bản cụ thể
+pip install torch==2.3.0
+
+# Cài từ requirements file
+pip install -r requirements.txt`} />
+
+### Quản lý và gỡ bỏ
+
+<CodeBlock language="powershell" code={`# Gỡ package
+pip uninstall requests
+
+# Liệt kê packages đã cài
+pip list
+
+# Xem thông tin package
+pip show numpy
+
+# Cập nhật package
+pip install --upgrade pip`} />
+
+### Virtual Environment
+
+<CodeBlock language="powershell" code={`# Tạo virtual environment
+python -m venv .venv
+
+# Kích hoạt (Windows PowerShell)
+.venv\Scripts\Activate.ps1
+
+# Kích hoạt (CMD)
+.venv\Scripts\activate.bat
+
+# Thoát
+deactivate`} />
+
+### Freeze dependencies
+
+<CodeBlock language="powershell" code={`# Xuất danh sách packages hiện tại
+pip freeze > requirements.txt`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`pip --version
+# Kết quả mẫu: pip 25.x.x from ...\python3.12\site-packages\pip (python 3.12)`} />
+
+## Tài liệu tham khảo
+
+- [pip Docs](https://pip.pypa.io/en/stable/)
+- [PyPI](https://pypi.org)
+- [Python Packaging Guide](https://packaging.python.org)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Luôn dùng virtual environment cho mỗi project để tránh xung đột package giữa các dự án. Python 3.3+ có sẵn `venv` module, không cần cài thêm.
 </Note>
 
-## Liên kết
-
-- [pip](https://pip.com)
+<Note type="warning">
+Không dùng `pip install` với quyền admin/system-wide nếu không thực sự cần. Dùng `--user` flag hoặc virtual environment để cài ở user space.
+</Note>

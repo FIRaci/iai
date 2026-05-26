@@ -1,29 +1,63 @@
 ---
 title: "pnpm"
 category: "dev-tools"
-icon: "zap"
+tags: ["javascript", "package-manager", "nodejs", "opensource"]
 difficulty: "beginner"
-tags: ["cli", "api"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-pnpm là package manager nhanh và tiết kiệm disk space cho JavaScript. Dùng hard links để chia sẻ packages giữa projects.
-</Note>
+pnpm là package manager cho JavaScript/Node.js nhanh hơn và tiết kiệm disk space hơn npm. Sử dụng cơ chế content-addressable storage với hard links để chia sẻ packages giữa các projects, giúp tiết kiệm đến 70% dung lượng ổ đĩa.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Cài qua npm
-npm install -g pnpm
+### Phương pháp 1: Winget
 
-# Hoặc qua Corepack (Node.js 16.13+)
-corepack enable
+<CodeBlock language="powershell" code={`winget install pnpm.pnpm`} />
+
+### Phương pháp 2: npm global
+
+<CodeBlock language="powershell" code={`npm install -g pnpm`} />
+
+### Phương pháp 3: Corepack (Node.js 16.13+)
+
+<CodeBlock language="powershell" code={`corepack enable
 corepack prepare pnpm@latest --activate`} />
 
 ## Sử dụng
 
-### So sánh với npm
+### Lệnh cơ bản
+
+<CodeBlock language="powershell" code={`# Khởi tạo project
+pnpm init
+
+# Cài dependencies
+pnpm install
+
+# Thêm package
+pnpm add express
+
+# Thêm dev dependency
+pnpm add -D typescript
+
+# Gỡ package
+pnpm remove lodash`} />
+
+### Workspace (Monorepo)
+
+<CodeBlock language="powershell" code={`# Tạo pnpm-workspace.yaml
+packages:
+  - "packages/*"
+  - "apps/*"
+
+# Cài tất cả dependencies cho workspace
+pnpm install
+
+# Chạy script trong workspace package
+pnpm --filter @myapp/server run dev`} />
+
+### So sánh lệnh với npm
 
 | npm | pnpm |
 |-----|------|
@@ -33,19 +67,22 @@ corepack prepare pnpm@latest --activate`} />
 | `npm uninstall [pkg]` | `pnpm remove [pkg]` |
 | `npm run [script]` | `pnpm [script]` |
 
-### Ưu điểm
+## Xác minh cài đặt
 
-- **Nhanh hơn:** 2-3x so với npm
-- **Tiết kiệm disk:** Chia sẻ packages qua hard links
-- **Strict:** Chỉ cho phép access packages đã khai báo
+<CodeBlock language="powershell" code={`pnpm --version
+# Kết quả mẫu: 10.x.x`} />
 
-## Tips sử dụng
+## Tài liệu tham khảo
+
+- [pnpm Official Docs](https://pnpm.io/motivation)
+- [pnpm GitHub](https://github.com/pnpm/pnpm)
+
+## Lưu ý
 
 <Note type="tip">
-**Monorepo:** pnpm hỗ trợ workspace tuyệt vời cho monorepo. Dùng `pnpm-workspace.yaml` để config.
+pnpm tạo `node_modules` dạng symlink — thay vì copy, nó link đến store global. Điều này giúp mỗi project chỉ lưu 1 bản vật lý của mỗi package version.
 </Note>
 
-## Liên kết
-
-- [pnpm](https://pnpm.io)
-- [Docs](https://pnpm.io/motivation)
+<Note type="warning">
+Khi chuyển từ npm sang pnpm, hãy xóa `node_modules` và `package-lock.json` trước khi chạy `pnpm install` lần đầu.
+</Note>

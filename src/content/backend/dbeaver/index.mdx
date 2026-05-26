@@ -1,34 +1,78 @@
 ---
 title: "DBeaver"
 category: "backend"
-icon: "code"
+icon: "database"
 difficulty: "beginner"
-tags: ["autocomplete", "api"]
+tags: ["database", "sql", "gui", "client"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
 <Note type="info">
-**DBeaver** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**DBeaver** là universal database client hỗ trợ gần như mọi cơ sở dữ liệu: MySQL, PostgreSQL, SQLite, Oracle, SQL Server, MongoDB, Cassandra, và nhiều hơn nữa. Giao diện đồ họa thân thiện, phù hợp cho developer và DBA.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+### Cài đặt qua winget
+
+<CodeBlock language="powershell" code={`winget install dbeaver.dbeaver`} />
+
+### Cài đặt thủ công
+
+Tải bản mới nhất từ [dbeaver.io/download](https://dbeaver.io/download/) — chọn bản Windows (EXE hoặc ZIP portable).
+
+### Kiểm tra cài đặt
+
+Sau khi cài, DBeaver xuất hiện trong Start Menu. Không có CLI để kiểm tra version.
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+### Kết nối database đầu tiên
 
-# Xem documentation để biết chi tiết usage examples`} />
+1. Mở DBeaver → **Database → New Database Connection**
+2. Chọn loại database (VD: PostgreSQL)
+3. Nhập host, port, database name, username, password
+4. Nhấn **Test Connection** → **Finish**
 
-## Tips
+### Các tính năng chính
 
-<Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+| Tính năng | Mô tả |
+|-----------|-------|
+| SQL Editor | Soạn và chạy queries với autocomplete |
+| ER Diagram | Visualize schema relationships |
+| Data Export | Export dữ liệu ra CSV, JSON, Excel, SQL |
+| Data Import | Import từ file vào database |
+| SSH Tunneling | Kết nối qua SSH đến remote database |
+| Session Manager | Quản lý nhiều kết nối cùng lúc |
+
+### SQL Editor shortcuts
+
+<CodeBlock language="text" code={`Ctrl + Enter   - Run current query
+Ctrl + Space   - Autocomplete
+Ctrl + \       - Format SQL
+F5             - Refresh schema`} />
+
+## Xác minh cài đặt
+
+Mở DBeaver, tạo kết nối đến database bất kỳ và chạy:
+
+<CodeBlock language="sql" code={`SELECT version();`} />
+
+Nếu thấy kết quả trả về, DBeaver đã hoạt động.
+
+## Tài liệu tham khảo
+
+- [DBeaver Docs](https://github.com/dbeaver/dbeaver/wiki)
+- [DBeaver Community](https://dbeaver.io/community/)
+
+## Lưu ý
+
+<Note type="info">
+Bản Community (miễn phí) đã đủ mạnh cho hầu hết nhu cầu. Bản Enterprise (trả phí) hỗ trợ thêm NoSQL databases, MongoDB, Cassandra, Redis.
 </Note>
 
-## Liên kết
-
-- [DBeaver](https://dbeaver.com)
+<Note type="tip">
+Enable **Auto-save** trong Preferences → Editors → Auto-save để tránh mất query khi crash.
+</Note>

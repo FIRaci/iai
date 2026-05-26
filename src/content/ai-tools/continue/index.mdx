@@ -1,41 +1,66 @@
 ---
 title: "Continue"
 category: "ai-tools"
-icon: "infinity"
-difficulty: "intermediate"
-tags: ["ide", "opensource", "custom"]
+tags: ["vscode-extension", "jetbrains-extension", "opensource", "autocomplete", "multi-model", "agent"]
+difficulty: "beginner"
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**Continue** là open-source AI coding assistant. Build custom AI agents cho development workflow. Hỗ trợ nhiều models và IDEs.
-</Note>
+Continue là open-source AI coding assistant cho VS Code và JetBrains, cho phép kết nối với bất kỳ LLM nào (Ollama, OpenAI, Anthropic, etc.). Hỗ trợ chat context-aware, tab autocomplete, và inline editing — tất cả đều tự host và customize được hoàn toàn.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`npm install -g continue
-# Hoặc cài extension từ VS Code Marketplace`} />
+Cài extension từ VS Code Marketplace hoặc JetBrains Marketplace.
+
+<CodeBlock language="powershell" code={`
+# VS Code: Cài từ marketplace
+# Mở VS Code → Extensions → Search "Continue"
+
+# Hoặc cài từ CLI:
+code --install-extension Continue.continue
+`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# Cấu hình trong .continue/config.json
-{
-  "models": [{"provider": "openai", "model": "gpt-4"}],
-  "tabAutocompleteModel": {"provider": "ollama", "model": "codellama"}
-}
+Cấu hình model provider và bắt đầu sử dụng chat và autocomplete.
 
-# Sử dụng trong IDE:
-# Ctrl+L để mở chat
-# Ctrl+I để inline edit`} />
+<CodeBlock language="powershell" code={`
+# Mở file config.json (Ctrl+Shift+P → Continue: Open config)
+# ~/.continue/config.json:
+# {
+#   "models": [{
+#     "title": "Claude 3.5 Sonnet",
+#     "provider": "anthropic",
+#     "model": "claude-sonnet-4-20250514"
+#   }],
+#   "tabAutocompleteModel": {
+#     "title": "Codestral",
+#     "provider": "mistral",
+#     "model": "codestral-latest"
+#   }
+# }
 
-## Tips
+# Phím tắt:
+# Ctrl+L - Mở chat tab
+# Ctrl+I - Inline edit
+# Ctrl+Shift+L - Quick chat
+`} />
 
-<Note type="tip">
-**Open-source:** Continue cho phép tự host và customize hoàn toàn.
-</Note>
+## Xác minh cài đặt
 
-## Liên kết
+<CodeBlock language="powershell" code={`
+# Mở VS Code → View → Extensions → Continue
+# Kiểm tra icon Continue xuất hiện ở sidebar
+`} />
 
-- [Continue](https://continue.dev)
-- [GitHub](https://github.com/continuedev/continue)
+## Tài liệu tham khảo
+
+- [Continue Documentation](https://docs.continue.dev)
+- [GitHub Repository](https://github.com/continuedev/continue)
+- [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=Continue.continue)
+
+## Lưu ý
+
+Continue hoàn toàn miễn phí và open-source. Bạn tự cung cấp API key cho model bạn muốn dùng. Có thể dùng Ollama local để không tốn phí API. Trên Windows 11, nếu dùng Ollama, đảm bảo Ollama chạy background trước khi dùng Continue.

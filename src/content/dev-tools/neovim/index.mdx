@@ -1,0 +1,113 @@
+---
+title: "Neovim"
+category: "dev-tools"
+icon: "terminal"
+difficulty: "advanced"
+tags: ["editor", "vim", "terminal", "ide"]
+lastUpdated: "2026-05-26"
+---
+
+## Tổng quan
+
+<Note type="info">
+**Neovim** là fork của Vim, được thiết kế lại để mở rộng và embed được. Hỗ trợ Lua API native, asynchronous plugins, built-in LSP client, và terminal emulator tích hợp. Lý tưởng cho lập trình viên yêu thích chỉnh sửa văn bản bằng bàn phím.
+</Note>
+
+## Cài đặt
+
+### Cài đặt qua winget
+
+<CodeBlock language="powershell" code={`winget install Neovim.Neovim`} />
+
+### Kiểm tra cài đặt
+
+<CodeBlock language="powershell" code={`nvim --version`} />
+
+### Cấu hình cơ bản (init.lua)
+
+Tạo file cấu hình tại `%USERPROFILE%\AppData\Local\nvim\init.lua`:
+
+<CodeBlock language="lua" code={`-- Set leader key
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+-- Line numbers
+vim.opt.number = true
+vim.opt.relativenumber = true
+
+-- Tab settings
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+
+-- Search
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+-- Clipboard
+vim.opt.clipboard = "unnamedplus"`} />
+
+## Sử dụng
+
+### Các lệnh cơ bản
+
+| Lệnh | Mô tả |
+|------|-------|
+| `:e <file>` | Mở file |
+| `:w` | Lưu |
+| `:q` | Thoát |
+| `:wq` | Lưu và thoát |
+| `:q!` | Thoát không lưu |
+| `/pattern` | Tìm kiếm |
+| `:%s/old/new/g` | Replace toàn bộ |
+
+### Navigation
+
+| Phím | Mô tả |
+|------|-------|
+| `h/j/k/l` | Trái/Xuống/Lên/Phải |
+| `w/b` | Nhảy từ/ký tự |
+| `gg/G` | Đầu/cuối file |
+| `Ctrl+d/u` | Page down/up |
+| `{/}` | Đoạn trước/sau |
+
+### Plugin manager (lazy.nvim)
+
+<CodeBlock language="lua" code={`local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git", "clone", "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({
+  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+  { "neovim/nvim-lspconfig" },
+  { "williamboman/mason.nvim" },
+})`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`nvim --version
+nvim -c "checkhealth"`} />
+
+## Tài liệu tham khảo
+
+- [Neovim Docs](https://neovim.io/doc/)
+- [Neovim GitHub](https://github.com/neovim/neovim)
+- [Neovim from Scratch](https://github.com/LunarVim/Neovim-from-scratch)
+
+## Lưu ý
+
+<Note type="warning">
+Neovim có learning curve cao. Bắt đầu với `:Tutor` (built-in) để học các thao tác cơ bản. Dành 15 phút/ngày trong 2 tuần để làm quen.
+</Note>
+
+<Note type="tip">
+Dùng `mason.nvim` + `nvim-lspconfig` để tự động cài đặt và cấu hình LSP servers cho TypeScript, Python, Rust, Go, v.v.
+</Note>

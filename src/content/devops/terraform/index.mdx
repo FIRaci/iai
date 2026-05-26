@@ -1,34 +1,106 @@
 ---
-title: "terraform"
+title: "Terraform"
 category: "devops"
-icon: "code"
-difficulty: "beginner"
-tags: ["api"]
+icon: "infrastructure"
+difficulty: "advanced"
+tags: ["iac", "infrastructure", "cloud", "automation"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
 <Note type="info">
-**terraform** là DevOps tool. Hỗ trợ CI/CD, deployment, và infrastructure management.
+**Terraform** là Infrastructure as Code (IaC) tool của HashiCorp, cho phép định nghĩa và quản lý hạ tầng cloud bằng cấu hình khai báo. Hỗ trợ AWS, Azure, GCP, và 3000+ providers.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`npm install -g tool-name`} />
+### Cài đặt qua winget
+
+<CodeBlock language="powershell" code={`winget install Hashicorp.Terraform`} />
+
+### Kiểm tra cài đặt
+
+<CodeBlock language="powershell" code={`terraform --version`} />
+
+### Cài đặt autocompletion
+
+<CodeBlock language="powershell" code={`terraform -install-autocomplete`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+### Terraform workflow cơ bản
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`# Khởi tạo project
+terraform init
 
-## Tips
+# Format & validate
+terraform fmt
+terraform validate
 
-<Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+# Xem kế hoạch thay đổi
+terraform plan
+
+# Apply thay đổi
+terraform apply
+
+# Xóa tài nguyên
+terraform destroy`} />
+
+### File cấu hình mẫu (main.tf)
+
+ <CodeBlock language="hcl" code={`
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+
+provider "aws" {
+  region = "ap-southeast-1"
+}
+
+resource "aws_instance" "web" {
+  ami           = "ami-0c55b159cbfafe1f0"
+  instance_type = "t2.micro"
+
+  tags = {
+    Name = "web-server"
+  }
+}
+`} />
+
+### Quản lý state
+
+<CodeBlock language="powershell" code={`# Xem state
+terraform state list
+
+# Di chuyển resource
+terraform state mv aws_instance.web aws_instance.web-v2
+
+# Xóa khỏi state
+terraform state rm aws_instance.web`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`terraform --version
+terraform help`} />
+
+## Tài liệu tham khảo
+
+- [Terraform Docs](https://developer.hashicorp.com/terraform/docs)
+- [Terraform Registry](https://registry.terraform.io/)
+- [Terraform Best Practices](https://developer.hashicorp.com/terraform/tutorials)
+
+## Lưu ý
+
+<Note type="warning">
+File `terraform.tfstate` chứa secrets (plaintext passwords, keys). Không commit vào git. Dùng remote backend (S3, Azure Storage) để lưu state an toàn.
 </Note>
 
-## Liên kết
-
-- [terraform](https://terraform.com)
+<Note type="tip">
+Dùng `terraform workspace` để quản lý nhiều môi trường (dev/staging/prod) với cùng codebase.
+</Note>

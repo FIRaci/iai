@@ -1,35 +1,69 @@
 ---
 title: "VS Code"
 category: "dev-tools"
-icon: "code"
+tags: ["code-editor", "ide", "microsoft", "extensions", "opensource", "cross-platform"]
 difficulty: "beginner"
-tags: ["creative", "cli", "extension", "opensource", "ide", "cloud", "api", "editor"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**VS Code** là developer tool. Hỗ trợ development workflow.
-</Note>
+Visual Studio Code là code editor miễn phí từ Microsoft, chạy trên mọi nền tảng. Là editor phổ biến nhất cho developers Windows 11 nhờ hệ sinh thái extensions phong phú, terminal tích hợp, Git integration, và hỗ trợ AI coding qua GitHub Copilot, Continue, Cline, và Cursor (fork).
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`npm install tool-name`} />
+Tải từ code.visualstudio.com hoặc cài qua winget.
+
+<CodeBlock language="powershell" code={`
+# Option 1: winget (khuyến nghị)
+winget install Microsoft.VisualStudioCode
+
+# Option 2: Tải từ code.visualstudio.com
+# Chạy VSCodeSetup-x.x.x.exe
+
+# Option 3: Via scoop
+scoop install vscode
+`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Mở VS Code và bắt đầu với terminal và extensions.
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`
+# Mở folder project
+code .   # mở thư mục hiện tại
+code C:\Projects\my-app   # mở thư mục cụ thể
 
-## Tips
+# Cài extensions từ CLI
+code --install-extension github.copilot
+code --install-extension ms-python.python
+code --install-extension esbenp.prettier-vscode
 
-<Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
-</Note>
+# VS Code Server (remote development)
+code --remote wsl+Ubuntu .
 
-## Liên kết
+# Các phím tắt cơ bản:
+# Ctrl+Shift+P - Command Palette
+# Ctrl+P       - Quick Open file
+# Ctrl+Backtick - Toggle terminal
+# Ctrl+Shift+E - File Explorer
+`} />
 
-- [Bắt đầu với AI Tools](/getting-started)
-- [Hướng dẫn GitHub Copilot](/ai-tools/copilot)
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`
+code --version
+# Ví dụ output:
+# 1.98.2
+# x64
+`} />
+
+## Tài liệu tham khảo
+
+- [VS Code Documentation](https://code.visualstudio.com/docs)
+- [VS Code Marketplace](https://marketplace.visualstudio.com)
+- [GitHub Repository](https://github.com/microsoft/vscode)
+
+## Lưu ý
+
+VS Code có sẵn profile settings cho development (Ctrl+Shift+P → "Profiles"). Trên Windows 11, nên bật "Settings Sync" để đồng bộ cấu hình giữa các máy. Extension remote development cho WSL yêu cầu cài "Remote - WSL" extension. Dùng PowerShell 7 làm terminal mặc định cho Windows 11.

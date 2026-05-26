@@ -3,30 +3,90 @@ title: "FFmpeg"
 category: "video"
 icon: "film"
 difficulty: "intermediate"
-tags: ["creative", "cli", "ide", "api"]
+tags: ["multimedia", "video", "audio", "cli"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
 <Note type="info">
-**FFmpeg** là multimedia framework cho processing video và audio. Convert, edit, stream media files.
+**FFmpeg** là multimedia framework mã nguồn mở mạnh mẽ cho xử lý video và audio. Hỗ trợ convert, encode, decode, mux, demux, stream, filter, và play hầu hết mọi định dạng media.
 </Note>
 
 ## Cài đặt
 
+### Cài đặt qua winget
+
 <CodeBlock language="powershell" code={`winget install FFmpeg`} />
+
+### Kiểm tra cài đặt
+
+<CodeBlock language="powershell" code={`ffmpeg -version`} />
+
+### Thêm vào PATH (nếu cần)
+
+<CodeBlock language="powershell" code={`$env:Path += ";C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin"
+[Environment]::SetEnvironmentVariable("Path", $env:Path, "User")`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# Convert format
-ffmpeg -i input.mp4 output.avi
-# Extract audio
-ffmpeg -i video.mp4 -vn audio.mp3
-# Resize video
+### Convert video format
+
+<CodeBlock language="powershell" code={`ffmpeg -i input.mp4 output.avi
+ffmpeg -i input.mov output.mp4`} />
+
+### Extract audio từ video
+
+<CodeBlock language="powershell" code={`ffmpeg -i video.mp4 -vn audio.mp3
+ffmpeg -i video.mp4 -vn -acodec pcm_s16le audio.wav`} />
+
+### Resize và compress
+
+<CodeBlock language="powershell" code={`# Resize xuống 1280x720
 ffmpeg -i input.mp4 -vf scale=1280:720 output.mp4
-# Trim video
-ffmpeg -i input.mp4 -ss 00:00:10 -t 00:00:20 output.mp4`} />
 
-## Liên kết
+# Compress với CRF (18-28, thấp hơn = chất lượng cao hơn)
+ffmpeg -i input.mp4 -crf 23 output.mp4`} />
 
-- [FFmpeg](https://ffmpeg.org)
+### Trim và cut video
+
+<CodeBlock language="powershell" code={`# Từ giây 10 đến giây 30
+ffmpeg -i input.mp4 -ss 00:00:10 -to 00:00:30 output.mp4
+
+# Cut không re-encode (nhanh hơn)
+ffmpeg -i input.mp4 -ss 00:01:00 -t 00:00:30 -c copy output.mp4`} />
+
+### Merge nhiều video
+
+Tạo file `list.txt`:
+
+<CodeBlock language="text" code={`file 'clip1.mp4'
+file 'clip2.mp4'
+file 'clip3.mp4'`} />
+
+<CodeBlock language="powershell" code={`ffmpeg -f concat -safe 0 -i list.txt -c copy merged.mp4`} />
+
+### GIF từ video
+
+<CodeBlock language="powershell" code={`ffmpeg -i input.mp4 -vf "fps=10,scale=640:-1" output.gif`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`ffmpeg -version
+ffmpeg -encoders | findstr libx264`} />
+
+## Tài liệu tham khảo
+
+- [FFmpeg Docs](https://ffmpeg.org/documentation.html)
+- [FFmpeg Wiki](https://trac.ffmpeg.org/wiki)
+- [FFmpeg Filters](https://ffmpeg.org/ffmpeg-filters.html)
+
+## Lưu ý
+
+<Note type="info">
+FFmpeg là CLI tool — không có giao diện đồ họa. Mọi thao tác đều qua command line. Có thể dùng front-end GUI như HandBrake nếu cần giao diện.
+</Note>
+
+<Note type="tip">
+Dùng `-c copy` để copy streams (không re-encode) khi chỉ cần cắt hoặc đổi container format — tốc độ xử lý gần như tức thì, không mất chất lượng.
+</Note>

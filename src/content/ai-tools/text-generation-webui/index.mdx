@@ -1,34 +1,69 @@
 ---
 title: "Text Generation WebUI"
 category: "ai-tools"
-icon: "brain"
-difficulty: "beginner"
-tags: ["api", "local"]
+tags: ["local-llm", "web-ui", "self-hosted", "opensource", "training", "api"]
+difficulty: "intermediate"
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**Text Generation WebUI** là công cụ AI hỗ trợ developers trong workflow. Cung cấp các tính năng thông minh để tăng năng suất phát triển phần mềm.
-</Note>
+Text Generation WebUI (còn gọi là oobabooga) là giao diện web toàn diện để chạy, tinh chỉnh, và tương tác với LLM local. Hỗ trợ nhiều định dạng model (GGUF, GPTQ, AWQ, EXL2), loader khác nhau (llama.cpp, ExLlamaV2, AutoGPTQ), và có tính năng chat, generation, training, và LoRA.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+Clone repo và chạy script cài đặt.
+
+<CodeBlock language="powershell" code={`
+# Yêu cầu: Python 3.10+, Git, NVIDIA GPU (khuyến nghị)
+# Mở PowerShell làm Administrator
+
+# Clone repo
+git clone https://github.com/oobabooga/text-generation-webui.git
+cd text-generation-webui
+
+# Chạy script cài đặt cho Windows
+.\start_windows.bat
+
+# Hoặc cài thủ công:
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Chạy web UI và truy cập từ browser.
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`
+# Chạy với model GGUF (dùng llama.cpp)
+python server.py --model models/llama-3.3-70b-instruct.Q4_K_M.gguf
 
-## Tips
+# Chạy với model EXL2 (dùng ExLlamaV2, yêu cầu GPU)
+python server.py --model models/Meta-Llama-3.3-70B-Instruct-exl2
 
-<Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
-</Note>
+# Mở http://localhost:7860
 
-## Liên kết
+# API mode (OpenAI-compatible):
+python server.py --model models/llama-3.3-70b.gguf --api --listen
 
-- [Text Generation WebUI](https://text-generation-webui.com)
+# Test API:
+curl http://localhost:5000/v1/chat/completions -H "Content-Type: application/json" -d "{""model"": ""llama"", ""messages"": [{""role"": ""user"", ""content"": ""Hello""}]}"
+`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`
+python server.py --help
+# Mở http://localhost:7860 — phải thấy web interface
+`} />
+
+## Tài liệu tham khảo
+
+- [GitHub Repository](https://github.com/oobabooga/text-generation-webui)
+- [Wiki](https://github.com/oobabooga/text-generation-webui/wiki)
+- [Model Download Guide](https://github.com/oobabooga/text-generation-webui/wiki/Downloading-models)
+
+## Lưu ý
+
+Text Generation WebUI yêu cầu GPU NVIDIA mạnh cho model lớn — dùng GGUF format với llama.cpp loader nếu RAM hạn chế. Trên Windows 11, script `start_windows.bat` tự động cài CUDA và dependencies. Model files rất lớn (5-50GB), cần ổ cứng trống. Có thể dùng kết hợp với Open WebUI qua API.

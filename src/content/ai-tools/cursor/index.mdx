@@ -1,35 +1,54 @@
 ---
 title: "Cursor"
 category: "ai-tools"
-icon: "cursor"
+tags: ["ai-ide", "code-editor", "vscode-fork", "autocomplete", "agent", "multi-model"]
 difficulty: "beginner"
-tags: ["creative", "paid", "cli", "extension", "opensource", "autocomplete", "ide", "cloud", "multi-model", "api", "agent", "ai-native", "editor"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**Cursor** là công cụ AI hỗ trợ developers trong workflow. Cung cấp các tính năng thông minh để tăng năng suất phát triển phần mềm.
-</Note>
+Cursor là AI-native code editor forked từ VS Code, tích hợp sâu các tính năng AI như autocomplete, chat context-aware, và agent mode. Hỗ trợ Claude, GPT-4, và nhiều model khác trực tiếp trong editor, giúp Windows developers tăng tốc độ code đáng kể.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+Tải installer từ trang chủ và chạy file .exe.
+
+<CodeBlock language="powershell" code={`
+# Option 1: Download from cursor.com
+# Visit https://cursor.com/downloads and run the installer
+
+# Option 2: Install via winget
+winget install Cursor.Cursor
+`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Mở Cursor và bắt đầu dùng Composer (Ctrl+I) hoặc Chat (Ctrl+L) để tương tác với AI.
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`
+# Các phím tắt chính trong Cursor:
+# Ctrl+I  - Mở Composer (chỉnh sửa code theo hướng dẫn)
+# Ctrl+L  - Mở Chat với context từ file hiện tại
+# Ctrl+K  - Generate code từ comment
+# Ctrl+Enter - Agent mode (tự động tạo/sửa nhiều file)
 
-## Tips
+# Terminal: Dùng Cursor CLI
+cursor --help
+`} />
 
-<Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
-</Note>
+## Xác minh cài đặt
 
-## Liên kết
+<CodeBlock language="powershell" code={`
+cursor --version
+# Ví dụ output: 0.45.11
+`} />
 
-- [So sánh AI Tools](/comparisons)
-- [Hướng dẫn VS Code](/dev-tools/vscode)
+## Tài liệu tham khảo
+
+- [Official Documentation](https://docs.cursor.com)
+- [Download](https://cursor.com/downloads)
+
+## Lưu ý
+
+Cursor yêu cầu đăng nhập tài khoản để dùng bản dùng thử. Bản Pro ($20/tháng) bao gồm 500 fast requests/tháng. Trên Windows 11, đảm bảo đã cài VC++ Redistributable nếu gặp lỗi khi chạy.

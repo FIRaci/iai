@@ -1,34 +1,63 @@
 ---
 title: "Aider"
 category: "ai-tools"
-icon: "brain"
-difficulty: "beginner"
-tags: ["cli", "ide", "api", "agent"]
+tags: ["cli", "pair-programming", "git", "opensource", "multi-model", "agent"]
+difficulty: "intermediate"
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**Aider** là AI pair programming tool chạy trong terminal. Chat với AI để edit code files, commit changes tự động vào Git. Hỗ trợ nhiều ngôn ngữ lập trình.
-</Note>
+Aider là AI pair programming tool chạy trong terminal, cho phép chat với AI để chỉnh sửa code files và tự động commit changes vào Git. Hỗ trợ nhiều LLM (Claude, GPT-4, DeepSeek, Ollama) và có khả năng hiểu toàn bộ codebase để đưa ra suggestion chính xác.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install aider-chat`} />
+Cài qua pip trong Python environment.
+
+<CodeBlock language="powershell" code={`
+# Cài đặt Aider
+pip install aider-chat
+
+# Hoặc cài với hỗ trợ browser (cho voice mode)
+pip install "aider-chat[browser]"
+
+# Yêu cầu Python 3.10+
+python --version
+`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`aider file1.py file2.py
-# Trong terminal:
-# /add file3.py
-# Implement a function to sort users by name`} />
+Chạy Aider trong terminal với files cần chỉnh sửa.
 
-## Tips
+<CodeBlock language="powershell" code={`
+# Chạy với API key
+set ANTHROPIC_API_KEY=sk-ant-...
+aider --model claude-sonnet-4-20250514 main.py utils.js
 
-<Note type="tip">
-**Git integration:** Aider tự động commit changes sau mỗi edit.
-</Note>
+# Hoặc dùng Ollama local
+aider --model ollama/llama3.3-70b --ollama-api-base http://localhost:11434
 
-## Liên kết
+# Các lệnh trong chat:
+# /add file.py       - Thêm file vào context
+# /drop file.py      - Bỏ file khỏi context
+# /commit            - Commit changes
+# /undo              - Undo last change
+# /help              - Xem danh sách commands
+`} />
 
-- [Aider](https://aider.com)
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`
+aider --version
+# Ví dụ output: 0.76.0
+`} />
+
+## Tài liệu tham khảo
+
+- [Aider Documentation](https://aider.chat/docs/)
+- [GitHub Repository](https://github.com/paul-gauthier/aider)
+- [Model Support](https://aider.chat/docs/llms.html)
+
+## Lưu ý
+
+Aider tự động tạo Git commits cho mỗi thay đổi — luôn chạy trong repo Git. Trên Windows 11, Aider hoạt động tốt trong PowerShell 7, Windows Terminal, và WSL. Nếu gặp lỗi encoding, set `$env:PYTHONIOENCODING='utf-8'`.

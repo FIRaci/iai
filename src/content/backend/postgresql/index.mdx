@@ -1,0 +1,92 @@
+---
+title: "PostgreSQL"
+category: "backend"
+icon: "database"
+difficulty: "intermediate"
+tags: ["database", "sql", "relational", "server"]
+lastUpdated: "2026-05-26"
+---
+
+## Tổng quan
+
+<Note type="info">
+**PostgreSQL** là hệ quản trị cơ sở dữ liệu quan hệ mã nguồn mở mạnh mẽ, hỗ trợ ACID transactions, JSON queries, full-text search, và extensibility. Phù hợp cho mọi ứng dụng từ web đến data analytics.
+</Note>
+
+## Cài đặt
+
+### Cài đặt qua winget
+
+<CodeBlock language="powershell" code={`winget install PostgreSQL.PostgreSQL`} />
+
+### Kiểm tra cài đặt
+
+<CodeBlock language="powershell" code={`psql --version`} />
+
+### Khởi tạo database cluster
+
+Sau khi cài đặt, PostgreSQL tự động tạo cluster mặc định. Có thể kiểm tra service:
+
+<CodeBlock language="powershell" code={`Get-Service postgresql*`} />
+
+## Sử dụng
+
+### Kết nối đến PostgreSQL
+
+<CodeBlock language="powershell" code={`psql -U postgres`} />
+
+### Các lệnh SQL cơ bản
+
+<CodeBlock language="sql" code={`-- Tạo database
+CREATE DATABASE mydb;
+
+-- Tạo bảng
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(100),
+  email VARCHAR(255) UNIQUE NOT NULL
+);
+
+-- Thêm dữ liệu
+INSERT INTO users (name, email) VALUES ('Alice', 'alice@example.com');
+
+-- Truy vấn
+SELECT * FROM users;`} />
+
+### Quản lý user & phân quyền
+
+<CodeBlock language="sql" code={`-- Tạo user
+CREATE USER myuser WITH PASSWORD 'mypass';
+
+-- Cấp quyền
+GRANT ALL PRIVILEGES ON DATABASE mydb TO myuser;
+
+-- Phân quyền schema
+GRANT USAGE, CREATE ON SCHEMA public TO myuser;`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`# Kiểm tra version
+psql --version
+
+# Kiểm tra service đang chạy
+Get-Service postgresql* | Where-Object { $_.Status -eq 'Running' }
+
+# Kiểm tra port mặc định
+netstat -an | findstr ":5432"`} />
+
+## Tài liệu tham khảo
+
+- [PostgreSQL Docs](https://www.postgresql.org/docs/)
+- [PostgreSQL Wiki](https://wiki.postgresql.org/)
+- [pgAdmin - GUI client](https://www.pgadmin.org/)
+
+## Lưu ý
+
+<Note type="warning">
+Mật khẩu mặc định cho user `postgres` được thiết lập trong quá trình cài đặt. Hãy đổi mật khẩu ngay sau lần đầu đăng nhập: `ALTER USER postgres WITH PASSWORD 'new_password';`
+</Note>
+
+<Note type="tip">
+Dùng `pgAdmin` (cài kèm với PostgreSQL) để quản lý database qua giao diện đồ họa.
+</Note>

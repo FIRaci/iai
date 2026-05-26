@@ -1,34 +1,69 @@
 ---
 title: "ComfyUI"
 category: "ai-tools"
-icon: "brain"
-difficulty: "beginner"
-tags: ["creative", "api"]
+tags: ["image-generation", "stable-diffusion", "node-editor", "opensource", "workflow"]
+difficulty: "intermediate"
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**ComfyUI** là công cụ AI hỗ trợ developers trong workflow. Cung cấp các tính năng thông minh để tăng năng suất phát triển phần mềm.
-</Note>
+ComfyUI là giao diện node-based workflow cho Stable Diffusion, cho phép tạo image generation pipeline phức tạp bằng cách kéo-thả các node. Hỗ trợ SDXL, FLUX, Stable Diffusion 3.5, ControlNet, LoRA, và nhiều model khác. Cực kỳ linh hoạt cho Windows developers muốn tùy chỉnh image generation flow.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+Clone repo và cài dependencies.
+
+<CodeBlock language="powershell" code={`
+# Yêu cầu: Python 3.10+, Git, NVIDIA GPU (khuyến nghị)
+
+# Clone repo
+git clone https://github.com/comfyanonymous/ComfyUI.git
+cd ComfyUI
+
+# Tạo virtual environment
+python -m venv .venv
+.venv\Scripts\activate
+
+# Cài dependencies
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
+pip install -r requirements.txt
+`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Chạy ComfyUI và mở browser.
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`
+# Chạy ComfyUI
+python main.py
 
-## Tips
+# Mở http://localhost:8188 trong browser
+# Load mẫu: Load default workflow từ menu
 
-<Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
-</Note>
+# Download model (put models in ComfyUI/models/checkpoints/)
+# Ví dụ: https://huggingface.co/black-forest-labs/FLUX.1-schnell
 
-## Liên kết
+# API mode (headless):
+python main.py --listen 0.0.0.0 --port 8188
 
-- [ComfyUI](https://comfyui.com)
+# Queue prompt qua API (xem workflow JSON trong ComfyUI)
+curl -X POST http://localhost:8188/prompt -H "Content-Type: application/json" -d "{""prompt"": {...workflow JSON...}}"
+`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`
+python main.py --help
+# Mở http://localhost:8188 — phải thấy ComfyUI interface
+`} />
+
+## Tài liệu tham khảo
+
+- [ComfyUI GitHub](https://github.com/comfyanonymous/ComfyUI)
+- [ComfyUI Examples](https://comfyanonymous.github.io/ComfyUI_examples/)
+- [ComfyUI Manager](https://github.com/ltdrdata/ComfyUI-Manager)
+
+## Lưu ý
+
+ComfyUI yêu cầu GPU NVIDIA với VRAM tối thiểu 4GB (khuyến nghị 8GB+ cho SDXL/FLUX). Trên Windows 11, cài CUDA Toolkit 12.x và cuDNN. Dùng ComfyUI Manager để dễ dàng cài custom nodes. Model checkpoints tốn nhiều dung lượng (2-7GB mỗi model).

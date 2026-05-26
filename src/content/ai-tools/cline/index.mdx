@@ -1,34 +1,58 @@
 ---
 title: "Cline"
 category: "ai-tools"
-icon: "brain"
-difficulty: "beginner"
-tags: ["cli", "ide", "api", "agent"]
+tags: ["vscode-extension", "agent", "opensource", "multi-model", "autonomous"]
+difficulty: "intermediate"
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**Cline** là công cụ AI hỗ trợ developers trong workflow. Cung cấp các tính năng thông minh để tăng năng suất phát triển phần mềm.
-</Note>
+Cline là VS Code extension biến AI thành autonomous agent có thể đọc/viết file, chạy terminal commands, browse web, và tương tác với browser. Hỗ trợ Claude, GPT-4, DeepSeek, và Ollama — cho phép AI thực thi task phức tạp mà không cần can thiệp thủ công.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+Cài từ VS Code Marketplace.
+
+<CodeBlock language="powershell" code={`
+# Cài từ VS Code Extensions marketplace
+code --install-extension saoudrizwan.claude-dev
+`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Mở Cline từ sidebar và cấu hình API provider.
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`
+# 1. Click icon Cline ở sidebar VS Code
+# 2. Chọn API provider (Anthropic, OpenAI, OpenRouter, Ollama...)
+# 3. Nhập API key
+# 4. Bắt đầu gõ task
 
-## Tips
+# Ví dụ task:
+# "Create a React component that fetches data from an API
+#  and displays it in a table with pagination"
 
-<Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
-</Note>
+# Cline có thể:
+# - Đọc và edit files trong project
+# - Chạy npm/pip/terminal commands
+# - Mở browser và tương tác với web
+# - Search web để tìm giải pháp
+`} />
 
-## Liên kết
+## Xác minh cài đặt
 
-- [Cline](https://cline.com)
+<CodeBlock language="powershell" code={`
+# Kiểm tra Cline icon ở VS Code sidebar
+# Mở View → Extensions → tìm "Cline"
+`} />
+
+## Tài liệu tham khảo
+
+- [Cline Documentation](https://docs.cline.bot)
+- [GitHub Repository](https://github.com/cline/cline)
+- [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=saoudrizwan.claude-dev)
+
+## Lưu ý
+
+Cline có quyền truy cập đầy đủ vào terminal và file system — luôn review changes trước khi approve. Trên Windows 11, Cline hoạt động tốt với PowerShell 7 và Windows Terminal. Có thể dùng Ollama để chạy local model miễn phí.

@@ -4,6 +4,7 @@ import { MainLayout } from "@/components/layout/MainLayout"
 import { Home } from "@/pages/Home"
 import { BackToTop } from "@/components/layout/BackToTop"
 import { ReadingProgress } from "@/components/layout/ReadingProgress"
+import { PageSkeleton } from "@/components/ui/skeleton"
 
 const CategoryPage = lazy(() => import("@/pages/CategoryPage").then(m => ({ default: m.CategoryPage })))
 const ToolGuide = lazy(() => import("@/pages/ToolGuide").then(m => ({ default: m.ToolGuide })))
@@ -19,11 +20,7 @@ function ScrollToTop() {
 }
 
 function PageLoader() {
-  return (
-    <div className="flex items-center justify-center py-20">
-      <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
-    </div>
-  )
+  return <PageSkeleton />
 }
 
 function App() {

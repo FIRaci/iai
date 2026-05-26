@@ -1,34 +1,92 @@
 ---
 title: "Bun"
 category: "dev-infra"
-icon: "zap"
-difficulty: "beginner"
-tags: ["cli", "api"]
+tags: ["javascript", "runtime", "bundler", "package-manager"]
+difficulty: "intermediate"
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**Bun** là development infrastructure tool. Hỗ trợ build và manage dev environments.
-</Note>
+Bun là all-in-one JavaScript runtime, bundler, transpiler, và package manager được viết bằng Zig dựa trên JavaScriptCore engine. Có tốc độ chạy script nhanh hơn Node.js từ 2-4x, tích hợp sẵn built-in bundler, SQLite client, và test runner.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`npm install -g tool-name`} />
+### Phương pháp 1: Script install (khuyến nghị)
+
+<CodeBlock language="powershell" code={`powershell -c "irm bun.sh/install.ps1 | iex"`} />
+
+### Phương pháp 2: npm
+
+<CodeBlock language="powershell" code={`npm install -g bun`} />
+
+### Phương pháp 3: Chocolatey
+
+<CodeBlock language="powershell" code={`choco install bun`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+### Chạy JavaScript/TypeScript file
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`bun run app.ts       # Chạy trực tiếp TypeScript
+bun run index.js      # Chạy JavaScript
+bun --watch server.ts # Chạy với hot-reload`} />
 
-## Tips
+### Package management
+
+<CodeBlock language="powershell" code={`# Install dependencies (tương thích package.json)
+bun install
+
+# Thêm package
+bun add express
+bun add -d typescript
+
+# Gỡ package
+bun remove lodash
+
+# Chạy script
+bun run dev`} />
+
+### Test runner
+
+<CodeBlock language="powershell" code={`// math.test.ts
+import { describe, test, expect } from "bun:test";
+
+describe("math", () => {
+  test("add", () => {
+    expect(1 + 1).toBe(2);
+  });
+});
+
+# Chạy test
+bun test`} />
+
+### HTTP Server
+
+<CodeBlock language="typescript" code={`// server.ts
+Bun.serve({
+  port: 3000,
+  fetch(req) {
+    return new Response("Hello from Bun!");
+  },
+});`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`bun --version
+# Kết quả mẫu: 1.2.x`} />
+
+## Tài liệu tham khảo
+
+- [Bun Official Docs](https://bun.sh/docs)
+- [Bun GitHub](https://github.com/oven-sh/bun)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Bun có built-in SQLite client (`bun:sqlite`), built-in test runner (`bun test`), và built-in bundler — giảm dependency bên ngoài đáng kể.
 </Note>
 
-## Liên kết
-
-- [Bun](https://bun.sh)
+<Note type="warning">
+Một số packages Node.js native (như `sharp`, `node-canvas`) chưa tương thích hoàn toàn với Bun. Kiểm tra compatibility tại [bun.sh/docs/runtime/nodejs-apis](https://bun.sh/docs/runtime/nodejs-apis) trước khi chuyển đổi.
+</Note>

@@ -1,66 +1,66 @@
 ---
 title: "GitHub Desktop"
 category: "dev-tools"
-icon: "git-branch"
+tags: ["git", "github", "gui", "version-control"]
 difficulty: "beginner"
-tags: ["cli", "opensource", "autocomplete", "api", "local"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-GitHub Desktop là Git client GUI chính thức của GitHub, giúp quản lý repositories dễ dàng mà không cần command line.
-</Note>
+GitHub Desktop là Git client GUI chính thức của GitHub, giúp quản lý repositories Git trực quan mà không cần dùng command line. Hỗ trợ clone, commit, push, pull, branch, merge, và review changes.
 
-## Cài đặt trên Windows 11
+## Cài đặt
 
-### Bước 1: Tải GitHub Desktop
+### Phương pháp 1: Winget (khuyến nghị)
 
-Truy cập [desktop.github.com](https://desktop.github.com) và tải bản Windows.
+<CodeBlock language="powershell" code={`winget install GitHub.GitHubDesktop`} />
 
-### Bước 2: Cài đặt
+### Phương pháp 2: Tải trực tiếp
 
-Chạy installer, đăng nhập bằng tài khoản GitHub.
+Tải từ [desktop.github.com](https://desktop.github.com) và chạy installer.
 
-## Sử dụng cơ bản
+## Sử dụng
 
 ### Clone repository
 
-1. File → Clone repository
-2. Chọn repository từ GitHub
-3. Chọn local path
-4. Nhấp "Clone"
+1. File -> Clone Repository
+2. Chọn repository từ GitHub (hoặc nhập URL)
+3. Chọn local path -> Clone
 
 ### Commit và Push
 
-1. Thay đổi files trong repository
+1. Sửa code trong editor
 2. GitHub Desktop tự động detect changes
-3. Viết commit message
-4. Nhấp "Commit to main"
-5. Nhấp "Push origin"
+3. Nhập Summary (bắt buộc) và Description
+4. Commit to main
+5. Push origin
 
-### Các tính năng chính
+### Branching
 
-| Tính năng | Mô tả |
-|-----------|-------|
-| Clone | Tải repository từ GitHub |
-| Commit | Lưu thay đổi |
-| Push/Pull | Đồng bộ với remote |
-| Branch | Quản lý branches |
-| History | Xem lịch sử commits |
-| Diff | Xem thay đổi chi tiết |
+| Thao tác | Cách thực hiện |
+|----------|----------------|
+| Tạo branch | `Ctrl+Shift+N` -> nhập tên |
+| Chuyển branch | Click branch name -> chọn |
+| Merge | Branch -> Merge into current |
+| Pull Request | Branch -> Create PR |
 
-## Tips sử dụng
+## Xác minh cài đặt
+
+Mở GitHub Desktop từ Start Menu. Kiểm tra Help -> About GitHub Desktop.
+
+## Tài liệu tham khảo
+
+- [GitHub Desktop](https://desktop.github.com)
+- [GitHub Desktop Docs](https://docs.github.com/desktop/)
+- [GitHub Desktop GitHub](https://github.com/desktop/desktop)
+
+## Lưu ý
 
 <Note type="tip">
-**Keyboard shortcuts:** `Ctrl+1/2/3` để switch giữa Changes, History, Branches tabs.
+Dùng `Ctrl+Enter` để commit nhanh. `Ctrl+P` để push ngay sau commit.
 </Note>
 
 <Note type="warning">
-GitHub Desktop không hỗ trợ tất cả Git features. Dùng command line cho advanced operations.
+GitHub Desktop không hỗ trợ tất cả Git features (rebase interactive, cherry-pick phức tạp). Với thao tác Git nâng cao, dùng command line.
 </Note>
-
-## Liên kết
-
-- [GitHub Desktop](https://desktop.github.com)
-- [Docs](https://docs.github.com/desktop)

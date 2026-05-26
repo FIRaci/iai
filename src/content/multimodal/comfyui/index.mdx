@@ -1,0 +1,97 @@
+---
+title: "ComfyUI"
+category: "multimodal"
+icon: "image"
+difficulty: "intermediate"
+tags: ["ai", "image-generation", "stable-diffusion", "workflow"]
+lastUpdated: "2026-05-26"
+---
+
+## Tổng quan
+
+<Note type="info">
+**ComfyUI** là giao diện đồ họa node-based cho Stable Diffusion, cho phép xây dựng image generation pipelines bằng cách kết nối các node trực quan. Hỗ trợ SD1.5, SDXL, SD3, Flux, và nhiều diffusion models khác.
+</Note>
+
+## Cài đặt
+
+### Yêu cầu
+
+- GPU NVIDIA với 6GB+ VRAM (recommended)
+- Python 3.10+
+- Git
+
+### Cài đặt portable (recommended)
+
+Tải bản portable từ GitHub releases:
+
+1. Truy cập [github.com/comfyanonymous/ComfyUI/releases](https://github.com/comfyanonymous/ComfyUI/releases)
+2. Tải file `ComfyUI_windows_portable_nvidia.7z`
+3. Giải nén vào thư mục bất kỳ
+4. Chạy `run_nvidia_gpu.bat`
+
+### Cài đặt thủ công
+
+<CodeBlock language="powershell" code={`git clone https://github.com/comfyanonymous/ComfyUI.git
+cd ComfyUI
+python -m venv .venv
+.venv\Scripts\activate
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+pip install -r requirements.txt`} />
+
+### Download model checkpoint
+
+Đặt file `.safetensors` vào `ComfyUI\models\checkpoints\`.
+
+## Sử dụng
+
+### Khởi động
+
+Chạy `run_nvidia_gpu.bat` hoặc:
+
+<CodeBlock language="powershell" code={`python main.py`} />
+
+Mở trình duyệt tại `http://127.0.0.1:8188`.
+
+### Workflow cơ bản
+
+1. **Load Checkpoint** → Chọn model từ dropdown
+2. **CLIP Text Encode (Positive)** → Nhập prompt: `a cat wearing a hat, digital art`
+3. **CLIP Text Encode (Negative)** → Nhập: `blurry, low quality`
+4. **Empty Latent Image** → Chọn kích thước (512x512)
+5. **KSampler** → Kết nối các node, chọn steps (20), CFG (7)
+6. **VAE Decode** → Kết nối latent → image
+7. **Save Image** → Output file
+
+### Các node thường dùng
+
+| Node | Chức năng |
+|------|-----------|
+| **Load Checkpoint** | Load diffusion model |
+| **CLIP Text Encode** | Encode prompt |
+| **KSampler** | Sampling step |
+| **VAE Decode** | Decode latent thành image |
+| **ControlNet Loader** | Apply ControlNet conditioning |
+| **Image To Image** | Input image cho img2img |
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`# Truy cập Web UI
+curl http://127.0.0.1:8188
+# Kỳ vọng: HTML response từ ComfyUI`} />
+
+## Tài liệu tham khảo
+
+- [ComfyUI GitHub](https://github.com/comfyanonymous/ComfyUI)
+- [ComfyUI Examples](https://comfyanonymous.github.io/ComfyUI_examples/)
+- [ComfyUI Workflows](https://civitai.com/tag/comfyui)
+
+## Lưu ý
+
+<Note type="warning">
+ComfyUI yêu cầu GPU NVIDIA với CUDA. Nếu không có GPU, có thể dùng `--cpu` flag nhưng rất chậm.
+</Note>
+
+<Note type="tip">
+Dùng **ComfyUI Manager** (plugin) để dễ dàng cài đặt custom nodes và models trực tiếp từ UI.
+</Note>
