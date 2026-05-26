@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { List } from "lucide-react"
 
 interface TocItem {
   id: string
@@ -48,35 +50,58 @@ export function TableOfContents() {
 
   if (items.length === 0) return null
 
+  const tocList = (
+    <ul className="space-y-0.5">
+      {items.map((item) => (
+        <li key={item.id}>
+          <a
+            href={`#${item.id}`}
+            className={cn(
+              "block rounded-md px-2 py-1 text-sm transition-all duration-150",
+              item.level === 3 && "pl-5",
+              activeId === item.id
+                ? "bg-primary/10 font-semibold text-primary"
+                : "text-[#656d76] dark:text-[#8b949e] hover:text-[#1f2328] dark:hover:text-[#e6edf3] hover:bg-[#f6f8fa] dark:hover:bg-[#161b22]",
+            )}
+            onClick={(e) => {
+              e.preventDefault()
+              document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" })
+            }}
+          >
+            {item.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  )
+
   return (
-    <nav className="hidden w-56 shrink-0 xl:block">
-      <div className="sticky top-20">
-        <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-[#656d76] dark:text-[#8b949e]">
-          Trong trang này
-        </h4>
-        <ul className="space-y-0.5">
-          {items.map((item) => (
-            <li key={item.id}>
-              <a
-                href={`#${item.id}`}
-                className={cn(
-                  "block rounded-md px-2 py-1 text-sm transition-all duration-150",
-                  item.level === 3 && "pl-5",
-                  activeId === item.id
-                    ? "bg-primary/10 font-semibold text-primary"
-                    : "text-[#656d76] dark:text-[#8b949e] hover:text-[#1f2328] dark:hover:text-[#e6edf3] hover:bg-[#f6f8fa] dark:hover:bg-[#161b22]",
-                )}
-                onClick={(e) => {
-                  e.preventDefault()
-                  document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" })
-                }}
-              >
-                {item.text}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </nav>
+    <>
+      <nav className="hidden w-56 shrink-0 xl:block">
+        <div className="sticky top-20">
+          <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-[#656d76] dark:text-[#8b949e]">
+            Trong trang này
+          </h4>
+          {tocList}
+        </div>
+      </nav>
+
+      <Sheet>
+        <SheetTrigger asChild>
+          <button
+            className="fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg xl:hidden"
+            aria-label="Open table of contents"
+          >
+            <List className="h-5 w-5" />
+          </button>
+        </SheetTrigger>
+        <SheetContent side="bottom" className="max-h-[60vh] p-4">
+          <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-[#656d76] dark:text-[#8b949e]">
+            Trong trang này
+          </h4>
+          {tocList}
+        </SheetContent>
+      </Sheet>
+    </>
   )
 }

@@ -4,24 +4,65 @@ category: "llm-runtimes"
 icon: "code2"
 difficulty: "intermediate"
 tags: ["creative", "extension", "opensource", "autocomplete", "api", "local"]
+lastUpdated: "2026-05-26"
+description: "CodeGeeX là AI code generation model hỗ trợ 20+ ngôn ngữ lập trình, có thể chạy local qua VS Code extension hoặc cloud API."
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**CodeGeeX** là AI code generation model, hỗ trợ 20+ ngôn ngữ lập trình. Có thể chạy local qua VS Code extension.
-</Note>
+CodeGeeX là AI code generation model phát triển bởi THUDM (Tsinghua), hỗ trợ 20+ ngôn ngữ lập trình. Có hai chế độ: local inference qua VS Code extension, hoặc cloud qua API. Hỗ trợ code completion, code translation, và chat.
 
 ## Cài đặt
 
-Cài extension từ VS Code Marketplace: **CodeGeeX**
+<CodeBlock language="powershell" code={`
+# Cài extension từ CLI
+code --install-extension THUDM.codegeex
+
+# Hoặc mở VS Code > Extensions > Search 'CodeGeeX'
+# Chọn extension từ THUDM
+`} />
 
 ## Sử dụng
 
-1. Mở file code
-2. Nhấn `Ctrl+Enter` để generate code
-3. Accept hoặc reject suggestions
+1. Cài extension và login (tài khoản miễn phí hoặc API key)
+2. Mở file code, bắt đầu gõ - CodeGeeX tự động suggest
+3. Nhấn Tab để accept suggestion, Esc để reject
+4. Dùng Code Translation: bôi đen code → Ctrl+Alt+T → chọn ngôn ngữ đích
+5. Chat với CodeGeeX: Ctrl+Shift+I để mở chat panel
+6. Chọn model backbone: CodeGeeX2, CodeGeeX4, hoặc gọi API cloud
 
-## Liên kết
+<CodeBlock language="json" code={`
+{
+  "codegeex.ModelSelection": "codegeex4-all",
+  "codegeex.TranslationTargetLanguages": [
+    "Python",
+    "JavaScript",
+    "TypeScript",
+    "Java",
+    "C++",
+    "Go",
+    "Rust"
+  ],
+  "codegeex.AutoCompleteLocal": true
+}
+`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`
+# Kiểm tra extension
+code --list-extensions | findstr codegeex
+
+# Mở file .py gõ 'def ' để kiểm tra autocomplete
+# Extension icon sẽ hiện bên trái activity bar
+`} />
+
+## Tài liệu tham khảo
 
 - [CodeGeeX GitHub](https://github.com/THUDM/CodeGeeX2)
+- [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=THUDM.codegeex)
+- [CodeGeeX Website](https://codegeex.cn)
+
+## Lưu ý
+
+Chế độ local yêu cầu GPU tối thiểu 6GB VRAM. Code translation feature rất hữu ích khi chuyển đổi codebase giữa Python và JavaScript. Có thể dùng hoàn toàn offline nếu dùng model local. Cloud mode nhanh hơn và không yêu cầu GPU. CodeGeeX4 hỗ trợ context window lên đến 128K tokens.

@@ -4,27 +4,67 @@ category: "image-generation"
 icon: "image"
 difficulty: "intermediate"
 tags: ["creative", "cli", "opensource", "autocomplete", "ide", "api", "local", "editor"]
+lastUpdated: "2026-05-26"
+description: "ComfyUI là node-based GUI cho Stable Diffusion, tạo workflows phức tạp với visual node editor và hỗ trợ custom nodes."
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**ComfyUI** là node-based GUI cho Stable Diffusion. Tạo workflows phức tạp với visual node editor.
-</Note>
+ComfyUI là node-based graphical user interface cho Stable Diffusion. Cho phép tạo image generation workflows phức tạp thông qua visual node editor, hỗ trợ custom nodes, model management, và workflow sharing.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`git clone https://github.com/comfyanonymous/ComfyUI
+<CodeBlock language="powershell" code={`
+# Clone repository
+git clone https://github.com/comfyanonymous/ComfyUI
 cd ComfyUI
-pip install -r requirements.txt`} />
+
+# Tạo virtual environment (khuyến nghị)
+python -m venv .venv
+.venv\Scripts\activate
+
+# Cài dependencies
+pip install -r requirements.txt
+
+# Download model cơ bản (SDXL)
+# Tải https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0
+# Đặt file .safetensors vào models/checkpoints/
+`} />
 
 ## Sử dụng
 
-1. Chạy `python main.py`
-2. Mở `http://localhost:8188`
-3. Tạo workflow với nodes
-4. Generate images
+1. Kích hoạt venv và chạy `python main.py`
+2. Mở trình duyệt tại `http://localhost:8188`
+3. Tạo workflow text-to-image: Load Checkpoint → CLIP Text Encode → KSampler → Decode → Save Image
+4. Kéo thả nodes để kết nối, điều chỉnh parameters (steps, CFG, sampler)
+5. Cài custom nodes: clone repo vào `custom_nodes/` folder
+6. Export workflow dạng JSON để chia sẻ (Workflow → Save/Export)
 
-## Liên kết
+<CodeBlock language="powershell" code={`
+# Chạy ComfyUI
+python main.py
+
+# Cài custom nodes (ví dụ)
+cd custom_nodes
+git clone https://github.com/ltdrdata/ComfyUI-Manager
+# Restart ComfyUI, vào Manager để browse và cài nodes
+`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`
+# Kiểm tra ComfyUI chạy
+python main.py
+# Output mẫu: "Starting server on http://localhost:8188"
+# Mở trình duyệt và kiểm tra UI load
+`} />
+
+## Tài liệu tham khảo
 
 - [ComfyUI GitHub](https://github.com/comfyanonymous/ComfyUI)
+- [ComfyUI Manager](https://github.com/ltdrdata/ComfyUI-Manager)
+- [Stable Diffusion Models](https://huggingface.co/stabilityai)
+
+## Lưu ý
+
+Luôn dùng virtual environment để tránh xung đột package. ComfyUI Manager là custom node bắt buộc - giúp cài nodes và models từ UI. Workflow từ community thường có sẵn JSON để drag-drop vào ComfyUI. Trên Windows, cần CUDA toolkit nếu dùng GPU NVIDIA. Có thể dùng `--force-fp16` để tiết kiệm VRAM.

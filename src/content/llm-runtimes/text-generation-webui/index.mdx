@@ -4,32 +4,55 @@ category: "llm-runtimes"
 icon: "monitor"
 difficulty: "beginner"
 tags: ["creative", "cli", "extension", "opensource", "autocomplete", "cloud", "multi-model", "api", "agent", "local"]
+lastUpdated: "2026-05-26"
+description: "Hướng dẫn cài đặt và sử dụng text-generation-webui (Oobabooga) - web UI phổ biến nhất cho local LLM inference"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**text-generation-webui** (Oobabooga) là web UI phổ biến nhất cho local LLM inference. Hỗ trợ nhiều backends: llama.cpp, ExLlamaV2, AutoGPTQ.
-</Note>
+text-generation-webui (Oobabooga) là web UI phổ biến nhất cho local LLM inference. Hỗ trợ nhiều backends: llama.cpp, ExLlamaV2, AutoGPTQ, transformers. Tích hợp chat UI, training LoRA, character management, và OpenAI-compatible API extension.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`git clone https://github.com/oobabooga/text-generation-webui
+<CodeBlock language="powershell" code={`
+git clone https://github.com/oobabooga/text-generation-webui
 cd text-generation-webui
-start_windows.bat`} />
+start_windows.bat
+`} />
+
+Sau khi chạy `start_windows.bat`, script sẽ tự động tạo môi trường conda và cài dependencies.
 
 ## Sử dụng
 
-1. Mở browser tại `http://localhost:7860`
-2. Tab **Model** → chọn và load model
-3. Tab **Chat** → bắt đầu chat
+1. Mở `http://localhost:7860`
+2. Tab **Model** → chọn backend (llama.cpp cho CPU, ExLlamaV2 cho GPU) → load model
+3. Tab **Chat** → bắt đầu chat với character
+4. Tab **Training** → fine-tune LoRA trên dữ liệu của bạn
 
-## Tips
+<CodeBlock language="powershell" code={`
+# Kích hoạt OpenAI-compatible API
+# Vào tab Extensions -> bật openai extension
+# API endpoint: http://localhost:5000/v1
 
-<Note type="tip">
-**Extensions:** Cài extensions như `openai` để tạo API endpoint tương thích OpenAI.
-</Note>
+# Test API
+curl http://localhost:5000/v1/chat/completions -H 'Content-Type: application/json' -d '{"model":"local","messages":[{"role":"user","content":"Hello"}]}'
+`} />
 
-## Liên kết
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`
+# Kiểm tra web UI
+# Mở http://localhost:7860
+
+# Kiểm tra version
+python server.py --version
+`} />
+
+## Tài liệu tham khảo
 
 - [GitHub](https://github.com/oobabooga/text-generation-webui)
+- [Wiki](https://github.com/oobabooga/text-generation-webui/wiki)
+
+## Lưu ý
+
+Mặc định dùng llama.cpp backend cho CPU. Nếu có GPU NVIDIA, cài CUDA toolkit và dùng ExLlamaV2 hoặc AutoGPTQ. Có thể import character cards định dạng TavernAI. Extensions như `openai` tạo API endpoint tương thích với SillyTavern và các frontend khác.

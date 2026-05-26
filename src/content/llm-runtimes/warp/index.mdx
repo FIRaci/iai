@@ -4,25 +4,70 @@ category: "llm-runtimes"
 icon: "terminal"
 difficulty: "beginner"
 tags: ["paid", "cli", "autocomplete", "api"]
+lastUpdated: "2026-05-26"
+description: "Hướng dẫn cài đặt và sử dụng Warp - modern terminal với AI built-in cho developers"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**Warp** là modern terminal với AI built-in. Có AI command search, error explanation, và workflow blocks.
-</Note>
+Warp là modern terminal với AI built-in, viết bằng Rust. Tích hợp AI command generation, error explanation, smart autocomplete, và workflows. Hỗ trợ persistent SSH, themes, blocks (output grouping), và team sharing.
 
 ## Cài đặt
 
-Tải từ [warp.dev](https://warp.dev)
+<CodeBlock language="powershell" code={`
+# Warp hiện hỗ trợ macOS và Linux
+# Tải từ https://warp.dev
+
+# Kích hoạt AI features
+# Settings -> AI -> Enable AI
+# Đăng nhập Warp account để sử dụng
+`} />
 
 ## Sử dụng
 
-1. Mở Warp terminal
-2. Gõ natural language → AI suggest commands
-3. Nhấn Enter để execute
-4. Click error → AI giải thích và suggest fix
+<CodeBlock language="powershell" code={`
+# AI Command Search
+# Ctrl+Shift+I -> gõ câu lệnh tự nhiên
+# (VD: "find all files larger than 100MB")
 
-## Liên kết
+# AI Explanation
+# Ctrl+Shift+P -> chọn Explain
+# Warp giải thích output và lỗi
+
+# Workflows
+# Ctrl+Shift+X -> chọn workflow có sẵn
+
+# Blocks (nhóm output)
+# Ctrl+Shift+B -> tạo block
+# Copy output từng lệnh riêng biệt
+`} />
+
+## Themes và Customization
+
+<CodeBlock language="powershell" code={`
+# Warp -> Settings -> Appearance -> Theme
+# Có sẵn: Dark, Light, Dracula, Nord
+# Fonts khuyến nghị: JetBrains Mono, Fira Code
+# Custom themes: github.com/warpdotdev/themes
+`} />
+
+## Persistent SSH
+
+Warp lưu SSH sessions và tự động kết nối lại khi mở tab.
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`
+warp --version
+# Mở Warp -> Ctrl+Shift+I -> xem AI suggestions
+`} />
+
+## Tài liệu tham khảo
 
 - [Warp](https://warp.dev)
+- [Warp Docs](https://docs.warp.dev)
+- [Warp Themes](https://github.com/warpdotdev/themes)
+
+## Lưu ý
+
+Warp yêu cầu đăng nhập account để dùng AI features. Gói Warp là free, Warp Pro thêm AI features (explain error, suggest fix). Workflows có thể tạo tùy chỉnh bằng file YAML.

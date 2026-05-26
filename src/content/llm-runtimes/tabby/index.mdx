@@ -4,25 +4,47 @@ category: "llm-runtimes"
 icon: "code2"
 difficulty: "beginner"
 tags: ["paid", "cli", "extension", "opensource", "autocomplete", "ide", "cloud", "api", "local"]
+lastUpdated: "2026-05-26"
+description: "Hướng dẫn cài đặt và sử dụng Tabby - self-hosted AI coding assistant tương tự GitHub Copilot cho local deployment"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**Tabby** là self-hosted AI coding assistant, tương tự GitHub Copilot nhưng chạy local. Hỗ trợ VS Code, JetBrains, Vim.
-</Note>
+Tabby là self-hosted AI coding assistant, tương tự GitHub Copilot nhưng chạy local. Hỗ trợ VS Code, JetBrains, Vim/Neovim. Có thể chạy bằng Docker hoặc binary trực tiếp, hỗ trợ GPU và CPU inference. Dữ liệu hoàn toàn nằm trên máy chủ của bạn.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`docker run -it --gpus all -p 8080:8080 -v $HOME/.tabby:/data tabbyml/tabby`} />
+<CodeBlock language="powershell" code={`
+# Docker (Windows - CPU mode)
+docker run -it -p 8080:8080 -v $HOME/.tabby:/data tabbyml/tabby serve --model StarCoder-1B
 
-## Sử dụng
+# Docker (WSL2 GPU)
+# Cài WSL2 + CUDA trước, sau đó chạy trong WSL
+docker run -it --gpus all -p 8080:8080 -v $HOME/.tabby:/data tabbyml/tabby serve --model StarCoder-1B
 
-1. Cài Tabby extension cho VS Code/JetBrains
+# Tabby binary (Windows native)
+tabby serve --model StarCoder-1B --device cpu
+`} />
+
+## Cấu hình IDE
+
+1. Cài Tabby extension: VS Code (`tabbyml.vscode-tabby`), JetBrains (từ Marketplace)
 2. Cấu hình endpoint: `http://localhost:8080`
-3. Bắt đầu code với AI completion
+3. Kiểm tra trạng thái qua icon Tabby ở status bar
 
-## Liên kết
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`
+curl http://localhost:8080/v1/health
+curl http://localhost:8080/v1/completions -H 'Content-Type: application/json' -d '{"language":"python","text":"def hello"}'
+`} />
+
+## Tài liệu tham khảo
 
 - [Tabby GitHub](https://github.com/TabbyML/tabby)
-- [Docs](https://tabby.tabbyml.com)
+- [Tabby Docs](https://tabby.tabbyml.com)
+- [Tabby Models](https://tabby.tabbyml.com/docs/models/)
+
+## Lưu ý
+
+StarCoder-1B phù hợp cho CPU, chỉ cần ~1GB RAM. Trên Windows, dùng WSL2 + CUDA cho GPU inference. Extension IDE mặc định gọi API mỗi 200-500ms.

@@ -4,28 +4,68 @@ category: "mlops"
 icon: "container"
 difficulty: "advanced"
 tags: ["cli", "opensource", "cloud", "api"]
+lastUpdated: "2026-05-26"
+description: "ML toolkit cho Kubernetes — pipelines, distributed training, model serving, notebook integration"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**Kubeflow** là ML toolkit cho Kubernetes, giúp deploy và manage ML pipelines trên cloud infrastructure.
-</Note>
+Kubeflow là ML platform chạy trên Kubernetes, giúp xây dựng và triển khai end-to-end ML pipelines. Tích hợp với Jupyter Notebooks, hỗ trợ distributed training với TFJob và PyTorchJob, hyperparameter tuning với Katib, và model serving với KServe.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Deploy trên Kubernetes
-kubectl apply -k github.com/kubeflow/manifests.git`} />
+Có thể cài trên cluster thật hoặc local với minikube/kind.
+
+<CodeBlock language="powershell" code={`
+# Option 1: Local với minikube
+minikube start --cpus 4 --memory 8192
+kubectl apply -k github.com/kubeflow/manifests.git
+
+# Option 2: Local với kind
+kind create cluster --name kubeflow --config kind-config.yaml
+kubectl apply -k github.com/kubeflow/manifests.git
+
+# Option 3: Triển khai trực tiếp
+kubectl apply -k github.com/kubeflow/manifests.git
+kubectl get pods -n kubeflow
+`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`
+kubectl get pods -n kubeflow
+# Tất cả pod ở trạng thái Running
+kubectl port-forward svc/istio-ingressgateway -n istio-system 8080:80
+# Mở http://localhost:8080
+`} />
 
 ## Sử dụng
 
-Kubeflow cung cấp:
-- **Pipelines:** Orchestrated ML workflows
-- **Katib:** Hyperparameter tuning
-- **TFJob/PyTorchJob:** Distributed training
-- **KFServing:** Model serving
+1. **Central Dashboard:** Giao diện trung tâm quản lý pipelines, notebooks, experiments. Mở http://localhost:8080 sau khi port-forward.
+2. **Notebook Server:** Tạo Jupyter Notebook server với custom image và resource limits từ Central Dashboard.
+3. **Pipelines:** Xây dựng ML pipeline bằng DSL Python, tải lên và chạy trên Kubeflow.
+4. **Katib:** Tuning hyperparameters tự động với các thuật toán như Bayesian optimization.
+5. **KServe:** Deploy model lên production với auto-scaling và canary deployments.
 
-## Liên kết
+<CodeBlock language="python" code={`
+from kfp import dsl
 
-- [Kubeflow](https://www.kubeflow.org)
-- [GitHub](https://github.com/kubeflow/kubeflow)
+@dsl.pipeline(name="train-pipeline")
+def train_pipeline():
+    op = dsl.ContainerOp(
+        name="train",
+        image="gcr.io/my-project/train:latest"
+    )
+    op.execution_options.caching_strategy.max_cache_staleness = "P0D"
+`} />
+
+## Tài liệu tham khảo
+
+- [Kubeflow Documentation](https://www.kubeflow.org/docs)
+- [GitHub Repository](https://github.com/kubeflow/kubeflow)
+- [Kubeflow Pipelines](https://www.kubeflow.org/docs/components/pipelines)
+- [KServe](https://kserve.github.io)
+
+## Lưu ý
+
+Kubeflow yêu cầu tối thiểu 8GB RAM cho local test. Nên dùng managed Kubernetes (EKS, GKE, AKS) cho production. Pipeline caching giúp tái sử dụng kết quả nếu input không đổi. Central Dashboard hỗ trợ multi-user với RBAC thông qua Istio.

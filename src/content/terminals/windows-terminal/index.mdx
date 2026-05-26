@@ -4,25 +4,70 @@ category: "terminals"
 icon: "terminal"
 difficulty: "beginner"
 tags: ["cli", "opensource", "autocomplete", "api"]
+lastUpdated: "2026-05-26"
+description: "Modern terminal cho Windows — profiles, themes, panes, quake mode, GPU acceleration"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**Windows Terminal** là modern terminal application từ Microsoft. Hỗ trợ multiple tabs, panes, themes, và GPU acceleration.
-</Note>
+Windows Terminal là ứng dụng terminal hiện đại từ Microsoft, hỗ trợ GPU-accelerated rendering, multiple tabs và panes, profile quản lý cho PowerShell, CMD, WSL, SSH. Có thể custom theme, font, background image, và hỗ trợ Unicode/emoji đầy đủ. Mã nguồn mở trên GitHub và có sẵn trên Microsoft Store.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`winget install Microsoft.WindowsTerminal`} />
+<CodeBlock language="powershell" code={`
+# Option 1: winget (khuyến nghị)
+winget install Microsoft.WindowsTerminal
+
+# Option 2: Microsoft Store
+# Tìm "Windows Terminal" và cài
+
+# Option 3: GitHub Releases
+winget install Microsoft.WindowsTerminal.Preview
+`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`
+wt --version
+# Ví dụ output: 1.21.2361.0
+`} />
 
 ## Sử dụng
 
-1. Mở Windows Terminal
-2. `Ctrl+Shift+T` để mở tab mới
-3. `Alt+Shift+D` để split pane
-4. Customize settings qua JSON
+1. **Profiles:** Settings -> Profiles. Tạo riêng cho PowerShell 7, Command Prompt, WSL Ubuntu, và các distro khác. Cấu hình command line, startup directory, icon riêng.
+2. **Color schemes:** Settings -> Color schemes. Chọn hoặc tạo scheme mới (One Half Dark, Campbell, Solarized Light, Tango Dark). Áp dụng cho từng profile.
+3. **Font configuration:** Cài Cascadia Code Nerd Font hoặc Meslo Nerd Font cho Powerline icons. Settings -> Profile -> Appearance -> Font face.
+4. **Startup settings:** Cấu hình default profile (PowerShell 7 khuyến nghị), launch size (columns/rows), và launch mode (maximized, full screen).
+5. **Command Palette:** `Ctrl+Shift+P` mở command palette với tất cả actions: split pane, đổi theme, chọn profile, focus mode.
+6. **Quake mode:** `Win+Backtick` mở terminal dạng dropdown từ đỉnh màn hình, rất tiện cho quick commands.
 
-## Liên kết
+<CodeBlock language="json" code={`
+{
+  ""profiles"": {
+    ""list"": [
+      {
+        ""name"": ""PowerShell 7"",
+        ""commandline"": ""pwsh.exe -NoLogo"",
+        ""font"": { ""face"": ""CaskaydiaCove Nerd Font"" },
+        ""colorScheme"": ""One Half Dark""
+      },
+      {
+        ""name"": ""Ubuntu WSL"",
+        ""commandline"": ""wsl.exe -d Ubuntu"",
+        ""source"": ""Windows.Terminal.Wsl""
+      }
+    ]
+  }
+}
+`} />
+
+## Tài liệu tham khảo
 
 - [Windows Terminal GitHub](https://github.com/microsoft/terminal)
+- [Microsoft Learn Docs](https://learn.microsoft.com/en-us/windows/terminal)
+- [Cascadia Code](https://github.com/microsoft/cascadia-code)
+- [Nerd Fonts](https://www.nerdfonts.com)
+
+## Lưu ý
+
+Nên cài PowerShell 7 (`winget install Microsoft.PowerShell`) làm default profile thay vì Windows PowerShell 5.1. Settings file JSON nằm ở `%LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json`. Experimental features có thể bật trong Settings -> Experiments (rounded corners, acrylic background, animated GIF). Quake mode (`Win+Backtick`) là tính năng được sử dụng nhiều nhất của developer.

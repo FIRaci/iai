@@ -162,7 +162,7 @@ export function CategoryPage() {
           </div>
         )}
 
-        <div className="grid gap-3 sm:grid-cols-2">
+        <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {filteredChildren.map((item, index) => {
             const slug = item.path.split("/").pop() || ""
             const ItemIcon = getToolIcon(slug)

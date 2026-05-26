@@ -4,26 +4,68 @@ category: "ai-coding"
 icon: "code2"
 difficulty: "beginner"
 tags: ["extension", "opensource", "autocomplete", "ide", "api"]
+lastUpdated: "2026-05-26"
+description: "Continue là open-source AI coding assistant cho VS Code và JetBrains, hỗ trợ Ollama, OpenAI, Anthropic và nhiều LLM backends khác."
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**Continue** là open-source AI coding assistant cho VS Code và JetBrains. Hỗ trợ nhiều LLM backends: Ollama, OpenAI, Anthropic.
-</Note>
+Continue là open-source AI coding assistant cho VS Code và JetBrains IDE. Hỗ trợ đa dạng LLM backends: Ollama (local), OpenAI, Anthropic, Google Gemini, và nhiều providers khác. Có chat trong IDE, tab autocomplete, và inline code editing.
 
 ## Cài đặt
 
-Cài extension từ VS Code Marketplace: **Continue**
+Cài trực tiếp từ VS Code Marketplace hoặc dùng CLI.
+
+<CodeBlock language="powershell" code={`
+# Cài từ CLI (VS Code)
+code --install-extension continue.continue
+
+# Hoặc cài thủ công từ marketplace
+# Mở VS Code > Extensions > Search 'Continue'
+`} />
 
 ## Sử dụng
 
-1. Mở VS Code
-2. Cài Continue extension
-3. Cấu hình LLM provider trong `config.json`
-4. Bắt đầu chat và code completion
+1. Mở VS Code, cài Continue extension
+2. Mở Continue panel (Ctrl+Shift+J hoặc icon bên trái)
+3. Cấu hình LLM provider trong `~/.continue/config.json`
+4. Dùng Tab autocomplete khi gõ code
+5. Bôi đen code + Ctrl+L để gửi vào chat
+6. Dùng Ctrl+I để inline edit code trực tiếp
 
-## Liên kết
+<CodeBlock language="json" code={`
+{
+  "models": [
+    {
+      "title": "Ollama",
+      "provider": "ollama",
+      "model": "codellama:7b"
+    }
+  ],
+  "tabAutocompleteModel": {
+    "title": "Starcoder2",
+    "provider": "ollama",
+    "model": "starcoder2:3b"
+  }
+}
+`} />
 
-- [Continue](https://continue.dev)
-- [GitHub](https://github.com/continuedev/continue)
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`
+# Kiểm tra extension đã cài
+code --list-extensions | findstr continue
+
+# Mở Continue panel
+# Ctrl+Shift+P > Continue: Toggle Continue
+`} />
+
+## Tài liệu tham khảo
+
+- [Continue Documentation](https://docs.continue.dev)
+- [GitHub Repository](https://github.com/continuedev/continue)
+- [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=continue.continue)
+
+## Lưu ý
+
+Tab autocomplete yêu cầu model local nhẹ như Starcoder2 3B hoặc DeepSeek Coder. Nếu dùng Ollama, đảm bảo Ollama đang chạy nền. Trên Windows, nên dùng Continue với WSL nếu model yêu cầu GPU. Phím tắt Ctrl+Shift+J mở/tắt Continue panel nhanh nhất.

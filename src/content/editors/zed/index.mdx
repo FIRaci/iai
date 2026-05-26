@@ -4,26 +4,59 @@ category: "editors"
 icon: "code2"
 difficulty: "beginner"
 tags: ["extension", "opensource", "ide", "api", "editor"]
+lastUpdated: "2026-05-26"
+description: "Zed là high-performance code editor viết bằng Rust, có built-in AI assistant, multi-cursor editing, và remote development."
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**Zed** là high-performance code editor viết bằng Rust. Nhanh, lightweight, và có built-in AI assistant.
-</Note>
+Zed là code editor hiệu năng cao viết bằng Rust, thiết kế cho tốc độ và collaboration. Có built-in AI assistant (Zed AI), hỗ trợ LSP, multi-cursor editing, terminal tích hợp, và remote development qua SSH.
 
 ## Cài đặt
 
-Tải từ [zed.dev](https://zed.dev)
+<CodeBlock language="powershell" code={`
+# Option 1: Tải trực tiếp từ zed.dev
+# https://zed.dev/download
+
+# Option 2: Cài qua winget (Windows 11)
+winget install Zed.Zed
+
+# Option 3: Cài qua scoop
+scoop install zed
+`} />
 
 ## Sử dụng
 
-1. Mở Zed
-2. Mở folder/project
-3. Cài extensions từ marketplace
-4. Bắt đầu code
+1. Mở Zed và tạo/mở project (Ctrl+O)
+2. Dùng Command Palette (Ctrl+Shift+P) cho mọi thao tác
+3. Multi-cursor: giữ Alt + click chuột hoặc Ctrl+Shift+L chọn tất cả occurrences
+4. Zed AI assistant: mở panel với Ctrl+Enter, gõ prompt để giải thích/refactor code
+5. Terminal tích hợp: Ctrl+Backtick, hỗ trợ PowerShell và WSL
+6. Remote development: mở remote folder qua SSH (Remote: Connect to Host)
 
-## Liên kết
+<CodeBlock language="powershell" code={`
+# Mở project từ terminal
+zed .
+zed C:\Projects\my-app
 
-- [Zed](https://zed.dev)
-- [GitHub](https://github.com/zed-industries/zed)
+# Mở remote project qua SSH
+zed ssh://user@host/path/to/project
+`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`
+zed --version
+# Ví dụ output:
+# Zed 0.142.0
+`} />
+
+## Tài liệu tham khảo
+
+- [Zed Documentation](https://zed.dev/docs)
+- [Zed AI Guide](https://zed.dev/ai)
+- [GitHub Repository](https://github.com/zed-industries/zed)
+
+## Lưu ý
+
+Zed AI có thể dùng Claude, GPT, hoặc local models qua Ollama. Cấu hình AI provider trong Settings > AI. Multi-cursor rất mạnh cho refactoring: Ctrl+Shift+L chọn tất cả từ khóa giống nhau. Zed chưa hỗ trợ extensions phong phú như VS Code, nhưng có built-in LSP cho hầu hết ngôn ngữ.

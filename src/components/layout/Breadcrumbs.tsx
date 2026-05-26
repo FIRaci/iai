@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom"
 import { ChevronRight, Home } from "lucide-react"
+import { cn } from "@/lib/utils"
 import { getCategoryTitle } from "@/data/category-config"
 import { getContentTree } from "@/lib/content-loader"
 
@@ -32,12 +33,12 @@ export function Breadcrumbs() {
         const label = findLabel(part, i)
         const isLast = i === parts.length - 1
         return (
-          <span key={href} className="flex items-center gap-1.5">
+          <span key={href} className={cn("flex items-center gap-1.5", !isLast && "max-sm:hidden")}>
             <ChevronRight className="h-3 w-3 text-border" />
             {isLast ? (
-              <span className="font-medium text-foreground">{label}</span>
+              <span className="font-medium text-foreground truncate max-w-[160px] sm:max-w-none">{label}</span>
             ) : (
-              <Link to={href} className="breadcrumb-link text-muted-foreground">
+              <Link to={href} className="breadcrumb-link text-muted-foreground whitespace-nowrap">
                 {label}
               </Link>
             )}

@@ -4,28 +4,61 @@ category: "llm-runtimes"
 icon: "brain"
 difficulty: "intermediate"
 tags: ["cli", "opensource", "api", "local"]
+lastUpdated: "2026-05-26"
+description: "Hướng dẫn cài đặt và sử dụng KoboldAI Client và KoboldCPP cho local LLM inference với creative writing và roleplay"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**KoboldAI** là local LLM orchestration tool, tập trung vào creative writing và roleplay. Hỗ trợ nhiều backends và có web UI riêng.
-</Note>
+KoboldAI là công cụ orchestration dành cho local LLM, tập trung vào creative writing và roleplay. Hỗ trợ nhiều backends bao gồm KoboldCPP (dựa trên llama.cpp) và transformers models. Đi kèm web UI riêng và API endpoint tương thích với SillyTavern.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`git clone https://github.com/KoboldAI/KoboldAI-Client
+<CodeBlock language="powershell" code={`
+# KoboldAI Client
+git clone https://github.com/KoboldAI/KoboldAI-Client
 cd KoboldAI-Client
 pip install -r requirements.txt
-python aiserver.py`} />
+
+# KoboldCPP standalone (khuyến nghị cho Windows)
+git clone https://github.com/LostRuins/koboldcpp
+cd koboldcpp
+python koboldcpp.py --model path\to\model.gguf
+`} />
 
 ## Sử dụng
 
-1. Mở `http://localhost:5000`
-2. Chọn model và load
-3. Bắt đầu viết/storytelling
+1. Mở `http://localhost:5000` cho KoboldAI Client hoặc `http://localhost:5001` cho KoboldCPP
+2. Tab Model → tải và chọn GGUF model
+3. Tab Settings → chọn preset (story, roleplay, speed)
+4. Tab Chat → bắt đầu storytelling
 
-## Liên kết
+## API cho SillyTavern
+
+<CodeBlock language="powershell" code={`
+# API endpoint
+# KoboldAI: http://localhost:5000/api
+# KoboldCPP: http://localhost:5001/api
+
+# Cấu hình trong SillyTavern
+# API Provider: KoboldAI
+# Server URL: http://localhost:5000
+`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`
+curl http://localhost:5000/api/latest/version
+# Kiểm tra KoboldCPP
+curl http://localhost:5001/api/extra/version
+`} />
+
+## Tài liệu tham khảo
 
 - [KoboldAI GitHub](https://github.com/KoboldAI/KoboldAI-Client)
-- [KoboldCPP](https://github.com/LostRuins/koboldcpp)
+- [KoboldCPP GitHub](https://github.com/LostRuins/koboldcpp)
+- [Hugging Face GGUF models](https://huggingface.co/TheBloke)
+
+## Lưu ý
+
+KoboldAI Client yêu cầu Python 3.10+. KoboldCPP nhẹ hơn, chạy trên CPU hoặc GPU qua llama.cpp backend. Dùng GGUF quantization (Q4_K_M, Q5_K_M) để tối ưu VRAM.

@@ -4,25 +4,56 @@ category: "monitoring"
 icon: "bar-chart-3"
 difficulty: "intermediate"
 tags: ["creative", "cli", "opensource", "api", "local"]
+lastUpdated: "2026-05-26"
+description: "Visualization platform cho metrics và logs — dashboards, alerting, data sources, API provisioning"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**Grafana** là visualization platform cho metrics và logs. Tạo dashboards từ Prometheus, Elasticsearch, và nhiều data sources.
-</Note>
+Grafana là công cụ phân tích và trực quan hóa dữ liệu metrics, logs, traces. Hỗ trợ hàng chục data sources khác nhau: Prometheus, Elasticsearch, InfluxDB, Loki, Graphite, PostgreSQL. Có thể tự host hoặc dùng Grafana Cloud với mobile app hỗ trợ xem dashboard trên điện thoại.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`docker run -p 3000:3000 grafana/grafana`} />
+<CodeBlock language="powershell" code={`
+# Docker (nhanh nhất)
+docker run -d -p 3000:3000 --name grafana grafana/grafana
+
+# Windows với winget
+winget install Grafana.Grafana
+
+# Cấu hình persistence
+docker run -d -p 3000:3000 -v grafana-storage:/var/lib/grafana -e GF_SECURITY_ADMIN_PASSWORD=StrongPass123 grafana/grafana
+`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`
+# Mở trình duyệt
+start http://localhost:3000
+# Đăng nhập: admin / admin
+# Đổi password ngay lần đầu
+`} />
 
 ## Sử dụng
 
-1. Mở `http://localhost:3000` (admin/admin)
-2. Add data source (Prometheus, Elasticsearch, v.v.)
-3. Tạo dashboard với panels
+1. **Add data source:** Configuration -> Data Sources -> Add. Chọn Prometheus, nhập URL `http://localhost:9090`, click Save & Test.
+2. **Tạo dashboard:** Dashboards -> New Dashboard. Thêm panel với queries từ data source. Dùng visualization types: graph, bar chart, heatmap, stat, table.
+3. **Import dashboard:** Dashboards -> Import. Nhập ID từ grafana.com/dashboards (ví dụ: 1860 cho Node Exporter).
+4. **Alert rules:** Alerting -> Alert rules. Tạo rule: `avg by(instance) (rate(node_cpu_seconds_total[5m])) > 0.8`. Nhận notification qua email, Slack, Telegram.
+5. **API provisioning:** Tự động hóa cấu hình bằng API key hoặc service account.
 
-## Liên kết
+<CodeBlock language="powershell" code={`
+# Provision data source qua API
+curl -X POST http://admin:admin@localhost:3000/api/datasources -H 'Content-Type: application/json' -d '{"name":"Prometheus","type":"prometheus","url":"http://localhost:9090","access":"proxy"}'
+`} />
 
-- [Grafana](https://grafana.com)
-- [GitHub](https://github.com/grafana/grafana)
+## Tài liệu tham khảo
+
+- [Grafana Documentation](https://grafana.com/docs)
+- [Dashboard Library](https://grafana.com/grafana/dashboards)
+- [GitHub Repository](https://github.com/grafana/grafana)
+- [Grafana Cloud](https://grafana.com/products/cloud)
+
+## Lưu ý
+
+Grafana Cloud có free tier với 10k metrics. Dùng service account thay vì admin API key cho production. Có thể dùng Grafana Loki cho log aggregation thay vì Elasticsearch để tiết kiệm chi phí. Mobile app Grafana cho phép xem dashboard và nhận alert trên điện thoại.

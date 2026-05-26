@@ -22,7 +22,7 @@ export function Header() {
         </SheetContent>
       </Sheet>
 
-      <div className="hidden min-w-0 sm:block">
+      <div className="min-w-0">
         <Breadcrumbs />
       </div>
 
