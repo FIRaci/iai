@@ -106,7 +106,7 @@ export function CategoryPage() {
         description={catDesc}
         path={`/${category}`}
       />
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto max-w-4xl page-enter">
         <div className="mb-8">
           <div className="flex items-center gap-3">
             <div className={`flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${gradient} text-white shadow-sm`}>
@@ -127,7 +127,7 @@ export function CategoryPage() {
         />
 
         {selectedTags.length > 0 && (
-          <div className="mb-4 text-sm text-muted-foreground">
+          <div className="mb-4 text-sm text-muted-foreground count-pulse">
             Hiển thị {filteredChildren.length} / {cat.children.length} công cụ
           </div>
         )}

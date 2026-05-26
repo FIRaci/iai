@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, Pencil, MessageCircle, ExternalLink } from "lucide-react"
+import { useEffect, useState } from "react"
 import { StepBlock } from "@/components/blocks/StepBlock"
 import { CodeBlock } from "@/components/blocks/CodeBlock"
 import { NoteBlock } from "@/components/blocks/NoteBlock"
@@ -233,15 +234,26 @@ export function ToolGuide() {
 
   const gradient = slug ? gradientMap[slug] || "from-primary to-blue-500" : "from-primary to-blue-500"
 
+  const [scrollPct, setScrollPct] = useState(0)
+  useEffect(() => {
+    const onScroll = () => {
+      const h = document.documentElement.scrollHeight - window.innerHeight
+      setScrollPct(h > 0 ? (window.scrollY / h) * 100 : 0)
+    }
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
+
   return (
     <>
+      <div className="scroll-progress" style={{ width: `${scrollPct}%` }} />
       <Seo
         title={item?.title || slug || "Hướng dẫn"}
         description={String(item?.frontmatter?.description || `Hướng dẫn chi tiết về ${slug} trên Windows 11`)}
         path={path}
         type="article"
       />
-      <div className="flex gap-4 lg:gap-10">
+      <div className="flex gap-4 lg:gap-10 page-enter">
       <div className="min-w-0 flex-1 px-4 sm:px-6 lg:px-0">
         {/* Header */}
         <div className="mb-8">
