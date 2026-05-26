@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { useState } from "react"
 import { Seo } from "@/components/Seo"
 import {
   BookOpen, Code2, GitCompare, Sparkles, Palette, Database, ArrowRight,
   Cpu, Mic, Search, Shield, Eye, Layers, Monitor, FolderTree, FlaskConical,
-  Server, Brain, Video, BarChart3, Cloud, TestTube, FileText, Notebook,
+  Server, Brain, Video, BarChart3, Cloud, TestTube, FileText, Notebook, Dice5,
   Package, Settings, Workflow, Terminal,
 } from "lucide-react"
 import { getContentTree } from "@/lib/content-loader"
@@ -147,6 +148,59 @@ const devTools = [
   { to: "/dev-tools/figma", title: "Figma", desc: "Design tool", gradient: "from-purple-500 to-pink-600", icon: Palette },
 ]
 
+function RandomToolWidget() {
+  const tree = getContentTree()
+  const allTools = tree.flatMap((c) => c.children || []).filter(Boolean)
+  const [tool, setTool] = useState(allTools.length > 0 ? allTools[Math.floor(Math.random() * allTools.length)] : null)
+  const withNav = useNavigate()
+
+  const pick = () => {
+    const t = allTools[Math.floor(Math.random() * allTools.length)]
+    setTool(t)
+    const el = document.getElementById("random-tool-card")
+    el?.classList.remove("card-shake")
+    void el?.offsetWidth
+    el?.classList.add("card-shake")
+  }
+
+  if (!tool) return null
+
+  return (
+    <div
+      id="random-tool-card"
+      className="animate-fade-in-up stagger-1 rounded-xl border border-border bg-gradient-to-br from-primary/5 via-card to-blue-500/5 p-5 card-hover cursor-pointer"
+      onClick={() => withNav(tool.path)}
+    >
+      <div className="flex items-center gap-3">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-blue-500 text-white shadow-sm glow-pulse">
+          <Dice5 className="h-4 w-4" />
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground mb-0.5">
+            <Sparkles className="h-3 w-3 text-primary" />
+            Gợi ý ngẫu nhiên — nhấn để khám phá
+          </div>
+          <div className="flex items-center gap-2">
+            <h3 className="font-semibold text-foreground truncate">{tool.title}</h3>
+            <span className="shrink-0 rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-medium text-primary">
+              {tool.category || "tool"}
+            </span>
+          </div>
+        </div>
+        <button
+          onClick={(e) => { e.stopPropagation(); pick() }}
+          className="shrink-0 flex items-center gap-1.5 rounded-lg border border-border bg-background px-3 py-1.5 text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all active:scale-95"
+          aria-label="Random tool"
+          title="Công cụ khác"
+        >
+          <Dice5 className="h-3.5 w-3.5 tool-icon-bounce" />
+          Đổi
+        </button>
+      </div>
+    </div>
+  )
+}
+
 function getCategoryLinks() {
   const tree = getContentTree()
   return tree
@@ -210,6 +264,9 @@ export function Home() {
             ))}
           </div>
         </div>
+
+        {/* Random Tool */}
+        <RandomToolWidget />
 
         {/* Quick Categories */}
         <div className="animate-fade-in-up stagger-2">
