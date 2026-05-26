@@ -10,30 +10,55 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**LLM Runtimes** là comparison tool/service. So sánh các solutions và tools.
+**LLM Runtimes** cho phép chạy mô hình ngôn ngữ lớn cục bộ hoặc trên server. Tùy vào nhu cầu về hiệu suất, dễ sử dụng và khả năng tương thích API mà bạn chọn runtime phù hợp. So sánh 6 công cụ phổ biến nhất.
 </Note>
 
-## Cài đặt
+## Bảng so sánh
 
-<CodeBlock language="powershell" code={`# Truy cập trang web để sử dụng`} />
+<Note type="info">
+**Ollama** - Dễ dùng nhất - Pull & run models với 1 lệnh - Hỗ trợ Llama, Mistral, Gemma, Qwen - API tương thích OpenAI - Phù hợp: dev cá nhân, prototyping, local development.
+</Note>
 
-## Sử dụng
+<Note type="info">
+**LM Studio** - GUI đẹp, trực quan - Tải model từ Hugging Face - Chat interface + Local API server - Hỗ trợ GPU acceleration (CUDA/Metal) - Phù hợp: non-technical users, exploration.
+</Note>
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<Note type="info">
+**vLLM** - Hiệu suất inference cao nhất - PagedAttention - Continuous batching - Hỗ trợ đa GPU, tensor parallelism - Phù hợp: production deployment, API server scale lớn.
+</Note>
 
-# Xem documentation để biết chi tiết usage examples`} />
+<Note type="info">
+**llama.cpp** - Chạy trên CPU hiệu quả - GGUF format - Quantization (Q4, Q5, Q8) - Nhẹ, không cần GPU - Phù hợp: máy cấu hình thấp, edge devices, embedded.
+</Note>
 
-## Tips
+<Note type="info">
+**LocalAI** - OpenAI API drop-in replacement - Hỗ trợ LLM, Whisper, Image gen - Docker deployment - REST API tương thích - Phù hợp: self-hosted AI platform, muốn thay thế OpenAI.
+</Note>
+
+<Note type="info">
+**text-generation-webui (oobabooga)** - Giao diện web đầy đủ - Hỗ trợ nhiều loader (Transformers, ExLlama, AutoGPTQ) - LoRA finetuning, chat, instruct modes - Phù hợp: power users, research, fine-tuning.
+</Note>
+
+## So sánh hiệu suất
+
+| Runtime | Setup | Performance | GPU | API | Model format |
+|---------|-------|-------------|-----|-----|-------------|
+| Ollama | Rất dễ | Tốt | CUDA/Metal | OpenAI-like | Modelfile (GGUF) |
+| LM Studio | Dễ | Tốt | CUDA/Metal | OpenAI-like | GGUF |
+| vLLM | Khó | Xuất sắc | CUDA đa GPU | OpenAI-like | Safetensors |
+| llama.cpp | TB | Tốt (CPU) | CPU/CUDA | Custom/OpenAI | GGUF |
+| LocalAI | TB | TB | CUDA/Metal | OpenAI drop-in | Nhiều format |
+| oobabooga | TB | Tốt | CUDA | Custom/Extensions | Nhiều format |
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Khuyên dùng:** Ollama cho local dev nhanh nhất. vLLM cho production server. llama.cpp cho máy không GPU. LM Studio cho người mới bắt đầu. LocalAI để thay thế OpenAI API tự host.
 </Note>
 
-## Liên kết
+## Tài liệu tham khảo
 
 - [Ollama](https://ollama.com)
 - [vLLM](https://vllm.ai)
-- [TGI](https://huggingface.co/docs/text-generation-inference)
 - [LM Studio](https://lmstudio.ai)
 - [llama.cpp](https://github.com/ggerganov/llama.cpp)
+- [LocalAI](https://localai.io)
+- [text-generation-webui](https://github.com/oobabooga/text-generation-webui)

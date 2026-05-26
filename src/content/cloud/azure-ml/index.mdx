@@ -10,26 +10,53 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**azure-ml** là cloud platform của Microsoft để build, train, và deploy ML models. Tích hợp với Azure ecosystem.
+**Azure Machine Learning** là ML platform của Microsoft trên Azure cloud. Hỗ trợ toàn bộ lifecycle: data preparation, training (với GPU NC/ND series), hyperparameter tuning, deployment, và monitoring. Tích hợp chặt với Azure DevOps, OpenAI Service, và Power Platform. Phù hợp cho enterprise đã dùng hệ sinh thái Microsoft.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install azure-ai-ml`} />
+### SDK
+
+<CodeBlock language="shell" code={"pip install azure-ai-ml azure-identity"} />
+
+### Xác thực
+
+<CodeBlock language="shell" code={"az login\naz account set --subscription \"your-subscription-id\""} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`from azure.ai.ml import MLClient
-from azure.identity import DefaultAzureCredential
-credential = DefaultAzureCredential()
-ml_client = MLClient(credential, subscription_id, resource_group, workspace_name)`} />
+### Khởi tạo workspace
 
-## Tips
+<CodeBlock language="python" code={"from azure.ai.ml import MLClient\nfrom azure.identity import DefaultAzureCredential\n\ncredential = DefaultAzureCredential()\nml_client = MLClient(\n    credential=credential,\n    subscription_id=\"your-subscription\",\n    resource_group_name=\"my-resource-group\",\n    workspace_name=\"my-workspace\"\n)\nprint(f\"Workspace: {ml_client.workspace.name}\")"} />
+
+### Training job
+
+<CodeBlock language="python" code={"from azure.ai.ml import command\n\njob = command(\n    code=\"./src\",\n    command=\"python train.py --data ${{inputs.training_data}}\",\n    inputs={\"training_data\": \"azureml:my_dataset:1\"},\n    environment=\"AzureML-pytorch-2.1-ubuntu20.04-py38-cuda11-gpu:1\",\n    compute=\"gpu-cluster\",\n    display_name=\"pytorch-training-job\",\n)\nreturned_job = ml_client.jobs.create_or_update(job)\nml_client.jobs.stream(returned_job.name)"} />
+
+### Deploy model
+
+<CodeBlock language="python" code={"from azure.ai.ml.entities import ManagedOnlineEndpoint, ManagedOnlineDeployment\n\nendpoint = ManagedOnlineEndpoint(name=\"my-endpoint\", auth_mode=\"key\")\nml_client.online_endpoints.begin_create_or_update(endpoint)\n\ndeployment = ManagedOnlineDeployment(\n    name=\"blue\",\n    endpoint_name=\"my-endpoint\",\n    model=\"azureml:my_model:1\",\n    instance_type=\"Standard_NC6s_v3\",\n    instance_count=1,\n)\nml_client.online_deployments.begin_create_or_update(deployment)"} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="shell" code={"az ml workspace show --name my-workspace --resource-group my-resource-group"} />
+
+## Tính năng chính
+
+- **Automated ML:** AutoML cho tabular, time series, NLP không cần code
+- **Responsible AI:** Dashboard đo lường fairness, explainability, error analysis
+- **MLflow Integration:** Tracking experiments, registry models qua MLflow SDK
+- **GPU Compute Cluster:** NCas, ND series với A100, V100 cho training
+- **Managed Endpoints:** Online endpoints cho real-time, batch endpoints cho offline
+- **Pipeline Automation:** Azure DevOps + ML Pipeline cho MLOps hoàn chỉnh
+- **OpenAI Service:** Tích hợp GPT-4, DALL-E, Whisper qua Azure OpenAI
+
+## Tài liệu tham khảo
+
+- [Azure ML Docs](https://learn.microsoft.com/azure/machine-learning)
+
+## Lưu ý
 
 <Note type="tip">
-**Azure CLI:** Sử dụng `az ml` commands để quản lý workspace từ terminal.
+**Mẹo:** Dùng Azure CLI `az ml` commands để quản lý workspace từ terminal. Tích hợp MLflow để tracking experiments. Automated ML cho quick prototyping. Responsible AI dashboard cho model interpretability.
 </Note>
-
-## Liên kết
-
-- [azure-ml](https://azure-ml.com)

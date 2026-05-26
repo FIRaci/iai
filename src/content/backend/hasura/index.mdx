@@ -10,26 +10,55 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Hasura** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**Hasura** là công cụ tạo GraphQL API tức thời trên cơ sở dữ liệu PostgreSQL, MySQL, SQL Server và nhiều nguồn khác. Tự động sinh schema GraphQL dựa trên cấu trúc database, hỗ trợ real-time subscriptions, và tích hợp authentication dễ dàng.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+<CodeBlock language="powershell" code={`docker run -d -p 8080:8080 ^
+  -e HASURA_GRAPHQL_DATABASE_URL=postgres://user:pass@host:5432/db ^
+  -e HASURA_GRAPHQL_ADMIN_SECRET=myadminsecretkey ^
+  hasura/graphql-engine:latest`} />
 
-## Sử dụng
+## Sử dụng cơ bản
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Sau khi chạy Docker, truy cập Hasura Console tại http://localhost:8080. Kết nối database, Hasura tự động tạo GraphQL API. Ví dụ query:
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="graphql" code={`
+query GetUsers {
+  users {
+    id
+    name
+    email
+    posts {
+      title
+      content
+    }
+  }
+}
+`} />
 
-## Tips
+Thêm dữ liệu qua mutation:
+
+<CodeBlock language="graphql" code={`
+mutation CreateUser {
+  insert_users_one(object: { name: "Nguyen Van A", email: "a@test.com" }) {
+    id
+    name
+  }
+}
+`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`curl http://localhost:8080/v1/graphql -H "Content-Type: application/json" -d '{"query":"{ __schema { queryType { name } } }"}'`} />
+
+## Tài liệu tham khảo
+
+- [Hasura Docs](https://hasura.io/docs)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Hasura Console cung cấp công cụ Data và API Explorer trực quan, giúp bạn quản lý database và test API dễ dàng.
 </Note>
-
-## Liên kết
-
-- [Hasura](https://hasura.com)

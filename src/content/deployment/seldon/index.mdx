@@ -10,29 +10,47 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Seldon Core** là Kubernetes-native model serving platform. Hỗ trợ A/B testing, canary deployments, và monitoring.
+**Seldon Core** là MLOps platform mã nguồn mở cho ML model deployment trên Kubernetes. Seldon hỗ trợ A/B testing, canary deployments, multi-armed bandit, và model monitoring với Prometheus metrics. Seldon tương thích với TensorFlow, PyTorch, Scikit-learn, XGBoost, và custom models.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`helm install seldon-core seldon-core-operator --repo https://storage.googleapis.com/seldon-charts`} />
+Cài đặt qua Helm:
 
-## Sử dụng
+<CodeBlock language="powershell" code={`helm repo add seldon https://storage.googleapis.com/seldon-charts
+helm install seldon-core seldon/seldon-core-operator --namespace seldon-system`} />
 
-Deploy model qua Kubernetes manifest:
+## Deploy Model
 
 <CodeBlock language="yaml" code={`apiVersion: machinelearning.seldon.io/v1
 kind: SeldonDeployment
 metadata:
-  name: my-model
+  name: sklearn-model
 spec:
   predictors:
   - name: default
+    componentSpecs:
+    - spec:
+        containers:
+        - image: seldonio/sklearn-iris:0.1
+          name: classifier
     graph:
       name: classifier
-      modelUri: gs://my-bucket/model`} />
+      type: MODEL
+      children: []`} />
 
-## Liên kết
+## Kiểm tra
 
-- [Seldon Core](https://www.seldon.io)
-- [GitHub](https://github.com/SeldonIO/seldon-core)
+<CodeBlock language="powershell" code={`kubectl get seldondeployments
+curl http://localhost:8000/seldon/default/sklearn-model/api/v1.0/predictions -d '{"data":{"ndarray":[[5.1, 3.5, 1.4, 0.2]]}}'`} />
+
+## Tài liệu tham khảo
+
+- [Seldon Core Docs](https://docs.seldon.io/projects/seldon-core/en/latest/)
+- [Seldon GitHub](https://github.com/SeldonIO/seldon-core)
+
+## Lưu ý
+
+<Note type="tip">
+Seldon hỗ trợ model explainability với Alibi. Seldon Analytics dashboard giúp theo dõi performance và drift của model trong production.
+</Note>

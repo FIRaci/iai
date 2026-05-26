@@ -10,28 +10,56 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**So sánh AI Coding Tools** là comparison tool/service. So sánh các solutions và tools.
+**AI Coding Tools** giúp lập trình viên tăng tốc độ code gấp 2-3 lần nhờ AI gợi ý, hoàn thiện code và debug tự động. Dưới đây là so sánh chi tiết giữa các công cụ phổ biến nhất hiện nay.
 </Note>
 
-## Cài đặt
+## Bảng so sánh chi tiết
 
-<CodeBlock language="powershell" code={`# Truy cập trang web để sử dụng`} />
+<Note type="info">
+**Cursor** - $20/tháng - IDE riêng biệt dựa trên VS Code - Hỗ trợ Claude, GPT-4, Gemini - Tính năng Composer, Chat inline, Agent mode - Phù hợp: dev chuyên nghiệp cần AI-native IDE.
+</Note>
 
-## Sử dụng
+<Note type="info">
+**GitHub Copilot** - $10/tháng - Extension trên VS Code, JetBrains, Neovim - GPT-4o, Claude - Tab autocomplete, Chat - Phù hợp: đa số lập trình viên, tích hợp sẵn trong GitHub.
+</Note>
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<Note type="info">
+**Claude Code** - $20/tháng (Pro) - CLI native - Claude 3.5/4 - Agent tự động đọc/ghi file, chạy lệnh - Phù hợp: terminal-first dev, codebase lớn cần refactor.
+</Note>
 
-# Xem documentation để biết chi tiết usage examples`} />
+<Note type="info">
+**Windsurf** - $15/tháng - IDE riêng (Codeium) - Cascade engine đa模型 - Tab completion, Supercomplete, Agent - Phù hợp: dev muốn AI hiểu ngữ cảnh sâu.
+</Note>
 
-## Tips
+<Note type="info">
+**Continue.dev** - Miễn phí (open source) - Extension VS Code, JetBrains - BYOM (bring your own model) - Chat, Edit, Agent - Phù hợp: dev muốn tự do chọn model, local LLM.
+</Note>
+
+<Note type="info">
+**Amazon Q Developer** - Miễn phí (Basic) - Extension trên VS Code, JetBrains - Amazon Bedrock models - Security scanning, code review - Phù hợp: AWS ecosystem dev, cần bảo mật.
+</Note>
+
+## Tiêu chí so sánh
+
+| Tiêu chí | Cursor | Copilot | Claude Code | Windsurf | Continue | Amazon Q |
+|----------|--------|---------|-------------|----------|----------|-----------|
+| Giá/tháng | $20 | $10 | $20 | $15 | Free | Free |
+| IDE riêng | Có | Không | CLI | Có | Không | Không |
+| Agent | Có | Hạn chế | Có | Có | Có | Hạn chế |
+| Local LLM | Không | Không | Không | Không | Có | Không |
+| Multimodel | Có | Có | Có | Có | Có | Có |
+
+## Khi nào nên chọn?
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Khuyên dùng:** Chọn Cursor nếu cần IDE AI-native mạnh mẽ. Copilot cho team dùng GitHub. Claude Code cho tác vụ phức tạp cần agent tự động. Continue nếu muốn dùng local LLM miễn phí.
 </Note>
 
-## Liên kết
+## Tài liệu tham khảo
 
-- [Bắt đầu với AI Tools](/getting-started)
-- [Tất cả AI Coding Tools](/ai-tools)
-- [Tất cả AI Coding](/ai-coding)
+- [Cursor Docs](https://cursor.sh/docs)
+- [GitHub Copilot Docs](https://docs.github.com/copilot)
+- [Claude Code Docs](https://docs.anthropic.com/claude-code)
+- [Windsurf Docs](https://codeium.com/windsurf/docs)
+- [Continue.dev Docs](https://docs.continue.dev)
+- [Amazon Q Developer](https://aws.amazon.com/q/developer)

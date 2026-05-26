@@ -10,27 +10,52 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**OpenRouter** là unified API cho accessing multiple AI models. Một API key cho nhiều providers: OpenAI, Anthropic, Google, v.v.
+**OpenRouter** là unified API gateway cho nhiều LLM providers. Với một API key, bạn có thể truy cập hơn 200 models từ OpenAI, Anthropic, Google, Meta, Mistral, và nhiều providers khác. OpenRouter hỗ trợ model routing tự động, fallback khi model down, và hiển thị chi phí real-time.
 </Note>
 
 ## Cài đặt
+
+OpenRouter tương thích với OpenAI API, có thể dùng trực tiếp:
 
 <CodeBlock language="powershell" code={`pip install openai`} />
 
 ## Sử dụng
 
 <CodeBlock language="python" code={`from openai import OpenAI
+
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
-    api_key="your-api-key"
+    api_key="sk-or-v1-your-key",
 )
+
 response = client.chat.completions.create(
-    model="mistralai/mistral-7b-instruct",
-    messages=[{"role": "user", "content": "Hello"}]
+    model="openai/gpt-4o",
+    messages=[{"role": "user", "content": "Xin chao"}],
 )
+
 print(response.choices[0].message.content)`} />
 
-## Liên kết
+## Model Routing
 
-- [OpenRouter](https://openrouter.ai)
-- [Docs](https://openrouter.ai/docs)
+OpenRouter tự động chọn model phù hợp:
+
+<CodeBlock language="python" code={`# Tự động routing đến model rẻ nhất có thể
+response = client.chat.completions.create(
+    model="openai/auto",
+    messages=[{"role": "user", "content": "Hello"}],
+)`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`curl https://openrouter.ai/api/v1/models -H "Authorization: Bearer $API_KEY"`} />
+
+## Tài liệu tham khảo
+
+- [OpenRouter Docs](https://openrouter.ai/docs)
+- [Model List](https://openrouter.ai/models)
+
+## Lưu ý
+
+<Note type="tip">
+Thêm header `HTTP-Referer` và `X-Title` để theo dõi usage theo app. Dùng `openai/auto` để OpenRouter tự động chọn model phù hợp với budget.
+</Note>

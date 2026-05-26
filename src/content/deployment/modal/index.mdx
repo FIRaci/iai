@@ -10,29 +10,51 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Modal** là serverless platform cho Python applications. Deploy code với GPU support trong vài giây.
+**Modal** là serverless platform cho Python applications với GPU/CPU auto-scaling. Modal cho phép deploy functions chạy trên cloud infrastructure, tự động scale xuống 0 khi không dùng. Hỗ trợ GPU (A100, T4, L40S), distributed computing, scheduled jobs, và web endpoints.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install modal`} />
+<CodeBlock language="powershell" code={`pip install modal
+modal token new`} />
 
-## Sử dụng
+## Web Endpoint
 
 <CodeBlock language="python" code={`import modal
-app = modal.App("my-app")
 
-@app.function(gpu="T4")
-def run_inference(text: str) -> str:
-    # GPU code here
-    return f"Processed: {text}"
+app = modal.App("ml-api")
 
-@app.local_entrypoint()
-def main():
-    result = run_inference.remote("Hello world")
-    print(result)`} />
+@app.function(gpu="T4", timeout=120)
+@modal.web_endpoint(method="POST")
+def predict(data: dict) -> dict:
+    import torch
+    result = {"prediction": "processed", "input": data["text"]}
+    return result`} />
 
-## Liên kết
+## Scheduled Job
 
-- [Modal](https://modal.com)
-- [Docs](https://modal.com/docs)
+<CodeBlock language="python" code={`app = modal.App("daily-task")
+
+@app.function(schedule=modal.Period(days=1))
+def daily_report():
+    print("Generating daily report...")
+    # Code xu ly o day`} />
+
+## Deploy
+
+<CodeBlock language="powershell" code={`modal deploy app.py`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`modal run app.py`} />
+
+## Tài liệu tham khảo
+
+- [Modal Docs](https://modal.com/docs)
+- [Examples](https://modal.com/docs/examples)
+
+## Lưu ý
+
+<Note type="tip">
+Modal có free tier với $30/month credits. Dùng `modal.App` với `web_endpoint` để deploy REST API trong vài phút. GPU T4 phù hợp cho inference, A100 cho training.
+</Note>

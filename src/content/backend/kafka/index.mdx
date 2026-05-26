@@ -10,26 +10,60 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Kafka** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**Apache Kafka** là nền tảng distributed event streaming mã nguồn mở, được phát triển bởi LinkedIn và Apache Software Foundation. Kafka cho phép publish, subscribe, lưu trữ và xử lý luồng dữ liệu real-time với độ tin cậy cao, thường dùng trong microservices và data pipeline.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+Cài Kafka qua Docker:
 
-## Sử dụng
+<CodeBlock language="powershell" code={`docker run -d -p 9092:9092 ^
+  --name broker ^
+  apache/kafka:latest`} />
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Hoặc dùng winget:
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`winget install Apache.Kafka`} />
 
-## Tips
+## Sử dụng cơ bản
+
+Produce và consume messages với Node.js:
+
+<CodeBlock language="javascript" code={`
+import { Kafka } from 'kafkajs';
+
+const kafka = new Kafka({
+  clientId: 'my-app',
+  brokers: ['localhost:9092'],
+});
+
+const producer = kafka.producer();
+await producer.connect();
+await producer.send({
+  topic: 'orders',
+  messages: [{ value: 'New order created' }],
+});
+
+const consumer = kafka.consumer({ groupId: 'order-group' });
+await consumer.connect();
+await consumer.subscribe({ topic: 'orders' });
+await consumer.run({
+  eachMessage: async ({ message }) => {
+    console.log(message.value.toString());
+  },
+});
+`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`kafka-topics.bat --list --bootstrap-server localhost:9092`} />
+
+## Tài liệu tham khảo
+
+- [Kafka Docs](https://kafka.apache.org/documentation)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Dùng Kafka UI (như Kafdrop hoặc UI for Apache Kafka) để quản lý topics và messages qua giao diện web.
 </Note>
-
-## Liên kết
-
-- [Kafka](https://kafka.com)

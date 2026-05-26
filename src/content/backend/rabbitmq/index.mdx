@@ -10,26 +10,44 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**RabbitMQ** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**RabbitMQ** là message broker phổ biến nhất, hỗ trợ nhiều giao thức messaging (AMQP, MQTT, STOMP). RabbitMQ dùng exchanges và queues để routing messages, với các patterns: direct, topic, fanout, và headers. RabbitMQ phù hợp cho task queues, event-driven architecture, và microservices communication.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+<CodeBlock language="powershell" code={`winget install RabbitMQ`} />
 
-## Sử dụng
+Hoặc chạy với Docker:
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:4-management`} />
 
-# Xem documentation để biết chi tiết usage examples`} />
+## Sử dụng với Node.js
 
-## Tips
+<CodeBlock language="javascript" code={`import amqp from "amqplib";
+const conn = await amqp.connect("amqp://localhost");
+const ch = await conn.createChannel();
+const q = await ch.assertQueue("tasks");
+
+// Consumer
+ch.consume(q.queue, (msg) => {
+  console.log(msg.content.toString());
+  ch.ack(msg);
+});
+
+// Publisher
+ch.sendToQueue(q.queue, Buffer.from("Hello"));`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`curl -u guest:guest http://localhost:15672/api/overview`} />
+
+## Tài liệu tham khảo
+
+- [RabbitMQ Docs](https://www.rabbitmq.com/documentation.html)
+- [Management UI](http://localhost:15672/) (guest/guest)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Dùng direct exchange cho task routing, fanout exchange cho broadcast, topic exchange cho pattern-based routing. Nhớ `ch.ack(msg)` để tránh message không được xác nhận.
 </Note>
-
-## Liên kết
-
-- [RabbitMQ](https://rabbitmq.com)

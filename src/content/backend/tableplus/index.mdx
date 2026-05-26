@@ -10,26 +10,40 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**TablePlus** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**TablePlus** là công cụ GUI quản trị database hiện đại, hỗ trợ nhiều loại database: PostgreSQL, MySQL, Redis, SQLite, MongoDB, SQL Server, và hơn 10 loại khác. TablePlus có giao diện native, nhanh, hỗ trợ multiple tabs, code auto-complete, và native SSH tunneling.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+<CodeBlock language="powershell" code={`winget install TablePlus`} />
 
-## Sử dụng
+Hoặc tải từ website: https://tableplus.com/download
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+## Kết nối đến database
 
-# Xem documentation để biết chi tiết usage examples`} />
+1. Mở TablePlus, click Create New Connection
+2. Chọn loại database (PostgreSQL, MySQL, v.v.)
+3. Nhập thông tin kết nối: Host, Port, User, Password, Database
+4. Click Test để kiểm tra, sau đó Save
 
-## Tips
+## Phím tắt hữu ích
+
+<CodeBlock language="powershell" code={`Ctrl+N  - Tab mới
+Cmd+R   - Run query
+Cmd+W   - Close tab
+Cmd+T   - New query tab`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`tableplus --version`} />
+
+## Tài liệu tham khảo
+
+- [TablePlus Docs](https://tableplus.com/documentation)
+- [Keyboard Shortcuts](https://tableplus.com/documentation/shortcuts)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+TablePlus hỗ trợ native SSH tunneling, không cần mở port database ra internet. Dùng Filter Bar để tìm kiếm dữ liệu nhanh trong bảng.
 </Note>
-
-## Liên kết
-
-- [TablePlus](https://tableplus.com)

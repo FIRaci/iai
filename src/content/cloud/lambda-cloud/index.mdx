@@ -10,26 +10,56 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**lambda-cloud** là cloud platform/service. Hỗ trợ deployment và scaling applications.
+**Lambda Cloud** là dịch vụ GPU cloud dành riêng cho ML training. Cung cấp các instance A100 80GB, H100, A6000, RTX 4090 với giá theo giờ linh hoạt. Không cần contract dài hạn, setup SSH trong vài phút. Phù hợp cho fine-tuning, inference và training model AI.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Tạo account và sử dụng qua web console hoặc CLI`} />
+### Tạo instance qua CLI
+
+<CodeBlock language="shell" code={"pip install lambda-cloud"} />
+
+### SSH Key
+
+<CodeBlock language="shell" code={"ssh-keygen -t ed25519 -f ~/.ssh/lambda\ncat ~/.ssh/lambda.pub"} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+### Tạo GPU instance
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="python" code={"import lambda_cloud\n\nclient = lambda_cloud.Client(api_key=\"YOUR_API_KEY\")\ninstance = client.launch_instance(\n    region=\"us-west-1\",\n    instance_type=\"gpu_1x_a100_sxm4\",\n    ssh_key_names=[\"my-key\"],\n    name=\"training-1\"\n)\nprint(f\"Instance: {instance['id']} - IP: {instance['ip']}\")"} />
 
-## Tips
+### SSH vào instance
+
+<CodeBlock language="shell" code={"ssh -i ~/.ssh/lambda ubuntu@<INSTANCE_IP>"} />
+
+### Cài đặt CUDA và PyTorch
+
+<CodeBlock language="shell" code={"# Trên instance Lambda\nsudo apt update && sudo apt install nvidia-driver-545 -y\npip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124"} />
+
+### Train model
+
+<CodeBlock language="python" code={"import torch\nfrom transformers import AutoModelForCausalLM, TrainingArguments, Trainer\n\nmodel = AutoModelForCausalLM.from_pretrained(\"mistralai/Mistral-7B-v0.1\")\ntraining_args = TrainingArguments(\n    output_dir=\"./results\",\n    per_device_train_batch_size=4,\n    gradient_accumulation_steps=8,\n    num_train_epochs=3,\n    fp16=True,\n)\ntrainer = Trainer(model=model, args=training_args)\ntrainer.train()"} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="shell" code={"nvidia-smi --query-gpu=name,memory.total --format=csv,noheader"} />
+
+## Tính năng chính
+
+- **Multi-GPU clusters:** 1x đến 8x A100/H100 cho distributed training
+- **High-speed interconnects:** NVLink và InfiniBand giữa các GPU
+- **Persistent storage:** 256GB - 10TB NVMe SSD, snapshot hàng ngày
+- **Pre-installed stacks:** Lambda Stack với CUDA, cuDNN, PyTorch sẵn sàng
+- **API-driven:** Tạo và quản lý instance qua REST API hoặc Python SDK
+- **Spot instances:** Giảm 50% chi phí cho training không cần real-time
+
+## Tài liệu tham khảo
+
+- [Lambda Cloud Docs](https://cloud.lambdalabs.com/docs)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Mẹo:** Instance 1x A100 $1.10/giờ, 8x A100 $8.80/giờ. Tự động snapshot hàng ngày. Tận dụng spot instances để giảm 50% chi phí. Dùng Lambda Stack để cài driver tự động.
 </Note>
-
-## Liên kết
-
-- [lambda-cloud](https://lambda-cloud.com)

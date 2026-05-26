@@ -10,26 +10,51 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Bruno** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**Bruno** là API client mã nguồn mở, hoạt động hoàn toàn offline và lưu trữ collection dưới dạng file văn bản thuần. Đây là giải pháp thay thế mã nguồn mở cho Postman, không yêu cầu đăng nhập tài khoản và tôn trọng quyền riêng tư dữ liệu của bạn.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+<CodeBlock language="powershell" code={`winget install Bruno`} />
 
-## Sử dụng
+## Sử dụng cơ bản
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Tạo request collection mới:
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="text" code={`
+bruno/
+  collections/
+    my-api/
+      request-get-users.bru
+      request-create-user.bru
+  bruno.json
+`} />
 
-## Tips
+Ví dụ file request `.bru`:
+
+<CodeBlock language="text" code={`
+meta {
+  name: Get Users
+  method: GET
+  url: https://api.example.com/users
+}
+
+headers {
+  Content-Type: application/json
+  Authorization: Bearer {{token}}
+}
+`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`bruno --version`} />
+
+## Tài liệu tham khảo
+
+- [Bruno Docs](https://docs.usebruno.com)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Dùng biến môi trường với cú pháp {{variable}} để quản lý API keys an toàn trong Bruno.
 </Note>
-
-## Liên kết
-
-- [Bruno](https://bruno.com)

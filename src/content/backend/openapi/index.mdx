@@ -10,26 +10,51 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**OpenAPI** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**OpenAPI** (trước đây là Swagger Specification) là tiêu chuẩn mô tả RESTful APIs dùng YAML hoặc JSON. OpenAPI định nghĩa endpoints, request/response schemas, authentication methods, và error codes. Đây là nền tảng cho việc tạo documentation, client SDK, và API testing tự động.
 </Note>
 
-## Cài đặt
+## Định nghĩa API spec cơ bản
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+<CodeBlock language="yaml" code={`openapi: "3.0.3"
+info:
+  title: Users API
+  version: "1.0.0"
+paths:
+  /users:
+    get:
+      summary: Get all users
+      responses:
+        "200":
+          description: User list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id: { type: integer }
+        name: { type: string }`} />
 
-## Sử dụng
+## Sinh code từ OpenAPI
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`npx @openapitools/openapi-generator-cli generate -i spec.yaml -g typescript-axios -o ./client`} />
 
-# Xem documentation để biết chi tiết usage examples`} />
+## Xác minh
 
-## Tips
+<CodeBlock language="powershell" code={`npx swagger-cli validate spec.yaml`} />
+
+## Tài liệu tham khảo
+
+- [OpenAPI Specification](https://spec.openapis.org/oas/v3.0.3)
+- [Swagger Editor](https://editor.swagger.io/)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Sử dụng OpenAPI 3.1 để tương thích với JSON Schema. Dùng `$ref` để tái sử dụng schemas và tránh duplicate definitions.
 </Note>
-
-## Liên kết
-
-- [OpenAPI](https://openapi.com)

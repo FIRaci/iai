@@ -10,26 +10,50 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**NestJS** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**NestJS** là progressive Node.js framework cho xây dựng server-side applications hiệu quả. NestJS sử dụng TypeScript, kết hợp concepts từ Angular (modules, decorators, dependency injection) với flexibility của Node.js. Hỗ trợ GraphQL, WebSockets, microservices, và nhiều database integrations.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+<CodeBlock language="powershell" code={`npm i -g @nestjs/cli
+nest new my-project`} />
 
-## Sử dụng
+## Module và Controller
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="javascript" code={`import { Module } from "@nestjs/common";
+import { AppController } from "./app.controller";
 
-# Xem documentation để biết chi tiết usage examples`} />
+@Module({
+  controllers: [AppController],
+  providers: [AppService],
+})
+export class AppModule {}`} />
 
-## Tips
+<CodeBlock language="javascript" code={`import { Controller, Get } from "@nestjs/common";
+
+@Controller("users")
+export class UsersController {
+  @Get()
+  findAll() {
+    return [{ id: 1, name: "Alice" }];
+  }
+}`} />
+
+## Chạy ứng dụng
+
+<CodeBlock language="powershell" code={`npm run start:dev`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`curl http://localhost:3000/users`} />
+
+## Tài liệu tham khảo
+
+- [NestJS Docs](https://docs.nestjs.com/)
+- [NestJS CLI](https://docs.nestjs.com/cli/overview)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Sử dụng `nest g resource` để generate CRUD resources nhanh chóng. NestJS hỗ trợ OpenAPI/Swagger tự động qua @nestjs/swagger.
 </Note>
-
-## Liên kết
-
-- [NestJS](https://nestjs.com)

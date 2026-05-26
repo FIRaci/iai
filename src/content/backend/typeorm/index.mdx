@@ -10,26 +10,51 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**TypeORM** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**TypeORM** là ORM mã nguồn mở cho TypeScript và JavaScript, hỗ trợ SQL databases (PostgreSQL, MySQL, SQLite, MS SQL Server). TypeORM hỗ trợ cả Active Record và Data Mapper patterns, với tính năng migrations, relations, eager/lazy loading, và query builder.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+<CodeBlock language="powershell" code={`npm install typeorm reflect-metadata @types/node
+npm install pg`} />
 
-## Sử dụng
+## Entity và Relations
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="javascript" code={`import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 
-# Xem documentation để biết chi tiết usage examples`} />
+@Entity()
+export class User {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-## Tips
+  @Column()
+  name: string;
+
+  @OneToMany(() => Post, (post) => post.user)
+  posts: Post[];
+}`} />
+
+## Query Builder
+
+<CodeBlock language="javascript" code={`const users = await dataSource
+  .getRepository(User)
+  .createQueryBuilder("user")
+  .leftJoinAndSelect("user.posts", "post")
+  .where("user.name LIKE :name", { name: "%Alice%" })
+  .orderBy("user.id", "DESC")
+  .getMany();`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`npx typeorm migration:run -d ormconfig.ts`} />
+
+## Tài liệu tham khảo
+
+- [TypeORM Docs](https://typeorm.io/)
+- [Migration Guide](https://typeorm.io/migrations)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Dùng Data Mapper pattern (Repository pattern) cho ứng dụng phức tạp, Active Record cho đơn giản. Chạy migration trước khi deploy để tránh schema mismatch.
 </Note>
-
-## Liên kết
-
-- [TypeORM](https://typeorm.com)

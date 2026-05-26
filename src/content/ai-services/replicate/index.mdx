@@ -10,23 +10,50 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Replicate** là platform cho running ML models via API. Truy cập hàng ngàn models mà không cần quản lý infrastructure.
+**Replicate** là cloud platform cho phép chạy ML models qua API mà không cần quản lý infrastructure. Replicate có hàng ngàn models: Stable Diffusion, Llama, Whisper, Flux, và nhiều models khác từ cộng đồng. Mỗi model có thể chạy với các input parameters khác nhau.
 </Note>
 
 ## Cài đặt
 
 <CodeBlock language="powershell" code={`pip install replicate`} />
 
-## Sử dụng
+## Image Generation
 
 <CodeBlock language="python" code={`import replicate
+
 output = replicate.run(
-    "stability-ai/stable-diffusion",
-    input={"prompt": "a cat in space"}
+    "black-forest-labs/flux-schnell",
+    input={
+        "prompt": "a cat wearing a spacesuit, realistic photo",
+        "num_outputs": 1,
+        "aspect_ratio": "1:1",
+    }
 )
-print(output)`} />
 
-## Liên kết
+print(output[0])  # URL of generated image`} />
 
-- [Replicate](https://replicate.com)
-- [Docs](https://replicate.com/docs)
+## LLM Inference
+
+<CodeBlock language="python" code={`for event in replicate.stream(
+    "meta/meta-llama-3.1-405b-instruct",
+    input={
+        "prompt": "Viet ve AI trong 50 words",
+        "temperature": 0.7,
+    },
+):
+    print(event, end="")`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`replicate --version`} />
+
+## Tài liệu tham khảo
+
+- [Replicate Docs](https://replicate.com/docs)
+- [Explore Models](https://replicate.com/explore)
+
+## Lưu ý
+
+<Note type="tip">
+Replicate tính phí theo giây chạy model. Dùng `replicate.run(..., wait=False)` để chạy async và kiểm tra status sau. Webhook cho phép nhận kết quả khi model hoàn thành.
+</Note>

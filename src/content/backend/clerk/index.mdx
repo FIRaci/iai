@@ -10,26 +10,58 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Clerk** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**Clerk** là nền tảng quản lý authentication và user hoàn chỉnh, cung cấp các component UI sẵn sàng như sign-in, sign-up, user profile và organization management. Tích hợp dễ dàng với Next.js, React và nhiều framework khác.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+<CodeBlock language="powershell" code={`npm install @clerk/nextjs`} />
 
-## Sử dụng
+## Sử dụng cơ bản
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Bọc ứng dụng với ClerkProvider:
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="javascript" code={`
+import { ClerkProvider, SignInButton, SignedIn, SignedOut } from '@clerk/nextjs';
 
-## Tips
+export default function RootLayout({ children }) {
+  return (
+    <ClerkProvider>
+      <SignedOut>
+        <SignInButton />
+      </SignedOut>
+      <SignedIn>
+        {children}
+      </SignedIn>
+    </ClerkProvider>
+  );
+}
+`} />
+
+Sử dụng middleware để bảo vệ routes:
+
+<CodeBlock language="javascript" code={`
+import { authMiddleware } from '@clerk/nextjs';
+
+export default authMiddleware({
+  publicRoutes: ['/', '/about'],
+});
+
+export const config = {
+  matcher: ['/((?!.*\\..*|_next).*)'],
+};
+`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`curl http://localhost:3000/api/auth/status`} />
+
+## Tài liệu tham khảo
+
+- [Clerk Docs](https://clerk.com/docs)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Thêm Clerk API keys vào file .env.local: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY và CLERK_SECRET_KEY.
 </Note>
-
-## Liên kết
-
-- [Clerk](https://clerk.com)

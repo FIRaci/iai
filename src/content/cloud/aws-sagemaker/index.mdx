@@ -10,28 +10,53 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**aws-sagemaker** là fully managed ML platform của AWS. Build, train, và deploy ML models ở scale.
+**AWS SageMaker** là fully managed ML platform của AWS. Cung cấp đầy đủ workflow từ data labeling, training, tuning đến deployment. Tích hợp sâu với S3, Lambda, IAM. Hỗ trợ built-in algorithms, automatic model tuning, và managed inference endpoints. Phù hợp cho enterprise ML pipeline ở scale lớn.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install sagemaker`} />
+### SDK
+
+<CodeBlock language="shell" code={"pip install sagemaker boto3"} />
+
+### AWS Config
+
+<CodeBlock language="shell" code={"aws configure\n# Nhập AWS Access Key, Secret Key, Region"} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`import sagemaker
-from sagemaker import get_execution_role
-role = get_execution_role()
-# Tạo training job
-estimator = sagemaker.estimator.Estimator(...)
-estimator.fit({'train': 's3://bucket/train-data'})`} />
+### Training cơ bản
 
-## Tips
+<CodeBlock language="python" code={"import sagemaker\nfrom sagemaker import get_execution_role\n\nrole = get_execution_role()\nsession = sagemaker.Session()\n\nestimator = sagemaker.estimator.Estimator(\n    image_uri=\"763104351884.dkr.ecr.us-east-1.amazonaws.com/pytorch-training:2.1.0-gpu-py310-cu121\",\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.p3.2xlarge\",\n    output_path=\"s3://bucket/output\",\n)\nestimator.fit({\"training\": \"s3://bucket/train-data\"})"} />
+
+### Deploy endpoint
+
+<CodeBlock language="python" code={"import sagemaker\nfrom sagemaker.model import Model\n\nmodel = Model(\n    image_uri=\"763104351884.dkr.ecr.us-east-1.amazonaws.com/pytorch-inference:2.1.0-gpu-py310\",\n    model_data=\"s3://bucket/output/model.tar.gz\",\n    role=sagemaker.get_execution_role(),\n)\npredictor = model.deploy(\n    instance_type=\"ml.g5.xlarge\",\n    initial_instance_count=1,\n    endpoint_name=\"my-model-endpoint\"\n)"} />
+
+### Inference
+
+<CodeBlock language="python" code={"import boto3\nimport json\n\nruntime = boto3.client(\"sagemaker-runtime\")\nresponse = runtime.invoke_endpoint(\n    EndpointName=\"my-model-endpoint\",\n    ContentType=\"application/json\",\n    Body=json.dumps({\"inputs\": \"Xin chào, tôi là AI\"})\n)\nprint(json.loads(response[\"Body\"].read()))"} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="shell" code={"python -c \"import sagemaker; print(f'SageMaker {sagemaker.__version__}')\""} />
+
+## Tính năng chính
+
+- **Built-in Algorithms:** 20+ thuật toán optimized cho tabular, NLP, computer vision
+- **Automatic Model Tuning:** Hyperparameter optimization tự động (Bayesian search)
+- **Data Labeling:** Ground Truth service cho labeling với người hoặc AI
+- **Managed Spot Training:** Giảm 70% chi phí với checkpoint tự động
+- **Multi-model endpoints:** Host nhiều model trên một endpoint để tiết kiệm
+- **SageMaker Studio:** IDE web-based cho toàn bộ ML workflow
+- **Model Monitor:** Phát hiện data drift và concept drift tự động
+
+## Tài liệu tham khảo
+
+- [AWS SageMaker Docs](https://docs.aws.amazon.com/sagemaker)
+
+## Lưu ý
 
 <Note type="tip">
-**Spot Instances:** Sử dụng spot training để giảm 70% chi phí training.
+**Mẹo:** Sử dụng Spot Training để giảm 70% chi phí training. Managed Spot với checkpointing tự động. Dùng SageMaker Studio cho GUI development. Pipelines cho MLOps tự động hóa.
 </Note>
-
-## Liên kết
-
-- [aws-sagemaker](https://aws-sagemaker.com)

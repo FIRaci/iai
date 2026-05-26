@@ -10,26 +10,51 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Google Colab** là cloud platform/service. Hỗ trợ deployment và scaling applications.
+**Google Colab** là môi trường Jupyter Notebook chạy trên cloud, cung cấp GPU miễn phí (NVIDIA T4, V100) và TPU. Không cần cấu hình, mở browser là code được ngay. Phù hợp cho ML experimentation, data analysis, và education.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Tạo account và sử dụng qua web console hoặc CLI`} />
+### Pip packages
+
+<CodeBlock language="powershell" code={"!pip install torch transformers datasets accelerate \n!pip install numpy pandas matplotlib scikit-learn"} />
+
+### Clone repository
+
+<CodeBlock language="powershell" code={"!git clone https://github.com/user/repo.git\n%cd repo"} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+### Kiểm tra GPU
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="python" code={"import torch\nprint(f\"GPU: {torch.cuda.get_device_name(0)}\")\nprint(f\"VRAM: {torch.cuda.get_device_properties(0).total_memory / 1e9:.1f} GB\")\n!nvidia-smi"} />
 
-## Tips
+### Train model cơ bản
+
+<CodeBlock language="python" code={"from transformers import AutoModelForCausalLM, AutoTokenizer\nmodel = AutoModelForCausalLM.from_pretrained(\"microsoft/phi-2\")\ntokenizer = AutoTokenizer.from_pretrained(\"microsoft/phi-2\")\ninputs = tokenizer(\"Học AI thật thú vị vì\", return_tensors=\"pt\")\noutputs = model.generate(**inputs, max_length=50)\nprint(tokenizer.decode(outputs[0]))"} />
+
+### Mount Google Drive
+
+<CodeBlock language="python" code={"from google.colab import drive\ndrive.mount(\"/content/drive\")\n%cd /content/drive/MyDrive"} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="python" code={"import sys\nprint(f\"Python: {sys.version}\")\n!nvidia-smi --query-gpu=name,memory.total --format=csv,noheader"} />
+
+## Tính năng chính
+
+- **GPU/TPU miễn phí:** Truy cập NVIDIA T4, V100, A100 và TPU v2/v3 không mất phí
+- **Tích hợp Drive:** Mount Google Drive để lưu dữ liệu và checkpoint
+- **Form sharing:** Chia sẻ notebook dưới dạng .ipynb hoặc link GitHub
+- **Pre-installed libs:** TensorFlow, PyTorch, JAX, Transformers có sẵn
+- **Magic commands:** `%run`, `%load`, `%store` giúp quản lý code linh hoạt
+
+## Tài liệu tham khảo
+
+- [Google Colab Docs](https://colab.research.google.com/notebooks/intro.ipynb)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Mẹo:** Session Colab free tự động ngắt sau 12 giờ. Dùng Google Drive để lưu checkpoint. Runtime type chọn GPU để tận dụng T4 hoặc V100 miễn phí.
 </Note>
-
-## Liên kết
-
-- [Google Colab](https://colab.research.google.com)

@@ -10,26 +10,52 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**gcp-vertex** là cloud platform/service. Hỗ trợ deployment và scaling applications.
+**GCP Vertex AI** là nền tảng ML toàn diện của Google Cloud. Cho phép build, train, deploy models từ Gemini API đến custom models trên infrastructure của Google. Tích hợp sâu với BigQuery, Dataflow và các dịch vụ GCP khác.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Tạo account và sử dụng qua web console hoặc CLI`} />
+### SDK Python
+
+<CodeBlock language="shell" code={"pip install google-cloud-aiplatform"} />
+
+### Xác thực
+
+<CodeBlock language="shell" code={"gcloud auth application-default login\ngcloud config set project YOUR_PROJECT_ID"} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+### Khởi tạo Vertex AI
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="python" code={"import vertexai\nfrom vertexai.preview.generative_models import GenerativeModel\n\nvertexai.init(project=\"your-project\", location=\"us-central1\")\nmodel = GenerativeModel(\"gemini-2.0-flash\")\nresponse = model.generate_content(\"Giải thích AI là gì?\")\nprint(response.text)"} />
 
-## Tips
+### Fine-tune model
+
+<CodeBlock language="python" code={"from vertexai.preview.tuning import sft\n\nbase_model = \"google/gemma-2-2b-it\"\ntuning_job = sft.train(\n    source_model=base_model,\n    train_dataset=\"gs://bucket/data.jsonl\",\n    adapter_size=\"medium\",\n    epochs=3,\n)\ntuning_job.wait()"} />
+
+### Deploy model endpoint
+
+<CodeBlock language="python" code={"from google.cloud import aiplatform\n\nendpoint = aiplatform.Endpoint.create(display_name=\"my-endpoint\")\nmodel = aiplatform.Model(\"projects/.../locations/.../models/...\")\nendpoint.deploy(model, machine_type=\"n1-standard-4\", min_replica_count=1)"} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="shell" code={"python -c \"import vertexai; vertexai.init(); print('Vertex AI OK')\""} />
+
+## Tính năng chính
+
+- **Gemini API:** Truy cập Gemini 1.5 Pro, 2.0 Flash qua SDK hoặc REST
+- **AutoML:** Training không cần code cho tabular, image, text, video
+- **Custom Training:** Hỗ trợ PyTorch, TensorFlow, JAX trên GPU/TPU
+- **Model Garden:** Hơn 150 foundation models từ Google, Meta, Mistral
+- **Vertex AI Pipelines:** MLOps với Kubeflow Pipelines tích hợp sẵn
+- **Model Registry:** Quản lý version, deploy, monitor model tập trung
+
+## Tài liệu tham khảo
+
+- [Vertex AI Docs](https://cloud.google.com/vertex-ai/docs)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Chi phí:** Vertex AI tính phí theo usage. Gemini API có free tier hàng tháng. Dùng Workbench Instances để省钱 cho development.
 </Note>
-
-## Liên kết
-
-- [gcp-vertex](https://gcp-vertex.com)

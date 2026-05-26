@@ -10,26 +10,48 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Express** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**Express.js** là web framework nhanh, linh hoạt và tối giản cho Node.js. Đây là framework phổ biến nhất trong hệ sinh thái Node.js, cung cấp bộ tính năng mạnh mẽ cho việc xây dựng web applications và APIs với middleware linh hoạt.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+<CodeBlock language="powershell" code={`npm install express`} />
 
-## Sử dụng
+## Sử dụng cơ bản
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Tạo server đơn giản với routing:
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="javascript" code={`
+import express from 'express';
+const app = express();
+const port = 3000;
 
-## Tips
+app.use(express.json());
+
+app.get('/', (req, res) => {
+  res.json({ message: 'Hello World' });
+});
+
+app.post('/users', (req, res) => {
+  const { name, email } = req.body;
+  res.status(201).json({ id: 1, name, email });
+});
+
+app.listen(port, () => {
+  console.log('Server running on port', port);
+});
+`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`curl http://localhost:3000`} />
+
+## Tài liệu tham khảo
+
+- [Express Docs](https://expressjs.com)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Express hỗ trợ nhiều template engines như EJS, Pug và tích hợp dễ dàng với các database ORM như Prisma, Sequelize.
 </Note>
-
-## Liên kết
-
-- [Express](https://express.com)

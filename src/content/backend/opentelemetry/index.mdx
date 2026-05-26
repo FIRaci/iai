@@ -10,26 +10,45 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**OpenTelemetry** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**OpenTelemetry** (OTel) là observability framework mã nguồn mở, cung cấp bộ công cụ thu thập traces, metrics, và logs từ ứng dụng. OpenTelemetry là CNCF incubating project, hỗ trợ đa ngôn ngữ và tích hợp với nhiều backends như Jaeger, Zipkin, Prometheus, và Grafana.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+<CodeBlock language="powershell" code={`npm install @opentelemetry/api @opentelemetry/sdk-node @opentelemetry/instrumentation-http @opentelemetry/instrumentation-express`} />
 
-## Sử dụng
+## Sử dụng cơ bản
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="javascript" code={`import { NodeSDK } from "@opentelemetry/sdk-node";
+import { ConsoleSpanExporter } from "@opentelemetry/sdk-trace-node";
+import { getNodeAutoInstrumentations } from "@opentelemetry/auto-instrumentations-node";
 
-# Xem documentation để biết chi tiết usage examples`} />
+const sdk = new NodeSDK({
+  traceExporter: new ConsoleSpanExporter(),
+  instrumentations: [getNodeAutoInstrumentations()],
+});
 
-## Tips
+sdk.start();`} />
+
+Tạo custom span:
+
+<CodeBlock language="javascript" code={`import { trace } from "@opentelemetry/api";
+const tracer = trace.getTracer("my-service");
+const span = tracer.startSpan("process-order");
+span.setAttribute("order.id", "123");
+span.end();`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`node -e "require('@opentelemetry/api').diag.setLogger({ verbose: () => {} }, 'VERBOSE')"`} />
+
+## Tài liệu tham khảo
+
+- [OpenTelemetry Docs](https://opentelemetry.io/docs/)
+- [JS SDK Guide](https://opentelemetry.io/docs/languages/js/)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Bắt đầu với auto-instrumentation trước, sau đó thêm custom spans cho business logic quan trọng. Export traces với sampling rate phù hợp để kiểm soát chi phí.
 </Note>
-
-## Liên kết
-
-- [OpenTelemetry](https://opentelemetry.com)

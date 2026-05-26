@@ -10,26 +10,36 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**pgAdmin** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**pgAdmin** là công cụ quản trị PostgreSQL dạng web GUI phổ biến nhất. pgAdmin hỗ trợ query editor với syntax highlighting, server monitoring, backup/restore, và graphical explain plans. pgAdmin chạy như web application, có thể deploy local hoặc trên server.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+<CodeBlock language="powershell" code={`winget install pgadmin`} />
 
-## Sử dụng
+Hoặc chạy với Docker:
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`docker run -d --name pgadmin -p 5050:80 -e PGADMIN_DEFAULT_EMAIL=admin@test.com -e PGADMIN_DEFAULT_PASSWORD=admin dpage/pgadmin4`} />
 
-# Xem documentation để biết chi tiết usage examples`} />
+## Kết nối đến server
 
-## Tips
+Mở trình duyệt tại `http://localhost:5050`, đăng nhập, sau đó:
+
+- Right-click Servers > Register > Server
+- Name: Nhập tên kết nối
+- Connection tab: Host, Port, Database, Username, Password
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`curl http://localhost:5050/misc/ping`} />
+
+## Tài liệu tham khảo
+
+- [pgAdmin Docs](https://www.pgadmin.org/docs/)
+- [Docker Deployment](https://www.pgadmin.org/download/pgadmin-4-container/)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Dùng Query Tool (Alt+Shift+Q) để chạy SQL queries. Explain (EXPLAIN ANALYZE) giúp debug performance issues trực quan qua đồ thị.
 </Note>
-
-## Liên kết
-
-- [pgAdmin](https://pgadmin.com)

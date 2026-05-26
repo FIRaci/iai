@@ -10,26 +10,44 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Lucia** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**Lucia** là thư viện authentication cho TypeScript/JavaScript, hỗ trợ nhiều framework như Next.js, SvelteKit, Astro, và Hono. Lucia cung cấp session management, OAuth integration, và database adapter cho PostgreSQL, MySQL, SQLite, MongoDB.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+<CodeBlock language="powershell" code={`npm install lucia`} />
 
-## Sử dụng
+Cài đặt adapter cho database:
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<CodeBlock language="powershell" code={`npm install @lucia-auth/adapter-postgresql`} />
 
-# Xem documentation để biết chi tiết usage examples`} />
+## Sử dụng cơ bản
 
-## Tips
+<CodeBlock language="javascript" code={`import { Lucia } from "lucia";
+import { pg } from "@lucia-auth/adapter-postgresql";
+
+const lucia = new Lucia(new pg(pool), {
+  sessionCookie: {
+    attributes: { secure: true }
+  }
+});
+
+// Create session
+const session = await lucia.createSession(userId, {});
+// Validate session
+const { user, session } = await lucia.validateSession(sessionId);`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`npm ls lucia`} />
+
+## Tài liệu tham khảo
+
+- [Lucia Docs](https://lucia-auth.com)
+- [Database Adapters](https://lucia-auth.com/database)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Lucia v3 đã chuyển sang kiến trúc mới với session cookies built-in. Kiểm tra kỹ version docs tương ứng với phiên bản bạn đang dùng.
 </Note>
-
-## Liên kết
-
-- [Lucia](https://lucia.com)

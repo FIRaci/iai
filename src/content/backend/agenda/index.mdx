@@ -10,26 +10,47 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Agenda** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**Agenda** là thư viện job scheduling nhẹ cho Node.js, sử dụng MongoDB làm backing store. Cho phép bạn định nghĩa và lên lịch các tác vụ nền (background jobs) như gửi email, xử lý dữ liệu, hay đồng bộ hóa hệ thống một cách linh hoạt.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+<CodeBlock language="powershell" code={`npm install agenda`} />
 
-## Sử dụng
+## Sử dụng cơ bản
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Định nghĩa một job và lên lịch thực thi:
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="javascript" code={`
+const Agenda = require('agenda');
+const mongoConnectionString = 'mongodb://127.0.0.1/agenda';
 
-## Tips
+const agenda = new Agenda({ db: { address: mongoConnectionString } });
+
+agenda.define('send email', async (job) => {
+  const { to, subject } = job.attrs.data;
+  console.log('Sending email to', to, 'with subject', subject);
+});
+
+(async function () {
+  await agenda.start();
+  await agenda.schedule('in 5 minutes', 'send email', {
+    to: 'user@example.com',
+    subject: 'Welcome!'
+  });
+})();
+`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`node index.js`} />
+
+## Tài liệu tham khảo
+
+- [Agenda Official Docs](https://github.com/agenda/agenda)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Agenda yêu cầu MongoDB đang chạy. Bạn có thể dùng Docker để chạy MongoDB nhanh chóng.
 </Note>
-
-## Liên kết
-
-- [Agenda](https://agenda.com)

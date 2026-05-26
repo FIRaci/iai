@@ -10,24 +10,49 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Together AI** là cloud platform cho running và fine-tuning LLMs. Hỗ trợ nhiều open-source models với API.
+**Together AI** là cloud inference platform cho open-source LLMs. Together cung cấp API truy cập đến hàng trăm models: Llama, Mistral, Mixtral, DeepSeek, Qwen, và nhiều models khác. Ngoài inference, Together còn hỗ trợ fine-tuning với custom datasets và model deployment.
 </Note>
 
 ## Cài đặt
 
 <CodeBlock language="powershell" code={`pip install together`} />
 
-## Sử dụng
+## Inference cơ bản
 
 <CodeBlock language="python" code={`from together import Together
-client = Together()
+
+client = Together(api_key="your-api-key")
+
 response = client.chat.completions.create(
-    model="mistralai/Mistral-7B-Instruct-v0.1",
-    messages=[{"role": "user", "content": "Hello"}]
+    model="meta-llama/Llama-3.3-70B-Instruct-Turbo",
+    messages=[{"role": "user", "content": "Viet mot doan van ngan"}],
+    temperature=0.7,
+    max_tokens=512,
 )
+
 print(response.choices[0].message.content)`} />
 
-## Liên kết
+## Image Generation
 
-- [Together AI](https://together.ai)
-- [Docs](https://docs.together.ai)
+<CodeBlock language="python" code={`response = client.images.generate(
+    prompt="A cat in space, digital art",
+    model="black-forest-labs/FLUX.1-schnell",
+    steps=4,
+)
+
+print(response.data[0].url)`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`together --version`} />
+
+## Tài liệu tham khảo
+
+- [Together AI Docs](https://docs.together.ai)
+- [Model Catalog](https://docs.together.ai/docs/models-overview)
+
+## Lưu ý
+
+<Note type="tip">
+Together cung cấp free credits khi đăng ký. Dùng `max_tokens` để kiểm soát chi phí. Fine-tuning API cho phép tùy chỉnh model với dữ liệu riêng.
+</Note>

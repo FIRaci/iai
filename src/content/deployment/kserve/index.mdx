@@ -10,25 +10,41 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**KServe** (trước đây là KFServing) là serverless model serving trên Kubernetes. Hỗ trợ nhiều frameworks và auto-scaling.
+**KServe** (trước đây là KFServing) là serverless model serving platform trên Kubernetes. KServe hỗ trợ auto-scaling, canary rollouts, request batching, và model explainability. KServe tương thích với TensorFlow, PyTorch, Scikit-learn, XGBoost, và Triton Inference Server.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`kubectl apply -f https://github.com/kserve/kserve/releases/latest/download/kserve.yaml`} />
+Cài đặt KServe trên Kubernetes cluster:
 
-## Sử dụng
+<CodeBlock language="powershell" code={`kubectl create namespace kserve
+kubectl apply -f https://github.com/kserve/kserve/releases/latest/download/kserve.yaml`} />
+
+## InferenceService CRD
 
 <CodeBlock language="yaml" code={`apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
 metadata:
-  name: my-model
+  name: sklearn-iris
 spec:
   predictor:
     sklearn:
-      storageUri: gs://my-bucket/model`} />
+      storageUri: gs://kfserving-examples/models/sklearn/iris
+    minReplicas: 1
+    maxReplicas: 5`} />
 
-## Liên kết
+## Kiểm tra Inference
 
-- [KServe](https://kserve.github.io)
-- [GitHub](https://github.com/kserve/kserve)
+<CodeBlock language="powershell" code={`kubectl get inferenceservice
+curl -v http://sklearn-iris.default.example.com/v1/models/sklearn-iris:predict -d '{"instances":[[5.1, 3.5, 1.4, 0.2],[6.2, 3.4, 5.4, 2.3]]}'`} />
+
+## Tài liệu tham khảo
+
+- [KServe Docs](https://kserve.github.io/website/latest/)
+- [KServe GitHub](https://github.com/kserve/kserve)
+
+## Lưu ý
+
+<Note type="tip">
+KServe hỗ trợ multi-model serving trên cùng một pod. Kết hợp với Knative để auto-scale xuống 0 khi không có traffic. Dùng canary strategy để test model mới trước khi chuyển toàn bộ traffic.
+</Note>

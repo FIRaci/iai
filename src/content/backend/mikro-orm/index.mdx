@@ -10,26 +10,50 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**MikroORM** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**MikroORM** là TypeScript ORM hỗ trợ SQL (PostgreSQL, MySQL, SQLite) và MongoDB. MikroORM sử dụng Data Mapper pattern với Identity Map cho hiệu suất cao và hỗ trợ migrations, embedded entities, và transactions.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+<CodeBlock language="powershell" code={`npm install @mikro-orm/core @mikro-orm/postgresql`} />
 
-## Sử dụng
+## Sử dụng cơ bản
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Định nghĩa entity:
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="javascript" code={`import { Entity, Property, PrimaryKey } from "@mikro-orm/core";
 
-## Tips
+@Entity()
+export class User {
+  @PrimaryKey()
+  id!: number;
+
+  @Property()
+  name!: string;
+
+  @Property()
+  email!: string;
+}`} />
+
+CRUD operations:
+
+<CodeBlock language="javascript" code={`const user = em.create(User, { name: "Alice", email: "alice@test.com" });
+await em.flush();
+const found = await em.findOne(User, { email: "alice@test.com" });
+found.name = "Bob";
+await em.flush();
+await em.removeAndFlush(found);`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`npx mikro-orm schema:create -r`} />
+
+## Tài liệu tham khảo
+
+- [MikroORM Docs](https://mikro-orm.io/docs/installation)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Sử dụng `em.fork()` để tạo EntityManager mới trong xử lý concurrent. Identity Map của MikroORM giúp tránh duplicate entities trong cùng một context.
 </Note>
-
-## Liên kết
-
-- [MikroORM](https://mikro-orm.com)

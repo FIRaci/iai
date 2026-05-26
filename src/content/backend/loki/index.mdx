@@ -10,26 +10,40 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Loki** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**Grafana Loki** là hệ thống log aggregation được thiết kế bởi Grafana Labs. Khác với Elasticsearch, Loki không index nội dung log mà chỉ index metadata (labels), giúp tiết kiệm chi phí lưu trữ và băng thông. Loki tích hợp chặt chẽ với Grafana và Prometheus.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+Chạy Loki với Docker:
 
-## Sử dụng
+<CodeBlock language="powershell" code={`docker run -d --name=loki -p 3100:3100 grafana/loki:latest`} />
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Cài đặt Promtail (log collector):
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`docker run -d --name=promtail -v /var/log:/var/log grafana/promtail:latest -config.file=/etc/promtail/promtail.yaml`} />
 
-## Tips
+## Truy vấn với LogQL
+
+<CodeBlock language="powershell" code={`{job="nginx"} |= "error"
+{job="nginx"} |= "error" != "timeout"
+{job="api"} |= "500" | json | status >= 500`} />
+
+Ví dụ truy vấn qua curl:
+
+<CodeBlock language="powershell" code={`curl -G -s "http://localhost:3100/loki/api/v1/query_range" --data-urlencode "query={job=\\"nginx\\"} |= \\"error\\"" --data-urlencode "start=$(date -d '1 hour ago' +%s)" --data-urlencode "end=$(date +%s)"`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`curl http://localhost:3100/ready`} />
+
+## Tài liệu tham khảo
+
+- [Grafana Loki Docs](https://grafana.com/docs/loki/latest/)
+- [LogQL Guide](https://grafana.com/docs/loki/latest/logql/)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Sử dụng LogQL label matchers để lọc logs nhanh hơn. Cấu trúc label tốt ngay từ đầu sẽ giúp truy vấn hiệu quả hơn nhiều lần.
 </Note>
-
-## Liên kết
-
-- [Loki](https://loki.com)

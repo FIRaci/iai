@@ -10,29 +10,51 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**BentoML** là model serving framework, đóng gói ML models thành production-ready services. Hỗ trợ nhiều frameworks.
+**BentoML** là framework mã nguồn mở cho ML model serving. BentoML đóng gói models, preprocessing code, và dependencies vào standardized Bento package. Hỗ trợ frameworks: PyTorch, TensorFlow, Scikit-learn, XGBoost, Transformers, và ONNX. Deploy lên Docker, Kubernetes, hoặc BentoCloud.
 </Note>
 
 ## Cài đặt
 
 <CodeBlock language="powershell" code={`pip install bentoml`} />
 
-## Sử dụng
+## Build Service
 
 <CodeBlock language="python" code={`import bentoml
-@bentoml.service
-class MyModel:
+from bentoml.io import JSON
+
+model = bentoml.sklearn.get("iris_model:latest")
+
+@bentoml.service(
+    resources={"cpu": "2"},
+    traffic={"timeout": 10},
+)
+class IrisClassifier:
     def __init__(self):
-        self.model = bentoml.models.get("my-model:latest")
-    @bentoml.api
-    def predict(self, input: str) -> str:
-        return self.model.predict(input)`} />
+        self.model = model.to_runner()
+        self.model.init_local()
 
-### Serve
+    @bentoml.api(input=JSON(), output=JSON())
+    def predict(self, input_data):
+        import numpy as np
+        result = self.model.run(np.array([input_data["features"]]))
+        return {"prediction": int(result[0])}`} />
 
-<CodeBlock language="powershell" code={`bentoml serve service:MyModel`} />
+## Build Bento và Containerize
 
-## Liên kết
+<CodeBlock language="powershell" code={`bentoml build
+bentoml containerize iris_classifier:latest -t myrepo/iris:v1`} />
 
-- [BentoML](https://bentoml.com)
+## Xác minh
+
+<CodeBlock language="powershell" code={`bentoml serve --production`} />
+
+## Tài liệu tham khảo
+
+- [BentoML Docs](https://docs.bentoml.com/en/latest/)
 - [GitHub](https://github.com/bentoml/BentoML)
+
+## Lưu ý
+
+<Note type="tip">
+Dùng `bentoml.models.import_model()` để import models từ training scripts. Bento tự động quản lý versioning và dependency tracking.
+</Note>

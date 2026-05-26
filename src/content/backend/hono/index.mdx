@@ -10,26 +10,51 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Hono** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**Hono** là web framework cực nhẹ và nhanh cho JavaScript/TypeScript, tương thích với nhiều runtime như Cloudflare Workers, Deno, Bun, và Node.js. Với kích thước chỉ ~17KB, Hono lý tưởng cho các ứng dụng chạy ở edge và serverless.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+<CodeBlock language="powershell" code={`npm create hono@latest my-app`} />
 
-## Sử dụng
+## Sử dụng cơ bản
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Tạo ứng dụng Hono cơ bản:
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="javascript" code={`
+import { Hono } from 'hono';
+import { cors } from 'hono/cors';
+import { logger } from 'hono/logger';
 
-## Tips
+const app = new Hono();
+
+app.use('*', cors());
+app.use('*', logger());
+
+app.get('/', (c) => c.json({ message: 'Hello Hono!' }));
+
+app.post('/users', async (c) => {
+  const body = await c.req.json();
+  return c.json({ id: 1, ...body }, 201);
+});
+
+export default app;
+`} />
+
+Chạy trên Deno:
+
+<CodeBlock language="powershell" code={`deno run -A src/index.ts`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`curl http://localhost:3000`} />
+
+## Tài liệu tham khảo
+
+- [Hono Docs](https://hono.dev)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Hono có middleware phong phú: JWT Auth, CORS, Rate Limiter. Dùng `hono/tiny` cho kích thước nhỏ nhất.
 </Note>
-
-## Liên kết
-
-- [Hono](https://hono.com)

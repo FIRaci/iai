@@ -10,26 +10,43 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**MongoDB** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**MongoDB** là NoSQL database phổ biến nhất, lưu trữ dữ liệu dạng JSON-like documents (BSON). MongoDB hỗ trợ indexing, aggregation pipeline, replication, và sharding, phù hợp với ứng dụng cần schema linh hoạt và scale ngang.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+Cài đặt MongoDB Community Server:
 
-## Sử dụng
+<CodeBlock language="powershell" code={`winget install MongoDB.Server`} />
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Hoặc chạy với Docker:
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`docker run -d --name mongodb -p 27017:27017 mongo:7`} />
 
-## Tips
+## CRUD cơ bản với Node.js
+
+<CodeBlock language="javascript" code={`import { MongoClient } from "mongodb";
+const client = new MongoClient("mongodb://localhost:27017");
+await client.connect();
+const db = client.db("myapp");
+const users = db.collection("users");
+
+await users.insertOne({ name: "Alice", age: 30 });
+const result = await users.findOne({ name: "Alice" });
+await users.updateOne({ name: "Alice" }, { $set: { age: 31 } });
+await users.deleteOne({ name: "Alice" });`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`mongosh --eval "db.runCommand({ ping: 1 })"`} />
+
+## Tài liệu tham khảo
+
+- [MongoDB Docs](https://www.mongodb.com/docs/)
+- [MongoDB Node.js Driver](https://www.mongodb.com/docs/drivers/node/current/)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Dùng aggregation pipeline thay vì multiple queries để giảm round-trips đến database. Đánh index cho các field thường xuyên truy vấn.
 </Note>
-
-## Liên kết
-
-- [MongoDB](https://mongodb.com)

@@ -10,26 +10,53 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**modal** là cloud platform/service. Hỗ trợ deployment và scaling applications.
+**Modal** là nền tảng serverless cho ML workloads. Viết Python function, deploy lên cloud với GPU (A100, H100, T4) chỉ trong vài giây. Không cần quản lý server, tự động scale xuống 0 khi không dùng. Tính phí theo giây sử dụng GPU, phù hợp cho inference, batch processing và training nhỏ.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Tạo account và sử dụng qua web console hoặc CLI`} />
+### SDK
+
+<CodeBlock language="shell" code={"pip install modal"} />
+
+### Xác thực
+
+<CodeBlock language="shell" code={"modal token new"} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+### Function inference cơ bản
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="python" code={"import modal\n\napp = modal.App(\"my-app\")\n\n@app.function(gpu=\"T4\", timeout=300)\ndef generate_text(prompt: str):\n    from transformers import pipeline\n    pipe = pipeline(\"text-generation\", model=\"microsoft/phi-2\")\n    return pipe(prompt, max_length=100)[0][\"generated_text\"]\n\n@app.local_entrypoint()\ndef main():\n    print(generate_text.remote(\"AI sẽ thay đổi\"))"} />
 
-## Tips
+### Batch processing với GPU
+
+<CodeBlock language="python" code={"import modal\n\napp = modal.App(\"batch-app\")\nvolume = modal.Volume.from_name(\"my-data\")\n\n@app.function(gpu=\"A100\", volumes={\"/data\": volume})\ndef process_batch():\n    import torch\n    from datasets import load_from_disk\n    dataset = load_from_disk(\"/data/dataset\")\n    model = torch.load(\"/data/model.pt\")\n    results = [model(item) for item in dataset]\n    torch.save(results, \"/data/results.pt\")"} />
+
+### Web endpoint
+
+<CodeBlock language="python" code={"import modal\nfrom fastapi import FastAPI\n\nweb_app = FastAPI()\napp = modal.App(\"web-app\", image=modal.Image.debian_slim().pip_install(\"transformers\", \"torch\"))\n\n@app.function(gpu=\"T4\")\n@modal.asgi_app()\ndef fastapi_app():\n    return web_app\n\n@web_app.get(\"/predict\")\ndef predict(text: str):\n    from transformers import pipeline\n    classifier = pipeline(\"sentiment-analysis\", model=\"distilbert-base-uncased\")\n    return classifier(text)"} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="shell" code={"modal run my_app.py\nmodal deploy my_app.py"} />
+
+## Tính năng chính
+
+- **Serverless GPU:** Tự động scale, không tính phí khi idle
+- **GPU đa dạng:** T4, L40S, A100, H100 cho mọi loại workload
+- **Distributed computing:** Chạy parallel tasks với map() function
+- **Volume & Secrets:** Persistent storage và quản lý API keys an toàn
+- **Web endpoints:** Deploy FastAPI/Gradio app với một decorator
+- **Container caching:** Image được cache, lần chạy sau không mất thời gian build
+- **Schedule jobs:** Cron jobs cho batch processing định kỳ
+
+## Tài liệu tham khảo
+
+- [Modal Docs](https://modal.com/docs)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Mẹo:** Modal tính $0.0002/giây cho T4, $0.0012/giây cho A100. Free tier $30/tháng. Container image được cache, lần chạy sau nhanh hơn. Dùng modal volume cho persistent storage.
 </Note>
-
-## Liên kết
-
-- [modal](https://modal.com)

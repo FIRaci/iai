@@ -10,26 +10,64 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Logtail** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**Logtail** là dịch vụ quản lý log từ Better Stack, giúp thu thập, phân tích và trực quan hóa log từ ứng dụng và server. Nó cung cấp Node.js SDK nhẹ, real-time log streaming, và giao diện tìm kiếm log mạnh mẽ với ngôn ngữ truy vấn riêng.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+<CodeBlock language="powershell" code={`npm install @logtail/node`} />
 
-## Sử dụng
+## Sử dụng cơ bản
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Tạo logger và ghi log:
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="javascript" code={`
+import { Logtail } from '@logtail/node';
 
-## Tips
+const logtail = new Logtail('your-source-token');
+
+await logtail.info('Server started', {
+  port: 3000,
+  environment: 'production',
+});
+
+await logtail.warn('High memory usage', {
+  memoryUsage: '85%',
+});
+
+try {
+  throw new Error('Database connection failed');
+} catch (error) {
+  await logtail.error('DB Error', {
+    error: error.message,
+    stack: error.stack,
+  });
+}
+`} />
+
+Tích hợp với Express:
+
+<CodeBlock language="javascript" code={`
+app.use(async (req, res, next) => {
+  await logtail.info('Request', {
+    method: req.method,
+    url: req.url,
+    ip: req.ip,
+  });
+  next();
+});
+`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`node app.js`} />
+
+## Tài liệu tham khảo
+
+- [Logtail Docs](https://betterstack.com/docs/logs)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Logtail có thời gian miễn phí 14 ngày với 1GB log. Dùng @logtail/winston hoặc @logtail/pino để tích hợp với logger hiện có.
 </Note>
-
-## Liên kết
-
-- [Logtail](https://logtail.com)

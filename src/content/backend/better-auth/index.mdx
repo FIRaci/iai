@@ -10,26 +10,56 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Better Auth** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**Better Auth** là thư viện authentication hiện đại cho TypeScript, được thiết kế để dễ dàng mở rộng và tích hợp. Hỗ trợ email/password, OAuth, 2FA, Magic Links, WebAuthn, và session management tích hợp sẵn.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+<CodeBlock language="powershell" code={`npm install better-auth`} />
 
-## Sử dụng
+## Sử dụng cơ bản
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Khởi tạo Better Auth server với các providers:
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="javascript" code={`
+import { betterAuth } from 'better-auth';
+import { emailPassword } from 'better-auth/plugins';
 
-## Tips
+export const auth = betterAuth({
+  plugins: [emailPassword()],
+  social: {
+    github: {
+      clientId: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    },
+  },
+});
+`} />
+
+Sử dụng trong API route:
+
+<CodeBlock language="javascript" code={`
+import { auth } from '@/lib/auth';
+
+export async function POST(req: Request) {
+  const { email, password } = await req.json();
+  const { user, session } = await auth.api.signIn({
+    body: { email, password },
+  });
+  return Response.json(user);
+}
+`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`curl -X POST http://localhost:3000/api/auth/sign-in -H "Content-Type: application/json" -d '{"email":"test@test.com","password":"123456"}'`} />
+
+## Tài liệu tham khảo
+
+- [Better Auth Docs](https://www.better-auth.com)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Better Auth hỗ trợ đầy đủ TypeScript types, giúp phát hiện lỗi sớm trong quá trình phát triển.
 </Note>
-
-## Liên kết
-
-- [Better Auth](https://better-auth.com)

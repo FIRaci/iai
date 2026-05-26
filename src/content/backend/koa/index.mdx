@@ -10,26 +10,63 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Koa** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**Koa.js** là web framework thế hệ mới cho Node.js, được phát triển bởi cùng đội ngũ tạo ra Express. Sử dụng async/await và middleware dạng onion model (koa-style), giúp xử lý request/response flow một cách tự nhiên và dễ debug hơn.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+<CodeBlock language="powershell" code={`npm install koa`} />
 
-## Sử dụng
+## Sử dụng cơ bản
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Tạo Koa server với middleware:
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="javascript" code={`
+import Koa from 'koa';
+const app = new Koa();
 
-## Tips
+app.use(async (ctx, next) => {
+  const start = Date.now();
+  await next();
+  const ms = Date.now() - start;
+  ctx.set('X-Response-Time', ms + 'ms');
+});
+
+app.use(async (ctx) => {
+  ctx.body = { message: 'Hello Koa!' };
+});
+
+app.listen(3000);
+`} />
+
+Với routing:
+
+<CodeBlock language="javascript" code={`
+import Router from '@koa/router';
+const router = new Router();
+
+router.get('/users', (ctx) => {
+  ctx.body = [{ id: 1, name: 'Alice' }];
+});
+
+router.post('/users', (ctx) => {
+  ctx.status = 201;
+  ctx.body = { id: 2, ...ctx.request.body };
+});
+
+app.use(router.routes());
+`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`curl http://localhost:3000`} />
+
+## Tài liệu tham khảo
+
+- [Koa Docs](https://koajs.com)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Koa khác Express ở chỗ dùng ctx thay vì req/res, và xử lý async/await native. Cài @koa/router để có routing.
 </Note>
-
-## Liên kết
-
-- [Koa](https://koa.com)

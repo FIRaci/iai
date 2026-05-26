@@ -10,24 +10,53 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Groq** là ultra-fast LLM inference API. Chạy Llama, Mistral, và nhiều models với tốc độ cực nhanh.
+**Groq** cung cấp ultra-fast LLM inference nhờ LPU (Language Processing Unit) chips độc quyền. Groq có thể đạt tốc độ hơn 1,000 tokens/giây trên Llama 3 8B, nhanh hơn 10-20 lần so với GPU truyền thống. Groq hỗ trợ Llama, Mixtral, Gemma, và các open-source models phổ biến.
 </Note>
 
 ## Cài đặt
 
 <CodeBlock language="powershell" code={`pip install groq`} />
 
-## Sử dụng
+## Streaming Chat
 
 <CodeBlock language="python" code={`from groq import Groq
-client = Groq()
-response = client.chat.completions.create(
-    model="llama3-8b-8192",
-    messages=[{"role": "user", "content": "Hello"}]
+
+client = Groq(api_key="gsk-your-key")
+
+stream = client.chat.completions.create(
+    model="llama3-70b-8192",
+    messages=[{"role": "user", "content": "Giai thich LPU la gi?"}],
+    stream=True,
 )
-print(response.choices[0].message.content)`} />
 
-## Liên kết
+for chunk in stream:
+    print(chunk.choices[0].delta.content or "", end="")`} />
 
-- [Groq](https://groq.com)
-- [Docs](https://console.groq.com/docs)
+## Tool Calling
+
+<CodeBlock language="python" code={`response = client.chat.completions.create(
+    model="llama3-70b-8192",
+    messages=[{"role": "user", "content": "Thoi tiet hom nay?"}],
+    tools=[{
+        "type": "function",
+        "function": {
+            "name": "get_weather",
+            "parameters": {"type": "object", "properties": {"city": {"type": "string"}}}
+        }
+    }],
+)`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`grook --version`} />
+
+## Tài liệu tham khảo
+
+- [Groq Docs](https://console.groq.com/docs)
+- [Playground](https://console.groq.com/playground)
+
+## Lưu ý
+
+<Note type="tip">
+Groq có free tier với rate limits cao hơn hầu hết providers. Phù hợp cho real-time applications như chatbots, code completion, và streaming responses.
+</Note>

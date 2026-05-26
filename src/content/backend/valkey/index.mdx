@@ -10,26 +10,36 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Valkey** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**Valkey** là in-memory database mã nguồn mở, tương thích với Redis protocol. Valkey ra đời như fork của Redis sau khi Redis chuyển sang license không còn mã nguồn mở. Valkey hỗ trợ đầy đủ các tính năng: caching, pub/sub, streams, sorted sets, và Lua scripting.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+Chạy Valkey với Docker:
 
-## Sử dụng
+<CodeBlock language="powershell" code={`docker run -d --name valkey -p 6379:6379 valkey/valkey:8`} />
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+## Sử dụng với Node.js
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`npm install ioredis`} />
 
-## Tips
+<CodeBlock language="javascript" code={`import Redis from "ioredis";
+const client = new Redis("redis://localhost:6379");
+await client.set("user:1", "hello", "EX", 3600);
+const val = await client.get("user:1");
+console.log(val); // hello`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`docker exec valkey valkey-cli PING`} />
+
+## Tài liệu tham khảo
+
+- [Valkey Docs](https://valkey.io/documentation/)
+- [Valkey GitHub](https://github.com/valkey-io/valkey)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Valkey tương thích hoàn toàn với Redis clients (ioredis, redis-py, redis-cli), bạn chỉ cần thay đổi connection string. Valkey 8 có cải thiện hiệu suất đáng kể so với Redis 7.
 </Note>
-
-## Liên kết
-
-- [Valkey](https://valkey.com)

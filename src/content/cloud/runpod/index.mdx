@@ -10,26 +10,56 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**runpod** là cloud platform/service. Hỗ trợ deployment và scaling applications.
+**RunPod** là GPU cloud giá rẻ cho AI/ML workloads. Cung cấp serverless GPU functions và dedicated pods với RTX 4090 ($0.39/giờ), A100 ($1.79/giờ), H100. Template có sẵn cho PyTorch, TensorFlow, Ollama, Automatic1111. Phù hợp cho inference server, fine-tuning và hosting model AI.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Tạo account và sử dụng qua web console hoặc CLI`} />
+### CLI
+
+<CodeBlock language="shell" code={"pip install runpod"} />
+
+### API Key
+
+<CodeBlock language="shell" code={"export RUNPOD_API_KEY=\"your-api-key-here\""} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+### Tạo Pod
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="python" code={"import runpod\n\nrunpod.api_key = \"YOUR_API_KEY\"\npod = runpod.create_pod(\n    name=\"my-gpu-pod\",\n    image_id=\"runpod/pytorch:2.1.0-cuda12.1\",\n    gpu_type_id=\"NVIDIA GeForce RTX 4090\",\n    cloud_type=\"ALL\",\n    gpu_count=1,\n    volume_in_gb=50,\n    container_disk_in_gb=10,\n)\nprint(f\"Pod ID: {pod['id']} - IP: {pod['machine']['ip']}\")"} />
 
-## Tips
+### Serverless endpoint
+
+<CodeBlock language="python" code={"import runpod\n\nrunpod.api_key = \"YOUR_API_KEY\"\n\ndef handler(job):\n    from transformers import pipeline\n    pipe = pipeline(\"text-generation\", model=\"microsoft/phi-2\")\n    return pipe(job[\"input\"], max_length=100)\n\nrunpod.serverless.start({\"handler\": handler})"} />
+
+### SSH vào Pod
+
+<CodeBlock language="shell" code={"ssh -p <PORT> root@<POD_IP>\n# Password trong RunPod dashboard"} />
+
+### Chạy Ollama trên Pod
+
+<CodeBlock language="shell" code={"# Template: runpod/ollama\nollama pull llama3.2\nollama run llama3.2 \"Giải thích machine learning bằng tiếng Việt\""} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="shell" code={"nvidia-smi"} />
+
+## Tính năng chính
+
+- **Dedicated Pods:** GPU riêng biệt, full control, SSH root access
+- **Serverless GPU:** Function-as-a-Service cho inference, scale tự động
+- **Template Library:** 100+ templates cho PyTorch, Ollama, ComfyUI, Automatic1111
+- **Network Storage:** 50GB - 10TB, persistent giữa các lần restart
+- **Community Cloud:** GPU từ người dùng cho thuê, giá rẻ hơn 30-40%
+- **AnyScale:** Tự động scale serverless endpoints theo request volume
+
+## Tài liệu tham khảo
+
+- [RunPod Docs](https://docs.runpod.io)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Mẹo:** RTX 4090 giá rẻ nhất phân khúc ($0.39/giờ). Dùng serverless để tự động scale. Community templates có sẵn cho Stable Diffusion, Ollama, ComfyUI. Lưu ý xóa pod khi không dùng để tránh phát sinh chi phí.
 </Note>
-
-## Liên kết
-
-- [runpod](https://runpod.com)

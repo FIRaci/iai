@@ -10,26 +10,39 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**PocketBase** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**PocketBase** là backend all-in-one mã nguồn mở, sử dụng SQLite làm database và tích hợp sẵn admin UI. PocketBase cung cấp authentication (email, OAuth2), file storage, realtime subscriptions, và REST API tự động từ collections. Tất cả gói gọn trong một binary duy nhất.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+Tải binary từ GitHub releases:
 
-## Sử dụng
+<CodeBlock language="powershell" code={`curl -L https://github.com/pocketbase/pocketbase/releases/latest/download/pocketbase_0.26.1_windows_amd64.zip -o pocketbase.zip
+Expand-Archive pocketbase.zip -DestinationPath ./pocketbase
+.\pocketbase\pocketbase.exe serve`} />
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+## Tạo Collection và API
 
-# Xem documentation để biết chi tiết usage examples`} />
+```bash
+# API collections tự động sinh
+GET /api/collections/posts/records
+POST /api/collections/posts/records
 
-## Tips
+# Authenticate
+POST /api/collections/users/auth-with-password
+```
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`curl http://127.0.0.1:8090/api/health`} />
+
+## Tài liệu tham khảo
+
+- [PocketBase Docs](https://pocketbase.io/docs/)
+- [GitHub](https://github.com/pocketbase/pocketbase)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+PocketBase rất phù hợp cho MVP và side projects. Admin UI tại `/_/` cho phép quản lý collections, users, và files trực quan mà không cần code.
 </Note>
-
-## Liên kết
-
-- [PocketBase](https://pocketbase.com)

@@ -10,30 +10,55 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Vector Databases** là comparison tool/service. So sánh các solutions và tools.
+**Vector Databases** lưu trữ và tìm kiếm vector embeddings cho ứng dụng RAG, semantic search và AI agents. Mỗi database có điểm mạnh riêng về scalability, filtering, và pricing. So sánh 6 vector database hàng đầu.
 </Note>
 
-## Cài đặt
+## Bảng so sánh
 
-<CodeBlock language="powershell" code={`# Truy cập trang web để sử dụng`} />
+<Note type="info">
+**Pinecone** - Managed cloud - Serverless index - Giá: $0.25/index/hour - Filter metadata mạnh - Tích hợp sẵn với LangChain, LlamaIndex - Phù hợp: production RAG, không muốn tự host.
+</Note>
 
-## Sử dụng
+<Note type="info">
+**Qdrant** - Managed + Self-hosted - Rust, siêu nhanh - Filter phức tạp (nested payload) - Giá: $0.40/GB/month - Phù hợp: cần filtering chi tiết, tự do kiểm soát infra.
+</Note>
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<Note type="info">
+**Weaviate** - Managed + Self-hosted - Graph + vector search - Hybrid search (keyword + semantic) - Tích hợp module AI (OpenAI, Cohere) - Phù hợp: hybrid search, knowledge graph apps.
+</Note>
 
-# Xem documentation để biết chi tiết usage examples`} />
+<Note type="info">
+**Milvus** - Open source - Cloud-native (Kubernetes) - GPU acceleration - Hiệu suất cao nhất với billion-scale - Phù hợp: enterprise scale, billion+ vectors, on-premise.
+</Note>
 
-## Tips
+<Note type="info">
+**Chroma** - Open source, nhẹ nhất - Python-native - Embedding + DB trong 1 thư viện - Lưu local hoặc in-memory - Phù hợp: prototyping, research, local dev.
+</Note>
+
+<Note type="info">
+**FAISS (Meta)** - Không phải database - Thư viện similarity search - Hiệu suất cực cao (GPU) - Lưu trên memory/disk - Phù hợp: research, batch processing, không cần persistence.
+</Note>
+
+## So sánh tính năng
+
+| DB | Managed | Self-host | Filter | Pricing | Scale |
+|----|---------|-----------|--------|---------|-------|
+| Pinecone | Có | Không | Mạnh | Pay-per-index | Triệu |
+| Qdrant | Có | Có | Rất mạnh | $0.40/GB | Triệu |
+| Weaviate | Có | Có | Hybrid | $0.25/GB | Triệu |
+| Milvus | Có | Có | Mạnh | Open source | Tỷ |
+| Chroma | Không | Có | Cơ bản | Free | Trăm nghìn |
+| FAISS | Không | Có | Không | Free | Tỷ |
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Khuyên dùng:** Pinecone cho RAG production nhanh nhất. Qdrant cho custom filter phức tạp. Milvus cho billion-scale enterprise. Chroma cho local prototyping. FAISS cho batch similarity search không cần DB.
 </Note>
 
-## Liên kết
+## Tài liệu tham khảo
 
 - [Pinecone](https://pinecone.io)
 - [Qdrant](https://qdrant.tech)
 - [Milvus](https://milvus.io)
 - [Weaviate](https://weaviate.io)
 - [Chroma](https://trychroma.com)
+- [FAISS](https://github.com/facebookresearch/faiss)

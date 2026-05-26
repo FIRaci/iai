@@ -10,26 +10,46 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**NATS** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**NATS** là messaging system nhẹ, hiệu suất cao được viết bằng Go. NATS hỗ trợ pub/sub, request-reply, và load-balanced queue groups. Với độ trễ dưới millisecond và throughput hàng triệu messages/giây, NATS phù hợp cho IoT, microservices, và edge computing.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+Chạy NATS server với Docker:
 
-## Sử dụng
+<CodeBlock language="powershell" code={`docker run -d --name nats -p 4222:4222 nats:latest`} />
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Cài đặt NATS client cho Node.js:
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`npm install nats`} />
 
-## Tips
+## Pub/Sub cơ bản
+
+<CodeBlock language="javascript" code={`import { connect } from "nats";
+const nc = await connect({ servers: "localhost:4222" });
+
+// Subscriber
+const sub = nc.subscribe("orders.created");
+(async () => {
+  for await (const msg of sub) {
+    console.log(JSON.parse(msg.data));
+  }
+})();
+
+// Publisher
+nc.publish("orders.created", JSON.stringify({ id: 1, item: "book" }));`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`curl -s http://localhost:8222/varz | Select-String "uptime"`} />
+
+## Tài liệu tham khảo
+
+- [NATS Docs](https://docs.nats.io/)
+- [NATS by Example](https://natsbyexample.com/)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Sử dụng JetStream cho persistent messaging và exactly-once delivery guarantees. Queue groups giúp load-balance consumers tự động.
 </Note>
-
-## Liên kết
-
-- [NATS](https://nats.com)

@@ -10,26 +10,38 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Swagger** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**Swagger** là bộ công cụ mã nguồn mở cho RESTful API documentation và development. Swagger UI render OpenAPI spec thành web page tương tác, cho phép test API endpoints trực tiếp từ trình duyệt. Swagger Editor hỗ trợ viết và validate OpenAPI spec real-time.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+Chạy Swagger UI với Docker:
 
-## Sử dụng
+<CodeBlock language="powershell" code={`docker run -d --name swagger-ui -p 8080:8080 -e SWAGGER_JSON=/spec/openapi.yaml -v ${PWD}:/spec swaggerapi/swagger-ui`} />
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Cài đặt Swagger Editor:
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`docker run -d --name swagger-editor -p 8081:8080 swaggerapi/swagger-editor`} />
 
-## Tips
+## Tích hợp với Express
+
+<CodeBlock language="javascript" code={`import swaggerUi from "swagger-ui-express";
+import swaggerSpec from "./openapi.json" with { type: "json" };
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+console.log("Swagger UI at http://localhost:3000/api-docs");`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`curl http://localhost:8080`} />
+
+## Tài liệu tham khảo
+
+- [Swagger Tools](https://swagger.io/tools/)
+- [Swagger UI GitHub](https://github.com/swagger-api/swagger-ui)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Dùng Swagger UI để developers và stakeholders có thể test API mà không cần curl. Kết hợp với OpenAPI code generation để đồng bộ code và spec.
 </Note>
-
-## Liên kết
-
-- [Swagger](https://swagger.com)

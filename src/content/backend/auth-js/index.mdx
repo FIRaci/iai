@@ -10,26 +10,47 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Auth.js** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**Auth.js** (trước đây là NextAuth.js) là thư viện authentication mã nguồn mở cho Next.js và các framework JavaScript khác. Hỗ trợ đa dạng providers như Google, GitHub, Facebook, email magic links, và credentials-based auth.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+<CodeBlock language="powershell" code={`npm install next-auth`} />
 
-## Sử dụng
+## Sử dụng cơ bản
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Thêm API route cho authentication trong Next.js App Router:
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="javascript" code={`
+import NextAuth from 'next-auth';
+import GitHub from 'next-auth/providers/github';
 
-## Tips
+export const { handlers, auth, signIn, signOut } = NextAuth({
+  providers: [GitHub],
+});
+`} />
+
+Sử dụng trong layout:
+
+<CodeBlock language="javascript" code={`
+import { auth } from '@/auth';
+
+export default async function Page() {
+  const session = await auth();
+  return <p>Welcome {session?.user?.name}</p>;
+}
+`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`curl http://localhost:3000/api/auth/session`} />
+
+## Tài liệu tham khảo
+
+- [Auth.js Docs](https://authjs.dev)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Cấu hình biến môi trường AUTH_SECRET và AUTH_URL trong file .env.local trước khi chạy.
 </Note>
-
-## Liên kết
-
-- [Auth.js](https://auth-js.com)

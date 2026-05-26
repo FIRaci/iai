@@ -10,26 +10,56 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Hugging Face Spaces** là cloud platform/service. Hỗ trợ deployment và scaling applications.
+**Hugging Face Spaces** là nền tảng hosting miễn phí cho ML apps. Deploy Gradio, Streamlit hay static HTML chỉ với vài cú click. Tích hợp sẵn với Hugging Face Hub, hỗ trợ GPU acceleration (T4 nhỏ), phù hợp để demo sản phẩm AI nhanh chóng.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`# Tạo account và sử dụng qua web console hoặc CLI`} />
+### Gradio
+
+<CodeBlock language="shell" code={"pip install gradio huggingface-hub"} />
+
+### Streamlit
+
+<CodeBlock language="shell" code={"pip install streamlit huggingface-hub"} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+### Tạo Gradio app
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="python" code={"import gradio as gr\nfrom transformers import pipeline\n\ndef predict(text):\n    classifier = pipeline(\"sentiment-analysis\")\n    return classifier(text)[0]\n\ndemo = gr.Interface(fn=predict, inputs=\"text\", outputs=\"json\", title=\"Sentiment Analysis\")\ndemo.launch()"} />
 
-## Tips
+### Tạo file cấu hình
+
+<CodeBlock language="yaml" code={"# sdk: gradio\n# sdk_version: 5.0.0\n# app_file: app.py\n# hardware: t4-small\n# models:\n#   - user/model-name"} />
+
+### Deploy từ CLI
+
+<CodeBlock language="shell" code={"huggingface-cli login\nhuggingface-cli upload your-username/your-space . --repo-type=space"} />
+
+### Streamlit app
+
+<CodeBlock language="python" code={"import streamlit as st\nfrom transformers import pipeline\n\nst.title(\"Chatbot Demo\")\nq = st.text_input(\"Nhập câu hỏi:\")\nif q:\n    chatbot = pipeline(\"text-generation\", model=\"microsoft/phi-2\")\n    st.write(chatbot(q, max_length=100)[0][\"generated_text\"])"} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="shell" code={"python -c \"import gradio; print(f'Gradio {gradio.__version__}')\""} />
+
+## Tính năng chính
+
+- **Gradio & Streamlit:** Hỗ trợ SDK phổ biến nhất cho ML demo
+- **Docker Spaces:** Custom Docker image cho môi trường tùy chỉnh
+- **GPU Acceleration:** T4, A10G, A100 cho inference và fine-tuning
+- **Secrets Management:** Lưu API keys an toàn qua Environment Variables
+- **Auto-scaling:** Tự động scale theo số lượng người dùng, không cần config
+- **Custom Domains:** Gắn domain riêng cho Space (Pro tier)
+
+## Tài liệu tham khảo
+
+- [HF Spaces Docs](https://huggingface.co/docs/hub/spaces)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Mẹo:** Free tier cho CPU (2 vCPU, 16GB RAM). Nâng cấp GPU T4 nhỏ $0.6/giờ. Spaces chạy Docker, cần tối ưu dung lượng dưới 10GB.
 </Note>
-
-## Liên kết
-
-- [HF Spaces](https://huggingface.co/spaces)

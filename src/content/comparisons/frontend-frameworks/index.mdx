@@ -10,30 +10,56 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Frontend Frameworks** là comparison tool/service. So sánh các solutions và tools.
+**Frontend Frameworks** quyết định kiến trúc, hiệu suất và trải nghiệm phát triển web app. Mỗi framework có triết lý riêng về rendering, state management và bundle size. So sánh dưới đây giúp bạn chọn đúng công cụ cho dự án.
 </Note>
 
-## Cài đặt
+## Bảng so sánh
 
-<CodeBlock language="powershell" code={`# Truy cập trang web để sử dụng`} />
+<Note type="info">
+**React** - Thư viện UI (không phải framework) - Virtual DOM - JSX - Bundle: ~42KB - Học: Trung bình - Hệ sinh thái lớn nhất - Phù hợp: mọi loại ứng dụng web, mobile (React Native).
+</Note>
 
-## Sử dụng
+<Note type="info">
+**Vue** - Progressive framework - Virtual DOM - Template + Composition API - Bundle: ~34KB - Học: Dễ - Hệ sinh thái tốt - Phù hợp: SPA vừa và nhỏ, prototyping nhanh.
+</Note>
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<Note type="info">
+**Angular** - Full framework - Real DOM + Zone.js - TypeScript bắt buộc - Bundle: ~143KB - Học: Khó - Hệ sinh thái đầy đủ - Phù hợp: enterprise apps, large-scale team.
+</Note>
 
-# Xem documentation để biết chi tiết usage examples`} />
+<Note type="info">
+**Svelte** - Compiler (không runtime) - No Virtual DOM - Bundle: ~2KB - Học: Dễ - Hệ sinh thái đang phát triển - Phù hợp: web nhỏ gọn, performance-critical apps.
+</Note>
 
-## Tips
+<Note type="info">
+**Solid.js** - Reactive library - No Virtual DOM (fine-grained) - JSX - Bundle: ~8KB - Học: Trung bình - Phù hợp: high-performance UI, reactive systems.
+</Note>
+
+<Note type="info">
+**Next.js / Nuxt** - Meta-framework cho React/Vue - SSR/SSG/ISR - File-based routing - Bundle: phụ thuộc - Học: Trung bình - Phù hợp: production apps cần SEO, full-stack.
+</Note>
+
+## So sánh rendering
+
+| Framework | Rendering | Bundle Size | Học | SSR/SSG | Community |
+|-----------|-----------|-------------|-----|---------|-----------|
+| React | Client (CSR) | 42KB | TB | Next.js | Rất lớn |
+| Vue | Client | 34KB | Dễ | Nuxt | Lớn |
+| Angular | Client | 143KB | Khó | Angular Universal | Lớn |
+| Svelte | Compile-time | ~2KB | Dễ | SvelteKit | TB |
+| Solid | Fine-grained | ~8KB | TB | SolidStart | Nhỏ |
+| Next.js | SSR/SSG/ISR | Variable | TB | Native | Rất lớn |
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Khuyên dùng:** Next.js cho production React app. Vue + Nuxt cho dev mới học. Svelte cho bundle nhỏ tối ưu. Angular cho team enterprise. Solid cho app cần hiệu suất cực cao.
 </Note>
 
-## Liên kết
+## Tài liệu tham khảo
 
 - [React](https://react.dev)
 - [Vue](https://vuejs.org)
 - [Svelte](https://svelte.dev)
 - [Angular](https://angular.dev)
 - [Solid](https://solidjs.com)
+- [Next.js](https://nextjs.org)
+- [Nuxt](https://nuxt.com)

@@ -10,26 +10,55 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Hoppscotch** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**Hoppscotch** (trước đây là Postwoman) là API testing tool mã nguồn mở, chạy hoàn toàn trên trình duyệt. Hỗ trợ nhiều phương thức HTTP, WebSocket, SSE, GraphQL, và MQTT với giao diện hiện đại, nhẹ và không cần cài đặt.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+Có thể dùng bản online hoặc cài đặt local:
 
-## Sử dụng
+<CodeBlock language="powershell" code={`winget install hoppscotch`} />
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Hoặc chạy Docker:
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="powershell" code={`docker run -p 3000:3000 hoppscotch/hoppscotch`} />
 
-## Tips
+## Sử dụng cơ bản
+
+Sau khi mở Hoppscotch, tạo request:
+
+<CodeBlock language="text" code={`
+Method: GET
+URL: https://api.example.com/users
+Headers:
+  Content-Type: application/json
+  Authorization: Bearer token
+
+Click Send để nhận response.
+`} />
+
+Ví dụ GraphQL request:
+
+<CodeBlock language="graphql" code={`
+query {
+  users {
+    id
+    name
+    email
+  }
+}
+`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`curl http://localhost:3000`} />
+
+## Tài liệu tham khảo
+
+- [Hoppscotch Docs](https://hoppscotch.io/docs)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Hoppscotch có thể cài đặt như PWA trên trình duyệt, cho phép sử dụng offline và truy cập nhanh.
 </Note>
-
-## Liên kết
-
-- [Hoppscotch](https://hoppscotch.com)

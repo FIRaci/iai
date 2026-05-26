@@ -10,26 +10,47 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**BullMQ** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**BullMQ** là thư viện message queue mạnh mẽ cho Node.js, sử dụng Redis làm backend. Cho phép quản lý hàng đợi công việc, lên lịch tác vụ, xử lý jobs với độ ưu tiên, retry, rate limiting và real-time events.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+<CodeBlock language="powershell" code={`npm install bullmq ioredis`} />
 
-## Sử dụng
+## Sử dụng cơ bản
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Định nghĩa queue và worker:
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="javascript" code={`
+import { Queue, Worker } from 'bullmq';
 
-## Tips
+const queue = new Queue('email-queue', {
+  connection: { host: 'localhost', port: 6379 },
+});
+
+await queue.add('send-welcome', {
+  email: 'user@example.com',
+  template: 'welcome',
+});
+
+const worker = new Worker('email-queue', async (job) => {
+  console.log('Processing job', job.id, job.data);
+  await sendEmail(job.data);
+}, {
+  connection: { host: 'localhost', port: 6379 },
+});
+`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`node worker.js`} />
+
+## Tài liệu tham khảo
+
+- [BullMQ Docs](https://docs.bullmq.io)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Dùng Bull Board để theo dõi queue và jobs qua giao diện web: npm install @bull-board/express.
 </Note>
-
-## Liên kết
-
-- [BullMQ](https://bullmq.com)

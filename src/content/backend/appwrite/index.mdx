@@ -10,26 +10,50 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Appwrite** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**Appwrite** là nền tảng Backend-as-a-Service (BaaS) mã nguồn mở, cung cấp APIs sẵn sàng cho authentication, database, storage, serverless functions và nhiều hơn nữa. Triển khai qua Docker giúp bạn tự chủ hoàn toàn dữ liệu.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+<CodeBlock language="powershell" code={`docker run -it --rm ^
+  --volume //var/run/docker.sock:/var/run/docker.sock ^
+  --volume \"%CD%/appwrite\":/usr/src/code/appwrite.console.json ^
+  --env APPWRITE_OPEN_SOURCE_KEY=your-key ^
+  appwrite/appwrite:latest`} />
 
-## Sử dụng
+## Sử dụng cơ bản
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Khởi tạo Appwrite SDK và tạo user:
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="javascript" code={`
+import { Client, Account } from 'appwrite';
 
-## Tips
+const client = new Client()
+  .setEndpoint('http://localhost/v1')
+  .setProject('your-project-id');
+
+const account = new Account(client);
+const user = await account.create(
+  'unique()',
+  'user@example.com',
+  'securepassword',
+  'User Name'
+);
+console.log(user.$id);
+`} />
+
+<CodeBlock language="powershell" code={`npm install appwrite`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`curl http://localhost/v1/health`} />
+
+## Tài liệu tham khảo
+
+- [Appwrite Docs](https://appwrite.io/docs)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Appwrite Console được truy cập qua http://localhost:80 sau khi chạy Docker. Dùng email mặc định để đăng nhập lần đầu.
 </Note>
-
-## Liên kết
-
-- [Appwrite](https://appwrite.com)

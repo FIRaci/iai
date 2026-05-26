@@ -10,26 +10,39 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Neon** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**Neon** là serverless PostgreSQL platform với kiến trúc compute-storage separation. Neon cung cấp database branching (giống Git cho database), auto-scaling xuống 0 khi không dùng, và cold start nhanh. Neon tương thích hoàn toàn với PostgreSQL ecosystem.
 </Note>
 
-## Cài đặt
+## Kết nối
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+Lấy connection string từ Neon Console và kết nối:
 
-## Sử dụng
+<CodeBlock language="powershell" code={`psql "postgresql://user:pass@ep-example-123.us-east-2.aws.neon.tech/neondb"`} />
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Kết nối từ Node.js:
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="javascript" code={`import { Pool } from "@neondatabase/serverless";
+const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+const { rows } = await pool.query("SELECT NOW()");
+console.log(rows[0].now);`} />
 
-## Tips
+## Database Branching
+
+Tạo branch từ Neon Console hoặc CLI:
+
+<CodeBlock language="powershell" code={`neon branch create --name feature-branch`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`psql $DATABASE_URL -c "SELECT version();"`} />
+
+## Tài liệu tham khảo
+
+- [Neon Docs](https://neon.tech/docs/introduction)
+- [Serverless Driver](https://neon.tech/docs/serverless/serverless-driver)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Dùng Neon branching để tạo preview environments cho mỗi PR. Branch được copy gần như instant nhờ copy-on-write.
 </Note>
-
-## Liên kết
-
-- [Neon](https://neon.com)

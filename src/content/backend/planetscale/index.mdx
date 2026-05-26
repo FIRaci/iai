@@ -10,26 +10,43 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**PlanetScale** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**PlanetScale** là serverless MySQL-compatible database platform sử dụng Vitess (sharding engine). PlanetScale cung cấp database branching với deploy requests workflow, giúp quản lý schema changes an toàn. PlanetScale có free tier và hỗ trợ connection pooling, điểm phục vụ trên toàn cầu.
 </Note>
 
-## Cài đặt
+## Kết nối
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+Cài đặt PlanetScale CLI:
 
-## Sử dụng
+<CodeBlock language="powershell" code={`npm i -g @planetscale/database`} />
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Kết nối từ ứng dụng:
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="javascript" code={`import { connect } from "@planetscale/database";
+const conn = connect({
+  url: process.env.DATABASE_URL,
+});
+const results = await conn.execute("SELECT 1 AS test");
+console.log(results.rows);`} />
 
-## Tips
+## Database Branches
+
+- **main branch**: Production database
+- **feature branch**: Schema changes, không ảnh hưởng production
+
+<CodeBlock language="powershell" code={`pscale branch create my-db feature-branch
+pscale deploy-request create my-db feature-branch`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`pscale auth whoami`} />
+
+## Tài liệu tham khảo
+
+- [PlanetScale Docs](https://planetscale.com/docs)
+- [PlanetScale CLI](https://planetscale.com/docs/concepts/planetscale-workflow)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+PlanetScale không hỗ trợ foreign key constraints. Dùng deploy requests để review schema changes trước khi merge vào production branch.
 </Note>
-
-## Liên kết
-
-- [PlanetScale](https://planetscale.com)

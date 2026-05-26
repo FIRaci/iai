@@ -10,27 +10,50 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Backend Frameworks** là comparison tool/service. So sánh các solutions và tools.
+**Backend Frameworks** là nền tảng xây dựng server-side applications. Lựa chọn framework phù hợp ảnh hưởng lớn đến hiệu suất, khả năng mở rộng và tốc độ phát triển dự án. Dưới đây là so sánh 6 framework backend hàng đầu.
 </Note>
 
-## Cài đặt
+## Bảng so sánh
 
-<CodeBlock language="powershell" code={`# Truy cập trang web để sử dụng`} />
+<Note type="info">
+**FastAPI (Python)** - Hiệu suất cao (async) - Type hints, tự động sinh OpenAPI docs - Pydantic validation - Học: Trung bình - Hệ sinh thái: FastAPI + SQLAlchemy + Pydantic.
+</Note>
 
-## Sử dụng
+<Note type="info">
+**Express.js (Node.js)** - Hiệu suất tốt - JavaScript/TypeScript - Middleware pattern - Học: Dễ - Hệ sinh thái: NPM lớn nhất - Phù hợp: REST API nhanh, prototype, microservices.
+</Note>
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+<Note type="info">
+**NestJS (Node.js)** - Kiến trúc module hóa - TypeScript first - Dependency injection - Học: Khó - Tích hợp GraphQL, WebSocket, Microservices - Phù hợp: enterprise apps cần cấu trúc chặt.
+</Note>
 
-# Xem documentation để biết chi tiết usage examples`} />
+<Note type="info">
+**Django (Python)** - Full-stack (ORM, Admin, Auth) - Python thuần - Batteries-included - Học: Dễ - Hệ sinh thái: Django REST Framework - Phù hợp: web app lớn, CMS, data-driven apps.
+</Note>
 
-## Tips
+<Note type="info">
+**Hono (TypeScript)** - Siêu nhẹ, siêu nhanh - Hỗ trợ Cloudflare Workers, Deno, Bun - JSX-like routing - Học: Dễ - Phù hợp: edge computing, serverless, API gateway.
+</Note>
+
+<Note type="info">
+**Fastify (Node.js)** - Hiệu suất cực cao (36K req/s) - TypeScript, schema-based validation - Plugin system - Học: Trung bình - Phù hợp: API cần throughput cao, microservices.
+</Note>
+
+## Tiêu chí so sánh
+
+| Tiêu chí | FastAPI | Express | NestJS | Django | Hono | Fastify |
+|----------|---------|---------|--------|--------|------|---------|
+| Ngôn ngữ | Python | Node.js | Node.js | Python | TS/JS | Node.js |
+| Hiệu suất | Cao | Tốt | Tốt | Trung bình | Rất cao | Rất cao |
+| TypeScript | Qua type hints | Có | Native | Không | Native | Có |
+| Học | TB | Dễ | Khó | Dễ | Dễ | TB |
+| ORM | SQLAlchemy | Mongoose/Prisma | TypeORM | Django ORM | Drizzle/Prisma | Prisma |
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+**Khuyên dùng:** FastAPI cho ML/AI backend. NestJS cho enterprise lớn. Hono cho serverless/edge. Django cho full-stack Python. Express cho prototype nhanh. Fastify cho API high-throughput.
 </Note>
 
-## Liên kết
+## Tài liệu tham khảo
 
 - [Express](https://expressjs.com)
 - [FastAPI](https://fastapi.tiangolo.com)

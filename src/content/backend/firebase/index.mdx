@@ -10,26 +10,49 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Firebase** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**Firebase** là nền tảng phát triển ứng dụng của Google, cung cấp đầy đủ dịch vụ backend như Authentication, Firestore database, Cloud Storage, Hosting, và Cloud Functions. Firebase giúp developer xây dựng ứng dụng nhanh chóng mà không cần quản lý server.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+<CodeBlock language="powershell" code={`npm install firebase`} />
 
-## Sử dụng
+## Sử dụng cơ bản
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Cấu hình Firebase và sử dụng Firestore:
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="javascript" code={`
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore';
 
-## Tips
+const firebaseConfig = {
+  apiKey: 'your-api-key',
+  authDomain: 'your-project.firebaseapp.com',
+  projectId: 'your-project-id',
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+await addDoc(collection(db, 'users'), {
+  name: 'Nguyen Van A',
+  email: 'a@example.com',
+});
+
+const snapshot = await getDocs(collection(db, 'users'));
+snapshot.forEach((doc) => console.log(doc.id, doc.data()));
+`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`firebase --version`} />
+
+## Tài liệu tham khảo
+
+- [Firebase Docs](https://firebase.google.com/docs)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Firebase có gói miễn phí Sponsored Plan đủ dùng cho ứng dụng nhỏ. Dùng Firebase Console để quản lý project.
 </Note>
-
-## Liên kết
-
-- [Firebase](https://firebase.com)

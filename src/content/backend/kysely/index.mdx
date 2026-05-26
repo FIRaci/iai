@@ -10,26 +10,62 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Kysely** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**Kysely** là SQL query builder TypeScript với kiểu an toàn tuyệt đối (type-safe). Không cần ORM phức tạp, Kysely cho phép bạn viết SQL thuần nhưng vẫn có autocomplete, type checking và prevent SQL injection ngay từ compile time.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+<CodeBlock language="powershell" code={`npm install kysely`} />
 
-## Sử dụng
+## Sử dụng cơ bản
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Kết nối database và thực hiện query:
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="javascript" code={`
+import { Kysely, PostgresDialect } from 'kysely';
+import { Pool } from 'pg';
 
-## Tips
+interface Database {
+  users: {
+    id: string;
+    name: string;
+    email: string;
+    created_at: Date;
+  };
+}
+
+const db = new Kysely<Database>({
+  dialect: new PostgresDialect({
+    pool: new Pool({
+      connectionString: 'postgres://user:pass@localhost:5432/mydb',
+    }),
+  }),
+});
+
+const user = await db
+  .insertInto('users')
+  .values({ name: 'Alice', email: 'alice@test.com' })
+  .returningAll()
+  .executeTakeFirst();
+
+const users = await db
+  .selectFrom('users')
+  .select(['id', 'name', 'email'])
+  .where('email', 'like', '%@test.com')
+  .orderBy('created_at', 'desc')
+  .execute();
+`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`node queries.js`} />
+
+## Tài liệu tham khảo
+
+- [Kysely Docs](https://kysely.dev)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Kysely hỗ trợ PostgreSQL, MySQL, SQLite, và MSSQL. Dùng kysely-codegen để tự động sinh TypeScript types từ database schema.
 </Note>
-
-## Liên kết
-
-- [Kysely](https://kysely.com)

@@ -10,26 +10,57 @@ lastUpdated: "2026-05-26"
 ## Tổng quan
 
 <Note type="info">
-**Fastify** là backend tool/framework. Hỗ trợ xây dựng APIs, databases, và server-side logic.
+**Fastify** là web framework siêu nhanh cho Node.js, tập trung vào hiệu suất và trải nghiệm developer. Với kiến trúc plugin mạnh mẽ, schema-based serialization, và logging tích hợp, Fastify là lựa chọn lý tưởng cho các ứng dụng cần tốc độ cao.
 </Note>
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`pip install tool-name`} />
+<CodeBlock language="powershell" code={`npm install fastify`} />
 
-## Sử dụng
+## Sử dụng cơ bản
 
-<CodeBlock language="powershell" code={`# 1. Cài đặt và cấu hình theo tài liệu chính thức
-# 2. Bắt đầu sử dụng
+Tạo server Fastify với route:
 
-# Xem documentation để biết chi tiết usage examples`} />
+<CodeBlock language="javascript" code={`
+import Fastify from 'fastify';
+const fastify = Fastify({ logger: true });
 
-## Tips
+fastify.get('/', async (request, reply) => {
+  return { hello: 'world' };
+});
+
+fastify.post('/users', {
+  schema: {
+    body: {
+      type: 'object',
+      properties: {
+        name: { type: 'string' },
+        email: { type: 'string' },
+      },
+      required: ['name', 'email'],
+    },
+  },
+}, async (request, reply) => {
+  const { name, email } = request.body;
+  reply.status(201).send({ id: 1, name, email });
+});
+
+const start = async () => {
+  await fastify.listen({ port: 3000 });
+};
+start();
+`} />
+
+## Xác minh
+
+<CodeBlock language="powershell" code={`curl http://localhost:3000`} />
+
+## Tài liệu tham khảo
+
+- [Fastify Docs](https://fastify.dev)
+
+## Lưu ý
 
 <Note type="tip">
-**Documentation:** Luôn tham khảo tài liệu chính thức để biết thông tin mới nhất.
+Fastify có hệ thống plugin mạnh, dùng @fastify/cors, @fastify/swagger để mở rộng chức năng dễ dàng.
 </Note>
-
-## Liên kết
-
-- [Fastify](https://fastify.com)
