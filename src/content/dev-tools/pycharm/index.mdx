@@ -3,70 +3,81 @@ title: "PyCharm"
 category: "dev-tools"
 icon: "terminal"
 difficulty: "intermediate"
-tags: ["creative", "cli", "autocomplete", "ide", "cloud", "api", "agent"]
+tags: ["ide", "jetbrains", "python", "django", "fastapi", "data-science"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
+PyCharm là Python IDE chuyên nghiệp của JetBrains. Hỗ trợ Django, FastAPI, Flask, data science (NumPy, Pandas, Matplotlib), và machine learning. Có hai bản: Community (free) va Professional (paid).
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`winget install JetBrains.PyCharm.Community
+# Hoac Professional: winget install JetBrains.PyCharm.Professional
+# Tai tu: https://www.jetbrains.com/pycharm/download/`} />
+
+## Sử dụng
+
+### Code completion va navigation
+
+<CodeBlock language="powershell" code={`
+# Ctrl+Space: Basic completion
+# Ctrl+Shift+Space: Type-aware completion
+# Ctrl+P: Xem parameter info
+# Ctrl+Q: Quick documentation
+
+# Navigation:
+# Ctrl+N: Tim class/file Python
+# Ctrl+B: Go to declaration
+# Ctrl+Alt+B: Go to implementation
+# Alt+F7: Find usages
+`} />
+
+### Debugging va testing
+
+<CodeBlock language="powershell" code={`
+# Debugging:
+# Click gutter de set breakpoint
+# Ctrl+D: Debug
+# Alt+F8: Evaluate expression
+# F9: Resume program
+# Ctrl+F8: Toggle breakpoint
+
+# Testing:
+# Ctrl+Shift+F10: Run test tai cursor
+# Pytest integration: Phat hien test tu dong
+# Coverage: Xem % coverage sau khi chay test
+`} />
+
+### Python-specific tools
+
+<CodeBlock language="powershell" code={`
+# Virtual env: Tao .venv tu dong
+# Package manager: pip, conda, poetry GUI
+# Database: SQL editor, schema browser
+# Profiler: Phat hien bottleneck
+# Refactoring: Rename (Shift+F6), Extract method
+# Type hints: Phat hien loi kieu du lieu
+`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`pycharm --version
+# Hoac Help > About trong PyCharm`} />
+
+## Tai lieu tham khao
+
+- [PyCharm Docs](https://www.jetbrains.com/pycharm/documentation/)
+- [Keyboard Shortcuts](https://www.jetbrains.com/help/pycharm/mastering-keyboard-shortcuts.html)
+- [Plugins](https://plugins.jetbra.com/)
+
+## Luu y
+
+<Note type="tip">
+PyCharm Professional co Django/FastAPI integration, database tools, va remote development. Community ban full-featured cho Python thuan.
+</Note>
+
 <Note type="info">
-**PyCharm** là IDE chuyên dụng cho Python development từ JetBrains. Hỗ trợ Django, Flask, FastAPI, data science, và machine learning. Tích hợp debugger, test runner, database tools, và version control.
+Python console tich hop (Alt+Shift+E) cho phep chay thu code nhanh ma khong can tao file. Scientific mode ho tro viewing DataFrame truc tiep.
 </Note>
-
-## Cài đặt trên Windows 11
-
-### Bước 1: Tải PyCharm
-
-Truy cập [jetbrains.com/pycharm](https://jetbrains.com/pycharm). Có 2 phiên bản:
-- **Community:** Miễn phí, đủ cho Python cơ bản
-- **Professional:** Trả phí, hỗ trợ web frameworks và database tools
-
-### Bước 2: Cài đặt
-
-1. Chạy installer
-2. Chọn components (khuyến nghị chọn tất cả)
-3. Hoàn tất cài đặt
-
-### Bước 3: Cấu hình Python interpreter
-
-1. Mở PyCharm
-2. File → Settings → Project → Python Interpreter
-3. Chọn Python installation hoặc tạo virtual environment
-
-## Sử dụng cơ bản
-
-### Tính năng chính
-
-| Tính năng | Mô tả |
-|-----------|-------|
-| Smart Completion | Autocomplete thông minh cho Python |
-| Refactoring | Rename, extract method, inline variable |
-| Debugging | Debug Python code với breakpoints |
-| Testing | Chạy pytest, unittest, doctest tích hợp |
-| Database Tools | Quản lý database trong IDE (Professional) |
-| Jupyter Notebooks | Hỗ trợ Jupyter notebooks tích hợp |
-
-### Keyboard shortcuts
-
-| Phím tắt | Chức năng |
-|----------|-----------|
-| `Ctrl+Shift+A` | Find action |
-| `Ctrl+N` | Goto class |
-| `Ctrl+Shift+N` | Goto file |
-| `Shift+F10` | Run |
-| `Shift+F9` | Debug |
-
-## Tips sử dụng
-
-<Note type="tip">
-**Virtual Environment:** Luôn dùng virtual environment cho mỗi project. PyCharm tự động phát hiện và config venv khi mở project.
-</Note>
-
-<Note type="tip">
-**Database Tools (Professional):** PyCharm Professional có database tools tích hợp — kết nối PostgreSQL, MySQL, SQLite trực tiếp trong IDE.
-</Note>
-
-## Liên kết
-
-- [PyCharm](https://jetbrains.com/pycharm)
-- [Docs](https://jetbrains.com/pycharm/help)
-- [Community vs Professional](https://jetbrains.com/pycharm/features/editions_comparison_matrix)

@@ -3,67 +3,84 @@ title: "Sublime Text"
 category: "dev-tools"
 icon: "file-code"
 difficulty: "beginner"
-tags: ["creative", "extension", "free", "ide", "api", "editor"]
+tags: ["editor", "lightweight", "cross-platform", "package-control", "performance"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
+Sublime Text là code editor nhe, nhanh, va tuy bien cao. Noi tieng voi toc do mo file cuc nhanh, multiple selection, Command Palette, va he thong package phong phu qua Package Control.
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`winget install SublimeHQ.SublimeText.4
+# Hoac tai tu https://www.sublimetext.com/download`} />
+
+## Sử dụng
+
+### Multiple Selection
+
+<CodeBlock language="powershell" code={`
+# Ctrl+D: Chon tu tiep theo giong tu hien tai
+# Alt+F3: Chon TAT CA tu giong nhau
+# Ctrl+Shift+L: Chia selection thanh nhieu dong
+# Middle-click + drag: Column selection
+
+# Ung dung: Doi ten bien, format hang loat
+`} />
+
+### Command Palette
+
+<CodeBlock language="powershell" code={`
+# Ctrl+Shift+P: Mo Command Palette
+# Goi lenh ma khong can nho phim tat:
+# - "ss html" -> Set Syntax: HTML
+# - "reindent" -> Reindent file
+# - "install" -> Package Control: Install Package
+# - "sort lines" -> Sort lines alphabetically
+`} />
+
+### GoTo Anything
+
+<CodeBlock language="powershell" code={`
+# Ctrl+P: Mo file bang ten
+# Ctrl+R: Tim function/class trong file
+# Ctrl+G: Den dong so X
+# Ctrl+;: Den tu khoa nao do
+
+# @ ky hieu: Tim symbol (VD: @functionName)
+# # ky hieu: Tim trong file hien tai
+`} />
+
+### Package Control
+
+<CodeBlock language="powershell" code={`# Cai Package Control:
+# View > Show Console -> dan code tu https://packagecontrol.io/installation
+
+# Popular packages:
+# - A File Icon: File icons
+# - BracketHighlighter: Highlight cap ngoac
+# - SideBarEnhancements: Right-click context menu
+# - Emmet: HTML/CSS snippets
+# - SublimeLinter: Code linting`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`# Help > About Sublime Text
+# Hoac xem version o title bar`} />
+
+## Tai lieu tham khao
+
+- [Sublime Text Docs](https://www.sublimetext.com/docs/)
+- [Package Control](https://packagecontrol.io/)
+- [Community](https://forum.sublimetext.com/)
+
+## Luu y
+
+<Note type="tip">
+Multiple Selection la feature manh nhat cua Sublime. Luyen tap Ctrl+D de edit nhieu dong cung luc. Cau hinh trong Preferences > Settings (JSON) bang custom key bindings.
+</Note>
+
 <Note type="info">
-**Sublime Text** là text editor nhẹ, nhanh, và mạnh mẽ. Nổi tiếng với tốc độ khởi động nhanh, multiple selection, và hệ thống package phong phú. Phù hợp cho quick edits và lightweight development.
+Sublime Text 4 co GPU rendering va Python API cho plugins. License $99 (khong het han, dung duoc cho version 4.x). Khong gioi han trial - chi thay dialog remind.
 </Note>
-
-## Cài đặt trên Windows 11
-
-### Bước 1: Tải Sublime Text
-
-Truy cập [sublimetext.com](https://sublimetext.com) và tải bản Windows.
-
-### Bước 2: Cài đặt
-
-1. Chạy installer
-2. Chọn "Add to explorer context menu" (khuyến nghị)
-3. Hoàn tất cài đặt
-
-### Bước 3: Cài Package Control
-
-1. Mở Sublime Text
-2. `Ctrl+Shift+P` → `Install Package Control`
-3. Restart Sublime Text
-
-## Sử dụng cơ bản
-
-### Tính năng chính
-
-| Tính năng | Mô tả |
-|-----------|-------|
-| Multiple Selection | Chọn và edit nhiều vị trí cùng lúc |
-| Command Palette | Truy cập mọi tính năng qua `Ctrl+Shift+P` |
-| Package Control | Hệ thống package/plugin phong phú |
-| Goto Anything | Tìm file, symbol, line nhanh chóng |
-| Distraction Free Mode | Chế độ viết không xao nhãng |
-
-### Keyboard shortcuts
-
-| Phím tắt | Chức năng |
-|----------|-----------|
-| `Ctrl+P` | Goto file |
-| `Ctrl+R` | Goto symbol |
-| `Ctrl+G` | Goto line |
-| `Ctrl+D` | Select word (nhấn tiếp để select next) |
-| `Ctrl+Shift+L` | Split selection into lines |
-
-## Tips sử dụng
-
-<Note type="tip">
-**Packages thiết yếu:** Cài `Emmet` (HTML/CSS), `GitGutter` (xem Git changes), `SideBarEnhancements` (cải thiện sidebar).
-</Note>
-
-<Note type="tip">
-**Settings:** Tạo file `Preferences → Settings` để tùy chỉnh font, theme, và behavior. Dùng JSON format.
-</Note>
-
-## Liên kết
-
-- [Sublime Text](https://sublimetext.com)
-- [Package Control](https://packagecontrol.io)
-- [Docs](https://sublimetext.com/docs)

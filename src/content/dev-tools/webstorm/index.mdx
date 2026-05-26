@@ -3,67 +3,76 @@ title: "WebStorm"
 category: "dev-tools"
 icon: "cloud"
 difficulty: "intermediate"
-tags: ["creative", "autocomplete", "free", "ide", "cloud", "api", "agent"]
+tags: ["ide", "jetbrains", "javascript", "typescript", "nodejs"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
+WebStorm là IDE chuyên cho JavaScript/TypeScript development của JetBrains. Hỗ trợ React, Angular, Vue, Node.js, và nhiều framework khác. Tích hợp sẵn debugger, testing tools, version control, và database tools.
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`winget install JetBrains.WebStorm
+# Hoac tai tu https://www.jetbrains.com/webstorm/download/`} />
+
+## Sử dụng
+
+### Features chinh
+
+<CodeBlock language="powershell" code={`
+# Smart completion: Autocomplete voi context hien tai
+# Ctrl+Space: Basic completion
+# Ctrl+Shift+Space: Smart completion (goi y kieu du lieu)
+
+# Navigation:
+# Ctrl+N: Tim class/file
+# Ctrl+Shift+N: Tim file bat ky
+# Ctrl+E: Recent files
+# Double Shift: Search everywhere
+`} />
+
+### Debugging
+
+<CodeBlock language="powershell" code={`
+# Click ben trai so dong de set breakpoint
+# Ctrl+D: Debug current file/configuration
+# F8: Step over
+# F7: Step into
+# Shift+F8: Step out
+# Alt+F9: Run to cursor
+
+# Evaluate expression (Alt+F8): Xem gia tri bien
+# Watches: Theo doi gia tri bien lien tuc
+`} />
+
+### Tools tich hop
+
+<CodeBlock language="powershell" code={`
+# Terminal (Alt+F12): Tich hop terminal
+# Git (Alt+Backtick): Commit, push, pull, branch
+# npm (Ctrl+Shift+P): Chay npm scripts
+# Test: Jest, Mocha, Vitest integration
+# Database: Connect va query truc tiep tu IDE
+`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`webstorm --version
+# Hoac Help > About trong WebStorm`} />
+
+## Tai lieu tham khao
+
+- [WebStorm Docs](https://www.jetbrains.com/webstorm/documentation/)
+- [Keyboard Shortcuts](https://www.jetbrains.com/help/webstorm/mastering-keyboard-shortcuts.html)
+- [Plugins Marketplace](https://plugins.jetbra.com/)
+
+## Luu y
+
+<Note type="tip">
+WebStorm co he thong keyboard shortcuts rat manh. Hoc navigation shortcuts (Ctrl+N, Ctrl+E) de tang toc do code dang ke. Dung Live Templates (Ctrl+J) de tao code snippets nhanh.
+</Note>
+
 <Note type="info">
-**WebStorm** là IDE chuyên dụng cho JavaScript và web development từ JetBrains. Tích hợp sẵn mọi công cụ cần thiết: linter, debugger, test runner, version control, và database tools. Phù hợp cho developer chuyên nghiệp.
+Trial 30 ngay. Student license free. IDE indexing lan dau co the cham (15-30s) tuy theo project size.
 </Note>
-
-## Cài đặt trên Windows 11
-
-### Bước 1: Tải WebStorm
-
-Truy cập [jetbrains.com/webstorm](https://jetbrains.com/webstorm) và tải bản Windows. Có bản miễn phí cho sinh viên và open-source contributors.
-
-### Bước 2: Cài đặt
-
-1. Chạy installer
-2. Chọn components (khuyến nghị chọn tất cả)
-3. Hoàn tất cài đặt
-
-### Bước 3: Kích hoạt license
-
-- Dùng license JetBrains (có bản free cho sinh viên)
-- Hoặc dùng trial 30 ngày
-
-## Sử dụng cơ bản
-
-### Tính năng chính
-
-| Tính năng | Mô tả |
-|-----------|-------|
-| Smart Completion | Autocomplete thông minh theo ngữ cảnh |
-| Refactoring | Refactor code an toàn với preview |
-| Debugging | Debug JavaScript/TypeScript tích hợp |
-| Testing | Chạy Jest, Mocha, Karma trực tiếp |
-| Database Tools | Quản lý database trong IDE |
-| Version Control | Git, SVN, Mercurial tích hợp |
-
-### Keyboard shortcuts
-
-| Phím tắt | Chức năng |
-|----------|-----------|
-| `Ctrl+Shift+A` | Find action |
-| `Ctrl+N` | Goto class |
-| `Ctrl+Shift+N` | Goto file |
-| `Shift+F6` | Rename refactoring |
-| `Alt+Enter` | Quick fix / intention |
-
-## Tips sử dụng
-
-<Note type="tip">
-**Live Templates:** Dùng `Ctrl+J` để insert code snippets. Tự tạo template cho patterns bạn dùng thường xuyên.
-</Note>
-
-<Note type="tip">
-**Database Tools:** WebStorm có database tools tích hợp — kết nối PostgreSQL, MongoDB, MySQL trực tiếp trong IDE, không cần tool riêng.
-</Note>
-
-## Liên kết
-
-- [WebStorm](https://jetbrains.com/webstorm)
-- [Docs](https://jetbrains.com/webstorm/help)
-- [Free License](https://jetbrains.com/community)

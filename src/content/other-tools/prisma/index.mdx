@@ -3,44 +3,105 @@ title: "Prisma"
 category: "other-tools"
 icon: "database"
 difficulty: "intermediate"
-tags: ["creative", "cli", "autocomplete", "api", "agent"]
+tags: ["orm", "database", "typescript", "nodejs", "schema", "migration"]
+lastUpdated: "2026-05-26"
 ---
 
 ## Tổng quan
 
-<Note type="info">
-**Prisma** là next-generation ORM cho Node.js và TypeScript. Type-safe database queries với intuitive API.
-</Note>
+Prisma là ORM (Object-Relational Mapping) cho Node.js và TypeScript. Cho phép định nghĩa database schema bang ngon ngu khai bao, tu dong sinh TypeScript types, va query database voi autocomplete day du. Hỗ trợ PostgreSQL, MySQL, SQLite, SQL Server, MongoDB.
 
 ## Cài đặt
 
-<CodeBlock language="powershell" code={`npm install prisma --save-dev
-npm install @prisma/client`} />
+<CodeBlock language="powershell" code={`npm install -D prisma
+npm install @prisma/client
+
+# Khoi tao schema
+npx prisma init`} />
 
 ## Sử dụng
 
-<CodeBlock language="powershell" code={`// schema.prisma
+### Dinh nghia schema
+
+<CodeBlock language="powershell" code={`
+// schema.prisma
 model User {
-  id    Int    @id @default(autoincrement())
-  email String @unique
-  name  String?
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String?
+  posts     Post[]
+  createdAt DateTime @default(now())
 }
 
-# Generate client
+model Post {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String?
+  published Boolean  @default(false)
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  Int
+}
+`} />
+
+### Migration
+
+<CodeBlock language="powershell" code={`# Tao migration tu schema
+npx prisma migrate dev --name init
+
+# Apply migration len production
+npx prisma migrate deploy
+
+# Reset database (dev only)
+npx prisma migrate reset
+
+# Tao Prisma Client
 npx prisma generate
+`} />
 
-# Migrate database
-npx prisma migrate dev
+### CRUD operations
 
-# Query trong code
-const users = await prisma.user.findMany()`} />
+<CodeBlock language="powershell" code={`
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 
-## Tips
+// Create
+const user = await prisma.user.create({
+  data: { email: "test@test.com", name: "Test" },
+});
+
+// Read (voi relations)
+const users = await prisma.user.findMany({
+  where: { email: { contains: "test" } },
+  include: { posts: true },
+});
+
+// Update
+await prisma.user.update({
+  where: { id: 1 },
+  data: { name: "Updated" },
+});
+
+// Delete
+await prisma.user.delete({ where: { id: 1 } });
+`} />
+
+## Xác minh cài đặt
+
+<CodeBlock language="powershell" code={`npx prisma --version
+# Xem version client, engine, va database`} />
+
+## Tai lieu tham khao
+
+- [Prisma Docs](https://www.prisma.io/docs)
+- [Prisma GitHub](https://github.com/prisma/prisma)
+- [Schema Reference](https://www.prisma.io/docs/orm/reference/prisma-schema-reference)
+
+## Luu y
 
 <Note type="tip">
-**Prisma Studio:** Dùng `npx prisma studio` để xem và edit data trong browser.
+Dung `prisma studio` de xem va edit du lieu truc tiep tu browser. Luon chay `prisma generate` sau khi thay doi schema.
 </Note>
 
-## Liên kết
-
-- [Prisma](https://www.prisma.io)
+<Note type="warning">
+Prisma Client phai duoc generate lai sau moi migration. Them `prisma generate` vao postinstall script trong package.json de tranh quen.
+</Note>
