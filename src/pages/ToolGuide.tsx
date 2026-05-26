@@ -241,8 +241,8 @@ export function ToolGuide() {
         path={path}
         type="article"
       />
-      <div className="flex gap-10">
-      <div className="min-w-0 flex-1">
+      <div className="flex gap-4 lg:gap-10">
+      <div className="min-w-0 flex-1 px-4 sm:px-6 lg:px-0">
         {/* Header */}
         <div className="mb-8">
           <Button variant="ghost" size="sm" asChild className="mb-4 -ml-2 text-[#656d76] dark:text-[#8b949e] hover:text-[#1f2328] dark:hover:text-[#e6edf3]">

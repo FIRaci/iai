@@ -654,3 +654,15 @@
   .prose table { font-size: 9pt; }
   .prose p, .prose li { orphans: 3; widows: 3; }
 }
+
+/* ===== Smooth Scroll ===== */
+html { scroll-behavior: smooth; }
+.prose h2, .prose h3, .prose h4 { scroll-margin-top: 6rem; }
+
+/* ===== Interactive Sidebar ===== */
+.sidebar-link .cat-count {
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.sidebar-link:hover .cat-count {
+  transform: scale(1.15);
+}

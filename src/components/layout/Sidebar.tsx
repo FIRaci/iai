@@ -6,7 +6,7 @@ import {
 import { useState, useEffect } from "react"
 import { getToolIcon } from "@/lib/icons"
 import { getContentTree } from "@/lib/content-loader"
-import { getCategoryConfig, getCategoryIcon } from "@/data/category-config"
+import { getCategoryConfig, getCategoryIcon, catGradients } from "@/data/category-config"
 import type { LucideIcon } from "lucide-react"
 
 const topLinks = [
@@ -17,6 +17,7 @@ interface NavGroup {
   title: string
   icon: LucideIcon
   path: string
+  categoryKey: string
   children: { title: string; path: string }[]
 }
 
@@ -29,11 +30,13 @@ function buildNavTree(): NavGroup[] {
     if (!node.children || node.children.length === 0) continue
     if (node.path === "/vector-db") continue
 
-    const config = getCategoryConfig(node.category as string)
+    const catKey = node.category as string
+    const config = getCategoryConfig(catKey)
     groups.push({
-      title: config?.title || node.title || node.category,
-      icon: (getCategoryIcon(node.category as string) || BookOpen) as typeof BookOpen,
+      title: config?.title || node.title || catKey,
+      icon: (getCategoryIcon(catKey) || BookOpen) as typeof BookOpen,
       path: node.path,
+      categoryKey: catKey,
       children: node.children.map((c) => ({
         title: c.title || "",
         path: c.path,
@@ -42,6 +45,16 @@ function buildNavTree(): NavGroup[] {
   }
 
   return groups
+}
+
+function CatIcon({ item }: { item: NavGroup }) {
+  const gradient = catGradients[item.categoryKey] || "from-primary to-blue-500"
+  const Icon = item.icon
+  return (
+    <div className={`flex h-5 w-5 items-center justify-center rounded-md bg-gradient-to-br ${gradient} text-white/90 shadow-sm`}>
+      <Icon className="h-3 w-3" />
+    </div>
+  )
 }
 
 function NavItem({
@@ -75,8 +88,11 @@ function NavItem({
             : "text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
         )}
       >
-        {item.icon && <item.icon className="h-4 w-4 shrink-0" />}
+        <CatIcon item={item} />
         <span className="flex-1 text-left truncate">{item.title}</span>
+        <span className="cat-count flex h-4 min-w-4 items-center justify-center rounded-full bg-muted/60 px-1 text-[10px] font-medium text-muted-foreground/70">
+          {childCount}
+        </span>
         <ChevronDown
           className={cn(
             "h-3 w-3 shrink-0 transition-transform duration-200",

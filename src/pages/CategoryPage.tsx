@@ -3,64 +3,12 @@ import { Link, useParams } from "react-router-dom"
 import { getContentTree } from "@/lib/content-loader"
 import { getToolIcon } from "@/lib/icons"
 import { ChevronRight } from "lucide-react"
-import { getCategoryTitle, getCategoryIcon } from "@/data/category-config"
+import { getCategoryTitle, getCategoryIcon, catGradients } from "@/data/category-config"
 import { Seo } from "@/components/Seo"
 import { DifficultyBadge } from "@/components/PageTags"
 import { TagFilter } from "@/components/TagFilter"
 
-const catGradients: Record<string, string> = {
-  "frontend": "from-blue-500 via-cyan-500 to-teal-500",
-  "backend": "from-emerald-500 via-green-500 to-lime-500",
-  "ai-tools": "from-purple-500 via-pink-500 to-rose-500",
-  "ai-coding": "from-blue-600 via-indigo-500 to-purple-600",
-  "llm-runtimes": "from-orange-500 via-amber-500 to-yellow-500",
-  "multimodal": "from-violet-500 via-purple-500 to-fuchsia-500",
-  "image-generation": "from-pink-500 via-rose-500 to-red-500",
-  "voice-audio": "from-green-500 via-emerald-500 to-teal-500",
-  "video": "from-red-500 via-rose-500 to-pink-500",
-  "ai-services": "from-sky-500 via-blue-500 to-indigo-500",
-  "databases": "from-blue-500 via-indigo-500 to-violet-500",
-  "vector-databases": "from-cyan-500 via-blue-500 to-indigo-500",
-  "data-datasets": "from-yellow-500 via-amber-500 to-orange-500",
-  "data-processing": "from-gray-500 via-slate-500 to-zinc-500",
-  "datasets": "from-green-500 via-emerald-500 to-teal-500",
-  "evaluation": "from-yellow-500 via-amber-500 to-orange-500",
-  "benchmarking": "from-amber-500 via-yellow-500 to-lime-500",
-  "fine-tuning": "from-red-500 via-rose-500 to-pink-500",
-  "mlops": "from-teal-500 via-cyan-500 to-sky-500",
-  "deployment": "from-orange-500 via-red-500 to-rose-500",
-  "model-hubs": "from-yellow-500 via-amber-500 to-orange-500",
-  "cloud": "from-sky-500 via-blue-500 to-indigo-500",
-  "devops": "from-violet-500 via-purple-500 to-fuchsia-500",
-  "dev-infra": "from-gray-500 via-slate-500 to-zinc-500",
-  "dev-tools": "from-emerald-500 via-teal-500 to-cyan-500",
-  "editors": "from-blue-500 via-indigo-500 to-violet-500",
-  "ide-plugins": "from-purple-500 via-violet-500 to-indigo-500",
-  "cli-tools": "from-gray-600 via-slate-600 to-zinc-600",
-  "terminals": "from-gray-500 via-slate-500 to-zinc-500",
-  "git-tools": "from-orange-500 via-amber-500 to-yellow-500",
-  "package-managers": "from-blue-500 via-indigo-500 to-violet-500",
-  "testing": "from-green-500 via-emerald-500 to-teal-500",
-  "observability": "from-orange-500 via-amber-500 to-yellow-500",
-  "monitoring": "from-red-500 via-rose-500 to-pink-500",
-  "security": "from-red-500 via-rose-500 to-pink-500",
-  "search": "from-teal-500 via-emerald-500 to-green-500",
-  "automation": "from-cyan-500 via-blue-500 to-indigo-500",
-  "rag": "from-blue-500 via-indigo-500 to-violet-500",
-  "embeddings": "from-green-500 via-emerald-500 to-teal-500",
-  "frameworks": "from-amber-500 via-yellow-500 to-lime-500",
-  "libraries": "from-blue-500 via-cyan-500 to-teal-500",
-  "tools": "from-gray-500 via-slate-500 to-zinc-500",
-  "other-tools": "from-gray-500 via-slate-500 to-zinc-500",
-  "productivity": "from-violet-500 via-purple-500 to-fuchsia-500",
-  "utilities": "from-gray-500 via-slate-500 to-zinc-500",
-  "documentation": "from-cyan-500 via-blue-500 to-indigo-500",
-  "notebooks": "from-amber-500 via-orange-500 to-red-500",
-  "visualization": "from-cyan-500 via-blue-500 to-indigo-500",
-  "windows-setup": "from-blue-500 via-indigo-500 to-violet-500",
-  "comparisons": "from-violet-500 to-purple-600",
-  "apis": "from-blue-500 via-indigo-500 to-violet-500",
-}
+
 
 const catDescriptions: Record<string, string> = {
   "frontend": "Frontend frameworks, UI libraries, state management, và testing tools",
