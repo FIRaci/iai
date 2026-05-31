@@ -1,7 +1,10 @@
 import { useParams, Link } from "react-router-dom"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, Pencil, MessageCircle, ExternalLink } from "lucide-react"
+import { ArrowLeft, Pencil, MessageCircle, ExternalLink, Heart } from "lucide-react"
 import { useEffect, useState } from "react"
+import { useBookmarks } from "@/hooks/useBookmarks"
+import { useRecentlyViewed } from "@/hooks/useRecentlyViewed"
+import { cn } from "@/lib/utils"
 import { StepBlock } from "@/components/blocks/StepBlock"
 import { CodeBlock } from "@/components/blocks/CodeBlock"
 import { NoteBlock } from "@/components/blocks/NoteBlock"
@@ -234,6 +237,15 @@ export function ToolGuide() {
 
   const gradient = slug ? gradientMap[slug] || "from-primary to-blue-500" : "from-primary to-blue-500"
 
+  const { isBookmarked, toggleBookmark } = useBookmarks()
+  const { addToRecent } = useRecentlyViewed()
+
+  useEffect(() => {
+    if (item) {
+      addToRecent({ path: item.path, title: item.title, category: item.category, difficulty: item.difficulty })
+    }
+  }, [item?.path])
+
   const [scrollPct, setScrollPct] = useState(0)
   useEffect(() => {
     const onScroll = () => {
@@ -275,6 +287,16 @@ export function ToolGuide() {
             <h1 className={`bg-gradient-to-r ${gradient} bg-clip-text text-3xl font-bold text-transparent`}>
               {item?.title || slug}
             </h1>
+            <button
+              onClick={() => toggleBookmark(path)}
+              className={cn(
+                "transition-all hover:scale-110 self-center",
+                isBookmarked(path) ? "text-red-500" : "text-muted-foreground/40 hover:text-red-400"
+              )}
+              aria-label={isBookmarked(path) ? "Bỏ yêu thích" : "Yêu thích"}
+            >
+              <Heart className={cn("h-5 w-5", isBookmarked(path) && "fill-red-500 heart-pop")} />
+            </button>
           </div>
           <PageTags difficulty={mod.difficulty} tags={mod.tags} />
           <div className="mt-2 flex items-center gap-3 text-xs text-muted-foreground">

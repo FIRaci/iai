@@ -5,9 +5,12 @@ import {
   BookOpen, Code2, GitCompare, Sparkles, Palette, Database, ArrowRight,
   Cpu, Mic, Search, Shield, Eye, Layers, Monitor, FolderTree, FlaskConical,
   Server, Brain, Video, BarChart3, Cloud, TestTube, FileText, Notebook, Dice5,
-  Package, Settings, Workflow, Terminal,
+  Package, Settings, Workflow, Terminal, Heart, Clock,
 } from "lucide-react"
 import { getContentTree } from "@/lib/content-loader"
+import { useBookmarks } from "@/hooks/useBookmarks"
+import { useRecentlyViewed } from "@/hooks/useRecentlyViewed"
+import { getToolIcon } from "@/lib/icons"
 
 const iconMap: Record<string, any> = {
   "ai-coding": Code2,
@@ -217,7 +220,11 @@ function getCategoryLinks() {
 export function Home() {
   const { totalTools } = getCategoryStats()
   const categoryLinks = getCategoryLinks()
-
+  const { bookmarks } = useBookmarks()
+  const { recent } = useRecentlyViewed()
+  const tree = getContentTree()
+  const allTools = tree.flatMap((c) => c.children || []).filter(Boolean)
+  const bookmarkedTools = allTools.filter((t) => bookmarks.includes(t.path))
   return (
     <>
       <Seo
@@ -268,8 +275,58 @@ export function Home() {
         {/* Random Tool */}
         <RandomToolWidget />
 
+        {/* Bookmarks */}
+        {bookmarkedTools.length > 0 && (
+          <div className="animate-fade-in-up stagger-2">
+            <h2 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2">
+              <Heart className="h-5 w-5 text-red-500" />
+              Yêu thích
+            </h2>
+            <div className="flex flex-wrap gap-2">
+              {bookmarkedTools.map((t) => {
+                const Icon = getToolIcon(t.path.split("/").pop() || "")
+                return (
+                  <Link
+                    key={t.path}
+                    to={t.path}
+                    className="group inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-2 text-sm font-medium text-foreground hover:bg-muted/50 hover:border-primary/30 transition-all"
+                  >
+                    <Icon className="h-3.5 w-3.5 text-muted-foreground" />
+                    {t.title}
+                  </Link>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Recently viewed */}
+        {recent.length > 0 && (
+          <div className="animate-fade-in-up stagger-3">
+            <h2 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2">
+              <Clock className="h-5 w-5 text-primary" />
+              Đã xem gần đây
+            </h2>
+            <div className="flex flex-wrap gap-2">
+              {recent.map((r) => {
+                const Icon = getToolIcon(r.path.split("/").pop() || "")
+                return (
+                  <Link
+                    key={r.path}
+                    to={r.path}
+                    className="group inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-2 text-sm font-medium text-foreground hover:bg-muted/50 hover:border-primary/30 transition-all"
+                  >
+                    <Icon className="h-3.5 w-3.5 text-muted-foreground" />
+                    {r.title}
+                  </Link>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
         {/* Quick Categories */}
-        <div className="animate-fade-in-up stagger-2">
+        <div className="animate-fade-in-up stagger-4">
           <h2 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2">
             <BookOpen className="h-5 w-5 text-primary" />
             Danh mục
@@ -295,7 +352,7 @@ export function Home() {
         </div>
 
         {/* AI Tools Section */}
-        <div className="animate-fade-in-up stagger-4">
+        <div className="animate-fade-in-up stagger-5">
           <h2 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2">
             <Sparkles className="h-5 w-5 text-primary" />
             AI Tools nổi bật

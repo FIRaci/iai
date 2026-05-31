@@ -2,13 +2,17 @@ import { useState, useMemo } from "react"
 import { Link, useParams } from "react-router-dom"
 import { getContentTree } from "@/lib/content-loader"
 import { getToolIcon } from "@/lib/icons"
-import { ChevronRight } from "lucide-react"
+import { ChevronRight, ArrowUpDown, Heart } from "lucide-react"
 import { getCategoryTitle, getCategoryIcon, catGradients } from "@/data/category-config"
 import { Seo } from "@/components/Seo"
 import { DifficultyBadge } from "@/components/PageTags"
 import { TagFilter } from "@/components/TagFilter"
+import { useBookmarks } from "@/hooks/useBookmarks"
+import { cn } from "@/lib/utils"
 
 
+
+const diffRank = (d?: string) => d === "beginner" ? 0 : d === "intermediate" ? 1 : d === "advanced" ? 2 : 1
 
 const catDescriptions: Record<string, string> = {
   "frontend": "Frontend frameworks, UI libraries, state management, và testing tools",
@@ -74,6 +78,9 @@ export function CategoryPage() {
   const catTitle = getCategoryTitle(catKey)
   const catDesc = catDescriptions[catKey] || `Hướng dẫn về ${catTitle.toLowerCase()} trên Windows 11`
   const [selectedTags, setSelectedTags] = useState<string[]>([])
+  const [selectedDifficulty, setSelectedDifficulty] = useState<string>("")
+  const [sortBy, setSortBy] = useState<string>("default")
+  const { bookmarks, toggleBookmark } = useBookmarks()
 
   const allTags = useMemo(() => {
     if (!cat) return []
@@ -82,12 +89,28 @@ export function CategoryPage() {
 
   const filteredChildren = useMemo(() => {
     if (!cat) return []
-    if (selectedTags.length === 0) return cat.children
-    return cat.children.filter(item => {
-      const itemTags = item.tags || []
-      return selectedTags.some(tag => itemTags.includes(tag))
-    })
-  }, [cat, selectedTags])
+    let items = cat.children
+
+    if (selectedTags.length > 0) {
+      items = items.filter(item => {
+        const itemTags = item.tags || []
+        return selectedTags.some(tag => itemTags.includes(tag))
+      })
+    }
+
+    if (selectedDifficulty) {
+      items = items.filter(item => item.difficulty === selectedDifficulty)
+    }
+
+    const sorted = [...items]
+    switch (sortBy) {
+      case "a-z": sorted.sort((a, b) => a.title.localeCompare(b.title)); break
+      case "z-a": sorted.sort((a, b) => b.title.localeCompare(a.title)); break
+      case "easy": sorted.sort((a, b) => diffRank(a.difficulty) - diffRank(b.difficulty)); break
+      case "hard": sorted.sort((a, b) => diffRank(b.difficulty) - diffRank(a.difficulty)); break
+    }
+    return sorted
+  }, [cat, selectedTags, selectedDifficulty, sortBy])
 
   const handleToggleTag = (tag: string) => {
     setSelectedTags(prev =>
@@ -126,50 +149,97 @@ export function CategoryPage() {
           onClear={handleClearTags}
         />
 
-        {selectedTags.length > 0 && (
-          <div className="mb-4 text-sm text-muted-foreground count-pulse">
-            Hiển thị {filteredChildren.length} / {cat.children.length} công cụ
+        <div className="mb-4 flex flex-wrap items-center gap-3">
+          <div className="flex items-center gap-2">
+            <ArrowUpDown className="h-3.5 w-3.5 text-muted-foreground" />
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="rounded-lg border border-border bg-background px-2.5 py-1.5 text-xs font-medium text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
+            >
+              <option value="default">Mặc định</option>
+              <option value="a-z">A-Z</option>
+              <option value="z-a">Z-A</option>
+              <option value="easy">Dễ → Khó</option>
+              <option value="hard">Khó → Dễ</option>
+            </select>
           </div>
-        )}
+
+          <div className="flex items-center gap-1.5">
+            {["", "beginner", "intermediate", "advanced"].map((d) => {
+              const labels: Record<string, string> = { "": "Tất cả", beginner: "Cơ bản", intermediate: "Trung bình", advanced: "Nâng cao" }
+              return (
+                <button
+                  key={d}
+                  onClick={() => setSelectedDifficulty(d)}
+                  className={cn(
+                    "rounded-full px-2.5 py-1 text-[11px] font-medium transition-all",
+                    selectedDifficulty === d
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-muted text-muted-foreground hover:bg-muted/80"
+                  )}
+                >
+                  {labels[d]}
+                </button>
+              )
+            })}
+          </div>
+
+          {(selectedTags.length > 0 || selectedDifficulty) && (
+            <span className="text-xs text-muted-foreground count-pulse">
+              Hiển thị {filteredChildren.length} / {cat.children.length} công cụ
+            </span>
+          )}
+        </div>
 
         <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {filteredChildren.map((item, index) => {
             const slug = item.path.split("/").pop() || ""
             const ItemIcon = getToolIcon(slug)
+            const bookmarked = bookmarks.includes(item.path)
             return (
-              <Link key={item.path} to={item.path}>
-                <div
-                  className="group flex items-center gap-3 rounded-xl border border-border bg-card px-5 py-4 card-hover cursor-pointer animate-fade-in-up"
-                  style={{ animationDelay: `${Math.min(index * 0.04, 0.5)}s` }}
+              <div key={item.path} className="relative animate-fade-in-up" style={{ animationDelay: `${Math.min(index * 0.04, 0.5)}s` }}>
+                <Link to={item.path}>
+                  <div className="group flex items-center gap-3 rounded-xl border border-border bg-card px-5 py-4 card-hover cursor-pointer">
+                    <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${gradient} text-white/90 shadow-sm group-hover:scale-105 transition-transform`}>
+                      <ItemIcon className="h-4 w-4" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="font-semibold text-foreground group-hover:text-primary transition-colors truncate">
+                        {item.title}
+                      </div>
+                      <div className="mt-1 flex items-center gap-2">
+                        {item.difficulty && <DifficultyBadge difficulty={item.difficulty} />}
+                        {item.tags?.slice(0, 2).map(tag => (
+                          <span key={tag} className="inline-flex items-center rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium text-muted-foreground">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <ChevronRight className="h-5 w-5 text-muted-foreground opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
+                  </div>
+                </Link>
+                <button
+                  onClick={() => toggleBookmark(item.path)}
+                  className={cn(
+                    "absolute right-3 top-3 z-10 transition-all hover:scale-110",
+                    bookmarked ? "text-red-500" : "text-muted-foreground/40 hover:text-red-400"
+                  )}
+                  aria-label={bookmarked ? "Bỏ yêu thích" : "Yêu thích"}
                 >
-                  <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${gradient} text-white/90 shadow-sm group-hover:scale-105 transition-transform`}>
-                    <ItemIcon className="h-4 w-4" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="font-semibold text-foreground group-hover:text-primary transition-colors truncate">
-                      {item.title}
-                    </div>
-                    <div className="mt-1 flex items-center gap-2">
-                      {item.difficulty && <DifficultyBadge difficulty={item.difficulty} />}
-                      {item.tags?.slice(0, 2).map(tag => (
-                        <span key={tag} className="inline-flex items-center rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium text-muted-foreground">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <ChevronRight className="h-5 w-5 text-muted-foreground opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
-                </div>
-              </Link>
+                  <Heart className={cn("h-4 w-4", bookmarked && "fill-red-500 heart-pop")} />
+                </button>
+              </div>
             )
           })}
         </div>
 
-        {filteredChildren.length === 0 && selectedTags.length > 0 && (
+        {filteredChildren.length === 0 && (selectedTags.length > 0 || selectedDifficulty) && (
           <div className="py-12 text-center">
-            <p className="text-muted-foreground">Không có công cụ nào phù hợp với tag đã chọn</p>
+            <p className="text-muted-foreground">Không có công cụ nào phù hợp với bộ lọc</p>
             <button
-              onClick={handleClearTags}
+              onClick={() => { setSelectedTags([]); setSelectedDifficulty("") }}
               className="mt-3 text-sm text-primary hover:underline"
             >
               Xoá bộ lọc
