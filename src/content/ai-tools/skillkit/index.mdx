@@ -1,0 +1,63 @@
+---
+title: "SkillKit"
+category: "ai-tools"
+icon: "package"
+difficulty: "beginner"
+tags: ["cli", "opensource", "skills", "package-manager", "multi-model"]
+lastUpdated: "2026-05-31"
+---
+
+## Tổng quan
+
+<Note type="info">
+**SkillKit** là package manager cho AI agent skills — `npx skillkit`. Install từ 400K+ skills từ 31 sources, auto-translate giữa các agent format, và ship đến 46 agents cùng lúc.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="bash" code={`# Install global
+npm install -g skillkit
+
+# Dùng npx (không cần cài đặt)
+npx skillkit add anthropics/skills
+
+# Init project
+skillkit init`} />
+
+## Sử dụng
+
+<CodeBlock language="bash" code={`# Install skills từ marketplace
+skillkit add anthropics/skills
+skillkit add vercel-labs/agent-skills
+
+# Translate skill sang format agent khác
+skillkit translate my-skill --to cursor
+skillkit translate --all --to windsurf,codex
+
+# Stack-aware recommendations
+skillkit recommend
+
+# Session memory
+skillkit memory compress
+skillkit memory search "auth patterns"
+
+# Sync lên agent config
+skillkit sync
+
+# Generate AI skill từ mô tả
+skillkit generate`} />
+
+## Tính năng nổi bật
+
+<Note type="tip">
+**Translate:** Viết skill một lần, dùng được trên Claude Code, Cursor, Codex, Windsurf, Copilot — tự động convert format.
+</Note>
+
+<Note type="tip">
+**Mesh network:** Phân phối agents qua nhiều máy với P2P encrypted.
+</Note>
+
+## Liên kết
+
+- [GitHub](https://github.com/rohitg00/skillkit)
+- [Homepage](https://agenstskills.com)

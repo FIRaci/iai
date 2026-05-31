@@ -1,0 +1,60 @@
+---
+title: "SkillPort"
+category: "ai-tools"
+icon: "anchor"
+difficulty: "intermediate"
+tags: ["cli", "opensource", "skills", "mcp", "python"]
+lastUpdated: "2026-05-31"
+---
+
+## Tổng quan
+
+<Note type="info">
+**SkillPort** là SkillOps toolkit — bring Agent Skills đến bất kỳ AI agent nào qua CLI hoặc MCP server. Hỗ trợ Cursor, Copilot, Windsurf, Cline, Codex, và agents không có native skill support.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="bash" code={`# Install bằng pip
+pip install skillport
+
+# Install MCP server
+uv tool install skillport-mcp
+
+# Init project
+skillport init`} />
+
+## Sử dụng
+
+<CodeBlock language="bash" code={`# Khởi tạo skills trong project
+skillport init
+
+# Generate AGENTS.md với skill table
+skillport doc
+
+# Tìm skill
+skillport search "code review"
+
+# Load full instructions
+skillport show code-review
+
+# Validate skill
+skillport validate my-skill.md
+
+# MCP server (cho agents không support skills)
+skillport mcp`} />
+
+## Tính năng nổi bật
+
+<Note type="tip">
+**MCP Mode:** Agents không hỗ trợ skills native vẫn có thể dùng skills qua MCP server — search skills, load on demand.
+</Note>
+
+<Note type="tip">
+**Search-first:** Load metadata ~100 tokens/skill, full instructions chỉ khi cần — tiết kiệm context.
+</Note>
+
+## Liên kết
+
+- [GitHub](https://github.com/gotalab/skillport)
+- [Documentation](https://gotalab.github.io/skillport)

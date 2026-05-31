@@ -1,0 +1,58 @@
+---
+title: "Markit"
+category: "cli-tools"
+icon: "file-text"
+difficulty: "beginner"
+tags: ["cli", "opensource", "markdown", "document", "converter"]
+lastUpdated: "2026-05-31"
+---
+
+## Tổng quan
+
+<Note type="info">
+**Markit** (markit-ai) là CLI tool Node.js để convert bất kỳ file nào sang Markdown — PDF, DOCX, PPTX, XLSX, HTML, EPUB, Jupyter, images, audio, URLs. Pluggable converters, built-in LLM providers cho image description và audio transcription.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="bash" code={`# Install global
+npm install -g markit-ai
+
+# Dùng npx (không cần cài đặt)
+npx markit-ai report.pdf -o report.md`} />
+
+## Sử dụng
+
+<CodeBlock language="bash" code={`# Convert file
+markit document.pdf -o output.md
+markit presentation.pptx -o slides.md
+markit spreadsheet.xlsx -o data.md
+
+# Convert URL
+markit https://example.com -o page.md
+
+# Read từ stdin
+cat document.pdf | markit -
+
+# Với AI image description
+markit image.jpg -p "Describe this diagram in detail"
+
+# JSON output
+markit report.pdf --json
+
+# List supported formats
+markit formats
+
+# Init config
+markit init`} />
+
+## Supported Formats
+
+<Note type="info">
+PDF, DOCX, PPTX, XLSX, HTML, EPUB, Jupyter (.ipynb), RSS/Atom, CSV/TSV, JSON, YAML, XML/SVG, Images (JPG/PNG/GIF/WebP), Audio (MP3/WAV/M4A/FLAC), ZIP, URLs, Wikipedia, Code files, Plain text.
+</Note>
+
+## Liên kết
+
+- [GitHub](https://github.com/natustx/markit)
+- [npm](https://www.npmjs.com/package/markit-ai)

@@ -1,0 +1,55 @@
+---
+title: "Content Core"
+category: "cli-tools"
+icon: "globe"
+difficulty: "beginner"
+tags: ["cli", "opensource", "extraction", "mcp", "python"]
+lastUpdated: "2026-05-31"
+---
+
+## Tổng quan
+
+<Note type="info">
+**Content Core** là unified content extraction tool — extract, process, và summarize content từ URLs, files, và text qua CLI, Python API, hoặc MCP server. Hỗ trợ web, documents (PDF/DOCX/PPTX/XLSX/EPUB), audio/video transcription.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="bash" code={`# Install
+pip install content-core
+
+# Dùng uvx (không cần cài đặt)
+uvx content-core extract https://example.com`} />
+
+## Sử dụng
+
+<CodeBlock language="bash" code={`# Extract từ URL
+content-core extract https://example.com
+
+# Extract từ file
+content-core extract document.pdf --format json
+
+# Từ stdin
+echo "some text" | content-core extract
+
+# Với specific engine
+content-core extract https://example.com --engine firecrawl
+
+# Summarize
+content-core summarize "long text here" --context "one sentence"
+
+# MCP server (cho AI agents)
+content-core mcp`} />
+
+## Engines hỗ trợ
+
+<Note type="info">
+**URL engines:** auto, simple, firecrawl, jina, crawl4ai
+**Document engines:** auto, simple, docling
+**Audio:** transcription tự động qua Whisper
+</Note>
+
+## Liên kết
+
+- [GitHub](https://github.com/lfnovo/content-core)
+- [PyPI](https://pypi.org/project/content-core/)

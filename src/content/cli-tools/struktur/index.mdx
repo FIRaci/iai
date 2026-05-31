@@ -1,0 +1,57 @@
+---
+title: "Struktur"
+category: "cli-tools"
+icon: "database"
+difficulty: "intermediate"
+tags: ["cli", "opensource", "extraction", "json", "llm"]
+lastUpdated: "2026-05-31"
+---
+
+## Tổng quan
+
+<Note type="info">
+**Struktur** là structured data extraction tool dùng LLMs — feed documents, nhận validated JSON. Tự động parse files, chunking, retries, merge, dedup. Bạn chỉ cần define schema và chọn strategy.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="bash" code={`# Install
+npm install -g @struktur/cli
+
+# Dùng npx
+npx @struktur/cli extract --input invoice.pdf --fields "total,date,vendor"`} />
+
+## Sử dụng
+
+<CodeBlock language="bash" code={`# Extract với fields đơn giản
+struktur extract --input invoice.pdf --fields "total,date,vendor"
+
+# Với JSON schema
+struktur extract --input contract.docx --schema schema.json
+
+# Từ stdin
+cat document.pdf | struktur extract --stdin --fields "name,price"
+
+# Các strategies
+struktur extract --input report.pdf --fields "title,author" --strategy parallel
+struktur extract --input large.docx --fields "items[]" --strategy parallelAutoMerge
+
+# Parse trước để inspect
+struktur parse document.pdf
+
+# Chỉ định model
+struktur extract --input doc.pdf --fields "summary" --model claude-sonnet-4-20250514`} />
+
+## Extraction Strategies
+
+<Note type="info">
+**agent** (default): Autonomous exploration — phù hợp nhất cho hầu hết documents.
+**simple:** Input nhỏ, fit trong một context window.
+**parallel/sequential:** Input lớn, chia chunk.
+**doublePass:** Quality cao, two-pass refinement.
+</Note>
+
+## Liên kết
+
+- [GitHub](https://github.com/mateffy/struktur)
+- [npm](https://www.npmjs.com/package/@struktur/cli)

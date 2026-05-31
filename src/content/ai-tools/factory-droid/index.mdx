@@ -1,0 +1,50 @@
+---
+title: "Factory Droid"
+category: "ai-tools"
+icon: "bot"
+difficulty: "intermediate"
+tags: ["cli", "agent", "automation", "code-review", "mcp"]
+lastUpdated: "2026-05-31"
+---
+
+## Tổng quan
+
+<Note type="info">
+**Factory Droid** (trước đây là Factory AI) là AI coding agent chuyên về code review và tự động sửa lỗi. Tích hợp sâu với GitHub để tự động review PR và tạo plan sửa lỗi.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="bash" code={`# Install bằng npm
+npm install -g @factory-ai/droid
+
+# Hoặc dùng npx
+npx @factory-ai/droid --help`} />
+
+## Sử dụng
+
+<CodeBlock language="bash" code={`# Review local changes
+droid review
+
+# Review specific PR
+droid review --pr 42
+
+# Auto-fix issues
+droid fix
+
+# Watch mode - tự động review khi code thay đổi
+droid watch
+
+# Với MCP server
+droid mcp`} />
+
+## Tính năng nổi bật
+
+<Note type="tip">
+**Auto-fix:** Không chỉ phát hiện lỗi, Droid còn tự động tạo fix và đề xuất PR.
+</Note>
+
+## Liên kết
+
+- [GitHub](https://github.com/factory-ai/droid)
+- [Documentation](https://docs.factory.ai)

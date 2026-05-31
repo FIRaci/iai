@@ -1,0 +1,64 @@
+---
+title: "Kreuzberg"
+category: "cli-tools"
+icon: "file-text"
+difficulty: "intermediate"
+tags: ["cli", "opensource", "document", "ocr", "rust", "mcp"]
+lastUpdated: "2026-05-31"
+---
+
+## Tổng quan
+
+<Note type="info">
+**Kreuzberg** là document intelligence framework viết bằng Rust — extract text, metadata từ 56+ formats (PDF, Office, images, HTML, email, archives) với tốc độ native. Hỗ trợ OCR, embeddings, và có CLI, REST API, MCP server.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="bash" code={`# CLI binary (cross-platform)
+# Download từ GitHub releases
+
+# Python
+pip install kreuzberg
+
+# Dùng Docker
+docker run ghcr.io/kreuzberg-dev/kreuzberg --help`} />
+
+## Sử dụng
+
+<CodeBlock language="bash" code={`# Extract text từ file
+kreuzberg extract document.pdf
+kreuzberg extract image.png --ocr
+
+# Batch processing
+kreuzberg batch ./docs/ --output ./output/
+
+# Output JSON
+kreuzberg extract document.pdf --format json
+
+# MCP server (cho AI agents)
+kreuzberg mcp
+
+# REST API server
+kreuzberg serve --port 8080
+
+# Generate embeddings
+kreuzberg embed document.pdf
+
+# Detect MIME type
+kreuzberg detect unknown-file`} />
+
+## Tính năng nổi bật
+
+<Note type="tip">
+**Polyglot:** Native bindings cho Rust, Python, Node.js, Ruby, Go, Java, C#, PHP, Elixir — dùng được ở mọi stack.
+</Note>
+
+<Note type="tip">
+**OCR:** Hỗ trợ Tesseract (native), EasyOCR, PaddleOCR — tuỳ chọn backend.
+</Note>
+
+## Liên kết
+
+- [GitHub](https://github.com/kreuzberg-dev/kreuzberg)
+- [Documentation](https://kreuzberg.dev)

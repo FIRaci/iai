@@ -1,0 +1,54 @@
+---
+title: "Goose"
+category: "ai-tools"
+icon: "terminal"
+difficulty: "intermediate"
+tags: ["cli", "opensource", "agent", "mcp", "automation"]
+lastUpdated: "2026-05-31"
+---
+
+## Tổng quan
+
+<Note type="info">
+**Goose** là AI coding agent mở từ Block (Square). Chạy CLI + Desktop, Apache 2.0, native MCP integration. Được thiết kế để tự động hoá complex development workflows.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="bash" code={`# macOS (Homebrew)
+brew install goose
+
+# Linux/macOS script
+curl -fsSL https://goose.sh/install | bash
+
+# Docker
+docker run -it --rm -v $(pwd):/workspace ghcr.io/block/goose`} />
+
+## Sử dụng
+
+<CodeBlock language="bash" code={`# Start goose trong project
+goose run
+
+# Chạy task cụ thể
+goose run "Refactor authentication module to use JWT"
+
+# Với MCP tools
+goose run --mcp-server tavily-search
+
+# List available MCP servers
+goose mcp list`} />
+
+## Tính năng chính
+
+<Note type="tip">
+**MCP Native:** Goose có MCP support built-in — connect với bất kỳ MCP server nào (database, search, APIs).
+</Note>
+
+<Note type="tip">
+**Apache 2.0:** Fully open-source, không có hạn chế sử dụng cho commercial projects.
+</Note>
+
+## Liên kết
+
+- [GitHub](https://github.com/block/goose)
+- [Documentation](https://block.github.io/goose)
