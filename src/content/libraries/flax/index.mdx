@@ -1,0 +1,42 @@
+---
+title: "Flax"
+category: "libraries"
+icon: "brain"
+difficulty: "intermediate"
+tags: ["ml", "jax", "neural-network", "google"]
+lastUpdated: "2026-06-07"
+---
+
+## Tổng quan
+
+<Note type="info">
+**Flax** là high-performance neural network library cho JAX của Google Research. Cung cấp functional API (không class-based như PyTorch), hỗ trợ training loops, optimizers, và distributed training.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install flax`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`import flax.linen as nn
+import jax.numpy as jnp
+
+class MLP(nn.Module):
+    hidden: int
+
+    @nn.compact
+    def __call__(self, x):
+        x = nn.Dense(self.hidden)(x)
+        x = nn.relu(x)
+        x = nn.Dense(10)(x)
+        return x
+
+model = MLP(hidden=128)
+params = model.init(jax.random.PRNGKey(0), jnp.ones((1, 784)))
+output = model.apply(params, jnp.ones((1, 784)))`} />
+
+## Liên kết
+
+- [Flax Docs](https://flax.readthedocs.io)
+- [GitHub](https://github.com/google/flax)

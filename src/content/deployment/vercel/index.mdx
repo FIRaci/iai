@@ -1,0 +1,36 @@
+---
+title: "Vercel"
+category: "deployment"
+icon: "cloud"
+difficulty: "beginner"
+tags: ["deploy", "frontend", "serverless", "jamstack"]
+lastUpdated: "2026-06-07"
+---
+
+## Tổng quan
+
+<Note type="info">
+**Vercel** là cloud deployment platform cho frontend và serverless functions. Tích hợp sâu với Next.js, hỗ trợ automatic SSL, CDN, preview deployments, và Git integration. IAI được deploy trên Vercel.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`npm install -g vercel
+# Login
+vercel login`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`# Deploy tu project
+vercel --prod
+
+# Deploy voi config
+vercel --prod --build-env NODE_ENV=production
+
+# List deployments
+vercel list`} />
+
+## Liên kết
+
+- [Vercel](https://vercel.com)
+- [Docs](https://vercel.com/docs)

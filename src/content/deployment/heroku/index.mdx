@@ -1,0 +1,42 @@
+---
+title: "Heroku"
+category: "deployment"
+icon: "cloud"
+difficulty: "beginner"
+tags: ["deploy", "paas", "backend", "cloud"]
+lastUpdated: "2026-06-07"
+---
+
+## Tổng quan
+
+<Note type="info">
+**Heroku** là Platform-as-a-Service (PaaS) cloud platform của Salesforce. Hỗ trợ deploy apps với Git push, tự động quản lý scaling, monitoring, và add-ons (database, redis, etc.).
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`# Install Heroku CLI
+winget install Heroku.heroku-cli
+# hoac
+npm install -g heroku
+
+heroku login`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`# Tao app
+heroku create my-app-name
+
+# Deploy
+git push heroku main
+
+# Scale
+heroku ps:scale web=1
+
+# Logs
+heroku logs --tail`} />
+
+## Liên kết
+
+- [Heroku](https://heroku.com)
+- [Dev Center](https://devcenter.heroku.com)

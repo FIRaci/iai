@@ -1,0 +1,34 @@
+---
+title: "Agency"
+category: "ai-tools"
+icon: "bot"
+difficulty: "intermediate"
+tags: ["agent", "framework", "multi-agent", "open-source"]
+lastUpdated: "2026-06-07"
+---
+
+## Tổng quan
+
+<Note type="info">
+**Agency** là open-source framework cho multi-agent AI systems. Hỗ trợ agent-to-agent communication, tool sharing, hierarchical agent structures, và streaming responses. Phù hợp cho complex AI workflows.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install agency`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`from agency import Agent, run_demo
+
+# Tao agents
+planner = Agent("planner", model="gpt-4o")
+coder = Agent("coder", model="claude-sonnet-4")
+
+# Agents tu dong giao tiep voi nhau
+result = planner.delegate_to(coder, "Write a Python script")
+print(result)`} />
+
+## Liên kết
+
+- [Agency GitHub](https://github.com/agency-agency/agency)

@@ -1,0 +1,40 @@
+---
+title: "JAX"
+category: "libraries"
+icon: "brain"
+difficulty: "intermediate"
+tags: ["ml", "google", "gpu", "autograd"]
+lastUpdated: "2026-06-07"
+---
+
+## Tổng quan
+
+<Note type="info">
+**JAX** là high-performance ML framework của Google Research. Cung cấp automatic differentiation (Autograd), JIT compilation (XLA), vectorization (vmap), và chạy trên GPU/TPU. Là nền tảng cho Flax, Optax, và nhiều thư viện khác.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install jax jaxlib`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`import jax.numpy as jnp
+from jax import grad, jit, vmap
+
+def f(x):
+    return jnp.sum(x ** 2)
+
+grad_f = grad(f)
+result = grad_f(jnp.array([1.0, 2.0, 3.0]))
+print(result)  # [2. 4. 6.]
+
+# JIT compile
+@jit
+def fast_fn(x):
+    return x * 2 + 1`} />
+
+## Liên kết
+
+- [JAX Docs](https://jax.readthedocs.io)
+- [GitHub](https://github.com/google/jax)

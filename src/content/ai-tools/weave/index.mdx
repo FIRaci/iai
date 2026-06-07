@@ -1,0 +1,36 @@
+---
+title: "Weave"
+category: "ai-tools"
+icon: "brain"
+difficulty: "intermediate"
+tags: ["mlops", "llm", "monitoring", "weights-and-biases"]
+lastUpdated: "2026-06-07"
+---
+
+## Tổng quan
+
+<Note type="info">
+**Weave** là LLM ops platform của Weights & Biases. Cung cấp LLM monitoring, prompt versioning, dataset management, evaluation, và tracing cho production LLM applications.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install weave`} />
+
+## Sử dụng
+
+<CodeBlock language="python" code={`import weave
+weave.init("my-project")
+
+@weave.op()
+def translate(text, target_lang="vi"):
+    response = openai.chat.completions.create(...)
+    return response.choices[0].message.content
+
+# Tu dong log: inputs, outputs, latency, cost
+result = translate("Hello world")`} />
+
+## Liên kết
+
+- [Weave Docs](https://weave-docs.wandb.ai)
+- [Weights & Biases](https://wandb.ai)
