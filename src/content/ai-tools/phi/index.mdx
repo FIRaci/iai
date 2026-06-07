@@ -1,0 +1,32 @@
+---
+title: "Microsoft Phi"
+category: "ai-tools"
+icon: "sparkles"
+difficulty: "beginner"
+tags: ["llm", "open-source", "microsoft", "small-model"]
+lastUpdated: "2026-06-07"
+---
+
+## Tổng quan
+
+<Note type="info">
+**Phi** là family of small-but-capable LLMs của Microsoft Research. Phi-3/Phi-4 có kích thước 3.8B-14B tham số nhưng hiệu suất ngang models lớn hơn. Gồm Phi-3-mini, Phi-3-small, Phi-3-medium, Phi-3-vision.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install transformers torch
+# Chay local voi Ollama
+ollama pull phi4`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`from transformers import AutoModelForCausalLM, AutoTokenizer
+model = AutoModelForCausalLM.from_pretrained("microsoft/Phi-3-mini-4k-instruct")
+tokenizer = AutoTokenizer.from_pretrained("microsoft/Phi-3-mini-4k-instruct")
+inputs = tokenizer("Explain AI", return_tensors="pt")
+outputs = model.generate(**inputs, max_length=200)`} />
+
+## Liên kết
+
+- [Phi GitHub](https://github.com/microsoft/Phi-3CookBook)

@@ -1,0 +1,32 @@
+---
+title: "StarCoder"
+category: "ai-tools"
+icon: "code"
+difficulty: "beginner"
+tags: ["code-generation", "open-source", "huggingface"]
+lastUpdated: "2026-06-07"
+---
+
+## Tổng quan
+
+<Note type="info">
+**StarCoder** là open-source code LLM của Hugging Face và BigCode, trained trên 80+ ngôn ngữ lập trình. StarCoder2 (15B) hỗ trợ code completion, code generation, và chat-based coding.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install transformers torch
+# Hoac dung API
+pip install bitsandbytes`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`from transformers import AutoModelForCausalLM, AutoTokenizer
+tokenizer = AutoTokenizer.from_pretrained("bigcode/starcoder2-15b-instruct-v0.1")
+model = AutoModelForCausalLM.from_pretrained("bigcode/starcoder2-15b-instruct-v0.1")
+inputs = tokenizer("def fibonacci(n):", return_tensors="pt")
+outputs = model.generate(**inputs, max_length=50)`} />
+
+## Liên kết
+
+- [StarCoder GitHub](https://github.com/bigcode-project/starcoder2)

@@ -1,0 +1,33 @@
+---
+title: "Qwen"
+category: "ai-tools"
+icon: "sparkles"
+difficulty: "beginner"
+tags: ["llm", "open-source", "alibaba"]
+lastUpdated: "2026-06-07"
+---
+
+## Tổng quan
+
+<Note type="info">
+**Qwen** (通义千问) là family of LLMs của Alibaba Cloud, gồm Qwen2.5, Qwen-Coder, Qwen-VL, và Qwen-Audio. Có sẵn trên Hugging Face và ModelScope, hỗ trợ 29+ ngôn ngữ.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install transformers torch
+# Hoac dung API
+pip install dashscope`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`from transformers import AutoModelForCausalLM, AutoTokenizer
+tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-7B-Instruct")
+model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-7B-Instruct")
+# Hoac qua API
+from dashscope import Generation
+response = Generation.call(model="qwen-max", prompt="Hello!")`} />
+
+## Liên kết
+
+- [Qwen GitHub](https://github.com/QwenLM/Qwen)

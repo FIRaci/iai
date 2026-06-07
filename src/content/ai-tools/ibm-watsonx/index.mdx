@@ -1,0 +1,31 @@
+---
+title: "IBM watsonx"
+category: "ai-tools"
+icon: "brain"
+difficulty: "intermediate"
+tags: ["cloud", "ibm", "enterprise"]
+lastUpdated: "2026-06-07"
+---
+
+## Tổng quan
+
+<Note type="info">
+**IBM watsonx** là AI platform của IBM gồm 3 thành phần: watsonx.ai (train/deploy), watsonx.data (data lake), và watsonx.governance (AI governance). Hỗ trợ Granite models, Hugging Face, và third-party LLMs.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install ibm-watsonx-ai`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`from ibm_watsonx_ai import Credentials
+creds = Credentials(url="https://us-south.ml.cloud.ibm.com", api_key="your-api-key")
+# Goi model Granite
+from ibm_watsonx_ai.foundation_models import Model
+model = Model(model_id="ibm/granite-13b-instruct-v2", credentials=creds)
+response = model.generate_text("Hello!")`} />
+
+## Liên kết
+
+- [IBM watsonx](https://www.ibm.com/watsonx)

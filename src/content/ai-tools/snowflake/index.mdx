@@ -1,0 +1,29 @@
+---
+title: "Snowflake"
+category: "ai-tools"
+icon: "database"
+difficulty: "intermediate"
+tags: ["data", "cloud", "sql"]
+lastUpdated: "2026-06-07"
+---
+
+## Tổng quan
+
+<Note type="info">
+**Snowflake** là cloud data platform hỗ trợ AI/ML workloads qua Snowpark ML, Cortex AI (LLM functions), và Native Apps. Tích hợp với Streamlit trong Snowflake để xây dựng AI apps.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install snowflake-connector-python snowflake-snowpark-python`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`from snowflake.snowpark import Session
+session = Session.builder.configs(connection_params).create()
+# Goi Cortex AI
+result = session.sql("SELECT SNOWFLAKE.CORTEX.COMPLETE('mistral-large2', 'Hello!')").collect()`} />
+
+## Liên kết
+
+- [Snowflake](https://www.snowflake.com)

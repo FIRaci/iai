@@ -1,0 +1,39 @@
+---
+title: "Kilo Code"
+category: "ai-tools"
+icon: "terminal"
+difficulty: "beginner"
+tags: ["coding-agent", "cli", "open-source"]
+lastUpdated: "2026-06-07"
+---
+
+## Tổng quan
+
+<Note type="info">
+**Kilo Code** là AI coding agent CLI, fork từ Cline, hỗ trợ multi-model (Claude, GPT, Gemini), autonomous code generation, và integrated terminal. Tương tự Claude Code và OpenCode.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`npm install -g kilo-code
+# Hoac
+npx kilo-code`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`# Khoi dong interactive session
+kilo
+# Chay task tu dong
+kilo "Add authentication to this project"
+# Specify model
+kilo --model claude-sonnet-4`} />
+
+## Tips
+
+<Note type="tip">
+Kilo Code hỗ trợ custom provider config, cho phép dùng local models qua Ollama hoặc API keys từ nhiều providers.
+</Note>
+
+## Liên kết
+
+- [Kilo Code GitHub](https://github.com/kilocode)

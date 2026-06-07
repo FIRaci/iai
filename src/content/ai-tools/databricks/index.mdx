@@ -1,0 +1,29 @@
+---
+title: "Databricks"
+category: "ai-tools"
+icon: "database"
+difficulty: "intermediate"
+tags: ["data", "mlops", "spark"]
+lastUpdated: "2026-06-07"
+---
+
+## Tổng quan
+
+<Note type="info">
+**Databricks** là unified data analytics platform trên Apache Spark. Hỗ trợ MLflow, Delta Lake, Model Serving, và Foundation Model APIs cho LLM inference.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install databricks-connect databricks-sdk`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`from databricks.sdk import WorkspaceClient
+w = WorkspaceClient(host="https://your-workspace.cloud.databricks.com", token="your-token")
+# Goi Foundation Model API
+response = w.serving_endpoints.query(name="databricks-dbrx-instruct", inputs={"prompt": "Hello!"})`} />
+
+## Liên kết
+
+- [Databricks](https://www.databricks.com)

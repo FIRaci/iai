@@ -1,0 +1,32 @@
+---
+title: "Gemma"
+category: "ai-tools"
+icon: "sparkles"
+difficulty: "beginner"
+tags: ["llm", "open-source", "google"]
+lastUpdated: "2026-06-07"
+---
+
+## Tổng quan
+
+<Note type="info">
+**Gemma** là family of lightweight open-source LLMs của Google DeepMind, dựa trên công nghệ của Gemini. Gồm Gemma 2, CodeGemma (code generation), RecurrentGemma, và ShieldGemma (safety).
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install transformers torch
+# Hoac dung Keras
+pip install keras-nlp`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`from transformers import AutoModelForCausalLM, AutoTokenizer
+tokenizer = AutoTokenizer.from_pretrained("google/gemma-2-9b-it")
+model = AutoModelForCausalLM.from_pretrained("google/gemma-2-9b-it")
+inputs = tokenizer("Write a poem", return_tensors="pt")
+outputs = model.generate(**inputs, max_length=100)`} />
+
+## Liên kết
+
+- [Gemma](https://ai.google.dev/gemma)

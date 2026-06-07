@@ -1,0 +1,37 @@
+---
+title: "Azure AI Studio"
+category: "ai-tools"
+icon: "brain"
+difficulty: "beginner"
+tags: ["cloud", "microsoft", "api"]
+lastUpdated: "2026-06-07"
+---
+
+## Tổng quan
+
+<Note type="info">
+**Azure AI Studio** là unified platform của Microsoft để xây dựng, deploy và quản lý AI applications. Tích hợp Azure OpenAI, model catalog, prompt flow, và evaluation tools.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`az extension add --name ai-studio
+# hoac
+pip install azure-ai-generative`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`from azure.ai.generative import AIClient
+client = AIClient(subscription_id, resource_group, project_name)
+# Deploy model tu catalog
+client.deploy_model("gpt-4o", "gpt4o-deployment")`} />
+
+## Tips
+
+<Note type="tip">
+Dùng **Prompt Flow** trong AI Studio để thiết kế và test LLM workflows trực quan.
+</Note>
+
+## Liên kết
+
+- [Azure AI Studio](https://ai.azure.com)

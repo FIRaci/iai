@@ -1,0 +1,30 @@
+---
+title: "WizardCoder"
+category: "ai-tools"
+icon: "code"
+difficulty: "beginner"
+tags: ["code-generation", "open-source", "wizard"]
+lastUpdated: "2026-06-07"
+---
+
+## Tổng quan
+
+<Note type="info">
+**WizardCoder** là code LLM của WizardLM team, sử dụng Evol-Instruct fine-tuning để cải thiện khả năng code generation. WizardCoder-Python-34B-V1.0 đạt top kết quả trên HumanEval benchmarks.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install transformers torch`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`from transformers import AutoModelForCausalLM, AutoTokenizer
+tokenizer = AutoTokenizer.from_pretrained("WizardLM/WizardCoder-Python-34B-V1.0")
+model = AutoModelForCausalLM.from_pretrained("WizardLM/WizardCoder-Python-34B-V1.0")
+inputs = tokenizer("Write a quicksort in Python", return_tensors="pt")
+outputs = model.generate(**inputs, max_length=200)`} />
+
+## Liên kết
+
+- [WizardCoder GitHub](https://github.com/nlpxucan/WizardLM)
