@@ -1,0 +1,34 @@
+---
+title: "Outlines"
+category: "ai-tools"
+icon: "code"
+difficulty: "intermediate"
+tags: ["llm", "structured-generation", "python"]
+lastUpdated: "2026-06-07"
+---
+
+## Tổng quan
+
+<Note type="info">
+**Outlines** là library cho structured text generation từ LLMs. Hỗ trợ JSON Schema, regex, Pydantic models, và context-free grammars để đảm bảo output format chính xác.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install outlines`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`import outlines
+model = outlines.models.transformers("microsoft/Phi-3-mini-4k-instruct")
+# Generate JSON theo schema
+from pydantic import BaseModel
+class Person(BaseModel):
+    name: str
+    age: int
+generator = outlines.generate.json(model, Person)
+result = generator("Create a person")`} />
+
+## Liên kết
+
+- [Outlines GitHub](https://github.com/dottxt-ai/outlines)

@@ -1,0 +1,34 @@
+---
+title: "AWS Bedrock"
+category: "ai-tools"
+icon: "cloud"
+difficulty: "intermediate"
+tags: ["cloud", "aws", "llm", "api"]
+lastUpdated: "2026-06-07"
+---
+
+## Tổng quan
+
+<Note type="info">
+**AWS Bedrock** là managed service của AWS cho foundation models từ Amazon, Anthropic, Meta, Mistral, Cohere, và Stability AI. Hỗ trợ serverless inference, fine-tuning, và knowledge bases cho RAG.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install boto3
+# Cau hinh AWS credentials
+aws configure`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`import boto3
+client = boto3.client("bedrock-runtime", region_name="us-east-1")
+response = client.invoke_model(
+    modelId="anthropic.claude-sonnet-4-20250514",
+    contentType="application/json",
+    body='{"messages":[{"role":"user","content":"Hello"}]}'
+)`} />
+
+## Liên kết
+
+- [AWS Bedrock](https://aws.amazon.com/bedrock)

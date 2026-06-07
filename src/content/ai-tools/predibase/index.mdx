@@ -1,0 +1,35 @@
+---
+title: "Predibase"
+category: "ai-tools"
+icon: "brain"
+difficulty: "intermediate"
+tags: ["fine-tuning", "llm", "cloud", "lorax"]
+lastUpdated: "2026-06-07"
+---
+
+## Tổng quan
+
+<Note type="info">
+**Predibase** là managed fine-tuning platform cho LLMs. Sử dụng LoRAX (LoRA eXchange) để fine-tune và serve models với chi phí thấp. Hỗ trợ Llama, Mistral, Gemma, và open-source models.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install predibase`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`from predibase import PredibaseClient
+pc = PredibaseClient(token="your-token")
+# Fine-tune
+model = pc.create_finetune(
+    base_model="llama-3-8b",
+    dataset="path/to/data.csv",
+    target_column="output"
+)
+# Inference
+result = pc.predict(model, "Your prompt here")`} />
+
+## Liên kết
+
+- [Predibase](https://www.predibase.com)

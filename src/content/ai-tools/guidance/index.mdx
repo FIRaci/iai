@@ -1,0 +1,33 @@
+---
+title: "Guidance"
+category: "ai-tools"
+icon: "code"
+difficulty: "intermediate"
+tags: ["llm", "prompting", "microsoft", "structured-generation"]
+lastUpdated: "2026-06-07"
+---
+
+## Tổng quan
+
+<Note type="info">
+**Guidance** là framework của Microsoft cho structured text generation với LLMs. Cho phép kiểm soát output format (JSON, regex, grammar) và interleave generation với logic điều khiển (if/else, loops).
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install guidance`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`import guidance
+program = guidance("""
+{{#system}}You are a helpful assistant.{{/system}}
+{{#user}}Tell me about {{topic}}{{/user}}
+{{#assistant}}{{gen 'response' max_tokens=100}}{{/assistant}}
+""")
+result = program(topic="AI")
+print(result["response"])`} />
+
+## Liên kết
+
+- [Guidance GitHub](https://github.com/guidance-ai/guidance)

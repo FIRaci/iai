@@ -1,0 +1,35 @@
+---
+title: "LMQL"
+category: "ai-tools"
+icon: "code"
+difficulty: "intermediate"
+tags: ["llm", "programming-language", "structured-generation"]
+lastUpdated: "2026-06-07"
+---
+
+## Tổng quan
+
+<Note type="info">
+**LMQL** (Language Model Query Language) là programming language cho LLM interaction. Cho phép constrain output với types, conditionals, và constraint decoding — tích hợp Python syntax quen thuộc.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install lmql`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`import lmql
+@lmql.query
+def answer(question):
+    '''lmql
+    "Answer the question: {question}"
+    "The answer is: [answer]" where len(answer) < 50
+    return answer
+    '''
+result = answer("What is Python?")
+print(result)`} />
+
+## Liên kết
+
+- [LMQL GitHub](https://github.com/eth-sri/lmql)

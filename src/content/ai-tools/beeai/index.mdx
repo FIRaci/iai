@@ -1,0 +1,32 @@
+---
+title: "BeeAI"
+category: "ai-tools"
+icon: "bot"
+difficulty: "intermediate"
+tags: ["agent", "framework", "ibm", "multi-agent"]
+lastUpdated: "2026-06-07"
+---
+
+## Tổng quan
+
+<Note type="info">
+**BeeAI** là open-source AI agent framework của IBM Research. Hỗ trợ multi-agent orchestration, tool use, memory management, và streaming responses. Tích hợp với watsonx và various LLM providers.
+</Note>
+
+## Cài đặt
+
+<CodeBlock language="powershell" code={`pip install beeai`} />
+
+## Sử dụng
+
+<CodeBlock language="powershell" code={`from beeai import Agent, Tool
+agent = Agent(
+    name="coder",
+    model="claude-sonnet-4",
+    tools=[Tool(name="search", func=search_function)]
+)
+response = agent.run("Find and fix the bug")`} />
+
+## Liên kết
+
+- [BeeAI GitHub](https://github.com/i-am-bee/beeai)
