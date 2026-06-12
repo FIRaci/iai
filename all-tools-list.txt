@@ -1,5 +1,15 @@
-TONG CONG: 996 CONG CU
+TONG CONG: 1087 CONG CU
 ============================================================
+
+[3D-CG] (7 tools)
+----------------------------------------
+    1. 3ds Max
+    2. Cinema 4D
+    3. Houdini
+    4. Maya
+    5. SketchUp
+    6. Substance Painter
+    7. ZBrush
 
 [AI-CODING] (15 tools)
 ----------------------------------------
@@ -253,6 +263,17 @@ TONG CONG: 996 CONG CU
     5. readme-api
     6. stoplight
 
+[AUDIO-ENGINEERING] (8 tools)
+----------------------------------------
+    1. Ableton Live
+    2. Ardour
+    3. Audacity
+    4. FL Studio
+    5. LMMS
+    6. Logic Pro
+    7. Pro Tools
+    8. Reaper
+
 [AUTOMATION] (7 tools)
 ----------------------------------------
     1. activepieces
@@ -330,6 +351,14 @@ TONG CONG: 996 CONG CU
     11. mmlu
     12. Open LLM Leaderboard
     13. SWE-bench
+
+[BIOAI] (5 tools)
+----------------------------------------
+    1. AlphaFold
+    2. BioBERT
+    3. DeepChem
+    4. DeepVariant
+    5. ESMFold
 
 [CLI-TOOLS] (15 tools)
 ----------------------------------------
@@ -568,6 +597,25 @@ TONG CONG: 996 CONG CU
     5. vim
     6. Zed
 
+[EDTECH] (6 tools)
+----------------------------------------
+    1. Anki
+    2. Coursera
+    3. edX
+    4. Kahoot!
+    5. Moodle
+    6. Quizlet
+
+[EMBEDDED] (7 tools)
+----------------------------------------
+    1. Arduino
+    2. ESP32
+    3. FreeRTOS
+    4. Pico SDK
+    5. PlatformIO
+    6. Raspberry Pi
+    7. Zephyr
+
 [EMBEDDINGS] (6 tools)
 ----------------------------------------
     1. cohere-embeddings
@@ -592,6 +640,14 @@ TONG CONG: 996 CONG CU
     11. open-llm-leaderboard
     12. promptfoo
     13. ragas
+
+[FINAI] (5 tools)
+----------------------------------------
+    1. BloombergGPT
+    2. FinBERT
+    3. FinGPT
+    4. FinRL
+    5. FreqTrade
 
 [FINE-TUNING] (8 tools)
 ----------------------------------------
@@ -660,6 +716,17 @@ TONG CONG: 996 CONG CU
     43. Zod
     44. Zustand
 
+[GAME-DEV] (8 tools)
+----------------------------------------
+    1. Blender
+    2. Cocos2d
+    3. GameMaker Studio
+    4. Godot Engine
+    5. Phaser
+    6. PlayCanvas
+    7. Unity
+    8. Unreal Engine
+
 [GIT-TOOLS] (8 tools)
 ----------------------------------------
     1. Delta
@@ -670,6 +737,16 @@ TONG CONG: 996 CONG CU
     6. sourcetree
     7. sublime-merge
     8. tig
+
+[GRAPHICS] (7 tools)
+----------------------------------------
+    1. Affinity Designer
+    2. Canva
+    3. Figma
+    4. GIMP
+    5. Inkscape
+    6. Krita
+    7. Sketch
 
 [IDE-PLUGINS] (10 tools)
 ----------------------------------------
@@ -693,6 +770,14 @@ TONG CONG: 996 CONG CU
     5. leonardo-ai
     6. playground
     7. Stable Diffusion
+
+[LEGALAI] (5 tools)
+----------------------------------------
+    1. Casetext
+    2. DoNotPay
+    3. Judicata
+    4. LegalBERT
+    5. Lex Machina
 
 [LIBRARIES] (10 tools)
 ----------------------------------------
@@ -773,6 +858,17 @@ TONG CONG: 996 CONG CU
     14. TFX
     15. Weights & Biases
     16. Weights & Biases
+
+[MOBILE-DEV] (8 tools)
+----------------------------------------
+    1. Capacitor
+    2. Expo
+    3. Flutter
+    4. Ionic
+    5. Kotlin
+    6. React Native
+    7. Swift
+    8. Xamarin
 
 [MODEL-HUBS] (9 tools)
 ----------------------------------------
@@ -1010,6 +1106,35 @@ TONG CONG: 996 CONG CU
     6. memgpt
     7. RAGFlow
 
+[REVERSE-ENGINEERING] (7 tools)
+----------------------------------------
+    1. APKTool
+    2. Binary Ninja
+    3. Frida
+    4. Ghidra
+    5. IDA Pro
+    6. JADX
+    7. radare2
+
+[ROBOTICS] (5 tools)
+----------------------------------------
+    1. Gazebo
+    2. MoveIt
+    3. ROS
+    4. ROS 2
+    5. Webots
+
+[SCRAPING] (8 tools)
+----------------------------------------
+    1. Apify
+    2. Beautiful Soup
+    3. Cheerio
+    4. Colly
+    5. Crawlee
+    6. Puppeteer
+    7. Scrapy
+    8. Selenium
+
 [SEARCH] (14 tools)
 ----------------------------------------
     1. activepieces
@@ -1026,6 +1151,14 @@ TONG CONG: 996 CONG CU
     12. vespa
     13. windmill
     14. zapier
+
+[SECURE-CODING] (5 tools)
+----------------------------------------
+    1. Brakeman
+    2. Checkmarx
+    3. CodeQL
+    4. Fortify
+    5. SonarQube
 
 [SECURITY] (13 tools)
 ----------------------------------------
