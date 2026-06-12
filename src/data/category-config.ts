@@ -6,6 +6,9 @@ import {
   Braces, GitBranch, Puzzle, Image, Library,
   Box, Cog, Container, FileCode,
   Hammer, Network, Sliders, Terminal, Store,
+  Gamepad2, Smartphone, Microchip, Bot,
+  ShieldCheck, BugPlay, Dna, TrendingUp,
+  Scale, GraduationCap, Palette, Music,
   type LucideIcon,
 } from "lucide-react"
 
@@ -69,6 +72,21 @@ export const categoryConfigs: CategoryConfig[] = [
   { key: "visualization", title: "Visualization", icon: BarChart3, order: 48 },
   { key: "windows-setup", title: "Windows 11 Setup", icon: Monitor, order: 49 },
   { key: "comparisons", title: "So sánh", icon: GitCompare, order: 50 },
+  // === Batch 5 categories ===
+  { key: "game-dev", title: "Game Development", icon: Gamepad2, order: 51 },
+  { key: "mobile-dev", title: "Mobile Development", icon: Smartphone, order: 52 },
+  { key: "embedded", title: "Embedded Systems", icon: Microchip, order: 53 },
+  { key: "robotics", title: "Robotics", icon: Bot, order: 54 },
+  { key: "secure-coding", title: "Secure Coding", icon: ShieldCheck, order: 55 },
+  { key: "scraping", title: "Web Scraping", icon: Search, order: 56 },
+  { key: "reverse-engineering", title: "Reverse Engineering", icon: BugPlay, order: 57 },
+  { key: "bioai", title: "Bio & AI", icon: Dna, order: 58 },
+  { key: "finai", title: "Fin & AI", icon: TrendingUp, order: 59 },
+  { key: "legalai", title: "Legal & AI", icon: Scale, order: 60 },
+  { key: "edtech", title: "EdTech", icon: GraduationCap, order: 61 },
+  { key: "3d-cg", title: "3D & CG", icon: Box, order: 62 },
+  { key: "graphics", title: "Graphics & Design", icon: Palette, order: 63 },
+  { key: "audio-engineering", title: "Audio Engineering", icon: Music, order: 64 },
 ]
 
 export function getCategoryConfig(key: string): CategoryConfig | undefined {
@@ -138,4 +156,19 @@ export const catGradients: Record<string, string> = {
   "windows-setup": "from-blue-500 via-indigo-500 to-violet-500",
   "comparisons": "from-violet-500 to-purple-600",
   "apis": "from-blue-500 via-indigo-500 to-violet-500",
+  // Batch 5
+  "game-dev": "from-red-500 via-rose-500 to-orange-500",
+  "mobile-dev": "from-green-500 via-emerald-500 to-teal-500",
+  "embedded": "from-gray-500 via-slate-500 to-zinc-500",
+  "robotics": "from-cyan-500 via-blue-500 to-indigo-500",
+  "secure-coding": "from-emerald-500 via-green-500 to-lime-500",
+  "scraping": "from-amber-500 via-yellow-500 to-orange-500",
+  "reverse-engineering": "from-purple-500 via-fuchsia-500 to-pink-500",
+  "bioai": "from-green-500 via-emerald-500 to-teal-500",
+  "finai": "from-yellow-500 via-amber-500 to-orange-500",
+  "legalai": "from-blue-500 via-indigo-500 to-violet-500",
+  "edtech": "from-sky-500 via-blue-500 to-indigo-500",
+  "3d-cg": "from-orange-500 via-amber-500 to-yellow-500",
+  "graphics": "from-pink-500 via-rose-500 to-red-500",
+  "audio-engineering": "from-violet-500 via-purple-500 to-fuchsia-500",
 }
